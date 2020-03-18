@@ -63,7 +63,7 @@
     "handsontable": "^6.2.2",
     "highcharts": "~4.2.1",
     "iframe-resizer": "^3.5.5",
-    "jquery": "~2.1.4",
+    "jquery": "~3.4.0",
     "jquery-ui": "~1.12.x",
     "jquery-ui-touch-punch": "*",
     "js-data": "~2.10.1",
