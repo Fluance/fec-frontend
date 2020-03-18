@@ -1,0 +1,80 @@
+<span ng-form name="searchForm">
+    <section>
+        <md-input-container>
+            <label>{{ 'core.COMPANY' | translate }}</label>
+            <md-select ng-model="vm.companies.selectedId" ng-disabled="vm.rooms.companies.length <= 0"
+                       ng-change="vm.companies.selectionChanged()" tutorial-step="company">
+                <md-option ng-value="item.id" ng-repeat="item in vm.companies.items">
+                    {{ item.code }} - {{ item.name }}
+                </md-option>
+            </md-select>
+            <md-progress-linear md-mode="indeterminate" ng-show="vm.companies.isLoading"></md-progress-linear>
+        </md-input-container>
+
+        <md-input-container>
+            <label>{{ 'core.UNIT' | translate }}</label>
+            <md-select ng-model="vm.units.selectedId" ng-disabled="vm.units.items.length <= 0"
+                       ng-change="vm.units.selectionChanged()" tutorial-step="unit">
+                <md-option ng-value="" md-option-empty>{{'NONE' | translate}}</md-option>
+                <md-option ng-value="item.code" ng-repeat="item in vm.units.items">
+                    {{ item.code }} - {{ item.codeDesc }}
+                </md-option>
+            </md-select>
+            <md-progress-linear md-mode="indeterminate" ng-show="vm.units.isLoading"></md-progress-linear>
+        </md-input-container>
+
+        <md-input-container>
+            <label>{{ 'core.HOSP_SERVICE' | translate }}</label>
+            <md-select ng-model="vm.hospServices.selectedId" ng-disabled="vm.hospServices.items.length <= 0"
+                       ng-change="vm.hospServices.selectionChanged()" tutorial-step="hospService">
+                <md-option ng-value="" md-option-empty>{{'NONE' | translate}}</md-option>
+                <md-option ng-value="item.code" ng-repeat="item in vm.hospServices.items">
+                    {{ item.code }} - {{ item.codeDesc }}
+                </md-option>
+            </md-select>
+            <md-progress-linear md-mode="indeterminate" ng-show="vm.hospServices.isLoading"></md-progress-linear>
+        </md-input-container>
+
+        <md-input-container>
+            <label>{{ 'core.ROOM' | translate }}</label>
+            <md-select ng-model="vm.rooms.selectedId" ng-disabled="vm.rooms.items.length <= 0"
+                       ng-change="vm.rooms.selectionChanged()" tutorial-step="room">
+                <md-option ng-value="" md-option-empty>{{'NONE' | translate}}</md-option>
+                <md-option ng-value="item.room" ng-repeat="item in vm.rooms.items">
+                    {{ item.room }}
+                </md-option>
+            </md-select>
+            <md-progress-linear md-mode="indeterminate" ng-show="vm.rooms.isLoading"></md-progress-linear>
+        </md-input-container>
+
+        <md-input-container>
+            <label>{{ 'search.PATIENTBED' | translate }}</label>
+            <md-select ng-model="vm.beds.selectedId" ng-disabled="vm.beds.items.length <= 0"
+                       ng-change="vm.beds.selectionChanged()" tutorial-step="bed">
+                <md-option ng-value="" md-option-empty>{{'NONE' | translate}}</md-option>
+                <md-option ng-value="item.bedNumber" ng-repeat="item in vm.beds.items">
+                    {{ item.bedNumber }}
+                </md-option>
+            </md-select>
+            <md-progress-linear md-mode="indeterminate" ng-show="vm.beds.isLoading"></md-progress-linear>
+        </md-input-container>
+    </section>
+    <section>
+        <md-input-container>
+            <label>{{ 'search.ADMISSIONSTATUS' | translate }}</label>
+            <md-select ng-model="vm.admissionStatus.selectedId" ng-change="vm.admissionStatus.selectionChanged()"
+                       tutorial-step="admissionStatus">
+                <md-option ng-value="item.key" ng-repeat="item in vm.admissionStatus.items">
+                    {{ item.displayName | translate | firstLetterUpperCase }}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container ng-show="vm.admissionDate.show">
+            <label>{{ 'core.ADMIT_DATE' | translate }}</label>
+            <div tutorial-step="admissionDate">
+                <md-datepicker aria-label="Admission date" ng-model="vm.admissionDate.value"
+                               md-hide-icons="calendar"></md-datepicker>
+            </div>
+        </md-input-container>
+    </section>
+</span>

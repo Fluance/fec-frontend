@@ -1,0 +1,17 @@
+.datefield {
+    line-height: 0;
+    color: $fe-black;
+    position: relative;
+    input {
+        cursor: pointer;
+        z-index: 900;
+        position: relative;
+    }
+    .material-icons {
+        cursor: pointer;
+        position: absolute;
+        top: 0.4em;
+        right: 0.5em;
+        z-index: 800;
+    }
+}

@@ -1,0 +1,74 @@
+<div>
+    <div class="fec-page-title" layout="row" layout-wrap>
+        <h5>{{ 'search.TITLE' | translate }}</h5>
+        <span class="number-badge" ng-show="$ctrl.counts.total > 0" layout="row" layout-align="center center" >{{ 'search.NB_OF_RESULTS' | translate:{RESULT : $ctrl.counts.total} }}</span>
+        <span class="number-badge" ng-show="$ctrl.counts.patient > 0" layout="row" layout-align="center center">{{ 'patient.NB_OF_PATIENT' | translate:{PATIENT : $ctrl.counts.patient} }}</span>
+        <span class="number-badge" ng-show="$ctrl.counts.visit > 0" layout="row" layout-align="center center">{{ 'visit.NB_OF_VISIT' | translate:{VISIT : $ctrl.counts.visit} }}</span>
+    </div>
+    <div class="fec-full-search-criteria" layout="row" layout-xs="column">
+        <div layout="row" layout-align="center center"  flex>
+            <label>{{ 'search.CRITERIA' | translate }}{{ ':' | translate }}</label>
+            <fec-search-query query="$ctrl.searchQuery" delegate="$ctrl" navigate-on-click="false" flex layout="row"></fec-search-query>
+        </div>
+    </div>
+
+    <!-- NO RESULTS FOUND -->
+    <div class="fec-full-search-results" ng-show="$ctrl.noResultsFound">
+        <md-card class="warn">
+            <md-card-content>
+                {{'search.NO_RESULTS' | translate }}{{'.' | translate }}
+            </md-card-content>
+        </md-card>
+    </div>
+
+    <!-- Results list: Patients -->
+    <div class="fec-full-search-results" ng-if="$ctrl.results.patient">
+        <div class="fec-full-search-section-title" layout="row" layout-wrap>
+            <h5>
+                <fec-icon type="patient" color="fe-blue-icon"></fec-icon>
+                {{'search.TITLE_PATIENTS' | translate}}
+            </h5>
+            <div class="fec-page-title">
+                <span class="number-badge" ng-show="$ctrl.counts.patient > 0" layout="row" layout-align="center center">{{ 'search.NB_OF_RESULTS' | translate:{RESULT : $ctrl.counts.patient} }}</span>
+            </div>
+            <span flex></span>
+            <md-button class="md-fab md-mini md-primary" ui-sref="fullSearchEntityType({type: 'patient', field: $ctrl.searchText})">
+                <md-tooltip md-direction="left">{{'search.SHOW_ALL' | translate}}</md-tooltip>
+                <fec-icon type="expand"></fec-icon>
+            </md-button>
+        </div>
+        <md-card class="list-patients" layout="row" flex="grow">
+            <md-card-content layout="column" flex="grow" class="fec-no-padding-mobile">
+                <fec-full-search-result-item-patient criteria="$ctrl.getCriteriaValue()" patient="patient" ng-repeat="patient in $ctrl.results.patient.data"></fec-full-search-result-item-patient>
+            </md-card-content>
+        </md-card>
+    </div>
+
+    <!-- Results list: Visits -->
+    <div class="fec-full-search-results" ng-if="$ctrl.results.visit">
+        <div class="fec-full-search-section-title" layout="row" layout-wrap>
+            <h5>
+                <fec-icon type="visit" color="fe-blue-icon"></fec-icon>
+                {{'search.TITLE_VISITS' | translate}}
+            </h5>
+            <div class="fec-page-title">
+                <span class="number-badge" ng-show="$ctrl.counts.visit > 0" layout="row" layout-align="center center">{{ 'search.NB_OF_RESULTS' | translate:{RESULT : $ctrl.counts.visit} }}</span>
+            </div>
+            <span flex></span>
+            <md-button class="md-fab md-mini md-primary" ui-sref="fullSearchEntityType({type: 'visit', field: $ctrl.searchText})">
+                <md-tooltip md-direction="left">{{'search.SHOW_ALL' | translate}}</md-tooltip>
+                <fec-icon type="expand"></fec-icon>
+            </md-button>
+        </div>
+        <md-card class="list-patients" layout="row" flex="grow">
+            <md-card-content layout="column" flex="grow">
+                <fec-full-search-result-item-visit criteria="$ctrl.getCriteriaValue()" visit="visit" ng-repeat="visit in $ctrl.results.visit.data"></fec-full-search-result-item-visit>
+            </md-card-content>
+        </md-card>
+    </div>
+
+    <!-- Progress Bar -->
+    <div layout-padding>
+        <md-progress-linear md-mode="indeterminate" ng-if="$ctrl.isLoading"></md-progress-linear>
+    </div>
+</div>

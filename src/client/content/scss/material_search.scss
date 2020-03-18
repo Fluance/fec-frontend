@@ -1,0 +1,41 @@
+$fec-search-criterion-inline-spacing: 10px;
+#searchpanelcriteria {
+    margin-bottom: 0.75rem;
+    margin-left: 0.75rem;
+    label{
+        font-weight: bold;
+    }
+}
+
+fec-search-criterion {
+    .fec-search-criterion-chip {
+        background: $list-border-color;
+        padding: 3px 10px;
+        @include border-radius-2(16px);
+        & i.material-icons {
+            cursor: pointer;
+        }
+    }
+    .fec-search-criterion-inline {
+        display: inline-block;
+        white-space: nowrap;
+        margin-right: $fec-search-criterion-inline-spacing;
+        fec-icon {
+            margin-right: 4px;
+        }
+    }
+    .fec-search-criterion-no-icon {
+        //margin-left: -($fec-search-criterion-inline-spacing);
+    }
+}
+
+fec-search-query {
+    & > *:focus {
+        outline: none;
+    }
+    .fec-search-query-navigatable {
+        &:hover {
+            background-color: #ddd;
+        }
+    }
+}

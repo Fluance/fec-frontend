@@ -1,0 +1,13 @@
+{
+    "lab": {
+        "CHANGE_CATEGORY_TITLE": "Cambia categoria",
+        "GUIDE_VISITS_LAB": "Risultati di laboratorio dei pazienti correnti",
+        "MEASUREMENT": "Misurazione",
+        "NAVIGATION_TITLE": "Laboratorio",
+        "REFERENCE": "Riferimento",
+        "TITLE": "Risultati di laboratorio",
+        "TITLE_BUTTON": "Laboratorio",
+        "TITLE_SHORT": "Lab",
+        "NO_RESULTS": "Non ci sono risultati per questo periodo. È possibile creare una prescrizione con il pulsante in alto a destra dello schermo."
+    }
+}

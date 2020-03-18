@@ -1,0 +1,234 @@
+<div>
+    <!-- Progress -->
+    <md-progress-circular md-mode="indeterminate" ng-if="$ctrl.isLoadingDetails"></md-progress-circular>
+
+    <div layout="column" class="fec-no-padding appointment-expander-header" ng-if="!$ctrl.isLoadingDetails">
+
+        <div flex="auto" layout="column" class="appointment-profile">
+
+            <div layout="row" layout-align="start center">
+                <h5 class="color-blue">
+                    <small>{{ $ctrl.appointment.description }}</small>
+                </h5>
+                <div flex></div>
+                <fec-productivity-ical event-name="{{$ctrl.appointment.description}}"
+                    event-start="$ctrl.appointment.beginDate" event-end="$ctrl.appointment.endDate"
+                    url="$ctrl.appointmentDeeplink" location="$ctrl.appointment.locations[0].name"
+                    patient="$ctrl.patientName" responsible="$ctrl.appointment.personnels[0].name"
+                    ng-if="$ctrl.appointment.beginDate" tooltip="{{'appointment.EXPORT_TOOLTIP' | translate }}">
+                </fec-productivity-ical>
+            </div>
+
+            <div flex="auto" layout="column" layout-gt-sm="row" layout-align="center start"
+                layout-align-gt-sm="start center" class="appointment-data">
+
+                <div layout="row" flex="auto" class="appointment-time appointment-table-layout"
+                    layout-align="start center">
+                    <div layout="row" flex="initial" layout-align="center center">
+                        <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom"
+                            md-delay="25">{{'appointment.DATE' | translate }}
+                        </md-tooltip>
+                        <fec-icon type="calendar" />
+                    </div>
+                    <div layout-padding>
+                    </div>
+                    <div layout="column" flex="noshrink">
+                        <span layout="row" flex="auto">{{ $ctrl.appointment.fromToDateString() }}</span>
+                    </div>
+                </div>
+
+                <div layout-padding hide-gt-sm></div>
+
+                <div layout="row" flex="auto" class="appointment-time appointment-table-layout"
+                    layout-align="start center">
+                    <div layout="column" flex="initial" layout-align="center center">
+                        <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom"
+                            md-delay="25">{{'appointment.TIME' | translate }}
+                        </md-tooltip>
+                        <fec-icon type="schedule" />
+                    </div>
+                    <div layout-padding>
+                    </div>
+                    <div layout="column" flex="noshrink">
+                        <span>{{ $ctrl.appointment.beginDate | formatDate : 'time'}} -
+                            {{ $ctrl.appointment.endDate | formatDate : 'time'}}</span>
+                    </div>
+                </div>
+
+                <div layout-padding hide-gt-sm></div>
+
+                <div layout="row" flex="auto" class="appointment-room appointment-table-layout"
+                    layout-align="start center">
+                    <div layout="row" flex="initial" layout-align="center center"
+                        ng-if="$ctrl.appointment.locations[0].name">
+                        <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom"
+                            md-delay="25">{{'appointment.LOCATION_TITLE' | translate }}
+                        </md-tooltip>
+                        <fec-icon type="location" />
+                    </div>
+                    <div layout-padding>
+                    </div>
+                    <div layout="column" flex="noshrink">
+                        <span layout="row" flex="auto">{{ $ctrl.appointment.locations[0].name }}</span>
+                    </div>
+                </div>
+
+                <div layout-padding hide-gt-sm></div>
+
+                <div layout="row" flex="auto" class="appointment-room appointment-table-layout"
+                    layout-align="start center">
+                    <div layout="row" flex="initial" layout-align="center center"
+                        ng-if="$ctrl.appointment.personnels[0].name">
+                        <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom"
+                            md-delay="25">{{'appointment.RESPONSIBLE_PERSON' | translate }}
+                        </md-tooltip>
+                        <fec-icon type="room" size="sm" />
+                    </div>
+                    <div layout-padding>
+                    </div>
+                    <div layout="column" flex="noshrink">
+                        <span layout="row" flex="auto">{{ $ctrl.appointment.personnels[0].name}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- DETAILS -->
+        <div flex="auto" layout="column">
+            <table class="appoint-table striped">
+                <thead>
+                    <tr hide show-gt-xs>
+                        <th></th>
+                        <th class="fec-table-header">{{ 'core.NAME' | translate }}</th>
+                        <th class="fec-table-header">{{ 'appointment.LOCATION_TYPE' | translate }}/{{
+                        'appointment.PERSONNEL_ROLE'| translate }}
+                        </th>
+                        <th class="fec-table-header">{{ 'appointment.TIME' | translate }}</th>
+                    </tr>
+
+                    <tr hide-gt-xs>
+                        <th></th>
+                        <th class="fec-table-header">{{ 'core.NAME' | translate }}</th>
+                        <th class="fec-table-header">{{ 'appointment.LOCATION_TYPE' | translate }}/{{
+                        'appointment.PERSONNEL_ROLE' | translate }}
+                        </th>
+                        <th class="fec-table-header">{{ 'appointment.TIME' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="$ctrl.appointment.locations && $ctrl.appointment.locations.length > 0">
+                        <td>
+                            <div class="row appointment-detail-info">
+                                <content-item-no-title content="{{ 'appointment.LOCATION_TITLE' | translate }}">
+                                </content-item-no-title>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-repeat="item in $ctrl.appointment.locations" class="row appointment-detail-info">
+                                <content-item-no-title content="{{ item.name }}"></content-item-no-title>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-repeat="item in $ctrl.appointment.locations" class="row appointment-detail-info">
+                                <content-item-no-title content="{{ item.type }}"></content-item-no-title>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-repeat="item in $ctrl.appointment.locations" class="row appointment-detail-info">
+                                <content-item-no-title
+                                    content="{{ item.beginDate | formatDate : 'time'}} - {{ item.endDate | formatDate : 'time'}}">
+                                </content-item-no-title>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr ng-if="$ctrl.appointment.devices && $ctrl.appointment.devices.length > 0">
+                        <td>
+                            <div class="row appointment-detail-info">
+                                <content-item-no-title content="{{ 'appointment.DEVICES_TITLE' | translate }}">
+                                </content-item-no-title>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-repeat="item in $ctrl.appointment.devices" class="row appointment-detail-info">
+                                <content-item-no-title content="{{ item.name }}"></content-item-no-title>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-repeat="item in $ctrl.appointment.devices" class="row appointment-detail-info">
+                                <content-item-no-title content="{{ item.type }}"></content-item-no-title>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-repeat="item in $ctrl.appointment.devices" class="row appointment-detail-info">
+                                <content-item-no-title
+                                    content="{{ item.beginDate | formatDate : 'time'}} - {{ item.endDate | formatDate : 'time'}}">
+                                </content-item-no-title>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr ng-if="$ctrl.appointment.personnels && $ctrl.appointment.personnels.length > 0">
+                        <td>
+                            <div class="row appointment-detail-info">
+                                <content-item-no-title content="{{ 'appointment.PERSONNEL_TITLE' | translate }}">
+                                </content-item-no-title>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-repeat="item in $ctrl.appointment.personnels" class="row appointment-detail-info">
+                                <content-item-no-title content="{{ item.name }}"></content-item-no-title>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-repeat="item in $ctrl.appointment.personnels" class="row appointment-detail-info">
+                                <content-item-no-title content="{{ item.role }}"></content-item-no-title>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-repeat="item in $ctrl.appointment.personnels" class="row appointment-detail-info">
+                                <content-item-no-title
+                                    content="{{ item.beginDate | formatDate : 'time'}} - {{ item.endDate | formatDate : 'time'}}">
+                                </content-item-no-title>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div ng-if="$ctrl.appointment.appointmentType === 'operation'" flex="none" style="height: 10px;"></div>
+        <div ng-if="$ctrl.appointment.appointmentType === 'operation'" flex="auto" layout="column" layout-gt-xs="row" layout-align-gt-xs=" stretch">
+            <div flex="100" flex-gt-xs="40" class="fec-operating-times-box" layout="column">
+                <div class="title">{{ 'whiteboardSurgery.OPERATING_TIMES' | translate | uppercase }}</div>
+                <div class="content" layout="column">
+                    <div class="fec-operating-status-item" ng-class="{ 'even' : $index % 2 == 0 }"
+                        ng-repeat="operationStatus in $ctrl.operationStatusList | orderBy : 'stepNumber'" layout="row">
+                        <div class="fec-operating-status-item-description" flex>
+                            {{ operationStatus.processStatusDescription }}</div class="fec-operating-status-item-time">
+                        <div class="fec-operating-status-item-time-container">
+                            <div class="fec-operating-status-item-time" ng-if="operationStatus.eventDate">
+                                {{ operationStatus.eventDate | formatDate : 'time' }}
+                            </div>
+                            <div class="fec-operating-status-item-time" ng-if="!operationStatus.eventDate">
+                                {{ '-' | translate }}{{ '-' | translate }}{{ ':' | translate }}{{ '-' | translate }}{{ '-' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div hide-xs style="width: 15px;"></div>
+            <div flex="100" flex-gt-xs="60" layout="column">
+                <div hide-gt-xs style="height: 10px"></div>
+                <div flex="auto" layout="column" layout-gt-xs="row">
+                    <fec-anesthesia-box flex title="{{ 'whiteboardSurgery.ANESTHESIA' | translate | uppercase }}"
+                        content="$ctrl.appointment.anesthesia"></fec-anesthesia-box>
+                    <div hide-xs style="width: 5px"></div>
+                    <fec-patient-position-box flex title="{{ 'whiteboardSurgery.POSITION' | translate | uppercase }}"
+                        content="$ctrl.appointment.patientPosition"></fec-patient-position-box>
+                </div>
+                <fec-operation-note-box flex="grow" layout="column" title="{{ 'whiteboardSurgery.COMMENTS' | translate | uppercase }}"
+                    appointment-id="$ctrl.appointment.appointmentId"></fec-operation-note-box>
+            </div>
+        </div>
+    </div>
+</div>

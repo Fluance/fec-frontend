@@ -1,0 +1,46 @@
+<div id="patient-lab">
+    <div flex layout="row">
+        <div class="fec-page-title" hide-xs>
+            <h5>
+                <fec-icon type="lab" size="sm" color="fe-blue-icon"></fec-icon>
+                {{ 'lab.TITLE' | translate }}
+            </h5>
+        </div>
+        <div flex></div>
+        <fec-nav-button-medlab pid="$ctrl.pid"></fec-nav-button-medlab>
+    </div>
+    <div flex layout="row" layout-align="end center">
+        <selection-reveal reveal-id="selection-reveal-categories" show-reveal="true" selected-item-changed="$ctrl.categorySelection.selectedItemChanged"
+            selected-item="$ctrl.categorySelection.selectedItem" items="$ctrl.categorySelection.items" reveal-title="{{ $ctrl.categorySelection.title | translate}}"
+            get-item-display-name="$ctrl.categorySelection.getItemDisplayName" ng-if="$ctrl.hasLabData && $ctrl.categorySelection.selectedItem"
+            close-on-selection="true">
+        </selection-reveal>
+
+        <div flex></div>
+
+        <!-- Table view -->
+        <fec-icon class="lab-tab-icon active" size="sm" ng-if="$ctrl.selectedTab === 'table'" type="labTableFilled"></fec-icon>
+        <fec-icon class="lab-tab-icon disabled" size="sm" ng-if="$ctrl.selectedTab != 'table' && !$ctrl.labDataByCategory.table.data.length" type="labTable"></fec-icon>
+        <fec-icon class="lab-tab-icon" size="sm" ng-if="$ctrl.selectedTab != 'table' && $ctrl.labDataByCategory.table.data.length" type="labTable" fec-mobile-click="$ctrl.activateTab('table')"></fec-icon>
+
+        <!-- Text view -->
+        <fec-icon class="lab-tab-icon active" size="sm" ng-if="$ctrl.selectedTab === 'text'" type="labTextFilled"></fec-icon>
+        <fec-icon class="lab-tab-icon disabled" size="sm" ng-if="$ctrl.selectedTab != 'text' && !$ctrl.labDataByCategory.text.data.length" type="labText"></fec-icon>
+        <fec-icon class="lab-tab-icon" size="sm" ng-if="$ctrl.selectedTab != 'text' && $ctrl.labDataByCategory.text.data.length" type="labText" fec-mobile-click="$ctrl.activateTab('text')"></fec-icon>
+    </div>
+
+    <!-- lab results: numeric measurements -->
+    <fec-lab-table ng-if="$ctrl.selectedTab === 'table' && $ctrl.labDataByCategory.table.data.length >= 1" table-data="$ctrl.labDataByCategory.table.data"
+        table-dates="$ctrl.labDataByCategory.table.dates"></fec-lab-table>
+
+    <!-- lab results: list -->
+    <fec-lab-text ng-if="$ctrl.selectedTab === 'text' && $ctrl.labDataByCategory.text.data.length >= 1" text-data="$ctrl.labDataByCategory.text.data"></fec-lab-text>
+
+    <md-card ng-if="!$ctrl.hasLabData" class="warn" flex="grow">
+        <md-card-content>
+            {{ 'lab.NO_RESULTS' | translate }}
+        </md-card-content>
+    </md-card>
+    <md-progress-linear md-mode="indeterminate" ng-if="$ctrl.isLoading"></md-progress-linear>
+
+</div>

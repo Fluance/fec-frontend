@@ -1,0 +1,6 @@
+<div flex="initial" md-ink-ripple style="position:relative">
+    <a ng-click="vm.action()">
+        <md-tooltip ng-if="vm.tooltip" layout="row" layout-align="center center" class="info" md-direction="bottom" md-delay="25">{{vm.tooltip}}</md-tooltip>
+        <fec-icon type="{{vm.type}}" size="{{vm.size}}" color="{{vm.color}}"></fec-icon>
+    </a>
+</div>

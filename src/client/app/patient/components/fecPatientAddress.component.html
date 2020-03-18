@@ -1,0 +1,19 @@
+<h5>
+    <small>
+        {{ 'patient.PERSONAL_DATA' | translate }}
+    </small>
+</h5>
+<div layout="column" ng-if="$ctrl.patientAddress && $ctrl.patientInfo">
+    <div ng-if="$ctrl.patientAddress.addressLine">{{ ::$ctrl.patientAddress.addressLine }}</div>
+    <div ng-if="$ctrl.patientAddress.addressLine2">{{ ::$ctrl.patientAddress.addressLine2 }}</div>
+    <div ng-if="$ctrl.patientAddress.adressComplement">{{ ::$ctrl.patientAddress.adressComplement }}</div>
+    <div ng-if="$ctrl.patientAddress.careOf">{{ 'patient.CAREOF' | translate }} {{ ::$ctrl.patientAddress.careOf }}</div>
+    <div ng-if="$ctrl.patientAddress.postCode || $ctrl.patientAddress.locality">{{ ::$ctrl.patientAddress.postCode }} {{ ::$ctrl.patientAddress.locality }}</div>
+    <div ng-if="$ctrl.patientAddress.subPostCode">{{ ::$ctrl.patientAddress.subPostCode }}</div>
+    <div ng-if="$ctrl.patientAddress.canton">{{ ::$ctrl.patientAddress.canton }}</div>
+    <div ng-if="$ctrl.patientAddress.country">{{ ::$ctrl.patientAddress.country }}</div>
+    <br />
+    <content-item-detail label="{{ 'patient.AVSNUMBER' | translate }}" content="{{ ::$ctrl.patientInfo.avsNumber }}"></content-item-detail>
+    <content-item-detail label="{{ 'patient.NATIONALITY' | translate }}" content="{{ ::$ctrl.patientInfo.nationality }}"></content-item-detail>
+    <content-item-detail label="{{ 'patient.MARITAL_STATUS' | translate }}" content="{{ ::$ctrl.patientInfo.maritalStatus }}"></content-item-detail>
+</div>

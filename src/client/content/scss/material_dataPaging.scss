@@ -1,0 +1,19 @@
+
+
+fec-data-pager-sort {
+    & > * {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .spacer {
+        width: 16px;
+    }
+}
+
+@media #{$medium-and-up} {
+    fec-data-pager-sort {
+        float: right;
+        width: 400px;
+    }
+}

@@ -1,0 +1,33 @@
+{
+        "error": {
+                "ACCESS_DENIED": "Désolé, vous n'êtes pas autorisé à accéder ce contenu. Visitez notre centre de support pour soumettre une requête",
+                "ACTION_BACK": "Retour",
+                "ACTION_RELOAD": "Recharger",
+                "ACTION_LOGIN": "Se connecter",
+                "ACTION_LOGOUT": "Déconnecter",
+                "ERROR": "Oups, une erreur s'est produite",
+                "GUIDE_BACK": "Vous redirige vers la page où l'erreur s'est produite",
+                "GUIDE_LOGIN": "Vous devez vous connecter pour utiliser l'application",
+                "GUIDE_LOGOUT": "L'application a rencontré une erreur. Veuillez vous déconnecter, puis vous reconnecter",
+                "HTTP_FORBIDDEN": "Vos droits ne vous donnent pas accès à cette ressource",
+                "HTTP_REQUEST_TIME_OUT": "Le serveur n'a pas répondu dans un délai raisonnable",
+                "HTTP_SERVER": "Une erreur interne du serveur s'est produite",
+                "HTTP_WARN": "Votre navigateur n'utilise pas une connexion sécurisée (HTTPS). Modifiez l'URL avec le préfixe https:// ou visitez notre centre de support pour soumettre une requête",
+                "INVALID_EMAIL_ADDRESS": "Adresse e-mail invalide",
+                "INVALID_DATE": "Date non valide",
+                "INVALIDE_NUMBER": "cette valeur n'est pas valide. Veuillez remplir le champ avec des chiffres et sans caractères spéciaux",
+                "INVALID_REQUEST": "Veuillez saisir au moins un critère (le nom de famille ou la date de naissance)",
+                "INVALID_ROUTING": "Erreur lors d'une navigation vers {DESTINATION}. {DATA} {STATUS} {STATUS_TEXT}",
+                "INVALID_STAFFID": "Numéro de personnel invalide",
+                "INVALID_VALUE": "cette valeur n'est pas valide. Veuillez remplir le champ avec au moins une lettre et sans caractères spéciaux",
+                "INVALID_URL": "URL invalide",
+                "MAINTENANCE_MSG": "eHealth Cockpit est en cours de maintenance et n'est pas disponible pour le moment",
+                "NO_COMPANY": "Votre profil n'a pas de clinique associée. Visitez notre centre de support pour soumettre une requête",
+                "NO_PATIENT": "Le patient recherché n'a pas été trouvé",
+                "NO_PROFILE": "Votre compte utilisateur ne possède pas de profil pour utiliser cette application. Visitez notre centre de support pour soumettre une requête",
+                "SEE_FULL_REPORT": "Rapport d'erreur détaillé",
+                "SESSION_TIMEOUT": "La session a expiré",
+                "TITLE_MAINTENANCE": "Maintenance",
+                "UNHANDLED_ERROR": "Une erreur inconnue est survenue"
+        }
+}

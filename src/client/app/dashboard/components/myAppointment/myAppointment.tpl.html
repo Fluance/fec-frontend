@@ -1,0 +1,103 @@
+<div class="myAppointment {{scope.className}}" flex="auto" layout="column" ng-controller="myAppointmentController as vm" ng-show="scope.hasUnitOrService">
+    <md-card ng-class="{'warn': scope.warning, 'error': scope.error, 'location': (scope.params.by==='location'), 'user': scope.params.by!=='location'}" flex="auto" layout="column">
+        <md-card-title layout="row" flex="auto" layout-align="start end">
+            <md-card-title-text flex="none" layout-nowrap>
+                {{ scope.title | translate }}
+            </md-card-title-text>
+            <md-subhead flex="grow" layout="row" layout-align="start center" layout-wrap ng-if="!scope.isMobile()">
+                &nbsp;
+            </md-subhead>
+            <div flex="noshrink" layout="row" layout-align="end center">
+                <!-- <md-button ng-disabled="scope.warning || scope.error || !scope.hasData" class="md-fab md-mini md-primary right" fec-mobile-click="openExtended()">
+                    <fec-icon type="expand" size="sm"></fec-icon>
+                </md-button> -->
+                <md-button hide-xs ng-disabled="!scope.hasData || scope.error" class="md-fab md-mini md-primary right button-expanded" fec-mobile-click="openExtended()">
+                    <fec-icon type="expand" size="sm"></fec-icon>
+                </md-button>
+                <md-button hide-gt-xs ng-disabled="!scope.hasData || scope.error" class="md-primary right button-mobile-expand" fec-mobile-click="openExtended()">
+                    <fec-icon type="forward" size="md"></fec-icon>
+                </md-button>
+            </div>
+        </md-card-title>
+        <span ng-if="!scope.isMobile()">
+            <md-divider/>
+            <md-card-actions layout="row" layout-align="end center" ng-if="(scope.warning && scope.warning.tryagain) || scope.error">
+                <!-- Warning/Error Actions -->
+                <md-button class="md-raised md-primary" ng-show="scope.warning.tryagain" ng-click="scope.initialize()">{{'dashboard.RELOAD_DATA | translate'}}</md-button>
+                <md-button class="md-raised md-primary" ng-show="scope.error.tryagain" ng-click="scope.initialize()">{{'dashboard.TRY_AGAIN' | translate}}</md-button>
+                <md-button class="md-raised md-primary" ng-show="scope.error.report !== null && scope.error.report !== undefined" ng-click="scope.logger.showReport(scope.error.report)">{{'dashboard.SEE_REPORT' | translate}}</md-button>
+            </md-card-actions>
+            <md-content ng-hide="scope.warning || scope.error || (!scope.hasData && scope.unitId === 'ALL' && scope.hospserviceId === 'ALL')">
+                <div layout="row" ng-if="scope.params.by==='location'">
+                    <md-input-container flex="50" layout="column">
+                        <label>{{ 'dashboard.MY_AGENDA_CHANGE_UNIT' | translate }}</label>
+                        <md-select ng-model="scope.unitId" ng-change="scope.initialize()">
+                            <md-option value="ALL" selected="selected">
+                                {{ 'dashboard.MY_AGENDA_ALL' | translate }}
+                            </md-option>
+                            <md-option ng-repeat="unit in scope.units" value="{{unit.code}}">
+                                {{ ::unit.code }}{{ '-' | translate }}{{ ::unit.codeDesc }}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container flex="50" layout="column">
+                        <label>{{ 'dashboard.MY_AGENDA_CHANGE_SERVICE' | translate }}</label>
+                        <md-select ng-model="scope.hospserviceId" ng-change="scope.initialize()">
+                            <md-option value="ALL" selected="selected">
+                                {{ 'dashboard.MY_AGENDA_ALL' | translate }}
+                            </md-option>
+                            <md-option ng-repeat="hospService in scope.hospservices" value="{{hospService.code}}">
+                                {{ ::hospService.code }}{{ '-' | translate }}{{ ::hospService.codeDesc }}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div>
+                    <md-nav-bar ng-if="scope.hasData && !scope.error && !scope.warning"  md-no-ink-bar="disableInkBar" md-selected-nav-item="currentNavItem"
+                        ng-init="currentNavItem=scope.navBarInit">
+                        <md-nav-item md-nav-click="scope.changeTab('calendar-date')"name="calendar-date">
+                            {{ "dashboard.MY_AGENDA_DATE" | translate }}</md-nav-item>
+                            <md-nav-item md-nav-click="scope.changeTab('calendar-patient')" name="calendar-patient">
+                            {{ "dashboard.MY_AGENDA_PATIENT" | translate }}
+                        </md-nav-item>
+                    </md-nav-bar>
+                    <div id="calendar-date" ng-if="scope.showCalendarDate && !hasErrorMsg() && !isCustomSpinActive() && !scope.error && !scope.warning">
+                        <div ng-class="{'appointment-gap': appointment.endDay}" layout="column" class="appointment-entry" ng-repeat="appointment in scope.appointmentsDate">
+                                <div ng-include="scope.templateUrl"></div>
+                        </div>
+                    </div>
+                    <div id="calendar-patient" ng-if="scope.showCalendarPatient && !hasErrorMsg() && !isCustomSpinActive() && !scope.error && !scope.warning">
+                        <div ng-class="{'appointment-gap': appointment.endDay}" layout="column" class="appointment-entry" ng-repeat="appointment in scope.appointmentsPatient">
+                            <div ng-include="scope.templateUrl">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="!scope.hasData && !scope.spin && !scope.error" class="warn-message">
+                    {{'dashboard.MY_AGENDA_NO_APPOINTMENTS' | translate}}
+                </div>
+            </md-content>
+            <md-content class="card-content-info" layout="row" layout-align="start center" ng-if="scope.warning || scope.error || !scope.hasData">
+                <!-- Warning / Error / No-data Content -->
+                <p class="warn-message" ng-show="scope.warning">{{ scope.warning.message | translate }}{{ '.' | translate }}</p>
+                <p class="error-message" ng-show="scope.error">{{ scope.error.message | translate }}{{ '.' | translate }}</p>
+                <p class="fec-no-data-message" ng-hide="scope.hasData || scope.spin || scope.error || scope.warning">{{'dashboard.NO_APPOINTMENTS' | translate}}</p>
+            </md-content>
+            <!-- Action links -->
+            <md-card-actions layout="row" layout-align="end center" class="my-agenda-show-more" ng-show="!scope.spin && scope.hasMoreData && !scope.error && !scope.warning">
+                <a fec-mobile-click="openExtended()">
+                {{ 'dashboard.MORE_ENTRIES' | translate: { COUNT : scope.maxAppointments - 5 } }}
+                </a>
+            </md-card-actions>
+            <!-- Progress -->
+            <div class="fec-busy-indicator" ng-if="scope.spin">
+                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
+        </span>
+        <!-- Draggable item -->
+        <div class="draggable sortable-handle" ng-class="{'draggable-visible': scope.isStateSorting}">
+            <fec-icon type="draggable" size="lg"></fec-icon>
+        </div>
+    </md-card>
+</div>

@@ -1,0 +1,11 @@
+<div ng-if="!$ctrl.editMode" fec-mobile-click="$ctrl.enterEditMode()">
+<span ng-if="$ctrl.item.nurseName">{{ $ctrl.item.nurseName }}</span><span ng-if="!$ctrl.item.nurseName">{{ '-' | translate }}</span>
+</div>
+<div ng-if="$ctrl.editMode" layout="row">
+    <md-select ng-model="$ctrl.selectedNurse" class="nurse-inline-selection md-no-underline" ng-change="$ctrl.nurseChanged()">
+        <md-option>{{ '-' | translate }}</md-option>
+        <md-option ng-repeat="nurse in $ctrl.nurses" ng-value="nurse">
+            {{ nurse }}
+        </md-option>
+    </md-select>
+</div>

@@ -1,0 +1,82 @@
+
+
+<div layout="column" class="note-picture-details" flex="grow">
+
+    <div layout="row" flex="none" class="md-subhead">
+        <div layout="row" flex="grow" layout-align="start center">{{$ctrl.note.editor.firstName}} {{$ctrl.note.editor.lastName}}</div>
+
+        <div layout="row" flex="none" layout-align="center center">{{ $ctrl.note.category.name }}</div>
+
+        <div layout="row" flex="grow" layout-align="end center" class="note-date">{{ $ctrl.note.referenceDate | formatDate : 'dateTime' }}</div>
+    </div>
+
+    <div layout="row" flex="none">
+        <div layout="row" flex="auto"><span class="note-title">{{ $ctrl.note.title }}</span></div>
+        <div layout="row" flex="none">
+            <span ng-if="$ctrl.note.shift">
+                <md-tooltip layout="row" layout-align="center center" class="info"
+                            md-delay="50">{{ 'notes.SHIFT_NOTE' | translate}}</md-tooltip>
+                <fec-icon type="hourglassEmpty" color="fe-blue-icon" class="md-primary"></fec-icon>
+            </span>
+        </div>
+    </div>
+
+    <div layout="row" flex="none">
+        <div layout="row" flex="auto" ng-bind-html="$ctrl.note.description" class="padding-text"></div>
+    </div>
+
+    <div layout="row" flex = "grow">
+        <div flex="none" layout="column" layout-align="center end">
+            <!-- prev/next buttons -->
+            <fec-icon type="previous" color="fe-blue-icon" fec-mobile-click="$ctrl.prevPicture()"></fec-icon>
+        </div>
+
+        <div flex="grow" layout="column" layout-align="center center">
+            <div layout="column" ng-show="true" flex="grow">
+                <div layout="row" flex = "none" ng-show="!$ctrl.loading && !$ctrl.resizing">
+                    <div flex="grow">
+                    </div>
+
+                    <div flex="auto" layout="row" layout-align="center center">
+                        <span class="context context-page-number">{{$ctrl.getPictureNav()}}</span>
+                    </div>
+
+                    <div flex="grow" layout="row" layout-align="end center">
+                        <a http-href="{{$ctrl.getSelectedPictureUrl()}}" http-href-filename="{{$ctrl.getSelectedPictureFileName()}}">
+                            <md-tooltip layout="row" layout-align="center center" class="info"
+                                        md-delay="50">{{'notes.DOWNLOAD' | translate }}</md-tooltip>
+                            <fec-icon type="download" color="fe-blue-icon"></fec-icon>
+                        </a>
+                        <span>
+                            <md-tooltip layout="row" layout-align="center center" class="info"
+                                        md-delay="50">{{'notes.FULLSCREEN' | translate }}</md-tooltip>
+                            <fec-icon type="fullscreen" color="fe-blue-icon"
+                                      ng-click="$ctrl.onClickFullScreen($event)"></fec-icon>
+                        </span>
+                    </div>
+                </div>
+                <!-- picture image -->
+                <div id="notes_picture_details_image_container" flex="none" layout="row" layout-align="center center">
+
+                    <fec-note-image image-type="detail" picture-list="$ctrl.pictureList"
+                                    picture-id="$ctrl.selectedPictureId"
+                                    image-url="{{$ctrl.getSelectedPictureUrl()}}"
+                                    on-image-loaded="$ctrl.onImageLoaded()"
+                                    show-details="false"
+                                    ng-show="!$ctrl.loading && !$ctrl.resizing"></fec-note-image>
+
+                    <md-progress-circular ng-if="$ctrl.loading"></md-progress-circular>
+                </div>
+
+                <!-- picture annotation -->
+                <div flex="auto" ng-show="!$ctrl.loading && !$ctrl.resizing" layout="column">{{$ctrl.getSelectedPictureAnnotation()}}</div>
+            </div>
+        </div>
+
+        <div flex="none" layout="column" layout-align="center start">
+            <!-- prev/next buttons -->
+            <fec-icon type="next" color="fe-blue-icon" fec-mobile-click="$ctrl.nextPicture()"></fec-icon>
+        </div>
+    </div>
+
+</div>

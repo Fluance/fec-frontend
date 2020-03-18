@@ -1,0 +1,68 @@
+.md-button.md-icon-button fec-icon,
+.md-button.md-fab fec-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
+md-menu-item {
+    a.md-button {
+        padding: 0px 30px;
+        text-transform: uppercase;
+    }
+}
+
+.md-button {
+    &:hover {
+        background-color: transparent !important;
+    }
+    &.md-fab fec-icon {
+        margin-top: 3px;
+    }
+
+    &.md-primary {
+        color: $fe-blue;
+        &.md-fab {
+            &[disabled] {
+                background-color: $fe-grey !important;
+                &:hover {
+                    background-color: $fe-grey !important;
+                }
+            }
+
+            &:not([disabled]) {
+                &:hover {
+                    background-color: lighten($button-color, 5%) !important;
+                }
+            }
+        }
+        &[disabled] {
+            color: $button-label-disabled;
+            cursor: default;
+        }
+    }
+
+    &.md-raised {
+        height: 36px;
+        letter-spacing: .5px;
+        padding: 0 2rem;
+        &:hover {
+            background-color: lighten($button-color, 5%) !important;
+        }
+
+        &.md-primary {
+            color: $fe-white;
+            &[disabled] {
+                background-color: $fe-grey !important;
+                color: $button-label-disabled;
+                &:hover {
+                    background-color: $fe-grey !important;
+                }
+            }
+        }
+    }
+}
+
+.text-transform-unset {
+    text-transform: unset !important;
+}

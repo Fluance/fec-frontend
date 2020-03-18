@@ -1,0 +1,55 @@
+<div layout="column" flex>
+    <md-content>
+        <div class="fec-header" layout="column">
+            <div flex></div>
+            <md-list>
+                <md-list-item ui-sref="{{route.url}}" ng-repeat="route in vm.userNavigationRoutes">
+                    <fec-icon type="{{route.icon}}" size="sm"></fec-icon>
+                    <p>{{ route.title | translate }}<br /><small>{{ route.subtitle | translate }}</small></p>
+                </md-list-item>
+            </md-list>
+        </div>
+        <md-divider></md-divider>
+        <md-list>
+            <!-- Navigation -->
+            <md-list-item ui-sref="{{route.url}}" ng-repeat="route in vm.navigationRoutes">
+                <fec-icon type="{{route.icon}}" size="sm"></fec-icon>
+                <p>{{ route.title | translate }}</p>
+            </md-list-item>
+
+            <md-divider ng-show="vm.isAuthenticated()"></md-divider>
+
+            <!-- Logout -->
+            <md-list-item tutorial-step="logout" ng-click="vm.onLogout($event)" ng-show="vm.isAuthenticated()">
+                <fec-icon type="logout" size="sm"></fec-icon>
+                <p>{{ 'layout.SIGNOUT' | translate }}</p>
+                <div ng-if="vm.hasUserSessions" layout="row">
+                    <div>{{vm.userSessionsCount}}</div>
+                    <md-icon>navigate_next</md-icon>
+                </div>
+            </md-list-item>
+
+            <!-- Language selection -->
+            <md-list-item class="md-list-item-select" tutorial-step="language">
+                <fec-icon type="language" size="sm"></fec-icon>
+                <md-select aria-label="Language selection" ng-model="vm.selectedLanguage" ng-change="vm.selectedLanguageChanged()" flex>
+                    <md-option ng-value="language" ng-repeat="language in vm.languages">{{ language | uppercase }}</md-option>
+                </md-select>
+            </md-list-item>
+        </md-list>
+    </md-content>
+    <div class="fec-logo-container" layout="column" layout-align="center center" flex>
+        <a href="https://fluance.ch/" target="_blank">
+            <div><img ng-src="{{vm.baseURL}}content/images/fluance_300.png" /></div>
+            <div>{{ vm.appVersion }}</div>
+        </a>
+    </div>
+
+    <!-- Feedback -->
+    <md-list class="fec-button-contact-center">
+        <md-list-item href="https://fluance.deskpro.com" target="_blank" tutorial-step="contact-center">
+            <fec-icon type="feedback" size="sm"></fec-icon>
+            <p>{{'layout.FEEDBACK_CONTACT_US' | translate}}</p>
+        </md-list-item>
+    </md-list>
+</div>

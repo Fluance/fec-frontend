@@ -1,0 +1,4 @@
+<md-button class="md-primary" ng-disabled="!vm.canNavigateResult" fec-mobile-click="vm.navigateTo()">
+    {{ vm.text | translate }}
+    <md-progress-linear md-mode="indeterminate" ng-show="vm.isBusy"></md-progress-linear>
+</md-button>

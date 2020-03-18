@@ -1,0 +1,10 @@
+<md-card class="formatted-text" layout="column">
+    <div ng-repeat="result in $ctrl.textData" class="formatted-text-analysis">
+        <b>{{result.analysisname}}</b>
+        <div ng-repeat="data in result.datas | orderBy: 'observationdate'" layout="row" ng-if="data.value">
+            <div class="formatted-text-date">{{data.observationdate | formatDate : 'dateTime' : $ctrl.currentLanguage }}{{ ':' | translate }}
+            </div>
+            <div class="formatted-text-value">{{data.value}}</div>
+        </div>
+    </div>
+</md-card>

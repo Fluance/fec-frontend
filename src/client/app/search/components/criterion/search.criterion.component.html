@@ -1,0 +1,11 @@
+<div class="fec-search-criterion-chip chip" ng-if="$ctrl.mode !== 'dashboard' && $ctrl.displayValue !== null"
+     fec-mobile-click="$ctrl.clickOnCriterion()" layout="row" layout-align="start center">
+    <span ng-if="$ctrl.isNameVisible">{{ $ctrl.displayName | translate }}:&nbsp;</span>
+    <span>{{ $ctrl.displayValue | translate }}</span>
+    <fec-icon type="clear" size="xs" ng-if="$ctrl.criterion.isRemovable && $ctrl.userInteraction"></fec-icon>
+</div>
+
+<div class="fec-search-criterion-inline" ng-class="{'fec-search-criterion-no-icon': !$ctrl.isIconVisible}"
+     ng-if="$ctrl.mode === 'dashboard' && $ctrl.displayValue !== null">
+    <span><fec-icon ng-if="$ctrl.isIconVisible" type="{{$ctrl.getIconName()}}" size="xs"></fec-icon>{{ $ctrl.displayValue | translate }}</span>
+</div>

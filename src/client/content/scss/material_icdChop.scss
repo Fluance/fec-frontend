@@ -1,0 +1,24 @@
+#icdchopContainer {
+    md-virtual-repeat-container {
+        min-height: 194px;
+        border: 1px solid $fe-grey;
+    }
+
+    .icd-chop-header {
+        padding: 10px 0px;
+        margin-bottom: 0px;
+    }
+    .icd-chop-code {
+        font-weight: bold;
+        margin: 0px;
+        height: 25px;
+        min-width: 6rem;
+        display: inline-block;
+    }
+    .icd-chop-text {
+        margin: 0px;
+    }
+    .expander-body {
+        padding:0px;
+    }
+}

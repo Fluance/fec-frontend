@@ -1,0 +1,26 @@
+<md-dialog class="visitIdSelectionDialog">
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div layout layout-align="center center">
+                <h5>{{ 'visit.SELECT_VISIT_TITLE' | translate }}</h5>
+            </div>
+            <a ng-repeat="visit in $ctrl.visits" layout="column" class="fec-clickable-item"
+                 href="{{ visit.visit.labURL }}" ng-click="$ctrl.navigateToVisit(visit.visit.vnb)" target="_blank">
+                <span class="visitId">{{visit.visit.visitInfo.number}}</span>
+                <content-item-detail label="{{ 'core.ADMIT_DATE' | translate }}"
+                                     content="{{visit.visit.visitInfo.admitDate | formatDate : 'dateTime' }}"></content-item-detail>
+                <content-item-detail label="{{ 'core.COMPANY' | translate }}"
+                                     content="{{visit.company.code}}"></content-item-detail>
+                <content-item-detail label="{{ 'core.HOSP_SERVICE' | translate }}"
+                                     content="{{ ::visit.visit.visitInfo.hospservice }}" tooltip-placement="left"
+                                     info="{{ ::visit.visit.visitInfo.hospservicedesc }}"></content-item-detail>
+                <md-progress-linear md-mode="indeterminate" ng-if="$ctrl.isClicked(visit.visit.visitInfo.number)"
+                                    flex="auto"></md-progress-linear>
+            </a>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button class="md-primary" fec-mobile-click="$ctrl.closeDialog()">{{'core.CANCEL' | translate}}</md-button>
+    </md-dialog-actions>
+</md-dialog>
+

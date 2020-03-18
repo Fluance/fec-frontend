@@ -1,0 +1,19 @@
+<div ng-if="$ctrl.mode === 'read'">
+    <!--Currently the data provided from the read mode controller are different than from the edit controller-->
+    <div>
+        <span ng-repeat="item in $ctrl.model.hospServices">{{ ::item.code }} - {{ ::item.codeDesc }}<br/></span>
+        <span ng-hide="$ctrl.model.hospServices">-</span>
+    </div>
+</div>
+<div ng-if="$ctrl.mode === 'edit'">
+    <table class="edit">
+        <tr ng-repeat="item in $ctrl.model.services">
+            <td>
+                <md-checkbox id="service_{{ ::$ctrl.model.companyId }}_{{ ::item.code }}" ng-model="item.hasAccess">
+                    <label for="service_{{ ::$ctrl.model.companyId }}_{{ ::item.code }}">{{ ::item.code }}<span
+                        ng-if="item.codeDesc"> - {{ item.codeDesc }}</span></label>
+                </md-checkbox>
+            </td>
+        </tr>
+    </table>
+</div>

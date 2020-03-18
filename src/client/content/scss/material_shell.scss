@@ -1,0 +1,232 @@
+$flu-shell-button-bottom: 10px; // Bottom alignment für buttons
+.navbar-fixed.introjs-fixParent {
+    position: relative !important;
+    z-index: 998 !important;
+    nav.introjs-fixParent {
+        position: fixed !important;
+    }
+}
+
+.shuffle-animation {
+    & > .row {
+        margin-bottom: 0px;
+    }
+}
+
+#footerbar {
+    color: $fe-blue;
+    height: 20px;
+    overflow: hidden;
+}
+
+#btn-feedback {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    bottom: 60px;
+    left: 0px;
+    background-color: $fe-blue-bg;
+    cursor: pointer;
+    padding: 0px 15px;
+
+    fec-icon {
+        margin-right: 15px;
+
+        i {
+            height: 40px;
+            line-height: 40px;
+            display: inherit;
+            vertical-align: middle;
+        }
+    }
+}
+
+#btn-contactus {
+    position: fixed;
+    bottom: $flu-shell-button-bottom;
+    right: $flu-button-right;
+    @include transition(all 1.0s linear);
+    &.popup {
+        right: $flu-button-right-off-screen;
+        @include transition(all 1.0s linear);
+    }
+    /* Mobile devices - Portrait and Landscape */
+    @media #{$medium-and-down} {
+        opacity: $flu-button-opacity-mobile;
+    }
+}
+
+#btn-menu-tutorial {
+    background-color: transparent;
+    color: $fe-accent-grey;
+    position: absolute;
+    bottom: ($flu-shell-button-bottom + 50);
+    right: $flu-button-right;
+    &.popup {
+        right: $flu-button-right-off-screen;
+        @include transition(all 1.0s linear);
+    }
+    /* Mobile devices - Portrait and Landscape */
+    @media #{$medium-and-down} {
+        opacity: $flu-button-opacity-mobile;
+    }
+}
+
+#btn-search-tutorial {
+    background-color: transparent;
+    color: $fe-accent-grey;
+    position: absolute;
+    bottom: ($flu-shell-button-bottom + 50);
+    right: ($flu-button-right + 225);
+    &.popup {
+        right: $flu-button-right-off-screen;
+        @include transition(all 1.0s linear);
+    }
+    /* Mobile devices - Portrait and Landscape */
+    @media #{$medium-and-down} {
+        opacity: $flu-button-opacity-mobile;
+    }
+}
+
+#btn-guidelines {
+    position: fixed;
+    bottom: $flu-shell-button-bottom;
+    right: ($flu-button-right * 2) + ($button-floating-size * 1.5);
+    @include transition(all 1.0s linear);
+    &.popup {
+        right: $flu-button-right-off-screen;
+        @include transition(all 1.0s linear);
+    }
+    /* Mobile devices - Portrait and Landscape */
+    @media #{$medium-and-down} {
+        right: ($flu-button-right * 2) + $button-floating-size;
+        opacity: $flu-button-opacity-mobile;
+    }
+}
+
+#btn-navigateback {
+    position: fixed;
+    bottom: $flu-shell-button-bottom;
+    right: ($flu-button-right * 2) + ($button-floating-size * 1.5);
+    @include transition(all 1.0s linear);
+    &.popup {
+        right: $flu-button-right-off-screen;
+        @include transition(all 1.0s linear);
+    }
+    /* Mobile devices - Portrait and Landscape */
+    @media #{$medium-and-down} {
+        right: ($flu-button-right * 2) + $button-floating-size;
+        opacity: $flu-button-opacity-mobile;
+    }
+}
+
+#btn-nav-company {
+    i.material-icons.tiny {
+        margin-left: 5px;
+    }
+}
+
+#btn-scrolltop{
+    position: fixed;
+    bottom: $flu-shell-button-bottom;
+    right: $flu-button-right-off-screen;
+    z-index: 1000;
+    @include transition(all 1.0s linear);
+    &.show {
+        display: block;
+        right: $flu-button-right;
+        @include transition(all 1.0s linear);
+    }
+    /* Mobile devices - Portrait and Landscape */
+    @media #{$medium-and-down} {
+        opacity: $flu-button-opacity-mobile;
+    }
+    .md-button{
+        background-color: $fe-blue;
+        color: $fe-white;
+        &:hover{
+            background-color: $fe-blue !important;
+        }
+    }
+}
+
+.sidepanel-icon {
+    margin-top: 7px;
+    margin-right: 15px;
+    @media #{$small-and-down} {
+        margin-top: 11px;
+    }
+}
+
+.company-info-tooltip-text {
+    i {
+        width: 24px;
+    }
+}
+
+#full_search_field {
+    background: rgba(255,255,255,.2);
+    width: 320px
+}
+
+#full_search_button {
+    color:black;
+    margin: 8px;
+}
+
+#logo_button {
+    .logo_img_container {
+        width: 140px;
+    }
+    .logo_img {
+        width: 140px;
+        max-height: 54px;
+    }
+}
+
+.company_logo_container {
+    height: 60px;
+    width: 180px;
+    margin: 6px;
+}
+
+@media (max-width: 959px) and (min-width: 0) and (orientation: portrait) {
+    #logo_button {
+        .logo_img_container {
+            width: 130px;
+        }
+        .logo_img {
+            max-height: 42px;
+            margin: 2px 0;
+        }
+    }
+
+    .company_logo_container {
+        height: 44px;
+        width: 180px;
+        margin: 2px 0;
+    }
+}
+
+@media (max-width: 959px) and (min-width: 0) and (orientation: landscape) {
+    #logo_button {
+        .logo_img_container {
+            width: 130px;
+        }
+        .logo_img {
+            max-height: 42px;
+            margin: 2px 0;
+        }
+    }
+
+    .company_logo_container {
+        height: 44px;
+        width: 180px;
+        margin: 2px 0;
+    }
+}
+
+.whitebackground {
+    background: $fe-white;
+}

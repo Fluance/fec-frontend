@@ -1,0 +1,733 @@
+fec-whiteboard-surgery,
+fec-whiteboard-surgery-room,
+#whiteboard-surgery,
+#whiteboard-surgery-detail {
+  height: 100%;
+  sm-date-time-picker-component {
+    md-input-container {
+      margin: 0px;
+      margin-bottom: 5px;
+      padding: 0px;
+      label,
+      input {
+        display: none;
+      }
+      button {
+        margin: 0px;
+        padding: 0px;
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+}
+
+#whiteboard-surgery-toolbar-time {
+  text-align: right;
+}
+
+#whiteboard-surgery-content {
+  padding: 2px 10px;
+}
+
+#whiteboard-surgery-footer {
+  padding: 0px 10px;
+  &.has-content {
+    padding-right: 0px;
+    margin-right: 10px;
+    overflow-y: auto;
+    //four lines
+    max-height: 100px;
+  }
+}
+
+#whiteboard-surgery-content-navigation {
+  width: 25px;
+}
+
+.whiteboard-surgery-navigation-item {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+#whiteboard-surgery-selected-day {
+  background: $warn-color;
+  text-align: center;
+  color: $fe-black;
+  font-size: 24px;
+  margin: 0px 5px 10px 5px;
+}
+
+#whiteboard-surgery-room {
+  padding: 0 5px;
+  max-height: 250px;
+
+  @media #{$medium-and-down} {
+    padding: 0 1px;
+  }
+}
+
+#whiteboard-surgery-room-title {
+  background: $fe-accent-grey;
+  text-align: center;
+  color: $fe-white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#whiteboard-surgery-toolbar {
+  background: $fe-blue;
+  color: $fe-white;
+  font-size: 20px;
+  padding: 0px 10px;
+}
+
+#whiteboard-surgery-room-content {
+  background: $fe-blue-bg-markup;
+  color: $fe-black;
+  font-size: 12px;
+  margin-top: 0px;
+  padding: 5px;
+  overflow: hidden;
+  display: block;
+  font-weight: normal;
+  min-height: 170px;
+  max-height: 170px;
+  &.whiteboard-surgery-no-operation {
+    display: flex;
+    font-size: 16px;
+    text-align: center;
+  }
+  .whiteboard-surgery-room-content-time {
+    font-size: 16px;
+  }
+  .whiteboard-surgery-room-content-doctor-name {
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: bold;
+  }
+  .whiteboard-surgery-room-content-doctor-name-container {
+    @media #{$medium-and-down} {
+      margin: 3px 0px;
+    }
+  }
+  .whiteboard-surgery-room-content-patient-name {
+    font-size: 17px;
+    line-height: 17px;
+    @media #{$medium-and-down} {
+      font-size: 15px;
+      line-height: 15px;
+    }
+  }
+  .whiteboard-surgery-room-content-patient-name-icon,
+  .whiteboard-surgery-room-content-room-number-icon,
+  .whiteboard-surgery-room-content-doctor-name-icon {
+    font-size: 17px;
+    line-height: 17px;
+
+    fec-icon svg.xs,
+    fec-icon i {
+      height: 17px;
+      width: 17px;
+      font-size: 17px;
+      line-height: 17px;
+    }
+
+    @media #{$medium-and-down} {
+      font-size: 15px;
+      line-height: 15px;
+
+      fec-icon svg.xs,
+      fec-icon i {
+        height: 15px;
+        width: 15px;
+        font-size: 15px;
+        line-height: 12px;
+      }
+    }
+    fec-icon svg,
+    fec-icon img {
+      transform: scale(1) translateY(0px);
+    }
+  }
+  .whiteboard-surgery-room-content-room-number {
+    font-size: 17px;
+    line-height: 17px;
+    height: 17px;
+    @media #{$medium-and-down} {
+      font-size: 15px;
+      line-height: 15px;
+      height: 15px;
+    }
+  }
+
+  .whiteboard-surgery-room-content-staff {
+    margin-right: 10px;
+    line-height: 12px;
+    fec-icon svg.xs {
+      height: 12px;
+      width: 12px;
+      transform: scale(1) translateY(0px);
+    }
+  }
+  .whiteboard-surgery-room-content-staff-name {
+    font-size: 12px;
+    line-height: 12px;
+  }
+  .whiteboard-surgery-room-content-staff-icon {
+    @media #{$medium-and-down} {
+      font-size: 12px;
+      line-height: 12px;
+    }
+  }
+}
+
+#whiteboard-surgery-room-live {
+  border: 1px solid $fe-accent-grey;
+  &.active {
+    border-color: $fe-whiteboard-surgery-live;
+    .live-state {
+      background: $fe-whiteboard-surgery-live;
+    }
+  }
+}
+
+.live-state {
+  background: $fe-accent-grey;
+  padding: 0 5px;
+  color: $fe-white;
+  font-weight: bold;
+  text-transform: uppercase;
+  &.active {
+    background: $fe-whiteboard-surgery-live;
+  }
+}
+.live-state-message {
+  padding: 0 5px;
+  width: 100%;
+  white-space: nowrap;
+  display: block;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+#whiteboard-surgery-content-header {
+  margin-bottom: 5px;
+}
+
+#whiteboard-surgery-content-body {
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+
+  position: relative;
+  max-height: 100%;
+  border-bottom: 1px solid $fe-accent-grey;
+  border-top: 1px solid $fe-accent-grey;
+  background: $fe-white;
+}
+
+#whiteboard-surgery-content-timeline-hours {
+  width: 25px;
+  padding: 0px 0px 0px 5px;
+  .hour {
+    z-index: 70;
+    font-weight: bold;
+    min-height: 60px;
+    border-right: 1px solid $fe-accent-grey;
+  }
+}
+
+.whiteboard-surgery-content-timeline-room {
+  margin: 0 5px;
+  overflow-wrap: break-word;
+  display: inline-block;
+  position: relative;
+
+  @media #{$medium-and-down} {
+    margin: 0 1px;
+  }
+}
+
+.whiteboard-surgery-timeline-item {
+  background: linear-gradient(180deg, $fe-blue-bg-markup 0%, $fe-blue-bg-markup-light 100%);
+  padding: 2px;
+  font-size: 13px;
+  overflow: hidden;
+  display: block;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  z-index: 65;
+  cursor: pointer;
+  line-height: 17px;
+  fec-icon svg.xs,
+  fec-icon i {
+    height: 13px;
+    width: 13px;
+    font-size: 13px;
+    line-height: 12px;
+  }
+  fec-icon {
+    margin-right: 3px !important;
+  }
+  &.active {
+    border-right: 5px solid $fe-blue;
+  }
+
+  &.whiteboard-surgery-timeline-item-reservation {
+    background: $fe-grey;
+    z-index: 64;
+  }
+}
+
+.whiteboard-surgery-timeline-item-info-title {
+  width: 100%;
+}
+
+.whiteboard-surgery-timeline-item-time,
+.live-state,
+.whiteboard-surgery-timeline-item-description {
+  font-weight: bold;
+}
+
+.whiteboard-surgery-timeline-item-description {
+  font-size: 14px;
+}
+
+.whiteboard-surgery-timeline-item-patient-name {
+  margin-right: 10px;
+}
+
+#timeline-lines-container {
+  .timeline-line-full,
+  .timeline-line-half,
+  #timeline-line-live {
+    position: absolute;
+    height: 1px;
+    border-top: 1px solid $fe-grey;
+  }
+  .timeline-line-full {
+    left: 5px;
+    width: calc(100% - 5px);
+    z-index: 60;
+  }
+  .timeline-line-half {
+    left: 12px;
+    width: calc(100% - 12px);
+    z-index: 60;
+  }
+  #timeline-line-live {
+    z-index: 65;
+    border-top: 1px dashed $fe-whiteboard-surgery-live;
+    left: 20px;
+    width: calc(100% - 20px);
+  }
+  #timeline-line-live-arrow {
+    position: absolute;
+    z-index: 80;
+    left: 15px;
+    line-height: 1px;
+  }
+}
+
+#whiteboard-surgery-info-container {
+  background: $fe-whiteboard-surgery-red;
+  padding: 5px;
+  p {
+    margin: 0px;
+  }
+}
+
+.whiteboard-surgery-scrollable {
+  max-height: 100%;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+
+#whiteboard-surgery-detail-container {
+  max-height: 100%;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+
+  fec-icon {
+    margin-right: 10px;
+  }
+
+  .whiteboard-surgery-timeline-item {
+    .whiteboard-surgery-room-content-staff {
+      fec-icon {
+        margin-right: 0px;
+      }
+    }
+  }
+
+  .whiteboard-surgery-operating-room-navigation {
+    margin: 5px 0px;
+    fec-icon {
+      height: 24px;
+      margin-left: 10px;
+    }
+    .whiteboard-surgery-operating-room-navigation-datepicker {
+      margin-top: 2px;
+      margin-left: 10px;
+      height: 24px;
+      width: 24px;
+      .md-button {
+        min-height: auto;
+      }
+    }
+  }
+}
+
+.whiteboard-surgery-timeline-item {
+  .whiteboard-surgery-room-content-staff {
+    fec-icon {
+      margin-right: 0px;
+    }
+    .staff-name {
+      line-height: 22px;
+    }
+    margin-right: 10px;
+  }
+}
+
+.whiteboard-surgery-appointment-title {
+  font-size: 16px;
+  line-height: 16px;
+  max-height: 2em;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+#whiteboard-surgery-detail-info {
+  padding: 5px 10px;
+  margin-left: 15px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+  fec-icon {
+    margin-right: 3px;
+  }
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  grid-template-areas:
+    "header header    "
+    "side   anesthesia"
+    "side   position  "
+    "side   comments  "
+    "side   .         ";
+
+  .header {
+    grid-area: header;
+  }
+  .side {
+    grid-area: side;
+  }
+  .anesthesia {
+    padding-top: 10px;
+    grid-area: anesthesia;
+  }
+  .position {
+    grid-area: position;
+  }
+  .comments {
+    grid-area: comments;
+  }
+
+  .whiteboard-surgery-detail-info-appointment-time {
+    font-size: 20px;
+  }
+
+  .whiteboard-surgery-detail-info-item {
+    text-align: center;
+
+    fec-icon i {
+      height: 20px;
+      width: 20px;
+      font-size: 20px;
+      line-height: 16px;
+    }
+  }
+
+  .whiteboard-surgery-detail-info-title {
+    color: $fe-blue;
+    font-size: 22px;
+    span {
+      cursor: pointer;
+    }
+  }
+  .whiteboard-surgery-detail-info {
+    margin: 10px 0px;
+    font-weight: bold;
+    font-size: 20px;
+    fec-icon i {
+      height: 20px;
+      width: 20px;
+    }
+  }
+}
+
+#whiteboard-surgery-detail-info-no-operation {
+  text-align: center;
+  font-size: 36px;
+}
+
+.whiteboard-surgery-detail-info-component {
+  margin: 0px 10px 10px 0px;
+  .whiteboard-surgery-detail-info-component-title {
+    margin: 5px 0px;
+  }
+  .whiteboard-surgery-detail-info-component-content {
+    .whiteboard-surgery-detail-info-component-content-item {
+      padding: 5px;
+      fec-icon {
+        line-height: 15px;
+      }
+      //   &:nth-child(odd) {
+      //     background: $fe-blue-bg-markup;
+      //   }
+    }
+  }
+}
+
+#whiteboard-surgery-comments-container {
+    background: $fe-grey;
+    padding: 5px;
+    margin-bottom: 10px;
+    .whiteboard-surgery-comments-title {
+      color: $fe-accent-grey;
+    }
+    .whiteboard-surgery-comments-content {
+      color: $fe-black;
+    }
+}
+
+.operation-status-container {
+  margin-bottom: 5px;
+  .operation-status {
+    padding: 2px 5px 0px 5px;
+    visibility: hidden;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .operation-status-text {
+    padding-top: 2px 5px 0px 0px;
+    .operation-status-time {
+      width: 50px;
+      text-align: center;
+    }
+  }
+
+  &.live {
+    .operation-status {
+      visibility: visible;
+      color: $fe-white;
+      background: $fe-whiteboard-surgery-live;
+    }
+
+    .operation-status-text {
+      border: 1px solid $fe-whiteboard-surgery-live;
+    }
+  }
+}
+
+#whiteboard-surgery-edit-note-content {
+  margin: 10px 10px;
+  sm-date-time-picker-component {
+    height: 25px;
+    width: 40px;
+    margin-left: -40px;
+    md-input-container {
+      height: 25px;
+      width: 40px;
+      margin: 0;
+      button {
+        padding: 0;
+      }
+      label,
+      input {
+        display: none;
+      }
+    }
+  }
+  .selected-date {
+    border-bottom: 1px solid $fe-grey;
+    padding-right: 40px;
+    line-height: 40px;
+    height: 30px;
+  }
+  .ql-toolbar {
+    background: transparent;
+    border: none;
+  }
+  .ql-container {
+    border: none;
+    background: $fe-grey;
+  }
+  .ql-editor {
+    min-height: 250px;
+  }
+  .ql-stroke {
+    stroke: $fe-blue;
+  }
+  .ql-fill {
+    fill: $fe-blue;
+  }
+  .ql-active {
+    background: $fe-blue;
+    .ql-stroke {
+      stroke: $fe-white;
+    }
+    .ql-fill {
+      fill: $fe-white;
+    }
+  }
+}
+
+#whiteboardSurgeryEditCommentDialog {
+  // Fix IE problems with flex
+  [class*="flex"] {
+    flex-basis: auto;
+  }
+
+  md-dialog-content {
+    padding: 20px;
+
+    md-input-container {
+      margin: 0px;
+    }
+  }
+  textarea {
+    border: none;
+    background: $fe-grey;
+    overflow-y: scroll;
+  }
+}
+
+#whiteboardSurgeryRoomReservationDialog {
+  min-width: 30%;
+
+  md-dialog-content {
+    .content {
+      padding: 40px 20px 0 20px;
+
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      grid-template-areas:
+        "title      title"
+        "room       .    "
+        "start-date .    "
+        "end-date   .    ";
+  
+      .title {
+        grid-area: title;
+      }
+      .room {
+        grid-area: room;
+        padding-bottom: 30px;
+      }
+      .start-date {
+        grid-area: start-date;
+        sm-date-time-picker-component {
+          .sm-input-container {
+            .sm-input-align-for-button {
+              margin-left: 0;
+            }
+            .sm-picker-button {
+              margin-left: -36px;
+            }
+            .md-input.ng-invalid {
+              border-color: $input-invalid-border-color;
+            }
+          }
+        }
+      }
+      .end-date {
+        grid-area: end-date;
+        sm-date-time-picker-component {
+          .sm-input-container {
+            .sm-input-align-for-button {
+              margin-left: 0;
+            }
+            .sm-picker-button {
+              margin-left: -36px;
+            }
+            .md-input.ng-invalid {
+              border-color: $input-invalid-border-color;
+            }
+          }
+        }
+      }
+  
+      md-input-container {
+        margin: 0px;
+      }
+    }
+  }
+}
+
+.whiteboard-surgery-operation-note {
+  white-space: pre-line;
+}
+
+@media all and (max-width: 1367px) {
+  #whiteboardSurgeryEditCommentDialog {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+  }
+
+  #whiteboard-surgery-detail-info {
+    height: 100%;
+    grid-template-columns: 7fr 3fr;
+    grid-template-rows: max-content max-content max-content;
+    grid-template-areas:
+    "header header    "
+    "side   anesthesia"
+    "side   position  "
+    "side   comments  "
+    "side   comments  ";
+  }
+}
+
+// tablet, portrait mode
+@media all and (max-width: 1024px) {
+  #whiteboard-surgery-detail-info {
+    height: initial;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-template-areas:
+    "header        header"
+    "anesthesia    position"
+    "side          side"
+    "comments      comments";
+
+    .anesthesia {
+      padding-top: 0;
+    }
+
+    .comments {
+      margin-top: 20px;
+    }
+  }
+}

@@ -1,0 +1,75 @@
+<md-card layout="column" ng-show="$ctrl.companies">
+    <md-card-content>
+        <div flex="initial">
+            <div layout="row" layout-align="center center">
+                <div flex="80">
+                    <h5>{{'search.LOCATION' | translate }}</h5>
+                </div>
+                <div flex layout="row" layout-align="end center">
+                    <md-button class="md-icon-button" ng-if="!$ctrl.reordering" fec-mobile-click="$ctrl.changeReordering()">
+                        <fec-icon type="settings" color="fe-blue-icon"></fec-icon>
+                    </md-button>
+                    <md-button class="md-primary" ng-if="$ctrl.reordering" fec-mobile-click="$ctrl.changeReordering(true)">
+                        <fec-nav-save>
+                            <span>{{'core.SAVE' | translate }}</span>
+                        </fec-nav-save>
+                    </md-button>
+                    <md-button class="md-primary" ng-if="$ctrl.reordering" fec-mobile-click="$ctrl.changeReordering(false)">
+                        <fec-nav-cancel>
+                            <span>{{'core.CANCEL' | translate }}</span>
+                        </fec-nav-cancel>
+                    </md-button>
+                </div>
+            </div>
+            <table class="fec-user-profile-companies striped">
+                <colgroup>
+                    <col class="fec-col-company" />
+                    <col class="fec-col-unit" />
+                    <col class="fec-col-service" />
+                    <col class="fec-col-staff" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>{{'core.NAME' | translate }}</th>
+                        <th>{{'core.UNIT' | translate }}</th>
+                        <th>{{'core.HOSP_SERVICE' | translate }}</th>
+                        <th>{{'core.STAFF_ID' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="company in $ctrl.companies | orderBy : 'code'">
+                        <td>
+                            {{ ::company.code }} - {{ ::company.name }}
+                        </td>
+                        <td ui-sortable="$ctrl.sortableOptions" ng-model="company.units">
+                            <div ng-repeat="unit in company.units" ng-class="{'sortable-item': $ctrl.reordering}">
+                                <div layout="row" layout-align="left center">
+                                    <div flex="90">{{ ::unit.code }} - {{ ::unit.codeDesc }}</div>
+                                    <div flex="10" layout="row" layout-align="end center">
+                                        <fec-icon type="reorder" class="clinics-list-item-reorder" ng-if="$ctrl.reordering"></fec-icon>
+                                    </div>
+                                </div>
+                                <hr ng-if="$ctrl.reordering" />
+                            </div>
+                            <div ng-hide="company.units">-</div>
+                        </td>
+                        <td ui-sortable="$ctrl.sortableOptions" ng-model="company.hospServices">
+                            <div ng-repeat="hospService in company.hospServices" ng-class="{'sortable-item': $ctrl.reordering}">
+                                <div layout="row" layout-align="left center">
+                                    <div flex="90">{{ ::hospService.code }} - {{ ::hospService.codeDesc }}</div>
+                                    <div flex="10" layout="row" layout-align="end center">
+                                        <fec-icon type="reorder" class="clinics-list-item-reorder" ng-if="$ctrl.reordering"></fec-icon>
+                                    </div>
+                                </div>
+                                <hr ng-if="$ctrl.reordering" />
+                            </div>
+                        </td>
+                        <td>
+                            <profile-staffid model="company" mode="read"></profile-staffid>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </md-card-content>
+</md-card>

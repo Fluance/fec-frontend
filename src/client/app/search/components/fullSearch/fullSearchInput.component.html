@@ -1,0 +1,7 @@
+<md-input-container layout="row" layout-align="center center" class="fec-full-search-input">
+    <fec-chat-bot-button></fec-chat-bot-button>
+    <input fec-input type="text" ng-model="vm.text" ng-keyup="vm.onKeyUp($event)">
+    <md-button class="md-icon-button" aria-label="Search fulltext" fec-mobile-click="vm.submit()">
+        <fec-icon type="search"></fec-icon>
+    </md-button>
+</md-input-container>

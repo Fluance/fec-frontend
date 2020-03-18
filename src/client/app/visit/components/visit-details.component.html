@@ -1,0 +1,154 @@
+<div>
+    <!-- Progress -->
+    <md-progress-circular md-mode="indeterminate" ng-if="$ctrl.result.isLoadingDetails"></md-progress-circular>
+
+    <div flex="auto" class="fec-no-padding">
+        <!--md-card>
+            <md-card-content-->
+        <div layout="row" layout-xs="column" class="visit-detail-info" layout-wrap layout-padding>
+            <!-- CONTENT: VISIT DETAILS-->
+            <div layout="column" flex="100" flex-gt-sm="50">
+                <div layout="column">
+                    <content-item-detail label="{{ 'core.COMPANY' | translate }}" content="{{ ::$ctrl.result.details.company.code }}"
+                        tooltip-placement="left" info="{{ ::$ctrl.result.details.company.name }}"></content-item-detail>
+                    <content-item-detail fec-test-id="admissionDate" label="{{ 'visit.ADMISSION_DATE' | translate }}" content="{{ $ctrl.result.details.admitDate | formatDate : 'dateTime' }}" tooltip-placement="left">
+                        <custom-element ng-if="$ctrl.result.details.admitDate && $ctrl.result.details.company.companyId">
+                            <fec-meteo-data date="{{ $ctrl.result.details.admitDate }}" company-id="{{ $ctrl.result.details.company.companyId }}"></fec-meteo-data>
+                        </custom-element>
+                    </content-item-detail>
+                    <content-item-detail label="{{ 'visit.EXPECTED_DISCHARGE_DATE' | translate }}" content="{{ $ctrl.result.details.expDischargeDate  | formatDate : 'dateTime' }}" tooltip-placement="left">
+                        <custom-element ng-if="$ctrl.result.details.expDischargeDate && $ctrl.result.details.company.companyId">
+                            <fec-meteo-data date="{{ $ctrl.result.details.expDischargeDate }}" company-id="{{ $ctrl.result.details.company.companyId }}"></fec-meteo-data>
+                        </custom-element>
+                    </content-item-detail>
+                    <content-item-detail label="{{ 'visit.DISCHARGE_DATE' | translate }}" content="{{ $ctrl.result.details.dischargeDate  | formatDate : 'dateTime' }}" tooltip-placement="left">
+                        <custom-element ng-if="$ctrl.result.details.dischargeDate && $ctrl.result.details.company.companyId">
+                            <fec-meteo-data date="{{ $ctrl.result.details.dischargeDate }}" company-id="{{ $ctrl.result.details.company.companyId }}"></fec-meteo-data>
+                        </custom-element>
+                    </content-item-detail>
+                </div>
+
+                <div layout-padding></div>
+
+                <div layout="column">
+                    <content-item-detail label="{{ 'visit.ADMIT_SRC' | translate }}" content="{{ ::$ctrl.result.details.admitSource }}"
+                        tooltip-placement="left" info="{{ ::$ctrl.result.details.admitSourceDesc }}"></content-item-detail>
+                    <content-item-detail label="{{ 'visit.ADMISSION_TYPE' | translate }}" content="{{ ::$ctrl.result.details.admissionType }}"
+                        tooltip-placement="left" info="{{ ::$ctrl.result.details.admissionTypeDesc }}"></content-item-detail>
+                    <content-item-detail label="{{ 'visit.PATIENT_CLASS' | translate }}" content="{{ ::$ctrl.result.details.patientClass }}"
+                        tooltip-placement="left" info="{{ ::$ctrl.result.details.patientClassDesc }}"></content-item-detail>
+                    <content-item-detail label="{{ 'core.PATIENT_CASE' | translate }}" content="{{ ::$ctrl.result.details.patientCase }}"
+                        tooltip-placement="left" info="{{ ::$ctrl.result.details.patientCaseDesc }}"></content-item-detail>
+                    <content-item-detail label="{{ 'visit.PATIENT_TYPE' | translate }}" content="{{ ::$ctrl.result.details.patientType }}"
+                        tooltip-placement="left" info="{{ ::$ctrl.result.details.patientTypeDesc}}"></content-item-detail>
+                </div>
+            </div>
+            <div layout="column" flex="100" flex-gt-sm="50">
+                <div layout="column">
+                    <content-item-detail label="{{ 'visit.FINANCIAL_CLASS' | translate }}" content="{{ ::$ctrl.result.details.financialClass }}"
+                        tooltip-placement="left" info="{{ ::$ctrl.result.details.financialClassDesc }}"></content-item-detail>
+                    <content-item-detail label="{{ 'visit.HOSP_SERVICE' | translate }}" content="{{ ::$ctrl.result.details.hospService }}"
+                        tooltip-placement="left" info="{{ ::$ctrl.result.details.hospServiceDesc }}"></content-item-detail>
+                    <content-item-detail label="{{ 'visit.PATIENT_UNIT' | translate }}" content="{{ ::$ctrl.result.details.patientUnit }}"
+                        tooltip-placement="left" info="{{ ::$ctrl.result.details.patientUnitDesc }}"></content-item-detail>
+                    <content-item-detail label="{{ 'visit.PRIOR_UNIT' | translate }}" content="{{ ::$ctrl.result.details.priorUnit }}"
+                        tooltip-placement="left" info="{{ ::$ctrl.result.details.priorUnitDesc }}"></content-item-detail>
+                </div>
+
+                <div layout-padding></div>
+
+                <div layout="column">
+                    <content-item-detail label="{{ 'core.ROOM' | translate }}" content="{{ ::$ctrl.result.details.patientRoom }}"></content-item-detail>
+                    <content-item-detail label="{{ 'visit.PATIENT_BED' | translate }}" content="{{ ::$ctrl.result.details.patientBed }}"></content-item-detail>
+                    <content-item-detail label="{{ 'visit.PRIOR_ROOM' | translate }}" content="{{ ::$ctrl.result.details.priorRoom }}"></content-item-detail>
+                    <content-item-detail label="{{ 'visit.PRIOR_BED' | translate }}" content="{{ ::$ctrl.result.details.priorBed }}"></content-item-detail>
+                </div>
+            </div>
+
+            <!-- CONTENT: PHYSICIAN -->
+            <table hide-xs hide-sm>
+                <thead>
+                    <th class="fec-table-header">{{ 'visit.PHYSICIANS' | translate }}</th>
+                    <th class="fec-table-header">{{ 'core.FIRSTNAME' | translate }}</th>
+                    <th class="fec-table-header">{{ 'core.LASTNAME' | translate }}</th>
+                    <th class="fec-table-header">{{ 'core.STAFF_ID' | translate }}</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ 'visit.ATTENDING_PHYS' | translate }}</td>
+                        <td>{{ $ctrl.result.physicians.attendingPhysicianFirstname || '-' }}</td>
+                        <td>{{ $ctrl.result.physicians.attendingPhysicianLastname || '-' }}</td>
+                        <td>{{ $ctrl.result.physicians.attendingPhysicianStaffid || '-' }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ 'visit.REFERRING_PHYS' | translate }}</td>
+                        <td>{{ $ctrl.result.physicians.referringPhysicianFirstname }}</td>
+                        <td>{{ $ctrl.result.physicians.referringPhysicianLastname || '-' }}</td>
+                        <td>{{ $ctrl.result.physicians.referringPhysicianStaffid || '-' }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ 'visit.ADMITTING_PHYS' | translate }}</td>
+                        <td>{{ $ctrl.result.physicians.admittingPhysicianFirstname || '-' }}</td>
+                        <td>{{ $ctrl.result.physicians.admittingPhysicianLastname || '-' }}</td>
+                        <td>{{ $ctrl.result.physicians.admittingPhysicianStaffid || '-' }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ 'visit.CONSULTING_PHYS' | translate }}</td>
+                        <td>{{ $ctrl.result.physicians.consultingPhysicianFirstname || '-' }}</td>
+                        <td>{{ $ctrl.result.physicians.consultingPhysicianLastname || '-' }}</td>
+                        <td>{{ $ctrl.result.physicians.consultingPhysicianStaffid || '-' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="physicians-mobile" hide-gt-sm>
+                <div class="physicians-title">{{ 'visit.PHYSICIANS' | translate }}</div>
+                <div class="physician">
+                    <div class="physician-title">
+                        {{ 'visit.ATTENDING_PHYS' | translate }}
+                    </div>
+                    <div class="physician-name" ng-if="$ctrl.result.physicians.attendingPhysicianLastname || $ctrl.result.physicians.attendingPhysicianFirstname">
+                        {{ $ctrl.result.physicians.attendingPhysicianLastname || '-' }}&nbsp;{{ $ctrl.result.physicians.attendingPhysicianFirstname || '-' }}
+                    </div>
+                    <div class="physician-name" ng-if="!$ctrl.result.physicians.attendingPhysicianLastname && !$ctrl.result.physicians.attendingPhysicianFirstname">
+                        {{ '-' | translate }}
+                    </div>
+                </div>
+                <div class="physician">
+                    <div class="physician-title">
+                        {{ 'visit.REFERRING_PHYS' | translate }}
+                    </div>
+                    <div class="physician-name" ng-if="$ctrl.result.physicians.referringPhysicianLastname || $ctrl.result.physicians.referringPhysicianFirstname">
+                        {{ $ctrl.result.physicians.referringPhysicianLastname || '-' }}&nbsp;{{ $ctrl.result.physicians.referringPhysicianFirstname || '-' }}
+                    </div>
+                    <div class="physician-name" ng-if="!$ctrl.result.physicians.referringPhysicianLastname && !$ctrl.result.physicians.referringPhysicianFirstname">
+                        {{ '-' | translate }}
+                    </div>
+                </div>
+                <div class="physician">
+                    <div class="physician-title">
+                        {{ 'visit.ADMITTING_PHYS' | translate }}
+                    </div>
+                    <div class="physician-name" ng-if="$ctrl.result.physicians.admittingPhysicianLastname || $ctrl.result.physicians.admittingPhysicianFirstname">
+                        {{ $ctrl.result.physicians.admittingPhysicianLastname || '-' }}&nbsp;{{ $ctrl.result.physicians.admittingPhysicianFirstname || '-' }}
+                    </div>
+                    <div class="physician-name" ng-if="!$ctrl.result.physicians.admittingPhysicianLastname && !$ctrl.result.physicians.admittingPhysicianFirstname">
+                        {{ '-' | translate }}
+                    </div>
+                </div>
+                <div class="physician">
+                    <div class="physician-title">
+                        {{ 'visit.CONSULTING_PHYS' | translate }}
+                    </div>
+                    <div class="physician-name" ng-if="$ctrl.result.physicians.consultingPhysicianLastname || $ctrl.result.physicians.consultingPhysicianFirstname">
+                        {{ $ctrl.result.physicians.consultingPhysicianLastname || '-' }}&nbsp;{{ $ctrl.result.physicians.consultingPhysicianFirstname || '-' }}
+                    </div>
+                    <div class="physician-name" ng-if="!$ctrl.result.physicians.consultingPhysicianLastname && !$ctrl.result.physicians.consultingPhysicianFirstname">
+                        {{ '-' | translate }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/md-card-content>
+        </md-card-->
+    </div>
+</div>

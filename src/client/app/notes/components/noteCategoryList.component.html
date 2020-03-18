@@ -1,0 +1,24 @@
+<div class="fec-notes" layout-xs="column" layout="row" layout-wrap layout-padding>
+    <div ng-if="vm.hasShiftNotes" flex-xs="100" flex-sm="50" flex="33">
+        <h5>
+            <small>
+                <a ui-sref="patientShiftNotes({pid: vm.pid})" ng-if="vm.pid">{{ 'notes.SHIFT_NOTES' | translate | lowercase}}</a>
+                <a ui-sref="visitShiftNotes({vnb: vm.vnb})" ng-if="vm.vnb">{{ 'notes.SHIFT_NOTES' | translate  | lowercase}}</a>
+            </small>
+            <fec-note-read-counter patient-id="vm.pid" visit-nb="vm.vnb" shift-notes></fec-note-read-counter>
+            <fec-note-read-button patient-id="vm.pid" visit-nb="vm.vnb" shift-notes show-option="true"></fec-note-read-button>
+        </h5>
+        <fec-note-list pid="vm.pid" vnb="vm.vnb" note-item-layout="small" shift-notes></fec-note-list>
+    </div>
+    <div ng-repeat="category in vm.categories track by category.id" flex-xs="100" flex-sm="50" flex="33">
+        <h5>
+            <small>
+                <a ui-sref="patientNoteCategory({pid: vm.pid, categoryId: category.id})" ng-if="vm.pid">{{ category.name }}</a>
+                <a ui-sref="visitNoteCategory({vnb: vm.vnb, categoryId: category.id})" ng-if="vm.vnb">{{ category.name }}</a>
+            </small>
+            <fec-note-read-counter patient-id="vm.pid" category-id="category.id" visit-nb="vm.vnb"></fec-note-read-counter>
+            <fec-note-read-button patient-id="vm.pid" category-id="category.id" show-option="true" visit-nb="vm.vnb"></fec-note-read-button>
+        </h5>
+        <fec-note-list pid="vm.pid" vnb="vm.vnb" note-category-id="category.id" note-item-layout="small"></fec-note-list>
+    </div>
+</div>

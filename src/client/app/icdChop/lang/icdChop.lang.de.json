@@ -1,0 +1,16 @@
+{
+    "icdChop": {
+        "CHOP": "Prozeduren",
+        "GUIDE_VISITS_DIAGNOSIS": "Diagnosen, welche in diesem Fall festgestellt wurden",
+        "GUIDE_VISITS_TREATMENT": "Prozeduren, welche in diesem Fall gemacht worden sind",
+        "ICD": "Diagnosen",
+        "LANGUAGE_UNAVAILABLE": "In der gewünschten Sprache nicht verfügbar",
+        "NB_OF_CHOP": "{ENTRY, plural, =0{0 Prozeduren} one{1 Prozedur} other{# Prozeduren}}",
+        "NB_OF_CHOP_ENTRY": "{ENTRY, plural, =0{kein Eintrag} one{ 1 Eintrag} other{# Einträge}}",
+        "NB_OF_ICD": "{ENTRY, plural, =0{0 Diagnosen} one{1 Diagnose} other{# Diagnosen}}",
+        "NB_OF_ICD_ENTRY": "{ENTRY, plural, =0{kein Eintrag} one{ 1 Eintrag} other{# Einträge}}",    
+        "NO_CHOP": "Keine Prozeduren für diesen Fall",
+        "NO_ICD": "Keine Diagnosen für diesen Fall",    
+        "TITLE_LIST": "ICD/CHOP"        
+    }
+}

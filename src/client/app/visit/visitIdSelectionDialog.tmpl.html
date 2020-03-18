@@ -1,0 +1,22 @@
+<md-dialog class="visitIdSelectionDialog">
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div layout layout-align="center center">
+                <h5>{{ 'visit.SELECT_VISIT_TITLE' | translate }}</h5>
+            </div>
+            <div ng-repeat="visit in $ctrl.visits" layout="column" class="fec-clickable-item" fec-mobile-click="$ctrl.selectElement(visit.visit.visitInfo.number)" ng-class="{'selectedElement': $ctrl.isSelected(visit.visit.visitInfo.number)}">
+                <span class="visitId">{{visit.visit.visitInfo.number}}</span>
+                <content-item-detail label="{{ 'core.ADMIT_DATE' | translate }}" content="{{visit.visit.visitInfo.admitDate | formatDate : 'dateTime' }}"></content-item-detail>
+                <content-item-detail label="{{ 'core.COMPANY' | translate }}" content="{{visit.company.code}}"></content-item-detail>
+                <content-item-detail label="{{ 'core.HOSP_SERVICE' | translate }}" content="{{ ::visit.visit.visitInfo.hospservice }}" tooltip-placement="left" info="{{ ::visit.visit.visitInfo.hospservicedesc }}"></content-item-detail>
+                <content-item-detail label="{{ 'visit.ATTENDING_PHYS' | translate }}"
+                                     content="{{ ::visit.visit.visitInfo.attendingPhysicianFirstname | lowercase | firstLetterUpperCase}}{{(visit.visit.visitInfo.attendingPhysicianFirstname != null && visit.visit.visitInfo.attendingPhysicianFirstname != '')?' ':''}}{{ ::visit.visit.visitInfo.attendingPhysicianLastname | lowercase | firstLetterUpperCase}}">
+                </content-item-detail>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <span flex></span>
+        <md-button fec-mobile-click="$ctrl.closeDialog()" class="md-primary">{{'core.CLOSE' | translate }}</md-button>
+    </md-dialog-actions>
+</md-dialog>

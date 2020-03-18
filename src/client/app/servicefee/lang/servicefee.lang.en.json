@@ -1,0 +1,25 @@
+{
+    "servicefee": {
+        "ACTING_DEPT_DESCRIPTION": "Acting department",
+        "CODE": "Service Code",
+        "DATE": "Service Date",
+        "DESC_LANGUAGE": "Description language",
+        "DEPARTMENT": "Department",
+        "DETAILS": "Service Details",
+        "GUIDE_BENEFITS_RESULT": "Performed services of the current patient",
+        "LEAD_PHYSICIAN": "Lead Physician",
+        "NB_OF_BENEFITS": "{BENEFIT, plural, =0{0 Service Fees} one{1 Service Fee} other{# Service Fees}}",
+        "NO_BENEFIT": "No Service Fee",
+        "NOTE": "Note",
+        "OPERATING_PHYSICIAN": "Operating Physician",
+        "PAID_PHYSICIAN": "Paid Physician",
+        "PHYSICIAN_ID": "Id",
+        "PHYSICIANS": "Physicians",
+        "QUANTITY": "Quantity",
+        "SIDE": "Side",
+        "TIME": "Time",
+        "TITLE": "Service Fee",
+        "TITLE_LIST": "Service Fees",
+        "TITLE_DETAIL": "Service fee details"
+    }
+}

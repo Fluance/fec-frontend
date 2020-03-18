@@ -1,0 +1,31 @@
+<div id="visitsContainer" layout="column">
+    <div class="fec-page-title">
+        <h5>{{ 'visit.TITLE_LIST' | translate }}</h5>
+        <span class="number-badge" ng-show="vm.dataPager.hasTotalItemsCount">{{ 'visit.NB_OF_VISIT' | translate:{VISIT : vm.dataPager.totalItemsCount} }}</span>
+    </div>
+    <div flex="noshrink">
+        <fec-data-pager-sort ng-if="vm.canSort()" sort-criteria="vm.sortCriteria" selected-sort-criteria="vm.dataPager.sortBy" selected-sort-direction="vm.dataPager.sortDirection"
+            on-changed="vm.refresh()">
+        </fec-data-pager-sort>
+    </div>
+    <!-- DIV WHEN THERE IS NO VISIT -->
+    <md-card class="warn" flex="auto" ng-if="vm.dataPager.isEmpty()">
+        <md-card-content>
+            {{ 'visit.NO_VISIT' | translate }}
+        </md-card-content>
+    </md-card>
+
+    <!-- VISIT AREA -->
+    <div class="search-result" flex="auto" infinite-scroll="vm.dataPager.getNextPage()" infinite-scroll-disabled="vm.dataPager.isLoading || !vm.dataPager.canGetNextPage()"
+        infinite-scroll-distance="0" infinite-scroll-container="vm.scrollableContainer">
+        <expander-accordion>
+            <visit result="item" ng-repeat="item in vm.dataPager.items"></visit>
+        </expander-accordion>
+    </div>
+    <div layout-padding>
+        <md-progress-linear md-mode="indeterminate" ng-if="vm.dataPager.isLoading"></md-progress-linear>
+        <div ng-show="vm.dataPager.hasTotalItemsCount && !vm.dataPager.canGetNextPage()" class="center-align">
+            <span class="number-badge passive">{{ 'visit.NB_OF_VISIT' | translate:{VISIT : vm.dataPager.totalItemsCount} }}</span>
+        </div>
+    </div>
+</div>

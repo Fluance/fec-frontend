@@ -1,0 +1,95 @@
+<expander is-expanded="$ctrl.result.isExpanded" is-expanded-changed="$ctrl.displayDetails()">
+	<expander-header class="servicefee-expander-header">
+		<div layout-padding>
+			<!--BENEFIT ID-->
+			<div layout="column" layout-gt-sm="row" class="servicefee-id">
+				<div flex-gt-sm="20" flex="auto">
+					<p class="benefit-id">
+						{{ ::$ctrl.result.benefit.benefitId }}
+					</p>
+				</div>
+				<!--HEADER FIRST COLUMN-->
+				<div layout-padding hide-xs hide-sm></div>
+				<div flex-gt-sm="40" flex="auto" class="servicefee-expander-header">
+					<content-item label="{{ 'servicefee.CODE' | translate }}" content="{{ $ctrl.result.benefit.code }}"></content-item>
+					<content-item label="{{ 'servicefee.DATE' | translate }}" content="{{ $ctrl.result.benefit.benefitDate | formatDate : 'dateTime'}}"></content-item>
+					<content-item label="{{ 'servicefee.NOTE' | translate }}" content="{{ $ctrl.result.benefit.note}}"></content-item>
+					<content-item label="{{ 'servicefee.DESC_LANGUAGE' | translate }}" content="{{ $ctrl.result.benefit.descLanguage }}"></content-item>
+				</div>
+				<!--HEADER SECOND COLUMN-->
+				<div layout-padding hide-xs hide-sm></div>
+				<div flex-gt-sm="40" flex="auto" class="servicefee-expander-header">
+					<content-item label="{{ 'servicefee.ACTING_DEPT_DESCRIPTION' | translate }}" content="{{ $ctrl.result.benefit.actingDeptDescription }}"></content-item>
+					<content-item label="{{ 'servicefee.QUANTITY' | translate }}" content="{{ $ctrl.result.benefit.quantity}}"></content-item>
+					<content-item label="{{ 'servicefee.SIDE' | translate }}" content="{{ $ctrl.result.benefit.side}}"></content-item>
+				</div>
+			</div>
+		</div>
+	</expander-header>
+	<expander-body>
+		<div layout="column" layout-padding>
+			<!-- Progress -->
+			<md-progress-circular md-mode="indeterminate" ng-if="$ctrl.result.isLoadingDetails"></md-progress-circular>
+
+			<!-- CONTENT DETAILS -->
+			<div layout="column" class="servicefee-detail-info" ng-if="!$ctrl.result.isLoadingDetails">
+				<div flex="initial">
+					<h5>
+						<small>{{ 'servicefee.DETAILS' | translate }}</small>
+					</h5>
+				</div>
+				<div class="auto">
+					<content-item-no-title label="{{ 'core.DESCRIPTION' | translate }}" content="{{ ::$ctrl.result.details.description }}"></content-item-no-title>
+				</div>
+			</div>
+
+			<!-- CONTENT: PHYSICIAN -->
+			<div layout="column" layout-gt-sm="row" class="servicefee-detail-info" ng-if="!$ctrl.result.isLoadingDetails">
+				<div layout="column" flex-gt-sm="33" flex="auto" ng-if="$ctrl.result.details.leadPhysicianId">
+					<h5>
+						<small>{{ 'visit.ATTENDING_PHYS' | translate }}</small>
+					</h5>
+					<div layout="column">
+						<md-list>
+							<content-item-detail label="{{ 'servicefee.PHYSICIAN_ID' | translate }}" content="{{ ::$ctrl.result.details.leadPhysicianId }}"></content-item-detail>
+							<content-item-detail label="{{ 'core.FIRSTNAME' | translate }}" content="{{ ::$ctrl.result.details.leadPhysicianFirstName }}"></content-item-detail>
+							<content-item-detail label="{{ 'core.LASTNAME' | translate }}" content="{{ ::$ctrl.result.details.leadPhysicianLastName }}"></content-item-detail>
+						</md-list>
+					</div>
+				</div>
+
+				<div layout-padding hide-xs hide-sm></div>
+				<div style="padding-top:5px" hide-gt-sm></div>
+
+				<div layout="column" flex-gt-sm="33" flex="auto" ng-if="$ctrl.result.details.paidPhysicianId">
+					<h5>
+						<small>{{ 'servicefee.PAID_PHYSICIAN' | translate }}</small>
+					</h5>
+					<div layout="column">
+                        <md-list>
+							<content-item-detail label="{{ 'servicefee.PHYSICIAN_ID' | translate }}" content="{{ ::$ctrl.result.details.paidPhysicianId }}"></content-item-detail>
+							<content-item-detail label="{{ 'core.FIRSTNAME' | translate }}" content="{{ ::$ctrl.result.details.paidPhysicianFirstName }}"></content-item-detail>
+							<content-item-detail label="{{ 'core.LASTNAME' | translate }}" content="{{ ::$ctrl.result.details.paidPhysicianLastName }}"></content-item-detail>
+						</md-list>
+					</div>
+				</div>
+
+				<div layout-padding hide-xs hide-sm></div>
+				<div style="padding-top:5px" hide-gt-sm></div>
+
+				<div layout="column" flex-gt-sm="33" flex="auto" ng-if="$ctrl.result.details.operatingPhysicianId">
+					<h5>
+						<small>{{ 'servicefee.OPERATING_PHYSICIAN' | translate }}</small>
+					</h5>
+					<div layout="column">
+                        <md-list>
+							<content-item-detail label="{{ 'servicefee.PHYSICIAN_ID' | translate }}" content="{{ ::$ctrl.result.details.operatingPhysicianId }}"></content-item-detail>
+							<content-item-detail label="{{ 'core.FIRSTNAME' | translate }}" content="{{ ::$ctrl.result.details.operatingPhysicianFirstName }}"></content-item-detail>
+							<content-item-detail label="{{ 'core.LASTNAME' | translate }}" content="{{ ::$ctrl.result.details.operatingPhysicianLastName }}"></content-item-detail>
+						</md-list>
+					</div>
+				</div>
+			</div>
+		</div>
+	</expander-body>
+</expander>

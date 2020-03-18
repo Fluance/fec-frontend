@@ -1,0 +1,18 @@
+<div flex="auto">
+    <h5>
+        <small>{{ 'patient.BILLING'| translate }}</small>
+    </h5>
+</div>
+<div layout="column" flex="auto">
+    <div ng-repeat="nok in $ctrl.billingContacts">
+        <content-item-detail label="{{ 'core.LASTNAME'| translate }}" content="{{::nok.lastName}} {{::nok.firstName}}"></content-item-detail>
+        <content-item-detail label="{{ 'core.ADDRESS' | translate }}" content="{{::nok.address}}"></content-item-detail>
+        <content-item-detail label="{{'core.POSTCODE' | translate }}" content="{{::nok.postCode}}"></content-item-detail>
+        <content-item-detail label="{{ 'core.LOCALITY' | translate }}" content="{{::nok.locality}}"></content-item-detail>
+        <content-item-detail label="{{ 'core.CANTON' | translate }}" content="{{::nok.canton}}"></content-item-detail>
+        <content-item-detail label="{{ 'core.COUNTRY' | translate }}" content="{{::nok.country}}"></content-item-detail>
+    </div>
+    <md-list class="novm.Result" ng-if="$ctrl.billingContacts.length <= 0">
+        <md-list-item>{{'patient.BILLING_NO_ADDRESS' | translate }}</md-list-item>
+    </md-list>
+</div>

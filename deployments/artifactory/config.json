@@ -1,0 +1,10 @@
+{
+    "server": "",
+    "targetReleaseRepository": "internal-releases",
+    "targetSnapshotRepository": "internal-snapshots",
+    "groupId": "net.fluance.cockpit",
+    "artifactId": "fluance-cockpit-ui",
+    "releasePostfix": "RELEASE",
+    "releaseCandidatePostfix": "RC",
+    "snapshotPostfix": "SNAPSHOT"
+}

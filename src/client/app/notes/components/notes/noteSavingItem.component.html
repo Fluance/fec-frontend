@@ -1,0 +1,6 @@
+<div layout layout-align="space-between start" style="margin: 0 15px 0 0;">
+    <div>{{vm.item.message}}</div>
+    <div ng-if="vm.isPicture">
+        <fec-note-image-thumbnail picture="vm.item.data" show-details"vm.showImage"></fec-note-image-thumbnail>
+    </div>
+</div>

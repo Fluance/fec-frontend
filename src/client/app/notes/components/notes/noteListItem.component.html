@@ -1,0 +1,29 @@
+<div class="notes-list-item small" layout="row" ng-if="$ctrl.checkNoteItemLayout('small')">
+    <md-button flex ui-sref="readNote({pid: $ctrl.note.patientId, vnb: $ctrl.note.visitNb, noteId: $ctrl.note.id})">
+        <fec-note-header flex note="$ctrl.note"></fec-note-header>
+    </md-button>
+</div>
+<div class="notes-list-item wide" layout="row" ng-if="$ctrl.checkNoteItemLayout('wide')">
+    <md-button flex ui-sref="readNote({pid: $ctrl.note.patientId, vnb: $ctrl.note.visitNb, noteId: $ctrl.note.id})">
+        <fec-note-header flex note="$ctrl.note"></fec-note-header>
+    </md-button>
+    <div layout="row">
+        <div class="note-toolbar">
+            <fec-nav-read-unread>
+                <fec-note-read-button note-id="$ctrl.note.id" is-read="$ctrl.note.read"></fec-note-read-button>
+            </fec-nav-read-unread>
+            <fec-edit-icon ng-if="$ctrl.editionEnabled()">
+                <md-button class="md-icon-button md-primary"
+                           ui-sref="editNote({pid: $ctrl.note.patient.pid, vnb: $ctrl.note.visitNb, noteId: $ctrl.note.id})">
+                    <fec-icon type="edit" size="xs"></fec-icon>
+                </md-button>
+            </fec-edit-icon>
+            <fec-history-icon ng-if="$ctrl.editionEnabled()">
+                <md-button class="md-icon-button md-primary"
+                           ui-sref="noteHistoryList({pid: $ctrl.note.patient.pid, vnb: $ctrl.note.visitNb, categoryId: $ctrl.note.categoryId, noteId: $ctrl.note.id })">
+                    <fec-icon type="history" size="xs"></fec-icon>
+                </md-button>
+            </fec-history-icon>
+        </div>
+    </div>
+</div>

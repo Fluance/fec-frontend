@@ -1,0 +1,126 @@
+#appointment-detail {
+  width: 100% !important;
+  h5 {
+    display: inline-block;
+  }
+  .appointment-detail-personnel {
+    td {
+      div {
+        line-height: 25px;
+      }
+    }
+  }
+  .appointment-expander-header {
+    line-height: 1rem;
+    .appointment-profile {
+      .appointment-table-layout {
+        flex-basis: 0;
+        flex-grow: 1;
+      }
+      .appointment-time,
+      .appointment-room {
+        fec-icon {
+          i {
+            cursor: default;
+          }
+        }
+      }
+      .appointment-name {
+        color: $fe-black;
+      }
+      .appointment-title {
+        color: $fe-blue;
+      }
+      .appointment-id {
+        color: $fe-blue;
+      }
+      .appointment-name {
+        margin-top: 0px;
+        margin-bottom: 10px;
+      }
+      .appointment-id {
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      .appointment-info {
+        color: $fe-accent-grey;
+        margin: 3px 0px;
+      }
+    }
+    .appointment-header-info {
+      margin-top: 5px;
+    }
+  }
+  .appointment-expander-body {
+    background-color: $fe-white;
+    line-height: 1rem;
+    padding: 0px 20px;
+    .spinner {
+      padding: 20px 0 20px 0;
+    }
+    .appoint-table {
+      th {
+        width: 25%;
+      }
+    }
+    h5 {
+      margin-left: 11.25px;
+    }
+    @media #{$medium-and-down} {
+      padding-top: 20px;
+    }
+  }
+
+  .appointment-detail-info {
+    padding: 5px 0;
+    &:first-of-type {
+      padding-top: 0;
+    }
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.fec-operating-times-box {
+  .title {
+    color: $fe-accent-grey;
+  }
+  .content {
+    margin-top: 5px;
+  }
+  .fec-operating-status-item {
+      line-height: 20px;
+    &.even {
+      background: $fe-grey;
+    }
+    .fec-operating-status-item-description {
+      padding: 3px 0px 3px 5px;
+    }
+    .fec-operating-status-item-time-container {
+      border-left: 1px solid $fe-accent-grey;
+      border-right: 1px solid $fe-accent-grey;
+    }
+    .fec-operating-status-item-time {
+      padding: 3px 5px;
+    }
+  }
+}
+
+#appointmentContainer {
+  .appoint-table {
+    thead {
+      tr.hide {
+        th {
+          width: 25%;
+        }
+      }
+    }
+
+    tbody {
+      td {
+        vertical-align: top;
+      }
+    }
+  }
+}

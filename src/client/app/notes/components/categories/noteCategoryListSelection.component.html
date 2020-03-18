@@ -1,0 +1,4 @@
+<md-select placeholder="{{ 'notes.CATEGORY' | translate }}" ng-model="$ctrl.category" ng-change="$ctrl.onChange($ctrl.category)"
+    value ng-disabled="$ctrl.isLoading">
+    <md-option ng-repeat="category in $ctrl.categories" ng-value="category.id">{{category.name | translate}}</md-option>
+</md-select>

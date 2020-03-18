@@ -1,0 +1,16 @@
+<md-progress-linear md-mode="indeterminate" ng-if="$ctrl.spin"></md-progress-linear>
+<div ng-if="!$ctrl.spin" layout="column" class="fec-datatable-container">
+
+    <!-- header -->
+    <div class="patient-document-list-header" layout="row" layout-align="start center">
+        <fec-virtual-datatable-header ng-if="$ctrl.columns" reset-sorting="$ctrl.resetSorting" flex="grow" layout-align="start center" layout="row" columns="$ctrl.columns" on-sort="$ctrl.onSort(sortBy, sortDesc)"></fec-virtual-datatable-header>
+        <fec-virtual-datatable-filter ng-if="$ctrl.filterList"  layout-align="start center" filter-list="$ctrl.filterList" filter-options="$ctrl.filterOptions" on-filter="$ctrl.onFilter(name, value)"></fec-virtual-datatable-filter>
+    </div>
+
+    <!-- body -->
+    <fec-virtual-datatable-body layout="row" layout-align="start center" dynamic-items="$ctrl.dynamicItems" options="$ctrl.options"></fec-virtual-datatable-body>
+
+    <!-- footer -->
+    <fec-virtual-datatable-footer top-index="$ctrl.dynamicItems.topIndex" num-items="$ctrl.dynamicItems.numItems" virtual-repeat-current-index="$ctrl.virtualRepeatCurrentIndex(topIndex)" footer-label-code="$ctrl.footerLabelCode"></fec-virtual-datatable-footer>
+    <!--span layout="row"  layout-align="end">{{$ctrl.virtualRepeatCurrentIndex($ctrl.dynamicItems.topIndex)}}/{{$ctrl.dynamicItems.numItems}}</span-->
+</div>

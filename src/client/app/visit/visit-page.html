@@ -1,0 +1,58 @@
+<div id="visitsContainer" layout="column">
+    <div class="fec-page-title" hide-xs layout="column">
+        <h5 flex="grow">
+            <fec-icon type="visit" size="sm" color="fe-blue-icon"></fec-icon>
+            {{ 'visit.TITLE' | translate }}
+        </h5>
+    </div>
+    <!-- DIV WHEN THERE IS A TIMEOUT -->
+    <md-card flex="auto" class="error" ng-show="vm.isException">
+        <md-card-content>
+            {{ 'visit.TIMEOUT_ON_REQUEST' | translate }}
+        </md-card-content>
+    </md-card>
+    <!-- DIV WHEN THERE IS NO POLICY -->
+    <md-card flex="auto" class="warn" ng-show="vm.isEmpty">
+        <md-card-content>
+            {{ 'visit.NO_VISIT' | translate }}
+        </md-card-content>
+    </md-card>
+    <!-- VISIT AREA -->
+    <md-card>
+        <md-card-content layout="row">
+            <div class="visit-profile" flex="100">
+                <md-content>
+                    <div layout-gt-sm="row">
+                        <div class="" flex-gt-sm="20" flex="auto">
+                            <p class="visit-id">
+                                {{ ::vm.vnb }}
+                            </p>
+                        </div>
+                        <div layout-padding hide-xs hide-sm></div>
+                        <div style="padding-top:5px" hide-gt-sm></div>
+                        <div flex-gt-sm="80">
+                            <!-- TOOLBAR -->
+                            <fec-nav-bar class="left-align" hide-xs hide-sm>
+                                <fec-nav-button-visit-details fec-nav-item nav-name="visit-details" vnb="vm.vnb" state="visit.details"></fec-nav-button-visit-details>
+                                <fec-nav-button-icd-chop-list fec-nav-item nav-name="visit-icdChopList" vnb="vm.vnb" state="visit.icdChopList"></fec-nav-button-icd-chop-list>
+                                <fec-nav-button-benefit-list fec-nav-item nav-name="visit-servicefeeList" vnb="vm.vnb" state="visit.servicefeeList"></fec-nav-button-benefit-list>
+
+                                <fec-nav-button-guarantor-list fec-nav-item nav-name="visit-guarantorList" vnb="vm.vnb" state="visit.guarantorList"></fec-nav-button-guarantor-list>
+                            </fec-nav-bar>
+                            <!-- TOOLBAR MOBILE -->
+                            <fec-nav-bar hide-gt-sm>
+                                <div class="nav-bar-mobile">
+                                    <div class="nav-bar-mobile-item"><fec-nav-button-visit-details fec-nav-item nav-name="visit-details" vnb="vm.vnb" state="visit.details"></fec-nav-button-visit-details></div>
+                                    <div class="nav-bar-mobile-item"><fec-nav-button-icd-chop-list fec-nav-item nav-name="visit-icdChopList" vnb="vm.vnb" state="visit.icdChopList"></fec-nav-button-icd-chop-list></div>
+                                    <div class="nav-bar-mobile-item"><fec-nav-button-benefit-list fec-nav-item nav-name="visit-servicefeeList" vnb="vm.vnb" state="visit.servicefeeList"></fec-nav-button-benefit-list></div>
+                                    <div class="nav-bar-mobile-item"><fec-nav-button-guarantor-list fec-nav-item nav-name="visit-guarantorList" vnb="vm.vnb" state="visit.guarantorList"></fec-nav-button-guarantor-list></div>
+                                </div>
+                            </fec-nav-bar>
+                        </div>
+                    </div>
+                    <div ui-view></div>
+                </md-content>
+            </div>
+        </md-card-content>
+    </md-card>
+</div>

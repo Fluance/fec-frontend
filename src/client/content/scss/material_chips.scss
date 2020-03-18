@@ -1,0 +1,34 @@
+md-chips {
+    .md-chips {
+        box-shadow: none;
+        padding-left: 0px;
+        outline: none;
+        md-chip {
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(0, 0, 0, .6);
+            display: inline-block;
+            img {
+                float: left;
+                margin: 0 8px 0 0;
+                height: 32px;
+                width: 32px;
+                border-radius: 50%;
+            }
+            md-chip-template span {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        }
+    }
+}
+
+/*
+&.cursor-pointer {
+    md-chip {
+        cursor: pointer;
+    }
+}
+*/
+
+

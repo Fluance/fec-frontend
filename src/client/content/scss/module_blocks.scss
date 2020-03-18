@@ -1,0 +1,343 @@
+/* ------------------------------------------------------------------------- Component: Chat Bot */
+
+md-toolbar {
+  z-index: 22;
+}
+
+@keyframes growUpWidth {
+  from {
+    width: 0px;
+  }
+  to {
+    width: $fe-chat-bot-width;
+  }
+}
+
+@keyframes shrinkDownWidth {
+  from {
+    width: $fe-chat-bot-width;
+  }
+  to {
+    width: 0px;
+  }
+}
+
+@keyframes growUpHeight {
+  from {
+    opacity: 0;
+    height: 0px;
+  }
+  to {
+    opacity: 1;
+    height: $fe-chat-bot-height;
+  }
+}
+
+@keyframes shrinkDownHeight {
+  from {
+    opacity: 1;
+    height: $fe-chat-bot-height;
+  }
+  to {
+    opacity: 0;
+    height: 0px;
+  }
+}
+
+/* ------------------------------------------------------------------------- Component: Chatbot */
+
+#fec-chat-bot {
+  .fec-chat-bot-header {
+    top: 2px;
+    position: absolute;
+    height: 46px;
+    width: 26px;
+    cursor: pointer;
+    color: $fe-blue;
+    @media all and (max-width: 599px) {
+      color: $fe-blue;
+      height: 43px;
+    }
+    &.active {
+      @media all and (max-width: 599px) {
+        fec-icon {
+          color: $fe-blue;
+        }
+      }
+      @media all and (min-width: 600px) {
+        fec-icon {
+          color: $fe-blue;
+        }
+      }
+    }
+  }
+  .fec-chat-bot-container {
+    z-index: 9999;
+    position: absolute;
+    background-color: $fe-white;
+    @media all and (min-width: 600px) {
+      bottom: 65px;
+      right: 30px;
+      margin-left: -100px;
+      animation: shrinkDownHeight, shrinkDownWidth;
+      animation-duration: 1s;
+    }
+    @media (min-width: 600px) and (max-width: 959px) {
+      margin-top: -3px;
+    }
+    @media all and (max-width: 599px) {
+      top: 140px;
+      width: 100%;
+      animation: shrinkDownHeight;
+      animation-duration: 1s;
+    }
+    &.no-animation {
+      animation: none !important;
+    }
+    &.active {
+      height: $fe-chat-bot-height;
+      border: 1px solid $fe-blue;
+      box-shadow: 0px 0px 15px #888888;
+      iframe {
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+      }
+      @media all and (min-width: 600px) {
+        width: $fe-chat-bot-width;
+        animation: growUpHeight, growUpWidth;
+        animation-duration: 1s;
+      }
+      @media all and (max-width: 599px) {
+        width: 100%;
+        animation: growUpHeight;
+        animation-duration: 1s;
+      }
+    }
+  }
+}
+
+/* ------------------------------------------------------------------------- Component: MultiSession */
+
+.multisession {
+  fec-user-agent-bar {
+    margin-left: 20px;
+  }
+  md-list-item > md-checkbox,
+  md-list-item .md-list-item-inner > md-checkbox {
+    margin-top: 0px;
+  }
+  .current-session {
+    color: $fe-white;
+    background-color: $fe-blue-bg;
+    .material-icons {
+      color: $fe-white;
+    }
+    md-checkbox {
+      .md-icon {
+        border-color: $fe-white;
+      }
+      &.md-checked {
+        .md-icon {
+          background-color: transparent;
+          border-top: none;
+          border-left: none;
+          border-right-color: $fe-white !important;
+          border-bottom-color: $fe-white !important;
+        }
+      }
+    }
+  }
+}
+
+/* ------------------------------------------------------------------------- Component: Tutorial */
+
+//Tutorial Service / Joyride button style
+fec-tutorial-guide {
+  display: inline-block;
+  .fec-has-completed-tutorial {
+    color: $fe-accent-grey;
+  }
+  &.floating-top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.fec-select-filter {
+  min-width: 150px;
+}
+
+/* ------------------------------------------------------------------------- Component: Meteo */
+
+// Meteo icon
+.fec-meteo-icon-font,
+.fec-meteo-icon-font:before {
+  font-family: "MeteoconsRegular";
+  color: $fe-blue;
+}
+
+.fec-meteo-container {
+  color: $fe-blue;
+  font-size: 15px;
+  cursor: pointer;
+  fec-meteo-icon {
+    &.not-clickable {
+      cursor: auto;
+    }
+    font-size: 18px;
+    margin-right: 5px;
+    &[meteo-icon="celsius"] {
+      margin-right: 0px;
+      margin-left: -5px;
+      padding-top: 1px;
+      font-size: 28px;
+      line-height: 13px;
+    }
+  }
+}
+
+// Meteo chart
+md-dialog {
+  @media all and (max-width: 959px) {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+  }
+  #fec-meteo-dialog {
+    #fec-meteo-data-list-container {
+      width: 100%;
+      .fec-meteo-data-day-title {
+        color: $fe-blue;
+        text-align: center;
+        font-size: 18px;
+      }
+      .fec-meteo-data-day-list {
+        width: 100%;
+        overflow-x: scroll;
+        margin-top: 10px;
+        .fec-meteo-data-day {
+          font-size: 16px;
+          text-align: center;
+          color: $fe-accent-grey;
+          cursor: pointer;
+          .fec-meteo-icon-font {
+            color: $fe-accent-grey;
+            font-size: 28px;
+            line-height: 22px;
+            margin-left: -5px;
+          }
+          .fec-meteo-data-day-temperatur {
+            margin: 0px 5px;
+          }
+          &.active-day {
+            border-bottom: 2px solid $fe-blue;
+            color: $fe-blue;
+            .fec-meteo-icon-font {
+              color: $fe-blue;
+            }
+          }
+        }
+      }
+      // .fec-meteo-data-day-list {
+      //     margin-top: 20px;
+      //     .fec-meteo-data-day {
+      //         cursor: pointer;
+      //         text-align: center;
+      //         .fec-meteo-data-day-name {
+      //             color: $fe-accent-grey;
+      //         }
+      //         .fec-meteo-icon-font {
+      //             font-size: 28px;
+      //             color: $fe-accent-grey;
+      //         }
+      //         .fec-meteo-data-temp {
+      //             .fec-meteo-data-temp-max,
+      //             .fec-meteo-data-temp-min {
+      //                 display: inline-flex;
+      //                 fec-meteo-icon {
+      //                     line-height: 24px;
+      //                     margin-left: -4px;
+      //                 }
+      //             }
+      //             .fec-meteo-data-temp-max {
+      //                 color: $fe-accent-grey;
+      //             }
+      //             .fec-meteo-data-temp-min {
+      //                 color: $fe-accent-grey;
+      //             }
+      //             fec-meteo-icon {
+      //                 font-size: 28px;
+      //             }
+      //         }
+      //         &.active-day {
+      //             border-bottom: 2px solid $fe-blue;
+      //             .fec-meteo-data-day-name, fec-meteo-icon {
+      //                 color: $fe-blue;
+      //             }
+      //         }
+      //     }
+      // }
+    }
+  }
+  .meteo-powered-by {
+    font-size: 12px;
+    color: $fe-accent-grey;
+    a {
+      margin-left: 5px;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------------- Component: fec-mobile-click */
+
+a[fec-mobile-click] {
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------------------------- Component: fec-data-pager-sort */
+.fecDataPagerSort {
+  button {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    width: 30px !important;
+  }
+}
+
+/* ------------------------------------------------------------------------- Component: fec-anesthesia-box */
+/* ------------------------------------------------------------------------- Component: fec-patient-position-box */
+/* ------------------------------------------------------------------------- Component: fec-operation-note-box */
+.fec-anesthesia-box, .fec-patient-position-box, .fec-operation-note-box {
+  background: $fe-blue-bg-markup;
+  padding: 5px;
+  margin-bottom: 10px;
+  .title {
+    color: $fe-accent-grey;
+    line-height: 20px;
+  }
+  .content {
+    color: $fe-black;
+    line-height: 20px;
+  }
+}
+.fec-operation-note-box {
+  background: $fe-grey;
+  margin-bottom: 0;
+  &.edit-mode {
+      background: $fe-white;
+      border: 1px solid $fe-accent-grey;
+  }
+
+  .fec-operation-note-box-content {
+      line-height: 20px;
+  }
+
+  .content {
+    white-space: pre-line;
+  }
+}

@@ -1,0 +1,18 @@
+<div id="invoicesContainer" layout="column">
+    <div class="fec-page-title" flex="initial">
+        <h5>{{ 'invoice.TITLE' | translate }}</h5>
+    </div>
+
+    <md-card class="warn" flex="auto" ng-show="vm.isEmpty">
+        <md-card-content>
+            {{'invoice.NO_INVOICE' | translate }}
+        </md-card-content>
+    </md-card>
+
+    <div infinite-scroll="vm.loadMore()" infinite-scroll-disabled="vm.isLoadingMore || vm.singleResultSearch || vm.isComplete || vm.isLoading"
+        infinite-scroll-distance="0" flex="auto">
+        <md-list class="collapsible popout" data-collapsible="accordion">
+            <fluance-invoice result="vm.result"></fluance-invoice>
+        </md-list>
+    </div>
+</div>

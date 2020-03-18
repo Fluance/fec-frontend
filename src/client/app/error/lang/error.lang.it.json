@@ -1,0 +1,33 @@
+{
+        "error": {
+                "ACCESS_DENIED": "Spiacenti, non sei autorizzato ad accedere a questo contenuto. Visita il nostro centro di contatto per inviare una richiesta",
+                "ACTION_BACK": "Indietro",
+                "ACTION_LOGIN": "Login",
+                "ACTION_LOGOUT": "Logout",
+                "ACTION_RELOAD": "Riavviare",
+                "ERROR": "Ups, si è verificato un errore",
+                "GUIDE_BACK": "Reindirizzato alla pagina o è verificato l'errore",
+                "GUIDE_LOGIN": "È necessario eseguire il login per utilizzare l'applicazione",
+                "GUIDE_LOGOUT": "È necessario eseguire il login nuovamente per continuare ad utilizzare l'applicazione",
+                "HTTP_FORBIDDEN": "I diritti di accesso non consentono l'accesso a questa risorsa",
+                "HTTP_REQUEST_TIME_OUT": "Il server non ha risposto in modo tempestivo",
+                "HTTP_SERVER": "Si è verificato un errore interno del server",
+                "HTTP_WARN": "Il tuo browser non usa una connessione sicura (HTTPS). Modificare l'URL con i prefisso https: // o visitare il nostro contact center",
+                "INVALID_EMAIL_ADDRESS": "Indirizzo email invalido",
+                "INVALID_DATE": "Data non valida",
+                "INVALIDE_NUMBER": "questo valore non è valido. Si prega di compilare il campo con figure e senza caratteri speciali",
+                "INVALID_REQUEST": "Si prega di compilare almeno un criterio (cognome o la data di nascita)",
+                "INVALID_ROUTING": "Errore durante la navigazione verso {DESTINATION}. {DATA} {STATUS} {STATUS_TEXT}",
+                "INVALID_VALUE": "questo valore non è valido. Si prega di compilare il campo con almeno una lettera e senza caratteri speciali",
+                "INVALID_STAFFID": "Invalid staff ID",
+                "INVALID_URL": "URL non valido",
+                "MAINTENANCE_MSG": "Il Fluance eHealth Cockpit di guida è in fase di manutenzione e non è disponibile per il momento",
+                "NO_COMPANY": "Il tuo profilo non viene assegnato sito. Visita il nostro contact center di presentare una domanda di adesione",
+                "NO_PATIENT": "Il paziente cercato non è stato trovato",
+                "NO_PROFILE": ";L'account utente non dispone di un profilo per utilizzare questa applicazione. Visita il nostro contact center per inviare una richiesta di accesso",
+                "SEE_FULL_REPORT": "Visualizzare un rapporto completo",
+                "SESSION_TIMEOUT": "La sessione è scaduta",
+                "TITLE_MAINTENANCE": "Manutenzione",
+                "UNHANDLED_ERROR": "Si è verificato un errore non gestito"
+        }
+}

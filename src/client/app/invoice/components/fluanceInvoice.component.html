@@ -1,0 +1,50 @@
+<expander is-expanded="vm.result.isExpanded" is-expanded-changed="vm.displayDetails()">
+    <expander-header>
+        <div layout-padding>
+            <div layout="column" layout-gt-sm="row" class="invoice-profile">
+                <div flex-gt-sm="33" flex="auto">
+                    <p class="invoice-id">
+                        {{ ::vm.result.invoice.id }}
+                    </p>
+                </div>
+                <div layout-padding hide-xs hide-sm></div>
+                <div flex-gt-sm="33" flex="auto">
+                    <content-item label="{{'invoice.INV_DATE' | translate :'date'}}" content="{{ vm.result.invoice.date | formatDate}}">
+                    </content-item>
+                </div>
+                <div layout-padding hide-xs hide-sm></div>
+                <div flex-gt-sm="33" flex="auto">
+                    <content-item label="{{'invoice.INV_TOTAL_PAID' | translate}}" content="{{ ::vm.result.invoice.totalAmount | formatCurrency : 'CHF'}}">
+                    </content-item>
+                </div>
+            </div>
+        </div>
+    </expander-header>
+    <expander-body>
+        <!-- Progress -->
+        <md-progress-circular md-mode="indeterminate" ng-if="vm.isDetailLoading"></md-progress-circular>
+        <div layout-padding>
+            <div layout="column" class="invoice-detail-info" ng-if="!vm.isDetailLoading">
+                <div flex="initial">
+                    <h5>
+                        <small>{{ 'invoice.INVOICE_DETAILS' | translate }}</small>
+                    </h5>
+                </div>
+                <div layout="column" layout-gt-sm="row">
+                    <div layout="column" flex-gt-sm="50" flex="auto">
+                        <content-item-detail label="{{'invoice.BALANCE' | translate}}" content="{{ ::vm.result.details.balance | formatCurrency : 'CHF' | noContentPlaceholder }}"
+                                             is-negative="{{vm.result.details.balance < 0}}"></content-item-detail>
+                    </div>
+
+                    <div layout-padding hide-xs hide-sm></div>
+                    <div style="padding-top:5px" hide-gt-sm></div>
+
+                    <div layout="column" flex-gt-sm="50" flex="auto">
+                        <content-item-detail label="{{'invoice.GUA_CODE' | translate}}" content="{{ ::vm.result.details.guarantorCode }}"></content-item-detail>
+                        <content-item-detail label="{{'invoice.GUA_NAME' | translate}}" content="{{ ::vm.result.details.guarantorName }}"></content-item-detail>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </expander-body>
+</expander>

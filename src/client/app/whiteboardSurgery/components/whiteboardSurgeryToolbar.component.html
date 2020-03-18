@@ -1,0 +1,10 @@
+<div id="whiteboard-surgery-toolbar" layout="row">
+    <div ng-if="!$ctrl.roomName" flex>
+        <span>{{ 'whiteboardSurgery.TITLE' | translate }}</span>
+    </div>
+    <div ng-if="$ctrl.roomName" flex>
+        <span>{{ $ctrl.roomName }}</span>
+    </div>
+    <div>{{ $ctrl.todayDate | formatDate : 'language' }}</div>
+    <div id="whiteboard-surgery-toolbar-time" flex>{{ $ctrl.todayDate | formatDate : 'time' }}</div>
+</div>

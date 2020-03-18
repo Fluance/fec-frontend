@@ -1,0 +1,25 @@
+{
+    "servicefee": {
+        "ACTING_DEPT_DESCRIPTION": "Département de soins",
+        "CODE": "Code de service",
+        "DATE": "Date de service",
+        "DESC_LANGUAGE": "Langue",
+        "DETAILS": "Détails du service",
+        "DEPARTMENT": "Departement",
+        "GUIDE_BENEFITS_RESULT": "Frais de service du patient",
+        "LEAD_PHYSICIAN": "Médecin chef",
+        "NB_OF_BENEFITS": "{BENEFIT, plural, =0{0 Prestation} one{1 Prestation} other{# Prestations}}",
+        "NO_BENEFIT": "Pas de frais de Service",
+        "NOTE": "Remarque",
+        "OPERATING_PHYSICIAN": "Médecin de l'opération",
+        "PAID_PHYSICIAN": "Médecin rémunéré",
+        "PHYSICIAN_ID": "Id",
+        "PHYSICIANS": "Médecins",
+        "QUANTITY": "Quantité",
+        "SIDE": "Coté",
+        "TIME": "Heure",
+        "TITLE": "Prestations",
+        "TITLE_LIST": "Prestations",
+        "TITLE_DETAIL": "Détails de la prestation"
+    }
+}

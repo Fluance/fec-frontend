@@ -1,0 +1,20 @@
+<div class="fec-error-view" layout="row" layout-align="center center">
+    <md-card class="error">
+        <md-card-title flex="auto">
+            <md-card-title-text>
+                {{ 'error.ERROR' | translate }}
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content class="card-content-info" layout="row">
+            <div class="error-message" flex layout="row" layout-align="start center">
+                <p>{{ vm.errorMessage | translate }}{{ '.' | translate }}</p>
+            </div>
+        </md-card-content>
+        <md-divider/>
+        <md-card-actions layout="row" layout-align="end start" ng-show="vm.next.visible()">
+            <md-button id="btn-error-nextaction" class="md-primary" ng-click="vm.next.action()">
+                <span>{{ 'error.' + vm.next.label | translate }}</span>
+            </md-button>
+        </md-card-actions>
+    </md-card>
+</div>

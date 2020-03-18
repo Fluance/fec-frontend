@@ -1,0 +1,19 @@
+<md-menu md-offset="0 -40">
+    <!--<a class="waves-effect btn-flat btn-linked" ng-click="$mdOpenMenu($event)">
+        {{ 'notes.NOTES_AND_PICTURES' | translate }}
+    </a>-->
+    <md-button class ="md-primary" ng-click="$mdOpenMenu($event)">{{ 'notes.NOTES_AND_PICTURES' | translate }}</md-button>
+    <md-menu-content width="4">
+        <md-menu-item>
+            <md-button class ="md-primary" ui-sref="newNote({pid: vm.pid, vnb: vm.vnb})"> {{ 'notes.NEW_NOTE' | translate }}</md-button>
+        </md-menu-item>
+        <md-menu-item>
+            <md-button class ="md-primary" ui-sref="newNote({pid: vm.pid, vnb: vm.vnb, shift: true})"> {{ 'notes.NEW_SHIFT_NOTE' | translate }}</md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+            <md-button class ="md-primary" ui-sref="restorePatientNote({pid: vm.pid})" ng-if="vm.pid" ng-disabled="!vm.hasNotes"> {{ 'notes.RESTORE_NOTES' | translate }}</md-button>
+            <md-button class ="md-primary" ui-sref="restoreVisitNote({vnb: vm.vnb})" ng-if="vm.vnb" ng-disabled="!vm.hasNotes"> {{ 'notes.RESTORE_NOTES' | translate }}</md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>

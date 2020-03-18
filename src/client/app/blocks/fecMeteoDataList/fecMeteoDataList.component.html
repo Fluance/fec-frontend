@@ -1,0 +1,32 @@
+<div id="fec-meteo-data-list-container" layout="column">
+    <div flex ng-show="!$ctrl.isLoading && (!$ctrl.hasData || !$ctrl.selectedDay || !$ctrl.selectedDay.weatherData.length)">
+        <md-card class="warn">
+            <md-card-content>
+                <span ng-if="!$ctrl.hasData">{{ 'core.METEO.NO_DATA' | translate }}</span>
+                <span ng-if="$ctrl.hasData && (!$ctrl.selectedDay || !$ctrl.selectedDay.weatherData.length)">{{ 'core.METEO.NO_CHART' | translate }}</span>
+            </md-card-content>
+        </md-card>
+    </div>
+    <div class="fec-meteo-data-day-title" flex>{{$ctrl.selectedDay.date | formatDate : 'date'}}</div>
+    <div flex>
+        <canvas id="fec-meteo-data-day-chart" ng-show="$ctrl.hasData && $ctrl.selectedDay && $ctrl.selectedDay.weatherData && $ctrl.selectedDay.weatherData.length"></canvas>
+    </div>
+    <div class="fec-meteo-data-day-list" layout="row" ng-if="$ctrl.hasData">
+        <div class="fec-meteo-data-day" ng-class="{'active-day': $ctrl.isActive(day.data.date)}" ng-click="$ctrl.activateDay(day.data.date)" layout="column" ng-if="$ctrl.days" ng-repeat="day in $ctrl.days" flex="auto">
+            <div>{{day.data.date | formatDate : 'dayOfWeekShort'}}</div>
+            <div>{{day.data.date | formatDate : 'date'}}</div>
+            <fec-meteo-icon ng-if="day && day.data" meteo-icon="{{day.data.description}}"></fec-meteo-icon>
+            <div layout="row" layout-align="center center" ng-if="day && day.data">
+                <div layout="row" class="fec-meteo-data-day-temperatur">
+                    <div>{{day.data.minTemperature}}</div>
+                    <fec-meteo-icon meteo-icon="celsius"></fec-meteo-icon>
+                </div>
+                <div layout="row" class="fec-meteo-data-day-temperatur">
+                    <div>{{day.data.maxTemperature}}</div>
+                    <fec-meteo-icon meteo-icon="celsius"></fec-meteo-icon>
+                </div>
+            </div>
+            <fec-meteo-icon ng-if="!day || !day.data" meteo-icon=""></fec-meteo-icon>
+        </div>
+    </div>
+</div>

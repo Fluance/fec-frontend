@@ -1,0 +1,27 @@
+<md-dialog class="pictureRestoreDialog">
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div layout layout-align="center center">
+                <h5>{{'notes.RESTORE' | translate}}</h5>
+            </div>
+            <div class="picture-restore-container" layout="row" layout-sm="column" layout-align="center center" ng-if="(vm.pictureList|filter:{deleted:'true'}).length != 0">
+                <div ng-repeat="picture in vm.pictureList | filter:{deleted:'true'}" ng-class="{'selected': vm.isPictureSelected(picture)}"
+                    fec-mobile-click="vm.pictureSelection(picture)">
+                    <fec-note-image-thumbnail picture="picture" picture-list="vm.pictureList" show-details="false"></fec-note-image-thumbnail>
+                </div>
+            </div>
+            <div ng-if="(vm.pictureList|filter:{deleted:'true'}).length === 0">
+                <md-card class="warn" flex="grow">
+                    <md-card-content>
+                        <p>{{'notes.NO_DELETED_PICTURES' | translate}}</p>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <span flex></span>
+        <md-button class="md-primary" fec-mobile-click="vm.close()">{{'core.CANCEL' | translate}}</md-button>
+        <md-button class="md-primary" fec-mobile-click="vm.save()">{{'core.OK' | translate}}</md-button>
+    </md-dialog-actions>
+</md-dialog>

@@ -1,0 +1,20 @@
+h4 {
+    color: $fe-black;
+}
+
+ol {
+    li {
+        color: $fe-black;
+        div {
+            color: $fe-accent-grey;
+        }
+        ol {
+            li {
+                color: red;
+                span {
+                    color: $fe-accent-grey;
+                }
+            }
+        }
+    }
+}

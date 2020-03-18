@@ -1,0 +1,36 @@
+md-card {
+    &.alert-warn {
+        @include warn-border();
+    }
+    &.alert-error {
+        @include error-border();
+    }
+}
+
+md-card.error {
+    @include error-border();
+}
+
+md-card.warn {
+    @include warn-border();
+}
+
+md-card.error,
+md-card.warn {
+    background: url("../images/ic_warning_black_24px.svg");
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: 60px;
+    background-position: top 65px left 10px;
+    padding-bottom: 0px;
+    md-card-title {
+        padding-bottom: 5px;
+    }
+    md-card-content {
+        .warn-message,
+        .error-message {
+            margin: 0px 0px 0px 60px;
+            color: $fe-accent-grey;
+        }
+    }
+}

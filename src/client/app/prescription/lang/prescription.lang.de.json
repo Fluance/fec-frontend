@@ -1,0 +1,16 @@
+{
+    "prescription": {
+        "ERROR_PRESCRIPTION_SERVER_TITLE": "Server nicht zugänglich",
+        "ERROR_PRESCRIPTION_SUPPORT": "Bitte nutzen Sie unser Contact Center für weitere Unterstützung",
+        "ERROR_PRESCRIPTION_SERVER_NOT_AVAILABLE": "Es ist ein Fehler aufgetreten während dem Verbinden zu dem entfernten Server",
+        "ERROR_PRESCRIPTION_NOT_AVAILABLE": "Die Labor Verordnung ist nicht verfügbar",
+        "ERROR_NO_PRESCRIPTION_TITLE": "Labor Verordnung kann nicht erstellt werden",
+        "ERROR_NO_PRESCRIPTION_MESSAGE": "Es gibt zurzeit keine offene Fälle. Es ist nicht möglich eine Labor Verordnung zu erstellen.",
+        "BUTTON_CREATE_PRESCRIPTION": "Labor Verordnung",
+        "BUTTON_GENERATE_DOCUMENT": "Auftrag für patholigische Untersuchung",
+        "SELECT_VISIT_TITLE": "Fall wählen",
+        "TITLE": "Verordnung",
+        "WARN_TITLE": "Information",
+        "WARN_LEAVE_MSG": "Sie werden auf die Verschreibungsseite weitergeleitet. Möchten Sie fortfahren ?"
+    }
+}

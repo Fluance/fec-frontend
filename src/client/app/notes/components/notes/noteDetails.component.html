@@ -1,0 +1,29 @@
+<span hide-xs>
+    <md-divider />
+
+    <div layout="row" flex="none">
+        <div class="padding-text" layout="row" flex="auto" ng-bind-html="$ctrl.note.description"></div>
+    </div>
+
+    <md-divider />
+    <div layout="column" ng-if="!$ctrl.hidePictures" flex="auto">
+        <div layout="row" flex="auto" class="padding-text">{{ 'notes.PICTURES' | translate }}</div>
+        <div layout="row" flex="auto">
+            <fec-note-picture-list-view picture-list="$ctrl.notePictures" display-mode="{{$ctrl.pictureDisplayMode}}"
+                is-disabled="false" note-id="$ctrl.noteId" flex="auto">
+            </fec-note-picture-list-view>
+        </div>
+    </div>
+</span>
+<span hide-gt-xs>
+    <div layout="column">
+        <div class="note-detail-title">{{$ctrl.note.title}}</div>
+        <div>{{$ctrl.note.description}}</div>
+        <div layout="column" ng-if="!$ctrl.hidePictures">
+            <div class="note-detail-pictures-title">{{ 'notes.PICTURES' | translate }}</div>
+            <fec-note-picture-list-view picture-list="$ctrl.notePictures" display-mode="{{$ctrl.pictureDisplayMode}}"
+                note-id="$ctrl.noteId">
+            </fec-note-picture-list-view>
+        </div>
+    </div>
+</span>

@@ -1,0 +1,14 @@
+<div flex layout="column" ng-if="$ctrl.selectedDateIsToday != undefined && !$ctrl.selectedDateIsToday">
+    <div id="whiteboard-surgery-selected-day">
+        {{ $ctrl.selectedDate | formatDate : 'language' }}
+    </div>
+    <div layout="row">
+        <div flex id="whiteboard-surgery-room" fec-mobile-click="$ctrl.goToRoom(roomTitle)" ng-repeat="(roomTitle, value) in $ctrl.rooms">
+            <div id="whiteboard-surgery-room-title">{{roomTitle}}</div>
+        </div>
+    </div>
+</div>
+<fec-whiteboard-surgery-room-list-item flex room-title="roomTitle" ng-if="$ctrl.selectedDateIsToday"
+    running-appointment="$ctrl.runningAppointments[roomTitle]" next-appointment="$ctrl.nextAppointments[roomTitle]"
+    ng-repeat="(roomTitle, room) in $ctrl.rooms">
+</fec-whiteboard-surgery-room-list-item>

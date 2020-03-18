@@ -1,0 +1,37 @@
+.fec-document-select-template-dialog {
+
+    @media #{$small-and-down} {
+        max-width: 100%;
+        max-height: 100%;
+        width: 100%;
+        height: 100%;
+    }
+
+    md-dialog-content {
+        overflow: visible;
+        padding: 26px;
+        min-width: 300px;
+        min-height: 300px;
+    }
+}
+
+/**
+  * Display (multiline) visit info in a md-select component
+ */
+.md-select-menu-container md-select-menu md-content md-option.fec-multiline {
+    height: 100%;
+
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        height: 100px;
+    }
+
+    .md-text {
+       width: 100%
+    };
+}
+
+.fec-document-select-template-dialog {
+    .clinic-name {
+        padding-bottom: 20px;
+    }
+}

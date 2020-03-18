@@ -1,0 +1,658 @@
+// -------------------------------------------------------------------------------- Dashboard parts
+.fec-busy-indicator {
+    padding: 8px;
+    >* {
+        margin: 0 auto;
+    }
+}
+
+#dashboard-cockpit {
+    @media #{$small-and-down} {
+        .component {
+            margin: 0px;
+            .dashboard-component {
+                margin: 0px;
+                margin-bottom: -8px;
+                md-card-title {
+                    // padding: 0px
+                }
+            }
+        }
+    }
+}
+
+fec-dashboard-room-number {
+    background: $fe-blue;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    color: $fe-white;
+    display: inline-block;
+    padding: 8px;
+    text-align: center;
+    @media only screen and (max-width: $small-screen) {
+        height: 25px !important;
+        width: 100%;
+    }
+}
+
+fec-dashboard-letter-name {
+    background: $fe-blue;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    color: $fe-white;
+    display: inline-block;
+    padding: 8px;
+    text-align: center;
+    height: 25px;
+    @media only screen and (min-width: $small-screen-up) {
+        height: 40px !important;
+        width: 40px !important;
+    }
+}
+
+fec-dashboard-patient-info {
+    .fec-patient-name {
+        font-size: larger;
+    }
+    .mobile-patient-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0px;
+    }
+    .mobile-sort-value {
+        background: $fe-blue;
+        color: $fe-white;
+        padding: 0px 5px;
+    }
+
+    .item-info-detail-content {
+        cursor: pointer;
+    }
+}
+
+selection-reveal {
+    .reveal-link {
+        cursor: pointer;
+        color: $fe-blue;
+        white-space: nowrap;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #E0E0E0;
+
+        .reveal-link-text-wrap {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display: block;
+            overflow: hidden;
+
+            span {
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                display: block;
+                overflow: hidden;
+            }
+        }
+
+        .reveal-link-icon-wrap {
+            width: 25px;
+
+            .icon {
+                height: 30px;
+            }
+        }
+
+    }
+
+}
+
+md-card {
+    margin-left: 0;
+    margin-right: 0;
+    md-card-title {
+        padding: 20px;
+        @media only screen and (max-width: $small-screen) {
+            padding: 0px 20px;
+        }
+        md-card-title-text {
+            font-size: 24px;
+            font-weight: 300;
+            line-height: 48px;
+            @media only screen and (max-width: $small-screen) {
+                font-size: 22px;
+            }
+            md-subhead {
+                font-size: 14px;
+            }
+        }
+        .button-mobile-expand {
+            min-width: 20px;
+            font-size: 30px;
+        }
+        .button-mobile-close-expand {
+            min-width: 20px;
+            margin-left: 0px;
+            padding: 0px;
+            font-size: 36px;
+        }
+        .button-mobile-settings {
+            min-width: 20px;
+            font-size: 24px;
+        }
+    }
+    md-card-content {
+        padding: 10px 20px;
+    }
+    md-card-actions {
+        padding: 20px;
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+    &.warn,
+    &.error {
+        background-position: top 110px left 10px;
+        md-card-content md-card-title-text {
+            padding: 0;
+        }
+    }
+    md-card-actions {
+        a:not(.md-button) {
+            margin: 0;
+        }
+    }
+    .card-content-info {
+        min-height: 96px;
+    }
+    .fec-no-data-message {
+        font-size: 1.8em;
+        opacity: 0.14;
+    }
+}
+
+$room-list-width: 200px;
+.fec-dashboard-room-list {
+    #amb-tab {
+        &.normalView {
+            max-height: 500px;
+        }
+        overflow: hidden;
+        fec-room-list-amb {
+            width: 100%;
+            overflow: auto;
+            .lettersIndex {
+                fec-dashboard-letter-name {
+                    cursor: pointer;
+                }
+            }
+            .lettersContent {
+                fec-icon {
+                    outline: none;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .md-nav-bar {
+        height: 50px;
+        .md-nav-item {
+            background-color: white;
+            .md-button {
+                background-color: white;
+                &.md-unselected,
+                &:focus,
+                &:hover {
+                    background-color: white;
+                }
+            }
+        }
+        md-nav-ink-bar {
+            margin-bottom: 10px !important;
+        }
+    }
+    .fec-room-list {
+        //min-width: $room-list-width;
+        margin-right: $layout-gutter-width * 2;
+        overflow-y: auto;
+        label {
+            position: relative;
+            font-size: 11px;
+        }
+        //height: 100%;
+        md-content {
+            height: calc(100% - 8em);
+            background-color: initial;
+            max-height: 100%; //width: $room-list-width;
+        }
+        md-list {
+            padding: 0;
+            //default height for initial calculation, it will be overwrite by flex property
+            height: 20px;
+        }
+        .fec-room {
+            width: 120px;
+        }
+        .fec-bed {
+            width: 60px;
+        }
+
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .fec-patient-list-item {
+        padding: 0 $layout-gutter-width; // cursor: pointer;
+        .fec-room-info {
+            padding: $layout-gutter-width;
+            cursor: pointer;
+        }
+        .fec-patient-info {
+            padding: ($layout-gutter-width / 2);
+            md-chip {
+                margin: ($layout-gutter-width / 2) ($layout-gutter-width / 1) ($layout-gutter-width / 2) 0;
+                cursor: pointer;
+            }
+            md-progress-circular {
+                margin: 0;
+            }
+            &.fec-has-badge {
+                padding-right: 50px;
+            }
+        }
+    }
+
+    //remove pointer for extended view
+    &.extended {
+        .fec-patient-list-item .fec-room-info {
+            cursor: default;
+        }
+    }
+
+
+    md-card {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.fec-dashboard-room-list.extended {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    md-card {
+        overflow-y: hidden;
+        height: calc(100% - 50px);
+        margin: 0 auto;
+        max-width: 1000px;
+        selection-reveal {
+            span {
+                overflow: visible;
+            }
+        }
+        fec-data-pager-sort {
+            >div {
+                padding: 0;
+                .spacer {
+                    width: 0px;
+                }
+            }
+            md-input-container {
+                margin-bottom: 0px;
+            }
+        }
+    }
+
+    // override list item height (shorter) when sorting by 'admission date'
+    .fec-patient-list-item-height-by-admission-date {
+        height: 90px!important;
+    }
+
+    .fec-patient-list-item {
+        @media only screen and (min-width: $small-screen-up) {
+            height: 110px;
+        }
+        @media only screen and (max-width: $small-screen) {
+            height: 110px;
+        }
+        padding: 0;
+        .fec-room-info {
+            padding: 0px;
+            width: 100px;
+            @media only screen and (min-width: $small-screen-up) {
+                padding: $layout-gutter-width $layout-gutter-width $layout-gutter-width 0;
+            }
+            @media only screen and (max-width: $small-screen) {
+                background: $fe-blue;
+                color: $fe-white;
+                width: 100%;
+                text-align: center;
+                .appointment-month, .appointment-date, .appointment-date-day {
+                    margin: 0px 3px;
+                }
+            }
+            .fec-load-more md-chip {
+                margin-top: 85px;
+            }
+        }
+        .fec-patient-info {
+            padding: $layout-gutter-width;
+            md-progress-circular {
+                margin: 0;
+            }
+        }
+        .input-sort-direction {
+            md-input-container {
+                margin-top: 0px !important;
+                margin-bottom: 0px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 675px) and (max-width: 959px) {
+    .my-patient.extended,
+    .fec-dashboard-room-list.extended {
+        top: 50px !important;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 675px) {
+    .my-patient.extended,
+    .fec-dashboard-room-list.extended {
+        top: 55px !important;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    .my-patient.extended,
+    .fec-dashboard-room-list.extended {
+        top: 65px !important;
+    }
+}
+
+#placeholder {
+    min-height: 500px;
+}
+
+
+// début du développemnent par Mahmoud >
+.myLastSearch {
+    md-card {
+        background-color: $fe-white;
+        md-card-title {
+            height: 92px;
+        }
+        md-card-content {
+            .no-last-searches {
+                .warn {
+                    margin: 10px -10px 0px -10px;
+                }
+            }
+        }
+    }
+}
+
+// ^fin du développement de Mahmoud
+// mon ajout >
+.myLastSearch {
+    .input-field a.material-icons {
+        cursor: pointer;
+    }
+    .lastSearchFavorites-tabs {
+        margin-bottom: 10px;
+        background-color: $fe-white;
+        li {
+            cursor: pointer;
+            -webkit-transition: border 0.5s ease-in-out;
+            -moz-transition: border 0.5s ease-in-out;
+            -o-transition: border 0.5s ease-in-out;
+            transition: border 0.5s ease-in-out;
+            border-bottom: 2px solid $fe-white;
+            &.active {
+                border-bottom: 2px solid $fe-blue;
+            }
+        }
+    }
+    a:hover {
+        i {
+            color: $fe-accent-grey;
+        }
+    }
+    .middleAlign {
+        line-height: 2em;
+    }
+    fec-search-query {
+        padding-right: 10px;
+        & fec-search-criterion>span {
+            margin-right: 10px;
+            white-space: nowrap;
+        }
+    }
+}
+
+// < fin de mon ajout
+.myAppointment {
+    md-content {
+        padding: 0px 16px;
+    }
+    max-width: 1000px;
+    margin: auto;
+    md-card {
+        background-color: $fe-white;
+    }
+    &.extended {
+        width: 100%;
+        md-card.warn,
+        md-card.error {
+            .warn-message,
+            .error-message {
+                margin: 40px 5px 0px 60px;
+            }
+        }
+        .appointment-room {
+            md-list {
+                md-list-item {
+                    padding: 0;
+                    min-height: 0px !important;
+                    &:before {
+                        min-height: 0px !important;
+                    }
+                }
+            }
+        }
+    }
+    .input-field a.material-icons {
+        cursor: pointer;
+    }
+    .md-nav-bar {
+        height: 50px;
+        md-nav-ink-bar {
+            margin-bottom: 10px !important;
+        }
+    }
+    .appointment-gap {
+        margin-bottom: 20px !important;
+    }
+    .appointment-entry {
+        border-left: 1px solid #39f;
+        margin-bottom: 0px;
+        padding-left: 11px;
+        padding-bottom: 20px;
+        color: $fe-accent-grey;
+        .appointment-room {
+            font-size: 20px;
+        }
+        .appointment-month {
+            color: $fe-accent-grey;
+        }
+        .appointment-date {
+            font-size: 18px;
+        }
+        .appointment-date-day {
+            font-size: 14px;
+        }
+    }
+    .appointment-day {
+        color: $fe-accent-grey;
+        .appointment-room {
+            font-size: 20px;
+        }
+    }
+    .appointment-data {
+        padding: 5px 0px;
+        &:hover {
+            cursor: pointer;
+            background-color: #ddd;
+        }
+        margin: 0px;
+        .appointment-row {
+            padding-left: 10px;
+        }
+        .appointment-title,
+        .appointment-time,
+        .appointment-room,
+        .appointment-patient-name,
+        .appointment-patient-id {
+            line-height: 25px;
+            color: $fe-accent-grey;
+        }
+        .appointment-title {
+            font-size: 18px;
+            color: $fe-blue;
+        }
+        .appointment-time,
+        .appointment-room,
+        .appointment-patient-name,
+        .appointment-patient-id,
+        .appointment-visit-id {
+            font-size: 14px;
+        }
+        .appointment-time,
+        .appointment-room,
+        .appointment-patient {
+            .xs,
+            .material-icons {
+                font-size: 16px;
+                line-height: 25px;
+                margin-right: 10px;
+                padding: 0px;
+                width: auto;
+            }
+            .xs {
+                width: 18px;
+                height: 25px;
+                margin-right: 8px;
+            } // TO FIX WRAP IN IE11
+            width: 100%;
+        }
+        &.appointment-body {
+            display: flex;
+            align-items: stretch;
+        }
+        &.appointment-patient {
+            &:hover {
+                cursor: pointer;
+                background-color: #ddd;
+            }
+        }
+    }
+}
+
+.dashboard-container {
+    .gender-icon {
+        fill: $fe-accent-grey;
+    }
+    .blue_text {
+        color: $fe-blue;
+        cursor: pointer;
+    }
+    .blue_text:hover {
+        background-color: #ddd;
+    }
+    md-card {
+        position: relative;
+        .draggable {
+            display: none;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(2px);
+            -moz-backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            cursor: move;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 30; // To fit behind 998 nav bar MAterializeCSS, and above MD FAB buttons
+            .material-icons {
+                font-size: 50px;
+                position: relative;
+                top: 50%;
+                left: 50%;
+                margin-top: -25px;
+                margin-left: -25px;
+                color: $fe-accent-grey;
+                opacity: 0.8;
+            }
+        }
+        .draggable-visible {
+            display: block;
+        }
+    }
+    .empty_item {
+        text-align: center;
+        margin: 15px 0 15px 0;
+        font-size: 1.8em;
+        opacity: 0.14;
+    }
+    .error-panel {
+        padding-left: 80px;
+    }
+    .spinner {
+        text-align: center;
+        padding: 30px 0 40px 0;
+    }
+}
+
+.error-message {
+    p {
+        margin: 10px 0;
+        width: -moz-fit-content;
+        word-wrap: break-word;
+    }
+}
+
+.extended>md-card {
+    @media #{$medium-and-up} {
+        margin-top: 20px !important;
+    }
+    @media #{$small-and-down} {
+        margin: 0px !important;
+    }
+}
+
+footer.clearfix {
+    .md-button {
+        padding: 0 2rem;
+        span {
+            line-height: 36px;
+            font-family: "Roboto", sans-serif;
+            font-weight: normal;
+        }
+        &:hover {
+            background-color: #e0e0e0 !important;
+        }
+    }
+}
+
+//Icon for selectors
+selection-reveal .reveal-link .icon:after,
+.md-select-value .md-select-icon:after,
+.selection-clinic-icon:after {
+    font-family: Material Icons;
+    font-size: 24px;
+    content: 'keyboard_arrow_down';
+    color: $fe-blue;
+    //display: inline;
+    //top: 5px;
+    transform: scale(1);
+    font-feature-settings: 'liga'; /* Support for IE. From material-icons.css. */
+}

@@ -1,0 +1,29 @@
+<!-- display as gallery -->
+<div ng-if="vm.displayMode === 'gallery'" flex="auto" layout="row" layout-align="start center" class="picture-list-container">
+    <span>
+        <span ng-repeat="picture in vm.pictureListPreview">
+            <fec-note-image image-type="thumbnail"
+                            picture-id="picture.pictureId"
+                            image-url="{{picture.url}}"
+                            show-details="true"
+                            on-click-show-details="vm.showPictureDetails($event, pictureId)"
+                            show-annotation-icon="vm.hasAnnotation(picture)">
+            </fec-note-image>
+        </span>
+    </span>
+    <span ng-if="vm.hasRemainCount" class="remain-picture-counter" style="">+ {{vm.remainCount}}</span>
+</div>
+
+<!-- display as list -->
+<div ng-if="vm.displayMode === 'list'" flex="auto" layout="column" layout-gt-sm="row">
+
+    <fec-note-picture-thumbnail ng-repeat="picture in vm.pictureListPreview"
+                                picture="picture"
+                                on-click-show-details="vm.showPictureDetails($event, pictureId)"
+                                show-details="true"
+                                flex="none"
+                                layout="column"
+                                layout-padding>
+    </fec-note-picture-thumbnail>
+
+</div>

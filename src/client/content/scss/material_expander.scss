@@ -1,0 +1,55 @@
+.expander {
+    background-color: $fe-white;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    margin: 0 24px;
+    transition: margin 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    .expander-header {
+        display: block;
+        min-height: 3rem;
+        padding: 0 20px;
+        border-bottom: 1px solid #ddd;
+
+        &:focus() {
+            outline-width: 0px;
+        }
+
+        &.expander-can-expand {
+            cursor: pointer;
+        }
+        &.expander-can-expand:focus() {
+            cursor: pointer;
+            outline-width: initial;
+        }
+    }
+
+    .expander-body {
+        border-bottom: 1px solid #ddd;
+        padding: 20px;
+        box-sizing: border-box;
+        display: none;
+        p {
+            margin: 0;
+            padding: 2rem;
+        }
+
+        md-progress-circular {
+            margin: 0 auto;
+        }
+    }
+    &.expanded {
+        box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+        margin: 0;
+
+        .expander-body {
+            display: block;
+        }
+    }
+}
+
+expander-accordion {
+    .expander {
+        &.expanded {
+            margin: 16px 0;
+        }
+    }
+}

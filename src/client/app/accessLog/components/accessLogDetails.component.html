@@ -1,0 +1,14 @@
+<md-progress-linear md-mode="indeterminate" ng-if="$ctrl.spin"></md-progress-linear>
+<div ng-if="!$ctrl.spin">
+    <span layout="row" layout-align="end">{{$ctrl.virtualRepeatCurrentIndex($ctrl.dynamicItems.topIndex)}}/{{$ctrl.dynamicItems.numItems}}</span>
+    <md-virtual-repeat-container flex="auto" layout-padding ng-if="$ctrl.isExpanded"
+                                 md-top-index="$ctrl.dynamicItems.topIndex" md-auto-shrink="true">
+        <md-list>
+            <md-list-item md-virtual-repeat="item in $ctrl.dynamicItems | limitTo: $ctrl.dynamicItems.limit"
+                          md-on-demand>
+                <fec-access-log-details-item pid="$ctrl.pid" item="item" is-scrolling="$ctrl.isScrolling">
+                </fec-access-log-details-item>
+            </md-list-item>
+        </md-list>
+    </md-virtual-repeat-container>
+</div>

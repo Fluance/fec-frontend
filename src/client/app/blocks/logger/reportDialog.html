@@ -1,0 +1,20 @@
+<md-dialog id="bugReportDialog">
+    <div class="header">
+        {{'core.BUG_REPORT_DIALOG_TITLE' | translate}}
+    </div>
+
+    <md-dialog-content class="fec-dialog-content">
+        <md-card-content flex="grow">
+            <md-list class="md-dense">
+                <md-list-item ng-repeat="(key, value) in $ctrl.current" ng-if="value" layout="column" layout-align="start start">
+                    <span class="key">{{ ::key }}</span>
+                    <span>{{ ::value }}</span>
+                </md-list-item>
+            </md-list>
+        </md-card-content>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button fec-mobile-click="$ctrl.close()" class="md-primary">{{'core.CANCEL' | translate }}</md-button>
+    </md-dialog-actions>
+</md-dialog>

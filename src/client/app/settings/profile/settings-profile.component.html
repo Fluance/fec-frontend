@@ -1,0 +1,57 @@
+<md-card layout="column" >
+    <md-card-content>
+        <div flex="initial">
+            <h5>{{ 'settings.USER_DATA' | translate }}</h5>
+        </div>
+        <div flex="auto">
+            <table class="striped">
+                <tbody>
+                    <tr>
+                        <td>{{ 'admin.USERNAME' | translate }}</td>
+                        <td>{{ $ctrl.user.username }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ 'admin.DOMAIN' | translate }}</td>
+                        <td>{{ $ctrl.user.domain }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ 'core.FIRSTNAME' | translate }}</td>
+                        <td>{{ $ctrl.user.firstName | noContentPlaceholder }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ 'core.LASTNAME' | translate }}</td>
+                        <td>{{ $ctrl.user.lastName | noContentPlaceholder }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ 'settings.CONTACTS' | translate }}</td>
+                        <td>
+                            <md-chips ng-model="$ctrl.user.emails" ng-if="$ctrl.hasEmails()" readonly="true">
+                                <md-chip-template>
+                                    <a href="mailto:{{ $chip.value }}">{{ $chip.value }}</a>
+                                </md-chip-template>
+                            </md-chips>
+                            <span ng-if="!$ctrl.hasEmails()">-<br/></span>
+                            <md-chips ng-model="$ctrl.user.telephons" ng-if="$ctrl.hasTelephons()" readonly="true">
+                                <md-chip-template>
+                                    <span>{{ $chip.value }}</span>
+                                </md-chip-template>
+                            </md-chips>
+                            <span ng-if="!$ctrl.hasTelephons()">-</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ 'layout.LANGUAGE' | translate }}</td>
+                        <td><md-chips class="lang" ng-show="$ctrl.user.profileLanguage"><md-chip>{{ $ctrl.user.profileLanguage }}</md-chip></md-chips></td>
+                    </tr>
+                    <tr>
+                        <td>{{'settings.ROLES' | translate }}</td>
+                        <td ng-show="$ctrl.user.roles.length">
+                            <md-chips ng-model="$ctrl.rolesSort" readonly="true"></md-chips>
+                        </td>
+                        <td ng-hide="$ctrl.user.roles.length">No roles</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </md-card-content>
+</md-card>

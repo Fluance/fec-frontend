@@ -1,0 +1,54 @@
+<div layout="row" class="title">
+    <div flex="initial" ng-if="$ctrl.filterBy === 'date'"><span>{{$ctrl.filterValue | formatDate: 'date'}}</span></div>
+    <div flex="initial" ng-if="$ctrl.filterBy !== 'date'"><span>{{$ctrl.filterValue}}</span></div>
+</div>
+
+<div layout="column" class="md-virtual-repeat-parent">
+    <div layout="row" class="header fec-table-header">
+        <div flex="10" ng-if="$ctrl.filterBy !== 'date'" layout="column" layout-align="center start" layout-wrap><span>{{'core.DATE' | translate}}</span>
+        </div>
+        <div flex="10" layout="column" layout-align="center start" layout-wrap>
+            <span>{{'servicefee.TIME' | translate}}</span></div>
+        <div flex="15" layout="column" layout-align="center start" layout-wrap>
+            <span>{{'servicefee.CODE' | translate}}</span></div>
+        <div flex="15" layout="column" layout-align="center center" layout-wrap><span>{{'servicefee.QUANTITY' | translate}}</span>
+        </div>
+
+        <div flex="40" ng-if="$ctrl.filterBy !== 'date'" layout="column" layout-align="center start" layout-wrap><span>{{'servicefee.DETAILS' | translate}}</span>
+        </div>
+        <div flex="50" ng-if="$ctrl.filterBy === 'date'" layout="column" layout-align="center start" layout-wrap><span>{{'servicefee.DETAILS' | translate}}</span>
+        </div>
+
+        <div flex="10"></div>
+    </div>
+
+    <md-progress-linear md-mode="indeterminate" ng-if="$ctrl.isLoading"></md-progress-linear>
+
+    <md-virtual-repeat-container
+        ng-style="{ 'height' : (($ctrl.dynamicItems.numItems <= $ctrl.MAX_ROWS_BEFORE_SCROLL) ? (($ctrl.dynamicItems.numItems * $ctrl.ROW_HEIGHT_NO_SCROLL)+'px') : (($ctrl.MAX_ROWS_BEFORE_SCROLL * $ctrl.ROW_HEIGHT_SCROLL)+'px')) }">
+        <div layout="row" md-virtual-repeat="serviceFee in $ctrl.dynamicItems" md-on-demand class="row">
+
+            <div flex="10" ng-if="$ctrl.filterBy !== 'date'" layout="column" layout-align="center start" layout-wrap>
+                <span ng-if="serviceFee.benefitDate">{{ serviceFee.benefitDate | formatDate : 'date'}}</span></div>
+
+            <div flex="10" layout="column" layout-align="center start" layout-wrap><span ng-if="serviceFee.benefitDate">{{ serviceFee.benefitDate | formatDate : 'time'}}</span>
+            </div>
+            <div flex="15" layout="column" layout-align="center start" layout-wrap><span>{{ serviceFee.code}}</span></div>
+            <div flex="15" layout="column" layout-align="center center" layout-wrap><span>{{ serviceFee.quantity}}</span></div>
+
+            <div flex="40" ng-if="$ctrl.filterBy !== 'date'" layout="row"><span>{{ serviceFee.description }}</span></div>
+            <div flex="50" ng-if="$ctrl.filterBy === 'date'" layout="row"><span>{{ serviceFee.description }}</span></div>
+
+            <div flex="10" layout="column" layout-align="center end">
+                <md-button class="md-fab md-mini md-primary" ng-click="$ctrl.showDetail($event, serviceFee)" ng-if="$ctrl.canShowDetail(serviceFee)">
+                    <fec-icon type="expand" size="sm" ></fec-icon>
+                    <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom"
+                                md-delay="25">{{'servicefee.TITLE_DETAIL' | translate }}</md-tooltip>
+                </md-button>
+            </div>
+
+        </div>
+    </md-virtual-repeat-container>
+
+
+</div>

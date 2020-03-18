@@ -1,0 +1,77 @@
+<!-- display as gallery -->
+<div ng-if="$ctrl.displayMode === 'gallery'" layout="row" layout-align="start center" class="picture-list-container">
+    <span>
+        <span ng-if="!picture.deleted" ng-repeat="picture in $ctrl.pictureList">
+            <fec-note-image image-type="thumbnail" picture-id="picture.pictureId" image-url="{{picture.url}}"
+                            show-details="!$ctrl.isDisabled"
+                            on-click-show-details="$ctrl.showPictureDetails($event, pictureId)"
+                            show-annotation-icon="$ctrl.hasAnnotation(picture)"
+                            show-annotation-icon="{{$ctrl.showAnnotationIcon}}">
+            </fec-note-image>
+        </span>
+    </span>
+</div>
+
+<!-- display as list -->
+<div ng-if="$ctrl.displayMode === 'list' && !$ctrl.isEditMode()">
+    <div layout="column" layout-align="start start">
+        <div ng-if="!picture.deleted" ng-repeat="picture in $ctrl.pictureList" layout="row"
+             layout-align="center center">
+            <fec-note-picture-thumbnail picture="picture"
+                                        on-click-show-details="$ctrl.showPictureDetails($event, pictureId)"
+                                        show-details="!$ctrl.isDisabled">
+            </fec-note-picture-thumbnail>
+        </div>
+    </div>
+</div>
+
+<!-- display as list - edit mode -->
+<div ng-if="$ctrl.displayMode === 'list' && $ctrl.isEditMode()">
+    <div layout="row" class="canResize">
+        <!-- add new picture -->
+        <md-button ng-disabled="$ctrl.isDisabled" name="addPictureButton" ngf-select="$ctrl.addPicture($file)"
+                   ngf-accept="'image/*'" class="md-icon-button">
+            <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom" md-delay="25">{{'notes.ADD_PICTURES' | translate }}</md-tooltip>
+            <fec-icon type="addPhoto" color="fe-blue-icon" size="md"></fec-icon>
+        </md-button>
+
+        <md-button ng-if="!$ctrl.isDisabled && $ctrl.hasRestorePictures" class="md-icon-button"
+                   fec-mobile-click="$ctrl.openRestorePictures()">
+            <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom" md-delay="25">{{'notes.RESTORE_PICTURES' | translate }}</md-tooltip>
+            <fec-icon type="restore" size="md" color="fe-blue-icon"></fec-icon>
+        </md-button>
+
+        <div flex="auto"></div>
+        <md-button ng-disabled="$ctrl.isDisabled" class="md-icon-button" fec-mobile-click="$ctrl.deleteAllPictures()">
+            <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom" md-delay="25">{{'notes.DELETE_ALL_PICTURES' | translate }}</md-tooltip>
+            <fec-icon type="deleteAll" size="md" color="fe-blue-icon"></fec-icon>
+        </md-button>
+    </div>
+    <div ui-sortable="$ctrl.sortableOptions" ng-model="$ctrl.pictureList" layout="column">
+        <div ng-repeat="picture in $ctrl.pictureList | filter:{deleted:'!true'}" class="sortable-item" ng-class="{'picture-list-item': !$last}">
+            <div layout-xs="column" layout-gt-xs="row" layout-align=" center" flex="100">
+                <div layout-align="center">
+                    <fec-note-image-thumbnail picture="picture"></fec-note-image-thumbnail>
+                </div>
+
+                <div flex="grow" layout="row" layout-align="center center">
+                    <md-input-container class="input-container" input-field>
+                        <label>{{'notes.ANNOTATION' | translate}}</label>
+                        <input ng-disabled="$ctrl.isDisabled" type="text" ng-model="picture.annotation"
+                               ng-change="$ctrl.pictureModified(picture)">
+                    </md-input-container>
+
+                    <md-button flex="auto" ng-disabled="$ctrl.isDisabled"
+                               fec-mobile-click="$ctrl.deletePicture(picture)" class="md-icon-button canResize">
+                        <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom" md-delay="25">{{'notes.CONFIRM_DELETE_PICTURE_TITLE' | translate }}</md-tooltip>
+                        <fec-icon type="delete" size="md" color="fe-blue-icon"></fec-icon>
+                    </md-button>
+
+                    <div flex="auto" class="list-item-reorder">
+                        <fec-icon type="reorder" size="md" color="fe-blue-icon"></fec-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

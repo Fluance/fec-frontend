@@ -1,0 +1,38 @@
+<md-dialog id="report-dialog">
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <h3>
+                <span>
+                    {{'imaging.REPORT' | translate}}&nbsp;-&nbsp;
+                    {{::reportDialogCtrl.context.patient.lastName}} {{::reportDialogCtrl.context.patient.firstName}}&nbsp;-&nbsp;
+                    {{ reportDialogCtrl.context.report.studyDate | formatDate : 'dateTime'}}
+                </span>
+            </h3>
+            <br/>
+            <span flex></span>
+
+            <md-button class="md-icon-button" fec-mobile-click="reportDialogCtrl.cancel()">
+                <fec-icon type="cancel"></fec-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <fec-imaging-order-report report="reportDialogCtrl.context.report.report" history="reportDialogCtrl.context.report.history"></fec-imaging-order-report>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <div layout="row" layout-align="start center">
+            <md-button ng-if="reportDialogCtrl.isServiceActive" class="md-fab md-primary md-mini" fec-mobile-click="reportDialogCtrl.enterRecipient()">
+                <fec-icon type="email"></fec-icon>
+            </md-button>
+            <span flex></span>
+            <md-button class="md-fab md-primary md-mini" ng-if="reportDialogCtrl.context.reportsNumber > 1" fec-mobile-click="reportDialogCtrl.delegate.previousReport()">
+                <fec-icon type="previous" size="sm"></fec-icon>
+            </md-button>
+            <md-button class="md-fab md-primary md-mini" ng-if="reportDialogCtrl.context.reportsNumber > 1" fec-mobile-click="reportDialogCtrl.delegate.nextReport()">
+                <fec-icon type="next" size="sm"></fec-icon>
+            </md-button>
+        </div>
+    </md-dialog-actions>
+</md-dialog>

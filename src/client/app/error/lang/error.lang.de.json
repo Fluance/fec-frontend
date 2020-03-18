@@ -1,0 +1,33 @@
+{
+    "error": {
+        "ACCESS_DENIED": "Es tut uns leid, dieser Zugriff ist Ihnen nicht gestattet. Wenden Sie sich für Berechtigungen bitte an unser Contact Center",
+        "ACTION_BACK": "Zurück",
+        "ACTION_LOGIN": "Anmelden",
+        "ACTION_LOGOUT": "Abmelden",
+        "ACTION_RELOAD": "Neu laden",
+        "ERROR": "Es ist ein Fehler aufgetreten",
+        "GUIDE_BACK": "Sie gelangen an den Ort, bevor der Fehler aufgetreten ist",
+        "GUIDE_LOGIN": "Sie sind ausgeloggt, loggen Sie sich bitte neu ein um die Applikation weiter zu benutzen",
+        "GUIDE_LOGOUT": "Sie müssen sich ausloggen um die Applikation weiter bedienen zu können",
+        "HTTP_FORBIDDEN": "Ihre Berechtigungen erlauben das Abfragen dieser Ressource nicht",
+        "HTTP_REQUEST_TIME_OUT": "Der Server lieferte keine Antwort in angemessener Zeit",
+        "HTTP_SERVER": "Es ist ein interner Server-Fehler aufgetreten",
+        "HTTP_WARN": "Ihr Browser verwendet keine sichere Verbindung (HTTPS). Überprüfen Sie die URL nach dem Präfix https:// oder wenden Sie sich an unser Contact Center",
+        "INVALID_EMAIL_ADDRESS": "E-Mail-Adresse ungültig",
+        "INVALID_DATE": "Datum ungültig",
+        "INVALIDE_NUMBER": "Dieser Wert ist ungültig. Bitte füllen Sie das Feld mit Nummern und ohne Sonderzeichen aus",
+        "INVALID_REQUEST": "Bitte füllen Sie mindestens ein Kriterium (Nachname oder Geburtsdatum) aus",
+        "INVALID_ROUTING": "Fehler beim Navigieren zu {DESTINATION}. {DATA} {STATUS} {STATUS_TEXT}",
+        "INVALID_STAFFID": "Eine ungültige Staff-ID verhinderte das Speichern der Benutzerdetails",
+        "INVALID_VALUE": "Dieser Wert ist ungültig. Bitte füllen Sie das Feld mit mindestens einem Buchstaben und ohne Sonderzeichen aus",
+        "INVALID_URL": "Ungültige URL",
+        "MAINTENANCE_MSG": "Die Applikation eHealth Cockpit steht zur Zeit wegen Wartungsarbeiten nicht zur Verfügung",
+        "NO_COMPANY": "Ihrem Profil ist leider kein Standort zugewiesen, wenden Sie sich bitte an das Contact Center um einem Standort zugeteilt zu werden",
+        "NO_PATIENT": "Der angefragte Patient kann leider nicht gefunden werden",
+        "NO_PROFILE": "Sie besitzen kein von uns eingerichtetes Profil zur Nutzung der Applikation, bitte wenden Sie sich an das Contact Center",
+        "SEE_FULL_REPORT": "Den vollständigen Fehlerbericht anzeigen",
+        "SESSION_TIMEOUT": "Die Sitzung ist abgelaufen",
+        "TITLE_MAINTENANCE": "Wartungsarbeit",
+        "UNHANDLED_ERROR": "Es ist ein unbehandelter Fehler aufgetreten"
+    }
+}

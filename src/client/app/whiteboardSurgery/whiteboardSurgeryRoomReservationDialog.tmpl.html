@@ -1,0 +1,72 @@
+<md-dialog id="whiteboardSurgeryRoomReservationDialog">
+        <div ng-if="$ctrl.waitingForLock" flex layout="column" layout-align="center center" class="whiteboard-surgery-in-progress-message-container">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            <div>{{"whiteboardSurgery.LOADING_MSG" | translate}}</div>
+        </div>
+        <div ng-if="!$ctrl.waitingForLock">
+            <md-dialog-content class="no-margin-bottom padding-10">
+                <!-- Reservation is locked by another user -->
+                <div class="locked-resource-container" ng-if="$ctrl.isLocked" layout="row">
+                    <div><i class="material-icons medium locked-icon">lock</i></div>
+                    <div class="locked-resource-message">{{ 'core.EDIT_LOCKED' | translate }}</div>
+                </div>
+
+                <div class="validation-error-container" ng-if="$ctrl.documentForm.$invalid && $ctrl.errorMessageCode" layout="row">
+                    <div><i class="material-icons medium locked-icon">error</i></div>
+                    <div class="locked-resource-message">{{ $ctrl.errorMessageCode | translate }}</div>
+                </div>
+    
+                <form name="$ctrl.documentForm" class="content">
+                    <!-- title -->
+                    <md-input-container class="input-container title">
+                            <label>{{'whiteboardSurgery.INPUT_TITLE_LABEL' | translate}}</label>
+                            <input fec-input aria-label="Title" ng-model="$ctrl.reservation.description" ng-disabled="$ctrl.isLocked" required></input>
+                    </md-input-container>
+                    <!-- room -->
+                    <md-input-container class="room">
+                            <label>{{ 'whiteboardSurgery.INPUT_ROOM_LABEL' | translate }}</label>
+                            <md-select name="room" ng-disabled="$ctrl.disableRoomSelection || $ctrl.isLocked" ng-model="$ctrl.reservation.room" ng-model-options="{trackBy: '$value'}" required>
+                                <md-option ng-repeat="(key, value) in $ctrl.rooms" ng-value="value">{{value | uppercase}}</md-option>
+                            </md-select>
+                    </md-input-container>
+                    <!-- begin date -->
+                    <div class="start-date">
+                            <sm-date-time-picker-component
+                                fname="startDate"
+                                label="{{'whiteboardSurgery.INPUT_BEGIN_DATE_LABEL' | translate}}"
+                                close-on-select="false"
+                                change-view-on-select="false"
+                                disable="$ctrl.isLocked"
+                                mode="date-time"
+                                min-date="{{$ctrl.minDate}}"
+                                is-required="true"
+                                ng-model="$ctrl.reservation.beginDate"
+                                week-start-day="Monday">
+                            </sm-date-time-picker-component>
+                    </div>
+                    <!-- end date -->
+                    <div class="end-date">
+                            <sm-date-time-picker-component
+                                fname="endDate"
+                                label="{{'whiteboardSurgery.INPUT_END_DATE_LABEL' | translate}}"
+                                close-on-select="false"
+                                change-view-on-select="false"
+                                disable="$ctrl.isLocked"
+                                mode="date-time"
+                                min-date="{{$ctrl.minDate}}"
+                                is-required="true"
+                                ng-model="$ctrl.reservation.endDate"
+                                week-start-day="Monday">
+                            </sm-date-time-picker-component>
+                    </div>
+                </form>
+            </md-dialog-content>
+    
+            <md-dialog-actions>
+                <md-button ng-if="!$ctrl.newReservation" fec-mobile-click="$ctrl.deleteReservation()" ng-disabled="$ctrl.isLocked" class="md-warn">{{'core.DELETE' | translate }}</md-button>
+                <span flex></span>
+                <md-button fec-mobile-click="$ctrl.cancel()" class="md-primary">{{'core.CANCEL' | translate }}</md-button>
+                <md-button fec-mobile-click="$ctrl.saveReservation()" ng-disabled="$ctrl.isLocked || !$ctrl.documentForm.$valid" class="md-primary">{{'core.SAVE' | translate }}</md-button>
+            </md-dialog-actions>
+        </div>
+    </md-dialog>

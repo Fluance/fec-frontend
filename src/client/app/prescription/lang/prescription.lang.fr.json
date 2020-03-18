@@ -1,0 +1,16 @@
+{
+    "prescription": {
+        "ERROR_PRESCRIPTION_SERVER_TITLE": "Serveur non joignable",
+        "ERROR_PRESCRIPTION_SUPPORT": "Veuillez utiliser notre centre de contact pour obtenir de l'aide supplémentaire",
+        "ERROR_PRESCRIPTION_SERVER_NOT_AVAILABLE": "Une erreur s'est produite lors de la connexion au serveur distant des prescriptions",
+        "ERROR_PRESCRIPTION_NOT_AVAILABLE": "Prescription indisponible",
+        "ERROR_NO_PRESCRIPTION_TITLE": "Impossible de créer une prescription",
+        "ERROR_NO_PRESCRIPTION_MESSAGE": "Aucune visite ouverte. Impossible de créer une préscription",
+        "BUTTON_CREATE_PRESCRIPTION": "Prescription lab",
+        "BUTTON_GENERATE_DOCUMENT": "Demande d'examen pathologique",
+        "SELECT_VISIT_TITLE": "Sélectionner une visite",
+        "TITLE": "Prescription",
+        "WARN_TITLE": "Information",
+        "WARN_LEAVE_MSG": "Vous allez être redirigé vers la page d'ordonance. Voulez-vous continuer ?"
+    }
+}

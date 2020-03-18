@@ -1,0 +1,65 @@
+<expander is-expanded="vm.result.isExpanded" is-expanded-changed="vm.displayDetails()">
+    <expander-header>
+        <div layout-padding>
+            <div layout="column" layout-gt-sm="row" class="policy-profile">
+                <div flex-gt-sm="50" flex="auto">
+                    <p class="guarantor-name">
+                        {{ 'policy.GUA_PRIORITY' | translate }} {{ ::vm.result.policy.priority}} - {{
+                        vm.result.policy.name | translate}}
+                    </p>
+                </div>
+
+                <div layout-padding hide-xs hide-sm></div>
+                <div style="padding-top:5px" hide-gt-sm></div>
+
+                <div flex-gt-sm="25" flex="auto">
+                    <content-item label="{{ 'policy.GUA_SUBPRIORITY' | translate }}"
+                                  content="{{ ::vm.result.policy.subPriority}}"></content-item>
+                </div>
+
+                <div layout-padding hide-xs hide-sm></div>
+                <div style="padding-top:5px" hide-gt-sm></div>
+
+                <div flex-gt-sm="25" flex="auto">
+                    <content-item label="{{ 'policy.GUA_HOSPCLASS' | translate }}"
+                                  content="{{ vm.result.policy.hospClass | translate}}"></content-item>
+                </div>
+            </div>
+        </div>
+    </expander-header>
+    <expander-body>
+        <!-- Progress -->
+        <md-progress-circular md-mode="indeterminate" ng-if="vm.result.isLoadingDetails"></md-progress-circular>
+
+        <div id="policy-details" ng-if="!vm.result.isLoadingDetails" layout-padding>
+            <h5>
+                <small>{{ 'policy.GUA_DETAILS' | translate }}</small>
+            </h5>
+            <div layout="column" layout-gt-sm="row">
+                <div flex-gt-sm="50" flex="auto">
+
+                    <content-item-detail label="{{ 'policy.GUA_CODE' | translate }}"
+                                         content="{{ vm.result.policyDetails.code }}">
+                    </content-item-detail>
+                    <content-item-detail label="{{ 'policy.GUA_INACTIVE' | translate }}"
+                                         content="{{ (vm.result.policyDetails.inactive ? 'policy.INACTIVE' : 'policy.ACTIVE') | translate }}">
+                    </content-item-detail>
+                </div>
+
+                <div layout-padding hide-xs hide-sm></div>
+                <div style="padding-top:5px" hide-gt-sm></div>
+
+                <div flex-gt-sm="50" flex="auto">
+                    <content-item-detail label="{{ 'policy.GUA_POLYC_NB' | translate }}"
+                                         content="{{ ::vm.result.policyDetails.policyNb }}"></content-item-detail>
+                    <content-item-detail label="{{ 'policy.GUA_COVERCARD_NB' | translate }}"
+                                         content="{{ ::vm.result.policyDetails.coverCardNb }}"></content-item-detail>
+                    <content-item-detail label="{{ 'policy.GUA_ACCIDENT_NB' | translate }}"
+                                         content="{{ ::vm.result.policyDetails.accidentNb }}"></content-item-detail>
+                    <content-item-detail class="no-border-bottom" label="{{ 'policy.GUA_ACCIDENT_DT' | translate }}"
+                                         content="{{ vm.result.policyDetails.accidentDate | formatDate : 'date'}}"></content-item-detail>
+                </div>
+            </div>
+        </div>
+    </expander-body>
+</expander>

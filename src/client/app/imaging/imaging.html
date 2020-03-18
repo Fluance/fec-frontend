@@ -1,0 +1,110 @@
+<div id="imagingContainer" layout="column">
+    <div class="fec-page-title">
+        <h5 hide-xs>
+            <fec-icon type="imaging" size="sm" color="fe-blue-icon"></fec-icon>
+            {{ 'imaging.TITLE_LIST' | translate }}
+        </h5>
+        <span class="number-badge" ng-show="vm.dataPagerImaging.hasTotalItemsCount">{{ 'imaging.NB_OF_EXAM' | translate:{IMAGES : vm.dataPagerImaging.totalItemsCount} }}</span>
+    </div>
+    <div flex="noshrink">
+        <fec-data-pager-sort ng-if="vm.canSort()" sort-criteria="vm.sortCriteria" selected-sort-criteria="vm.selectedSortBy" selected-sort-direction="vm.selectedSortDirection"
+            on-changed="vm.refresh()">
+        </fec-data-pager-sort>
+    </div>
+
+    <!-- DIV WHEN THERE IS NO IMAGING DATA -->
+    <md-card class="warn" flex="auto" ng-show="vm.dataPagerImaging.isEmpty()">
+        <md-card-content>
+            {{ 'imaging.NO_IMAGING' | translate }}
+        </md-card-content>
+    </md-card>
+
+    <!-- IMAGING DATA AREA -->
+    <div layout="column">
+        <div layout="column" flex="auto" class="fec-no-padding" tutorial-step="imaging-list">
+            <!-- <div layout="column" class="expander">
+                <a layout="row" layout-padding class="expander-head dark-tile" ng-href="{{vm.showAllImagingURL()}}" target="_blank">
+                    <div flex="initial">
+                        <h6>{{ 'imaging.LINK_TO_ALL' | translate }}</h6>
+                    </div>
+                    <div layout-margin flex="auto"></div>
+                    <div flex="nogrow" layout="row" layout-align="end center">
+                        <fec-icon type="go" size="sm"></fec-icon>
+                    </div>
+                </a>
+            </div> -->
+
+            <div infinite-scroll="vm.dataPagerImaging.getNextPage()" infinite-scroll-disabled="vm.dataPagerImaging.isLoading || !vm.dataPagerImaging.canGetNextPage()"
+                infinite-scroll-distance="0" infinite-scroll-container="vm.scrollableContainer" flex="auto">
+                <expander-accordion>
+                    <fec-imaging-order item="item" ng-repeat="item in vm.dataPagerImaging.items" report-delegate="vm"></fec-imaging-order>
+                </expander-accordion>
+            </div>
+        </div>
+        <div layout-padding>
+            <md-progress-linear md-mode="indeterminate" ng-if="vm.dataPagerImaging.isLoading"></md-progress-linear>
+            <div ng-show="vm.dataPagerImaging.hasTotalItemsCount && !vm.dataPagerImaging.canGetNextPage()" class="center-align">
+                <span class="number-badge passive">{{ ' imaging.NB_OF_EXAM ' | translate:{IMAGES : vm.dataPagerImaging.totalItemsCount} }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- STANDALONE REPORTS AREA -->
+    <div layout="column" ng-if="!vm.dataPagerReports.isEmpty()" flex="auto">
+        <div layout="column" flex="auto">
+            <div class="fec-page-title" flex="initial">
+                <h5>{{ 'imaging.REPORTS_NOT_LINKED' | translate }}</h5>
+            </div>
+            <div layout="column" flex="auto" class="fec-no-padding" tutorial-step="report-list">
+                <div layout="column" flex="auto" infinite-scroll="vm.dataPagerReports.getNextPage()" infinite-scroll-disabled="vm.dataPagerReports.isLoading || !vm.dataPagerReports.canGetNextPage()"
+                    infinite-scroll-distance="0" infinite-scroll-container="vm.scrollableContainer">
+                    <expander-accordion>
+                        <fec-imaging-order item="item" ng-repeat="item in vm.dataPagerReports.items" report-delegate="vm"></fec-imaging-order>
+                    </expander-accordion>
+                </div>
+            </div>
+        </div>
+        <div layout-padding>
+            <md-progress-linear md-mode="indeterminate" ng-if="vm.dataPagerReports.isLoading"></md-progress-linear>
+            <div ng-show="vm.dataPagerReports.hasTotalItemsCount && !vm.dataPagerReports.canGetNextPage()" class="center-align">
+                <span class="number-badge passive">{{ ' imaging.NB_OF_EXAM ' | translate:{IMAGES : vm.dataPagerReports.totalItemsCount} }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="imaging-dialog" class="modal modal-prompt">
+    <div class="modal-header">{{'imaging.WARN_TITLE' | translate}}</div>
+    <div class="modal-content">
+        <p>
+            {{vm.dialogContext.message | translate}}{{ '.' | translate }}
+            <br />{{'imaging.WARN_LEAVE_MSG_QUESTION' | translate}}{{'?' | translate }}
+        </p>
+        <p class="modal-content-footer" ng-show="vm.dialogContext.showFooter">
+            {{'core.WARN_LEAVE_MSG_POPUP_BLOCK' | translate}}{{ '.' | translate }}
+        </p>
+        <p class="modal-content-footer" ng-show="vm.dialogContext.showFooter">
+            {{'imaging.WARN_LEAVE_MSG_FOOTER' | translate}}{{ '.' | translate }}
+        </p>
+    </div>
+    <div class="modal-footer">
+        <md-button class="md-primary ng-scope" fec-mobile-click="vm.closeDialog('cancel')">{{'core.NO' | translate}}</md-button>
+        <md-button class="md-primary ng-scope" fec-mobile-click="vm.closeDialog('ok')">{{'core.YES' | translate}}</md-button>
+    </div>
+</div>
+
+<div id="report-dialog" class="modal">
+    <div class="modal-header">{{'imaging.REPORT' | translate}}
+        <br />
+        <small>{{vm.dialogContext.report.performingPhysician}}</small>
+    </div>
+    <div class="modal-content">
+        <span class="blue-title">{{vm.dialogContext.report.studyDate | formatMoment : 'YYYY.MM.DD'}}</span>
+        <p class="report">{{vm.dialogContext.report.report}}</p>
+    </div>
+    <div class="modal-footer">
+        <md-button class="md-primary" fec-mobile-click="vm.previousReport()"> {{'imaging.REPORT_BACK_BTN' | translate}}</md-button>
+        <md-button class="md-primary" fec-mobile-click="vm.nextReport()">{{'imaging.REPORT_NEXT_BTN' | translate}}</md-button>
+        <md-button class="md-primary" fec-mobile-click="vm.closeDialog('ok')">{{'core.OK' | translate}}</md-button>
+    </div>
+</div>

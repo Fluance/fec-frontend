@@ -1,0 +1,35 @@
+<md-dialog class="appointmentIdSelectionDialog">
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div layout layout-align="center center">
+                <h5>{{ 'appointment.SELECT_APPOINTMENT_TITLE' | translate }}</h5>
+            </div>
+            <div ng-repeat="appointment in $ctrl.appointments" layout="column" class="fec-clickable-item"
+                 fec-mobile-click="$ctrl.selectElement(appointment.appointmentId)"
+                 ng-class="{'selectedElement': $ctrl.isSelected(appointment.appointmentId)}">
+                <div flex-gt-sm="33" flex="auto">
+                    <p class="appointment-id">
+                        {{ appointment.description }}
+                    </p>
+                </div>
+                <div flex="auto" class="appointment-header-info">
+                    <content-item-detail label="{{'core.DATE' | translate}}"
+                                  content="{{ appointment.fromToDateString() }}"></content-item-detail>
+                    <content-item-detail label="{{'appointment.TIME' | translate}}"
+                                  content="{{ appointment.beginDate | formatDate : 'time'}} - {{ appointment.endDate | formatDate : 'time'}}">
+                    </content-item-detail>
+                    <content-item-detail label="{{'appointment.LOCATION_TITLE' | translate}}"
+                                  content="{{ appointment.locations[0].name }}">
+                    </content-item-detail>
+                    <content-item-detail label="{{'appointment.PERSONNEL_TITLE' | translate}}"
+                                  content="{{ appointment.personnels[0].name}}">
+                    </content-item-detail>
+                </div>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <span flex></span>
+        <md-button fec-mobile-click="$ctrl.closeDialog()" class="md-primary">{{'core.CLOSE' | translate }}</md-button>
+    </md-dialog-actions>
+</md-dialog>

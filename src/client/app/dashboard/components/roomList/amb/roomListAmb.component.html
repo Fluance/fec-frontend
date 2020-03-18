@@ -1,0 +1,77 @@
+<!--letters-->
+<div class="lettersIndex" flex="auto" layout="row" layout-align="start center" layout-wrap layout-padding
+     ng-if="!$ctrl.error && !$ctrl.warning && !$ctrl.onlyOneLetter && $ctrl.hasData">
+
+    <div class="fec-room-info" ng-repeat="letterIndexed in $ctrl.letterGrid" flex="initial">
+        <fec-dashboard-letter-name layout="row"
+                                   letter="letterIndexed.letter"
+                                   fec-mobile-click="$ctrl.selectLetter(letterIndexed.letter);">
+        </fec-dashboard-letter-name>
+    </div>
+
+</div>
+
+<!--room-->
+<div layout="column" flex="auto" class="lettersContent"
+     ng-if="!$ctrl.error && !$ctrl.warning && $ctrl.selectedGroup"
+     ng-show="!$ctrl.isLoading">
+
+    <md-divider flex="auto" layout-margin ng-if="!$ctrl.onlyOneLetter"></md-divider>
+
+    <div class="fec-patient-list-item" layout="row" flex="auto">
+        <!-- Letter -->
+        <div class="fec-room-info" id="{{$ctrl.selectedGroup.id}}" flex="initial" layout="row">
+            <fec-dashboard-letter-name layout="row" letter="$ctrl.selectedGroup.letter"
+                                       fec-mobile-click="$ctrl.openExtended();"></fec-dashboard-letter-name>
+        </div>
+
+        <!-- Patients -->
+        <div class="fec-patient-info" layout="row" flex="auto">
+            <div flex="grow">
+                <md-chips flex="auto" ng-model="$ctrl.selectedGroup.patients" readonly="true"
+                          class="cursor-pointer"
+                          ng-if="$ctrl.selectedGroup.hasPatients()">
+                    <md-chip-template>
+                        <div layout="row" ng-if="!$chip.isLoadMore" ui-sref="patient({pid: $chip.pid})">
+                            <div flex="initial" class="left-semicircle"></div>
+                            <div>{{ $chip.lastName | uppercase}}&nbsp;{{ $chip.firstName | firstLetter:true }}</div>
+                            <div flex="noshrink" class="right-semicircle" ></div>
+                        </div>
+
+                        <div layout="row" ng-if="$chip.isLoadMore" fec-mobile-click="$ctrl.selectedGroup.showMorePatients()">
+                            <div class="left-semicircle"></div>
+                            <div>...</div>
+                            <div class="right-semicircle"></div>
+                        </div>
+                    </md-chip-template>
+                </md-chips>
+
+                <div class="fec-no-data-message" flex="auto" layout="row" layout-align="center center"
+                     ng-if="!$ctrl.selectedGroup.isLoading && !$ctrl.selectedGroup.hasPatients()">
+                    <span>{{ "dashboard.NO_ENTRIES" | translate }}</span>
+                </div>
+
+                <!-- loading... -->
+                <div ng-if="$ctrl.selectedGroup.isLoading" flex="none" layout="row" layout-align="center center">
+                    <md-progress-circular md-mode="indeterminate" md-diameter="32"></md-progress-circular>
+                </div>
+
+            </div>
+
+            <div flex="initial" layout="column" layout-align="top center">
+                <span>{{$ctrl.selectedGroup.totalPatients}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- loading... -->
+<div layout="row" flex="auto" ng-if="$ctrl.isLoading" layout-align="center center">
+    <md-progress-circular md-mode="indeterminate" md-diameter="32"></md-progress-circular>
+</div>
+
+<!-- No entries -->
+<div class="fec-no-data-message" flex="auto" layout="row" layout-align="center center" ng-cloak
+     ng-if="!$ctrl.error && !$ctrl.warning && !$ctrl.isLoading && !$ctrl.hasData">
+    <p>{{ "dashboard.NO_ENTRIES" | translate }}</p>
+</div>

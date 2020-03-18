@@ -1,0 +1,28 @@
+<div class="row singleElementRow">
+    <div class="singleElementData">
+        <div class="row">
+            <div class="small-12 columns">
+                <div class="singleSearchDate">
+                    {{ search.date | formatDate }}
+                </div>
+                <div class="singleSearchData">
+                    <div ng-repeat="criteria in search.criterias" class="singleSearchCriteria">
+                        <span ng-if="criteria.key === 'filter'">
+                            Filter:&nbsp;{{ criteria.value }}
+                        </span>
+                        <span ng-if="criteria.key === 'orderBy'">
+                            Order by:&nbsp;{{ criteria.value }}
+                        </span>
+                        <span ng-if="criteria.key !== 'filter' && criteria.key !== 'orderBy'">
+                            {{ criteria.value }}
+                        </span>
+                    </div>
+                </div>
+                <br />
+                <div class="singleSearchResults">
+                    Latest search fetched results: {{ search.results }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

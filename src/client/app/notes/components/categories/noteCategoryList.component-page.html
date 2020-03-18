@@ -1,0 +1,63 @@
+<md-card layout="column" flex="auto" ng-if="!$ctrl.isMobileSize()">
+    <md-card-content layout="row" flex="auto">
+        <div layout="column" flex="grow">
+            <span layout="row" flex="none" layout-wrap>
+                <fec-note-categories-list-selection categories="$ctrl.categories" category="$ctrl.category" is-loading="$ctrl.isLoading" on-change="$ctrl.onChange"></fec-note-categories-list-selection>
+                <fec-note-categories-list-counter total-records="$ctrl.totalRecords" is-all-notes="$ctrl.isAllNotes" unread-records="$ctrl.unreadRecords"></fec-note-categories-list-counter>
+                <span hide-gt-xs flex="auto"></span>
+                <span layout="row" layout-align-gt-xs="end end" layout-align="start" flex="noshrink">
+                    <fec-note-categories-list-actions pid="$ctrl.pid" vnb="$ctrl.vnb" category-id="$ctrl.categoryId"
+                                                      has-notes-to-restore="$ctrl.hasNotesToRestore"
+                                                      total-records="$ctrl.totalRecords" is-all-notes="$ctrl.isAllNotes"
+                                                      mark-read-all="$ctrl.markReadAll"
+                                                      mark-unread-all="$ctrl.markUnreadAll"></fec-note-categories-list-actions>
+                </span>
+            </span>
+
+            <div layout="row" flex="none">
+                <fec-note-categories-list-tabs current-tab="$ctrl.currentTab" change-tab="$ctrl.changeTab"></fec-note-categories-list-tabs>
+            </div>
+            <fec-note-categories-list pid="$ctrl.pid" vnb="$ctrl.vnb" params="$ctrl.params" current-tab="$ctrl.currentTab" total-records="$ctrl.totalRecords"
+                                      unread-records="$ctrl.unreadRecords" is-loading="$ctrl.isLoading" flex="auto">
+            </fec-note-categories-list>
+            <!-- NO RESULTS FOUND -->
+            <div layout="column" flex="auto" ng-if="$ctrl.totalRecords === 0 && !$ctrl.isLoading" flex="none">
+                <md-card class="warn">
+                    <md-card-content>
+                        {{'notes.NO_PATIENT_NOTES' | translate }}{{'.' | translate }}
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </md-card-content>
+</md-card>
+
+<md-card layout="column" flex="auto" ng-if="$ctrl.isMobileSize()">
+    <md-card-content layout="column" flex="auto" class="note-category-list-page-mobile">
+        <div layout="row">
+            <fec-note-categories-list-selection categories="$ctrl.categories" category="$ctrl.category" is-loading="$ctrl.isLoading" on-change="$ctrl.onChange"></fec-note-categories-list-selection>
+            <fec-note-categories-list-counter total-records="$ctrl.totalRecords" is-all-notes="$ctrl.isAllNotes" unread-records="$ctrl.unreadRecords"></fec-note-categories-list-counter>
+        </div>
+        <div layout="row">
+            <fec-note-categories-list-tabs flex current-tab="$ctrl.currentTab" change-tab="$ctrl.changeTab"></fec-note-categories-list-tabs>
+        </div>
+        <div layout="row" layout-align="end center" class="note-categories-list-actions">
+            <fec-note-categories-list-actions is-mobile-view="true" pid="$ctrl.pid" vnb="$ctrl.vnb"
+                                              category-id="$ctrl.categoryId"
+                                              has-notes-to-restore="$ctrl.hasNotesToRestore"
+                                              total-records="$ctrl.totalRecords" is-all-notes="$ctrl.isAllNotes"
+                                              mark-read-all="$ctrl.markReadAll"
+                                              mark-unread-all="$ctrl.markUnreadAll"></fec-note-categories-list-actions>
+        </div>
+        <div layout="row">
+            <fec-note-categories-list pid="$ctrl.pid" vnb="$ctrl.vnb" params="$ctrl.params" current-tab="$ctrl.currentTab" total-records="$ctrl.totalRecords" unread-records="$ctrl.unreadRecords" is-loading="$ctrl.isLoading" flex="auto">
+        </div>
+        <div layout="column" flex="auto" ng-if="$ctrl.totalRecords === 0 && !$ctrl.isLoading" flex="none">
+            <md-card class="warn">
+                <md-card-content>
+                    {{'notes.NO_PATIENT_NOTES' | translate }}{{'.' | translate }}
+                </md-card-content>
+            </md-card>
+        </div>
+    </md-card-content>
+</md-card>

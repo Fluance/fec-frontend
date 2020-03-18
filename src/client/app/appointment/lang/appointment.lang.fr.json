@@ -1,0 +1,28 @@
+{
+    "appointment": {
+        "SELECT_APPOINTMENT_TITLE": "Sélectionner un rendez-vous",
+        "ERROR_LOAD_APPOINTMENT_DETAIL": "Une error est survenue lors du chargement des détails du rendez-vous",
+        "NO_APPOINTMENT": "Pas de consultation avec ces critères",
+        "NB_OF_APPOINTMENTS": "{APPOINTMENT, plural, =0{0 rendez-vous} one{1 rendez-vous} other{# rendez-vous}}",
+        "TITLE": "Rendez-vous",
+        "TITLE_LIST": "Agenda",
+        "TITLE_DETAILS": "Détails de la consultation",
+        "BEGIN_DATETIME": "Début",
+        "END_DATETIME": "Fin",
+        "TIME": "Heure",
+        "TYPE": "Type",
+        "GUIDE_APPOINTMENT_AREA": "Cliquez pour voir les détails du rendez-vous",
+        "GUIDE_APPOINTMENT_AREA_EXPANDED": "Détails du rendez-vous ainsi que la liste des personnes et des lieux concernés",
+        "LOCATION_TITLE": "Lieu",
+        "DEVICES_TITLE": "Dispositifs",
+        "PERSONNEL_TITLE": "Employé",
+        "LOCATION_TYPE": "Catégorie",
+        "DEVICE_NAME": "Désignation",
+        "DEVICE_TYPE": "Catégorie",
+        "PERSONNEL_ROLE": "Fonction",
+        "DATE": "Date",
+        "NAVIGATION_TITLE": "Agenda",
+        "RESPONSIBLE_PERSON": "Personne responsable",
+        "EXPORT_TOOLTIP": "Exporter dans le calendrier personnel"
+    }
+}

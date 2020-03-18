@@ -1,0 +1,42 @@
+#accessLogsContainer {
+    width: 100% !important;
+    #btn-order-sort {
+        float: right;
+    }
+
+    md-list {
+        background-color: $fe-white;
+        border: solid 1px $list-border-color;
+        border-bottom: none;
+        md-list-item {
+            border-bottom: solid 1px $list-border-color;
+            min-height: 0px;
+            padding: 10px 20px;
+        }
+        md-list-item:before {
+            min-height: 0px;
+        }
+
+    }
+    .access-logger-item {
+        .item-info-content {
+            margin-right: 10px;
+        }
+        md-virtual-repeat-container {
+            height: 220px;
+            border: solid 1px $list-border-color;
+            .md-virtual-repeat-scroller {
+                height: inherit;
+                md-list {
+                    border: none;
+                    md-list-item {
+                        height: 23px;
+                    }
+                    md-list-item:before {
+                        height: 23px;
+                    }
+                }
+            }
+        }
+    }
+}

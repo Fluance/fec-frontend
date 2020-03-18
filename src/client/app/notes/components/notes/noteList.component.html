@@ -1,0 +1,7 @@
+<md-progress-linear md-mode="indeterminate" ng-if="vm.isLoading"></md-progress-linear>
+<md-list class="notes-list" ng-if="vm.notes.length > 0 && !vm.isLoading">
+    <md-list-item class="notes-list-item" layout="column" ng-repeat="note in vm.notes" layout-align="start start">
+        <fec-note-list-item pid="vm.pid" vnb="vm.vnb" note="note" note-item-layout="{{vm.noteItemLayout}}"></fec-note-list-item>
+        <fec-note-picture-list-view display-mode="gallery" note-id="note.id" show-symbols="false" limit="true" flex="initial"></fec-note-picture-list-view>
+    </md-list-item>
+</md-list>

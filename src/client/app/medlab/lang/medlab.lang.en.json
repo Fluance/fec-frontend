@@ -1,0 +1,14 @@
+{
+    "medlab": {
+        "ERROR_PRESCRIPTION_SERVER_TITLE": "Cannot access server",
+        "ERROR_PRESCRIPTION_SUPPORT": "Please use our Contact Center for further assistance",
+        "ERROR_PRESCRIPTION_SERVER_NOT_AVAILABLE": "An error occured while connecting to remote Prescription server",
+        "ERROR_PRESCRIPTION_NOT_AVAILABLE": "Prescription is not available",
+        "ERROR_NO_PRESCRIPTION_TITLE": "Cannot create Lab Prescription",
+        "ERROR_NO_PRESCRIPTION_MESSAGE": "There are no visits at this moment. Not possible to create lab prescription",
+        "TITLE_NAV_BUTTON": "Lab Prescription",
+        "SELECT_VISIT_TITLE": "Select Visit",
+        "WARN_TITLE": "Information",
+        "WARN_LEAVE_MSG": "You will be redirected to the Prescription page. Would you like to continue ?"
+    }
+}

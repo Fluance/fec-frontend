@@ -1,0 +1,109 @@
+.handsontable .handsontable.ht_clone_top .wtHider {
+    padding: 0 !important;
+}
+.handsontable .handsontable.ht_clone_top {
+    padding: 0 !important;
+}
+.handsontable .handsontable.ht_clone_top_left_corner {
+    padding: 0 !important;
+}
+hot-table {
+    cursor: default;
+    table tr {
+        .htDimmed {
+            color: $fe-black !important;
+            border: none;
+            text-align: center;
+            vertical-align: middle;
+            &.htDimmed {
+                &:nth-child(1) { //STYLE FIRST COLUMN HEAD
+                    padding-right: 10px;
+                    padding-left: 10px;
+                    font-weight: bold;
+                    color: black;
+                    border-right: solid 1px $list-border-color;
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        &:nth-child(1) { //STYLE TOP HEAD
+            .htDimmed {
+                padding-right: 10px;
+                padding-left: 10px;
+                font-weight: bold;
+                border-bottom: solid 1px
+                $list-border-color;
+                white-space: nowrap;
+            }
+            .handsontableHeader {
+                white-space: nowrap;
+            }
+        }
+    }
+
+    //FIXED CELS
+    .ht_clone_top, .ht_clone_left, .ht_clone_top_left_corner {
+        z-index: unset;
+        &.ht_clone_top { //BORDER ON THE BOTTOM OF THE LAST TOP HEAD
+            tr:last-child {
+                td {
+                    border-bottom: solid 1px $list-border-color;
+                }
+            }
+        }
+        &.ht_clone_left { // BORDER ON THE RIGHT OF THE LAST LATERAL HEAD
+            td:last-child {
+                border-right: solid 1px $list-border-color !important;
+            }
+        }
+    }
+
+    .handsontable .wtBorder {
+        display: none !important;
+    }
+
+    &.stripedHorizontal tr {
+        &:nth-child(even) {
+            .htDimmed {
+                background-color: $table-striped-color !important;
+            }
+        }
+
+        .backgroundColor {
+            background-color: $table-striped-color !important;
+        }
+
+        .handsontableHeader {
+            border: none !important;
+            border-bottom: solid 1px $list-border-color !important;
+            border-top: solid 1px $list-border-color !important;
+            color: black;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle !important;
+        }
+    }
+
+    &.stripedVertical tr {
+        td:nth-child(even) {
+            background-color: $table-striped-color !important;
+        }
+    }
+}
+
+.handsontable tr:first-child th, .handsontable tr:first-child td {
+    border-top: 1px solid #CCC !important;
+}
+
+.stripedVertical {
+    .ht_clone_top_left_corner .htCore {
+        border-bottom: solid 1px $list-border-color !important;
+    }
+}
+
+.stripedHorizontal {
+    .ht_clone_top_left_corner .htCore {
+        border-right: solid 1px $list-border-color !important;
+    }
+}

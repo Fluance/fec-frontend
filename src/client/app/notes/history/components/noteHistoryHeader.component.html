@@ -1,0 +1,15 @@
+<div layout-padding>
+    <div layout="row" layout-align="start center" layout-wrap>
+        <div layout="column" flex="initial">
+            <p class="history-type">
+                <fec-icon type="{{ ::$ctrl.historyItem.resourceType }}" color="fe-grey-icon"></fec-icon>
+            </p>
+        </div>
+        <div>
+            <label>{{ ::$ctrl.historyItem.date | formatDate:'dateTime' }}</label>
+        </div>
+        <div>
+            <label>{{ ::$ctrl.getEditorName() }}</label>
+        </div>
+    </div>
+</div>

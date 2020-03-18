@@ -1,0 +1,168 @@
+<expander is-expanded="$ctrl.result.isExpanded" is-expanded-changed="$ctrl.displayDetails($ctrl.result.appointment.appointmentid)">
+    <expander-header class="appointment-expander-header">
+
+		<!-- EXPANDED VIEW: SHOW ROOMS AND PERSONS IN LIST VIEW -->
+		<div layout-padding>
+			<div layout="column" layout-gt-sm="row" class="appointment-profile">
+				<div flex-gt-sm="33" flex="auto">
+					<p class="appointment-id">
+						{{ $ctrl.result.appointment.description }}
+					</p>
+				</div>
+
+				<div layout-padding hide-xs hide-sm></div>
+
+				<div flex-gt-sm="33" flex="auto" class="appointment-header-info">
+					<content-item label="{{'core.DATE' | translate}}" content="{{ $ctrl.result.appointment.fromToDateString() }}"></content-item>
+					<content-item label="{{'appointment.LOCATION_TITLE' | translate}}" content="{{ $ctrl.result.appointment.locations[0].name }}">
+					</content-item>
+				</div>
+
+				<div layout-padding hide-xs hide-sm></div>
+
+				<div flex-gt-sm="33" flex="auto" class="appointment-header-info">
+					<content-item label="{{'appointment.TIME' | translate}}" content="{{ $ctrl.result.appointment.beginDate | formatDate : 'time'}} - {{ $ctrl.result.appointment.endDate | formatDate : 'time'}}">
+					</content-item>
+					<content-item label="{{'appointment.PERSONNEL_TITLE' | translate}}" content="{{ $ctrl.result.appointment.personnels[0].name}}">
+					</content-item>
+				</div>
+			</div>
+		</div>
+	</expander-header>
+	<expander-body class="appointment-expander-body">
+
+		<!-- LOCATION -->
+		<div ng-if="$ctrl.result.appointment.locations && $ctrl.result.appointment.locations.length > 0">
+			<div flex="initial">
+				<h5>
+					<small>{{ 'appointment.LOCATION_TITLE' | translate }}</small>
+				</h5>
+			</div>
+			<table class="appoint-table striped">
+				<thead>
+					<tr>
+						<th style="width:25%">{{ 'core.NAME' | translate }}</th>
+						<th style="width:25%">{{ 'appointment.LOCATION_TYPE' | translate }}</th>
+						<th style="width:25%">{{ 'core.DATE' | translate }}</th>
+						<th style="width:25%">{{ 'appointment.TIME' | translate }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<div ng-repeat="item in $ctrl.result.appointment.locations" class="row appointment-detail-info">
+								<content-item-no-title content="{{ item.name }}"></content-item-no-title>
+							</div>
+						</td>
+						<td>
+							<div ng-repeat="item in $ctrl.result.appointment.locations" class="row appointment-detail-info">
+								<content-item-no-title content="{{ item.type }}"></content-item-no-title>
+							</div>
+						</td>
+						<td>
+							<div ng-repeat="item in $ctrl.result.appointment.locations" class="row appointment-detail-info">
+								<content-item-no-title content="{{ item.fromToDateString() }}"></content-item-no-title>
+								</content-item-no-title>
+							</div>
+						</td>
+						<td>
+							<div ng-repeat="item in $ctrl.result.appointment.locations" class="row appointment-detail-info">
+								<content-item-no-title content="{{ item.beginDate | formatDate : 'time'}} - {{ item.endDate | formatDate : 'time'}}"></content-item-no-title>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- DEVICES -->
+		<div ng-if="$ctrl.result.appointment.devices && $ctrl.result.appointment.devices.length > 0">
+			<div flex="initial">
+				<h5>
+					<small>{{ 'appointment.DEVICES_TITLE' | translate }}</small>
+				</h5>
+			</div>
+			<table class="appoint-table striped">
+				<thead>
+					<tr>
+						<th style="width:25%">{{ 'appointment.DEVICE_NAME' | translate }}</th>
+						<th style="width:25%">{{ 'appointment.DEVICE_TYPE' | translate }}</th>
+						<th style="width:25%">{{ 'core.DATE' | translate }}</th>
+						<th style="width:25%">{{ 'appointment.TIME' | translate }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<div ng-repeat="item in $ctrl.result.appointment.devices" class="row appointment-detail-info">
+								<content-item-no-title content="{{ item.name }}"></content-item-no-title>
+							</div>
+						</td>
+						<td>
+							<div ng-repeat="item in $ctrl.result.appointment.devices" class="row appointment-detail-info">
+								<content-item-no-title content="{{ item.type }}"></content-item-no-title>
+							</div>
+						</td>
+						<td>
+							<div ng-repeat="item in $ctrl.result.appointment.devices" class="row appointment-detail-info">
+								<content-item-no-title content="{{ item.fromToDateString() }}"></content-item-no-title>
+							</div>
+						</td>
+						<td>
+							<div ng-repeat="item in $ctrl.result.appointment.devices" class="row appointment-detail-info">
+								<content-item-no-title content="{{ item.beginDate | formatDate : 'time'}} - {{ item.endDate | formatDate : 'time'}}"></content-item-no-title>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+        <!-- PERSONNEL -->
+        <div ng-if="$ctrl.result.appointment.personnels && $ctrl.result.appointment.personnels.length > 0">
+            <div flex="initial">
+                <h5>
+                    <small>{{ 'appointment.PERSONNEL_TITLE' | translate }}</small>
+                </h5>
+            </div>
+
+			<!--<table class="profile-sites striped">-->
+			<table class="appoint-table striped">
+				<thead>
+					<tr>
+						<th style="width:25%">{{ 'core.NAME' | translate }}</th>
+						<th style="width:25%">{{ 'appointment.PERSONNEL_ROLE' | translate }}</th>
+						<th style="width:25%">{{ 'core.DATE' | translate }}</th>
+						<th style="width:25%">{{ 'appointment.TIME' | translate }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<div ng-repeat="item in $ctrl.result.appointment.personnels" class="row appointment-detail-info">
+								<content-item-no-title content="{{ item.name }}"></content-item-no-title>
+							</div>
+						</td>
+						<td>
+							<div ng-repeat="item in $ctrl.result.appointment.personnels" class="row appointment-detail-info">
+								<content-item-no-title content="{{ item.role }}"></content-item-no-title>
+							</div>
+						</td>
+						<td>
+							<div ng-repeat="item in $ctrl.result.appointment.personnels" class="row appointment-detail-info">
+								<content-item-no-title content="{{ item.fromToDateString() }}"></content-item-no-title>
+							</div>
+						</td>
+						<td>
+							<div ng-repeat="item in $ctrl.result.appointment.personnels" class="row appointment-detail-info">
+								<content-item-no-title content="{{ item.beginDate | formatDate : 'time'}} - {{ item.endDate | formatDate : 'time'}}"></content-item-no-title>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!--EMPTY DIV FOR FOOTER WHITE SPACE-->
+		<div layout-padding></div>
+	</expander-body>
+</expander>

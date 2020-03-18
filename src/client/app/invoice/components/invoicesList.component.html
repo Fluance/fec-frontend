@@ -1,0 +1,51 @@
+<div id="invoicesContent" layout="column" flex="auto">
+
+    <div flex="none" layout="row" layout-align="start center" class="titleInvoices">
+        <fec-icon type="bill" size="md"></fec-icon>
+        <h5 translate="invoice.TITLE_LIST"></h5>
+        <span class="number-badge">{{ 'invoice.NB_OF_INVOICE' | translate:{INVOICE : $ctrl.total} }}</span>
+    </div>
+
+    <div flex="none" layout="row" class="headInvoices">
+
+        <span flex="{{column.flex}}" layout="row" ng-repeat="column in $ctrl.columns" ng-click="$ctrl.setOrder(column)"
+              class="ellipsis fec-table-header sort">
+            <span flex="initial" layout="row" layout-align="{{column.align}}">
+                <span>
+                    <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom"
+                                md-delay="25">{{column.translate | translate}}</md-tooltip>
+                    <span translate="{{column.translate}}"></span>
+                </span>
+            </span>
+
+            <fec-icon ng-if="column.order && column.order === 'asc'"
+                      type="dropup" color="fe-blue-icon" flex="initial"></fec-icon>
+            <fec-icon ng-if="column.order && column.order === 'desc'"
+                      type="dropdown" color="fe-blue-icon" flex="initial"></fec-icon>
+
+        </span>
+
+    </div>
+
+    <md-list ng-show="$ctrl.invoices.length > 0 && !$ctrl.isLoading" class="striped" flex="initial">
+        <md-list-item ng-repeat="invoice in $ctrl.invoices" class="active" flex="auto">
+            <div flex="auto" layout="row" layout-align="start center" layout-wrap>
+                <span flex="15">{{::invoice.id}}</span>
+                <span flex="15" layout="row" layout-align="start ">{{invoice.date | formatDate}}</span>
+                <span flex="30">{{::invoice.guarantorName}}</span>
+                <span flex="15">{{::invoice.guarantorCode}}</span>
+                <span flex="15" layout="row" layout-align="start ">{{invoice.totalAmount | fecNumber: 2}}</span>
+                <span flex="10" layout="row" layout-align="start ">{{invoice.balance | fecNumber: 2}}</span>
+            </div>
+        </md-list-item>
+    </md-list>
+
+    <md-progress-linear md-mode="indeterminate" ng-if="$ctrl.isLoading"></md-progress-linear>
+
+    <md-card ng-if="$ctrl.invoices.length === 0 && !$ctrl.isLoading" class="warn" flex="none">
+        <md-card-content>
+            {{ 'invoice.NO_INVOICE' | translate }}
+        </md-card-content>
+    </md-card>
+
+</div>

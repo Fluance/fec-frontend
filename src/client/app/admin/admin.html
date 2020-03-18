@@ -1,0 +1,120 @@
+<div id="adminconsole" class="fec-no-padding-mobile">
+    <div layout="row" flex="initial">
+        <h3>{{ "admin.TITLE" | translate }}</h3>
+    </div>
+
+    <div layout-padding/>
+
+    <md-card layout-padding flex="grow" class="warn hide-on-large-only" ng-hide="vm.isEmpty">
+        <md-card-content>
+            {{ 'admin.WARN_MOBILE' | translate }}{{ '!' | translate}}
+        </md-card-content>
+    </md-card>
+
+    <div layout-padding/>
+
+    <div ng-cloak>
+        <md-content>
+            <md-tabs md-dynamic-height md-border-bottom md-no-pagination>
+                <md-tab>
+                    <md-tab-label>{{ "admin.USERS" | translate }}</md-tab-label>
+                    <md-tab-body>
+                        <div id="users" flex="grow" ng-controller="AdminUsersController as vm">
+                            <div ui-view class="uiview"></div>
+                        </div>
+                    </md-tab-body>
+                </md-tab>
+                <md-tab>
+                    <md-tab-label>{{ "admin.LOGS" | translate }}</md-tab-label>
+                    <md-tab-body>
+                        <div id="logs" layout="column" flex="grow" ng-controller="AdminLogsController as vm">
+                            <md-card id=logManagementCard>
+                                <md-card-content layout="column">
+                                    <h5>{{ "admin.LOGS_MANAGEMENT" | translate }}</h5>
+                                    <p>{{ 'admin.LOGS_SEND' | translate }}{{ '.' | translate }}
+                                        <md-button class="md-primary right" target="_blank" ng-href="{{ vm.logWebInterfaceURL }}">{{ "admin.LOGS_ACCESS" | translate }}</md-button>
+                                    </p>
+                                    <br/>
+                                    <div id="logFabSpeed" css-ie layout="row" layout-align="end center">
+                                        <md-fab-speed-dial md-open="false" md-direction="left" class="md-scale">
+                                            <md-fab-trigger>
+                                                <md-button class="md-fab md-primary">
+                                                    <fec-icon type="addAlert"></fec-icon>
+                                                </md-button>
+                                            </md-fab-trigger>
+
+                                            <md-fab-actions>
+                                                <md-button class="md-fab md-mini" id="success" fec-mobile-click="vm.sendTestQuery('s')">
+                                                    <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom"
+                                                                md-delay="25">{{'admin.SUCCESS' | translate }}</md-tooltip>
+                                                    <fec-icon type="done" class="icons" size="tiny"></fec-icon>
+                                                </md-button>
+                                                <md-button class="md-fab md-mini" id="info" fec-mobile-click="vm.sendTestQuery('i')">
+                                                    <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom"
+                                                                md-delay="25">{{'admin.INFO' | translate }}</md-tooltip>
+                                                    <fec-icon type="info" class="icons" size="tiny"></fec-icon>
+                                                </md-button>
+                                                <md-button class="md-fab md-mini" id="warning" fec-mobile-click="vm.sendTestQuery('w')">
+                                                    <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom"
+                                                                md-delay="25">{{'admin.WARNING' | translate }}</md-tooltip>
+                                                    <fec-icon type="warning" class="icons" size="tiny"></fec-icon>
+                                                </md-button>
+                                                <md-button class="md-fab md-mini" id="error" fec-mobile-click="vm.sendTestQuery('e')">
+                                                    <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom"
+                                                                md-delay="25">{{'admin.ERROR' | translate }}</md-tooltip>
+
+                                                    <fec-icon type="error" class="icons" size="small"></fec-icon>
+                                                </md-button>
+                                            </md-fab-actions>
+                                        </md-fab-speed-dial>
+                                    </div>
+                                </md-card-content>
+                            </md-card>
+                            <md-card>
+                                <md-card-content>
+                                    <h5>{{ "admin.LOGS" | translate }} <small>{{ "admin.LOGS_SESSION" | translate }}</small></h5>
+                                    <p ng-hide="vm.logger.history.length > 0">{{ "admin.LOGS_NONE" | translate }}</p>
+                                    <md-list ng-show="vm.logger.history.length > 0">
+                                        <md-list-item  ng-repeat="report in vm.logger.history" ng-click="vm.logger.showReport($index)" layout="row">
+                                            <div flex="grow">
+                                                <strong>#{{ $index + 1 }} {{ report.message }}</strong> {{ report.dataMessage
+                                                }}
+                                                <br/> {{ report.date | date:'dd.MM.yyyy @ HH:mm' }} |
+                                                <span ng-show="report.saved">Report send to Graylog</span>
+                                                <span ng-show="!report.saved">Could not send report to Graylog</span>
+                                            </div>
+                                            <div layout="row" layout-align=" end" flex="noshrink">
+                                                <fec-icon type="expand" size="sm"></fec-icon>
+                                            </div>
+                                        </md-list-item>
+                                        <md-divider></md-divider>
+                                    </md-list>
+
+                                </md-card-content>
+                            </md-card>
+                        </div>
+                    </md-tab-body>
+                </md-tab>
+                <md-tab>
+                    <md-tab-label>{{ "admin.SERVER_CONFIGURATION" | translate }}</md-tab-label>
+                    <md-tab-body>
+                        <div id="configuration" layout="row" flex="grow" ng-controller="AdminConfigurationController as vm">
+                            <md-card flex="grow" layout="row">
+                                <md-card-content flex="grow">
+                                    <h5>{{ "admin.SERVER_CONFIGURATION" | translate }}</h5>
+                                    <md-list>
+                                        <md-list-item ng-repeat="conf in vm.config | orderBy: 'title'" layout="column" layout-align="start start">
+                                            <span flex="initial" class="key" >{{conf.title}}</span>
+                                            <span>{{conf.content}}</span>
+                                        </md-list-item>
+                                    </md-list>
+                                </md-card-content>
+                            </md-card>
+                        </div>
+                    </md-tab-body>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+    <div layout-padding/>
+</div>

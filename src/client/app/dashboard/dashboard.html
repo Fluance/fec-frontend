@@ -1,0 +1,16 @@
+<dashboard id="cockpit" data-width="auto" data-columns="4" data-columns-min-width="420" flex="none">
+</dashboard>
+<footer class="clearfix" ng-hide="dashboard.isExtended">
+    <div class="center-align" style="padding: 20px 20px 40px 0;">
+        <button class="md-primary md-button md-ink-ripple" ng-show="!dashboard.isStateSorting" fec-mobile-click="toggleSortable(false)">
+            {{ 'dashboard.REORGANIZE' | translate }}
+        </button>
+        <button class="md-primary md-button md-ink-ripple" ng-show="dashboard.isStateSorting" fec-mobile-click="toggleSortable(true)">
+            {{ 'core.SAVE' | translate }}
+        </button>
+        <button class="md-primary md-button md-ink-ripple" ng-show="dashboard.isStateSorting" fec-mobile-click="toggleSortable(false)">
+            {{ 'core.CANCEL' | translate }}
+        </button>
+    </div>
+</footer>
+<fec-last-state></fec-last-state>

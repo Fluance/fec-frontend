@@ -1,0 +1,9 @@
+<expander is-expanded="$ctrl.historyItem.isExpanded" is-expanded-changed="$ctrl.displayDetails()">
+    <expander-header class="history-expander-header">
+        <fec-note-history-header history-item="$ctrl.historyItem"></fec-note-history-header>
+    </expander-header>
+    <expander-body>
+        <md-progress-circular md-mode="indeterminate" ng-if="$ctrl.historyItem.isLoadingDetails"></md-progress-circular>
+        <fec-picture-history-item-body history-item="$ctrl.historyItem"></fec-picture-history-item-body>
+    </expander-body>
+</expander>

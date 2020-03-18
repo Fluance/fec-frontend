@@ -1,0 +1,65 @@
+<md-card layout="row" layout-align="center center" layout-padding class="alert-warn" ng-if="vm.isOwnProfile()">
+    <p>
+        ADMIN CONSOLE - PROFILE - ALERT {{ 'admin.EDIT_OWN_PROFILE_INFORMATION' | translate }}{{ '!' | translate }}
+    </p>
+</md-card>
+
+<md-card id="adminConsoleProfileForm">
+    <md-card-content>
+        <form ng-submit="vm.submit()">
+            <div layout="row" flex="grow">
+                <h5>{{ 'admin.EDIT_PROFILE' | translate }}</h5>
+            </div>
+            <div ng-show="vm.loading">
+                <div class="loader"></div>
+            </div>
+            <div ng-show="!vm.loading">
+                <div layout="row">
+                    <span flex></span>
+                    <md-button class="md-primary" fec-mobile-click="vm.cancel()">
+                        {{'core.CANCEL' | translate }}
+                    </md-button>
+                    <md-button type="submit" class="md-primary">
+                        {{'core.SAVE' | translate }}
+                    </md-button>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <md-input-container flex="33" flex-xs>
+                        <label>{{ 'layout.LANGUAGE' | translate }}</label>
+                        <md-select ng-model="vm.model.profileLanguage">
+                            <md-option ng-repeat="(key, value) in vm.lang" ng-value="key">{{key | uppercase}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>{{ 'admin.ROLES' | translate }}</label>
+                        <md-select ng-model="vm.model.roles" multiple>
+                            <md-option value="" disabled>{{ 'core.NONE' | translate }}</md-option>
+                            <md-option ng-repeat="option in vm.roles | orderBy:'+name'" ng-value="option.name" ng-disabled="option.readonly">{{option.name | firstLetterUpperCase}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+
+                <div>
+                    <profile-companies-input username="vm.username" model="vm.model" mode="edit"></profile-companies-input>
+                </div>
+            </div>
+            <div layout="column" flex="auto" id="staffIdInvalidPanel" ng-if="vm.hasWarning === true">
+                <md-card class="alert-warn">
+                    <md-card-content>
+                        <p>{{ vm.warning.message | translate }}</p>
+                        <div class="clearfix"></div>
+                    </md-card-content>
+                </md-card>
+            </div>
+            <div layout="row">
+                <span flex></span>
+                <md-button class="md-primary" fec-mobile-click="vm.cancel()">
+                    {{'core.CANCEL' | translate }}
+                </md-button>
+                <md-button type="submit" class="md-primary">
+                    {{'core.SAVE' | translate }}
+                </md-button>
+            </div>
+        </form>
+    </md-card-content>
+</md-card>

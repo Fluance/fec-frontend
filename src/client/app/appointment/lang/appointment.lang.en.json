@@ -1,0 +1,27 @@
+{
+    "appointment": {
+        "SELECT_APPOINTMENT_TITLE": "Select appointment",
+        "ERROR_LOAD_APPOINTMENT_DETAIL": "Error while loading the appointment details",
+        "NO_APPOINTMENT": "No appointment with these criteria",
+        "NB_OF_APPOINTMENTS": "{APPOINTMENT, plural, =0{0 appointment} one{1 appointment} other{# appointments}}",
+        "TITLE": "Appointment",
+        "TITLE_LIST": "Appointments",
+        "TITLE_DETAILS": "Appointment details",
+        "BEGIN_DATETIME": "Start",
+        "END_DATETIME": "End",
+        "TIME": "Time",
+        "TYPE": "Type",
+        "GUIDE_APPOINTMENT_AREA": "Click to see Details about an appointment",
+        "LOCATION_TITLE": "Location",
+        "DEVICES_TITLE": "Devices",
+        "PERSONNEL_TITLE": "Personnel",
+        "LOCATION_TYPE": "Category",
+        "DEVICE_NAME": "Name",
+        "DEVICE_TYPE": "Category",
+        "PERSONNEL_ROLE": "Role",
+        "DATE": "Date",
+        "NAVIGATION_TITLE": "Appointments",
+        "RESPONSIBLE_PERSON": "Responsible person",
+        "EXPORT_TOOLTIP": "Export to the personal calendar"
+    }
+}

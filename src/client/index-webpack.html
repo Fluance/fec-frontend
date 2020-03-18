@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-strict-di>
+
+<head>
+    <style>
+        /* This helps the ng-show/ng-hide animations start at the right place. */
+        /* Since Angular has this but needs to load, this gives us the class early. */
+
+        .ng-hide {
+            display: none!important;
+        }
+    </style>
+
+    <title ng-bind="title">eHealth Cockpit</title>
+    <meta charset="utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+    <!-- Apple metadata -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-title" content="eHealth Cockpit">
+    <link rel="icon" href="/content/images/fluance-favicon.png">
+    <link rel="apple-touch-icon" href="/content/images/icon-60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/content/images/icon-76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/content/images/icon-60@2x.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/content/images/icon-76@2x.png">
+    <link rel="apple-touch-icon" sizes="160x160" href="/content/images/icon-60@3x.png">
+    <link rel="apple-touch-startup-image" href="/content/images/startup@2x.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.5.95/css/materialdesignicons.min.css">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" /> -->
+    <!-- Apple metadata -->
+    <!--<meta name="apple-mobile-web-app-capable" content="no"> -->
+    <!--<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">-->
+    <!--<meta name="format-detection" content="telephone=no">-->
+    <!-- Microsoft metadata -->
+    <meta name="msapplication-tap-highlight" content="no" />
+</head>
+
+<body>
+
+<div id="picker-container"></div>
+<fec-layout layout="row"></fec-layout>
+
+<script src="config.js"></script>
+<!--script src="/bower_components/angular-ui-router/release/stateEvents.js"></script-->
+<!-- build:js app.js-->
+
+<!-- inject:js -->
+<!-- _APP_ js files -->
+<!-- endinject -->
+<!-- inject:templates:js -->
+<!-- endinject -->
+
+<!-- endbuild -->
+
+<!--script src="/src/client/app/app.main.js"></script-->
+</body>
+
+</html>

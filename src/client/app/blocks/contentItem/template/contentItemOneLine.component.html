@@ -1,0 +1,8 @@
+<div class="item-info-detail">
+    <div class="item-info-detail-label">
+        <span>{{ $ctrl.label }}{{ ':' | translate }}</span>
+        <span>{{ $ctrl.content | noContentPlaceholder }}</span>
+        <span ng-show="$ctrl.label2">{{ $ctrl.label2 }}{{ ':' | translate }}</span>
+        <span ng-show="$ctrl.content2">{{ $ctrl.content2 | noContentPlaceholder }}</span>
+    </div>
+</div>

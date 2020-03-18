@@ -1,0 +1,48 @@
+<div id="restoreNoteContainer" layout="column">
+    <div class="fec-page-title">
+        <h5>
+            <fec-icon type="noteNavigation" size="sm" color="fe-blue-icon"></fec-icon>
+            {{ 'notes.NOTES_AND_PICTURES' | translate }}
+        </h5>
+    </div>
+
+    <md-card class="warn" ng-show="vm.dataPager.isEmpty()">
+        <md-card-content>
+            {{'notes.NO_NOTE' | translate }}
+        </md-card-content>
+    </md-card>
+
+    <md-card ng-show="!vm.dataPager.isEmpty()">
+
+
+        <md-card-content layout="column" flex="auto" >
+
+            <div flex="none" layout="row" layout-align="start center" class="title">
+                <h5 style="display:inline-block;">{{ 'notes.RESTORE_NOTES' | translate }}</h5>
+                <span class="number-badge" ng-show="vm.dataPager.hasTotalItemsCount">{{ 'notes.NB_OF_NOTE' | translate:{NOTE : vm.dataPager.totalItemsCount} }}</span>
+            </div>
+
+            <md-divider flex="auto" layout-padding></md-divider>
+
+            <md-progress-linear class="indeterminate" ng-if="vm.dataPager.isLoading"></md-progress-linear>
+
+            <!-- Results list -->
+            <div layout="row" flex="auto" ng-show="!vm.dataPager.isEmpty()">
+                <div infinite-scroll="vm.dataPager.getNextPage()" infinite-scroll-disabled="vm.dataPager.isLoading || !vm.dataPager.canGetNextPage()"
+                    infinite-scroll-distance="0" infinite-scroll-container="vm.scrollableContainer" layout="column" flex="auto">
+
+                    <fec-restore-note note="note" restore-note="vm.restoreNote(noteId,event)" ng-repeat="note in vm.dataPager.items" ng-class="{'first': $index === 0}" class="restoreNoteComponent"></fec-restore-note>
+
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div layout="column" flex="auto" layout-padding>
+                <div ng-show="vm.dataPager.hasTotalItemsCount && !vm.dataPager.canGetNextPage()" class="center-align">
+                    <span class="number-badge passive">&nbsp;{{ 'notes.NB_OF_NOTE' | translate:{NOTE : vm.dataPager.totalItemsCount} }}&nbsp;</span>
+                </div>
+            </div>
+
+        </md-card-content>
+    </md-card>
+</div>

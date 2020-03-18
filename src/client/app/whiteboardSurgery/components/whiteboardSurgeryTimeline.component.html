@@ -1,0 +1,29 @@
+<div flex layout="row" id="whiteboard-surgery-content-body" ng-if="$ctrl.rooms">
+    <!-- Timeline Numbers -->
+    <div id="whiteboard-surgery-content-timeline-hours" layout="column">
+        <div class="hour" ng-repeat="i in [].constructor(24) track by $index">{{$index}}</div>
+    </div>
+    <!-- Timeline Events -->
+    <div id="whiteboard-surgery-content-timeline" layout="row" flex>
+        <div flex layout="column" class="whiteboard-surgery-content-timeline-room"
+                ng-repeat="(key, value) in $ctrl.rooms">
+            <!-- Appointments -->
+            <fec-whiteboard-surgery-appointment-list selected-date="$ctrl.selectedDate" appointments="$ctrl.rooms[key]"></fec-whiteboard-surgery-appointment-list>
+            <!-- Room Reservations -->
+            <fec-whiteboard-surgery-reservation-list selected-date="$ctrl.selectedDate" company-id="$ctrl.companyId" reservations="$ctrl.roomsReservations[key]" on-reservations-changed="$ctrl.onRoomReservationsChanged($event)" room-name="$ctrl.roomName"> </fec-whiteboard-surgery-reservation-list>
+        </div>
+    </div>
+    <!-- Timeline Grid -->
+    <span id="timeline-lines-container">
+        <div class="timeline-line-full" ng-style="{top: 60*$index+'px'}"
+            ng-repeat="i in [].constructor(24) track by $index"></div>
+        <div class="timeline-line-half" ng-style="{top: 60*$index+30+'px'}"
+            ng-repeat="i in [].constructor(24) track by $index"></div>
+        <div id="timeline-line-live" ng-style="$ctrl.timelineLiveStyle" ng-if="$ctrl.selectedDateIsToday">
+        </div>
+        <fec-icon type="play" color="fe-whiteboard-surgery-red-icon" id="timeline-line-live-arrow" ng-style="$ctrl.timelineLiveArrowStyle"
+            ng-if="$ctrl.selectedDateIsToday"></fec-icon>
+    </span>
+</div>
+<!-- Loading state -->
+<md-progress-linear ng-if="!$ctrl.rooms" md-mode="indeterminate"></md-progress-linear>

@@ -1,0 +1,21 @@
+{
+    "settings": {
+        "ACCOUNT": "Dettagli account",
+        "CACHING": "Disabilitare caching temporaneamente",
+        "CHOOSE_PROVIDER": "Scegliere un servizio di autenticazione",
+        "CLEAR_DASHBOARD_LAYOUT": "Ripristinare a disposizione del dashboard del eHealth Cockpit",
+        "CLEAR_DASHBOARD_LAYOUT_MSG_SUCCESS": "Layout di eHealth Cockpit è stato azzerato con successo",
+        "CLEAR_TUTORIALS": "Contrassegnare tutti i tutorial come no letti",
+        "CLEAR_TUTORIALS_MSG": "CLEAR_TUTORIALS",
+        "CLEAR_TUTORIALS_MSG_SUCCESS": "I tutorial sono state segnate con successo come non letto",
+        "CONTACTS": "Contatti",
+        "LOGIN": "Login",
+        "LOGIN_ERROR": "Nome utilizzatore o password errato",
+        "LOGOUT": "Logout",
+        "ROLES": "Ruoli",
+        "SERVICE_DISCOVERY": "Login",
+        "SETTINGS": "Parametri",
+        "USER": "Utilizzatore",
+        "USER_DATA": "Informazioni utilizzatore"
+    }
+}

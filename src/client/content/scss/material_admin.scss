@@ -1,0 +1,289 @@
+/* Configuration tab */
+
+$admin-col-width-120-px: 120px;
+.fec-user-profile-companies {
+    table-layout: fixed;
+    td,
+    th {
+        padding-left: $gutter-width/2;
+        padding-right: $gutter-width/2;
+    }
+    td {
+        vertical-align: top;
+        height: 100%;
+    }
+    .fec-col-staff {
+        width: $admin-col-width-120-px;
+    }
+}
+
+#configuration,
+#bugReportDialog {
+    md-list {
+        border: 1px solid $list-border-color;
+        border-bottom: none;
+        md-list-item {
+            background-color: #fff;
+            line-height: 1.5rem;
+            padding: 10px 20px;
+            border-bottom: 1px solid $list-border-color;
+            span {
+                word-break: break-all;
+                display: inline-table;
+                &.key {
+                    font-weight: bold;
+                }
+            }
+            .md-list-item-text .key {
+                font-weight: bold;
+            }
+        }
+        md-list-item::before, md-list-item .md-list-item-inner::before {
+            min-height: 0px !important;
+        }
+    }
+}
+
+/* Logs tab */
+#logs {
+    #logManagementCard {
+        height: 150px;
+        margin-bottom: 40px;
+        @media only screen and (max-width: 960px) {
+            height: 145px;
+        }
+        @media only screen and (max-width: 535px) {
+            height: 165px;
+        }
+        @media only screen and (max-width: 315px) {
+            height: 185px;
+        }
+    }
+    .fixed-action-btn {
+        position: relative;
+        float: right;
+        margin-top: 15px;
+        z-index: 900;
+        ul {
+            padding-bottom: 60px;
+            li {
+                margin: 5px 0px;
+            }
+        }
+    }
+    #logFabSpeed {
+        position: relative;
+        float: right;
+        margin-top: -20px;
+        @media only screen and (max-width: 960px) {
+            margin-top: -20px;
+        }
+        @media only screen and (max-width: 535px) {
+            margin-top: 0px;
+        }
+        @media only screen and (max-width: 315px) {
+            margin-top: 0px;
+        }
+        z-index: 900;
+        md-fab-speed-dial {
+            md-fab-trigger {
+                .md-button {
+                    &:hover {
+                        background-color: $fe-blue !important;
+                    }
+                    @media only screen and (max-width: 960px) {
+                        line-height: 40px;
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+            }
+        }
+    }
+    #logFabSpeed.ie {
+        margin-top: -55px;
+        @media only screen and (max-width: 960px) {
+            margin-top: -40px;
+        }
+        @media only screen and (max-width: 535px) {
+            margin-top: -20px;
+        }
+        @media only screen and (max-width: 315px) {
+            margin-top: 0px;
+        }
+        //ul{
+        //    padding-right: 60px;
+        //    width: 100%;
+        //    float: right;
+        //}
+    }
+
+    md-list {
+        border-left: 0;
+        border-right: 0;
+        @include error-border();
+        md-list-item {
+            color: #5C6064;
+            border-top: 1px solid $list-border-color;
+            .md-button {
+                padding: 5px 20px;
+                line-height: 1.5rem;
+                &:hover {
+                    background-color: transparent !important;
+                }
+            }
+        }
+    }
+}
+
+/* Users tab */
+
+#users {
+    label.active {
+        color: grey;
+    }
+    .progress {
+        display: none;
+    }
+
+    .userSelectionRow:hover {
+        background: $fe-grey;
+        cursor: pointer;
+    }
+
+    #searchUserCard {
+        md-card-content + md-card-content {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+        md-card-content:last-of-type {
+            padding-bottom: 20px;
+        }
+    }
+}
+
+/* UsersProfile content */
+
+#usersProfile {
+    .lang {
+        text-transform: uppercase;
+    }
+    .button-area {
+        margin-top: 20px;
+    }
+
+    md-list-item {
+        padding: 0px;
+        min-height: 0px;
+        &:before {
+            min-height: 0px;
+        }
+    }
+}
+
+#profile {
+    md-card-header {
+        margin: 10px;
+        .label {
+            color: $fe-blue;
+        }
+    }
+    md-dialog-content {
+        margin: 10px;
+    }
+}
+
+#deleteWarning {
+    .btn-blue {
+        color: $fe-blue;
+    }
+}
+
+/* Styling of Floating Action Button */
+
+#error {
+    background-color: $fe-red;
+    .icons {
+        color: $fe-white;
+    }
+    &:hover {
+        background-color: $fe-red !important;
+    }
+}
+
+#info {
+    background-color: $fe-black-bg;
+    .icons {
+        color: $fe-black-bg-text;
+    }
+    &:hover {
+        background-color: $fe-black-bg !important;
+    }
+}
+
+#warning {
+    background-color: $fe-yellow-bg;
+    .icons {
+        color: $fe-white;
+    }
+    &:hover {
+        background-color: $fe-yellow-bg !important;
+    }
+}
+
+#success {
+    background-color: $fe-blue-bg;
+    .icons {
+        color: $fe-blue-bg-text;
+    }
+    &:hover {
+        background-color: $fe-blue-bg !important;
+    }
+}
+
+profile-unit,
+profile-service {
+    table {
+        td,
+        th {
+            padding: 0px;
+            width: auto;
+        }
+        td:last-child {
+            width: $admin-col-width-120-px;
+        }
+    }
+}
+
+profile-staffid {
+    md-input-container {
+        margin-bottom: 0;
+        input[type=text],
+        input[type=text]:disabled {
+            height: 2rem;
+            margin: 0px;
+        }
+        input[type=text]:disabled {
+            background-image: none;
+            border-bottom: initial;
+            color: inherit;
+            height: 1.5rem;
+        }
+        .md-errors-spacer {
+            display: none;
+        }
+    }
+}
+
+.put-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    padding-right: 22px;
+}
+
+#adminconsole {
+    // width: 100%;
+    padding: 0 $gutter-width;
+}

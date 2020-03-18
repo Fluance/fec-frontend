@@ -1,0 +1,21 @@
+{
+    "document": {
+        "ADMISSION_DATE": "Data d'ammissione",
+        "ALL_COMPANIES": "Tutte le cliniche",
+        "BUTTON_GENERATE_DOCUMENT": "Generare un documento",
+        "CLINIC": "Clinica",
+        "HEADER_CLINIC": "Clinica",
+        "HEADER_DATE": "Data",
+        "HEADER_FILENAME": "Nome del file",
+        "NB_OF_DOCUMENTS": "{DOCUMENTS, plural, =0{0 documento} one{1 documento} other{# documenti}}",
+        "NO_DOCUMENTS": "Nessun documento per questo paziente",
+        "NAVIGATION_TITLE": "Documenti",
+        "TEMPLATE": "Modello",
+        "TEMPLATE_REQUIRED": "È richiesto un modello",
+        "TITLE_GENERATE_DOCUMENT": "Generare un documento",
+        "TITLE_LIST": "Documenti",
+        "TOOLTIP_VIEW_DOCUMENT": "Anteprima del documento",
+        "VISIT": "Visita",
+        "VISIT_REQUIRED": "È richiesta una visita"
+    }
+}

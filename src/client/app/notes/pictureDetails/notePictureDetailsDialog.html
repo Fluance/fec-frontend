@@ -1,0 +1,9 @@
+<md-dialog class="note-image-lightbox" layout="column">
+    <md-dialog-content flex="grow" layout="column">
+        <fec-note-picture-details picture-list="$ctrl.pictureList" selected-picture-id="$ctrl.selectedPictureId" flex="grow" layout="column"></fec-note-picture-details>
+    </md-dialog-content>
+    <md-dialog-actions flex="none">
+        <md-button fec-mobile-click="$ctrl.closeDialog()" class="md-primary">{{'core.CLOSE' | translate }}</md-button>
+
+    </md-dialog-actions>
+</md-dialog>

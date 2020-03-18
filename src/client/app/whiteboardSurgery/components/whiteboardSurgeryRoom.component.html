@@ -1,0 +1,57 @@
+<div id="whiteboard-surgery-detail" layout="column">
+
+    <!-- Toolbar -->
+    <fec-whiteboard-surgery-toolbar room-name="$ctrl.roomName"></fec-whiteboard-surgery-toolbar>
+
+    <!-- Room list -->
+    <fec-whiteboard-surgery-room-list layout="row" selected-date="$ctrl.selectedDate">
+    </fec-whiteboard-surgery-room-list>
+
+    <div layout="row" id="whiteboard-surgery-detail-container" ng-if="!$ctrl.isLoading && $ctrl.room">
+
+        <div flex="35" layout="column">
+            <div layout="row" class="whiteboard-surgery-operating-room-navigation">
+                <fec-icon type="home" class="clickable" color="fe-blue-icon" fec-mobile-click="$ctrl.goToDashboard()"
+                    size="sm"></fec-icon>
+
+                <fec-icon type="whiteboardSurgery" class="clickable" color="fe-blue-icon" size="sm"
+                    fec-mobile-click="$ctrl.goToSurgeryOverview()"></fec-icon>
+
+                <sm-date-time-picker-component class="whiteboard-surgery-operating-room-navigation-datepicker"
+                    fname="selectedDateForDatePicker" close-on-select="false" change-view-on-select="false"
+                    align-text-right="true" mode="date" ng-model="$ctrl.selectedDateForDatePicker" week-start-day="Monday">
+                </sm-date-time-picker-component>
+
+                <!-- add room reservation -->
+                <div class="whiteboard-surgery-navigation-item">
+                    <fec-icon type="add" color="fe-blue-icon" fec-mobile-click="$ctrl.addNewRoomReservation()"></fec-icon>
+                </div>
+            </div>
+            <!-- Timeline -->
+            <fec-whiteboard-surgery-timeline class="whiteboard-surgery-scrollable" layout="row"
+                selected-date="$ctrl.selectedDate" company-id="$ctrl.companyId"
+                rooms="$ctrl.room"
+                rooms-reservations="$ctrl.roomReservations"
+                room-name="$ctrl.roomName"
+                on-room-reservations-changed="$ctrl.onRoomReservationsChanged($event)">
+            </fec-whiteboard-surgery-timeline>
+        </div>
+
+        <!-- Room detail view -->
+        <fec-whiteboard-surgery-room-list-item flex="65" detail="true" layout="column" room-title="roomTitle"
+            running-appointment="$ctrl.runningAppointment" next-appointment="$ctrl.nextAppointment"
+            selected-date="$ctrl.selectedDate">
+        </fec-whiteboard-surgery-room-list-item>
+    </div>
+
+    <div ng-if="!$ctrl.isLoading && !$ctrl.room" layout="column">
+        <md-card layout-padding flex="grow" class="warn">
+            <md-card-content>
+                WARN, THIS ROOM DOESNT EXIST
+            </md-card-content>
+        </md-card>
+    </div>
+
+    <!-- Loading state -->
+    <md-progress-linear ng-if="$ctrl.isLoading" md-mode="indeterminate"></md-progress-linear>
+</div>

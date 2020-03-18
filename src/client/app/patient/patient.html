@@ -1,0 +1,41 @@
+<div id="patient-search" layout="column">
+    <!-- NO PATIENT FOUND -->
+    <md-card flex="auto" class="error" ng-show="!vm.isEmpty && vm.isCrashed">
+        <md-card-content>
+            {{'patient.ERROR_LOAD_PATIENT_DETAIL' | translate }}
+        </md-card-content>
+    </md-card>
+    <md-card flex="auto" class="warn" ng-show="vm.isEmpty && !vm.isCrashed">
+        <md-card-content>
+            {{'patient.NO_PATIENT' | translate }}
+        </md-card-content>
+    </md-card>
+    <!-- PATIENT AREA -->
+    <div flex="grow" layout="column" ng-hide="vm.isEmpty || vm.isCrashed">
+        <div hide-xs>
+            <div class="fec-page-title" layout="column">
+                <h5 flex="grow">
+                    <fec-icon type="patient" size="sm" color="fe-blue-icon"></fec-icon>
+                    {{ 'patient.TITLE' | translate }}
+                </h5>
+            </div>
+        </div>
+        <div flex="auto" class="fec-no-padding">
+            <!-- <fluance-patient result="vm.result"></fluance-patient> -->
+            <md-card>
+                <md-card-content>
+                    <h5 class="color-blue">
+                        <small>{{vm.pid}}</small>
+                    </h5>
+                    <div layout="row" layout-xs="column" class="patient-detail-info" layout-wrap layout-padding>
+                        <fec-patient-address patient-address="vm.result.details.address" patient-info="vm.result.details.patientInfo" marital-status="vm.result.details.maritalStatus"
+                            layout="column" flex="auto" flex-sm="50" flex-gt-sm="33"></fec-patient-address>
+                        <fec-patient-contact patient-contacts="vm.result.details.contacts" layout="column" flex="auto" flex-sm="50" flex-gt-sm="33"></fec-patient-contact>
+                        <fec-patient-nok patient-nok="vm.result.nextofkin" layout="column" flex="auto" flex-sm="auto" flex-gt-sm="33"></fec-patient-nok>
+                    </div>
+                </md-card-content>
+                <md-progress-linear md-mode="indeterminate" ng-if="vm.isLoading"></md-progress-linear>
+            </md-card>
+        </div>
+    </div>
+</div>

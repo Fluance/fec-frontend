@@ -1,0 +1,23 @@
+<div class="entity-profile">
+    <span ui-sref="patient({pid: $ctrl.result.patient.id, field: $ctrl.criteria, originState: $ctrl.originState})">
+        <fluance-patient-list-item layout="row">
+            <patient-pid>{{ ::$ctrl.result.patient.id }}</patient-pid>
+            <patient-lastname>
+                <span ng-bind-html="$ctrl.getPatientLastName()| highlightText:$ctrl.criteria"> </span>
+            </patient-lastname>
+            <patient-firstname>
+                <span ng-bind-html="$ctrl.getPatientFirstName()| highlightText:$ctrl.criteria"> </span>
+            </patient-firstname>
+            <patient-sex>
+                <fec-gender-icon gender="{{::$ctrl.patient.sex}}" color="fe-grey-icon" size="sm"></fec-gender-icon>
+            </patient-sex>
+            <patient-birthdate>
+                <span
+                    ng-bind-html="$ctrl.result.patient.birthdate | formatDate : 'date' | highlightText: $ctrl.criteria"> </span>
+            </patient-birthdate>
+            <patient-address>
+                    <span ng-bind-html="$ctrl.getAddress()| highlightText:$ctrl.criteria"> </span>
+            </patient-address>
+        </fluance-patient-list-item>
+    </span>
+</div>

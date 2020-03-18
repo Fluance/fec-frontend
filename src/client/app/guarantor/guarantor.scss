@@ -1,0 +1,58 @@
+#guarantorsContainer {
+
+    .headGuarantors {
+        font-weight: bold;
+        border-bottom: solid 1px $list-border-color;
+        padding: 8px;
+        height: 43px;
+
+        span {
+            outline: none;
+            cursor: default;
+            &:not([disabled]) {
+                cursor: pointer;
+            }
+        }
+    }
+
+    md-list {
+        min-height: 156px;
+
+        &.striped {
+            md-list-item:nth-child(odd) {
+                background-color: $table-striped-color !important;
+                div {
+                    background-color: $table-striped-color;
+                }
+            }
+        }
+
+        border: none;
+
+        md-list-item {
+            padding-left: 8px;
+            padding-right: 8px;
+            min-height: 52px;
+
+            border-bottom: solid 1px $list-border-color;
+
+            div {
+                min-height: 52px;
+
+                [role=button] {
+                    cursor: pointer;
+
+                }
+            }
+        }
+
+        md-list-item:before {
+            min-height: 52px;
+            border-bottom: solid 1px $list-border-color;
+        }
+    }
+
+    .padding-right {
+        padding-right: 8px;
+    }
+}

@@ -1,0 +1,10 @@
+<section ng-form name="searchForm">
+    <md-input-container class="md-block">
+        <label ng-class="{active: vm.params.pid}">{{'core.PATIENT_ID' | translate}}</label>
+        <input fec-input aria-label="PID" ng-model="vm.params.pid" ng-change="vm.clearInputField('vnb')" md-sidenav-focus tutorial-step="pid" ng-required="!vm.params.vnb">
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label ng-class="{active: vm.params.vnb}">{{'core.VISIT_NB' | translate}}</label>
+        <input fec-input aria-label="VNB" ng-model="vm.params.vnb" ng-change="vm.clearInputField('pid')" tutorial-step="vnb" ng-required="!vm.params.pid">
+    </md-input-container>
+</section>

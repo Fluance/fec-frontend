@@ -1,0 +1,71 @@
+<div id="guarantorsContainer" layout="column" flex="auto">
+
+    <div flex="none" class="fec-page-title" layout="row" ng-if="$ctrl.showTitle">
+        <h5>
+            {{ 'guarantor.TITLE_LIST' | translate }}
+        </h5>
+    </div>
+
+    <div flex="none" layout="row" class="headGuarantors" layout-wrap>
+        <span ng-disabled="!col.canSort" ng-click="col.canSort && $ctrl.sortBy(col.name)"
+              ng-repeat="col in $ctrl.columns"
+              class="title fec-table-header" flex="{{col.flex}}" layout="row"
+              layout-align="{{col.align}}"
+              ng-class="{'sort':col.canSort}">
+            {{col.text | translate}}
+            <fec-icon ng-if="(col.name === $ctrl.selectedColumn.name) && !$ctrl.selectedColumn.sortDesc && col.canSort"
+                      type="dropup" color="fe-blue-icon"></fec-icon>
+            <fec-icon ng-if="(col.name === $ctrl.selectedColumn.name) && $ctrl.selectedColumn.sortDesc && col.canSort"
+                      type="dropdown" color="fe-blue-icon"></fec-icon>
+        </span>
+    </div>
+
+    <md-list ng-show="$ctrl.result.guarantors.length > 0 && !$ctrl.isLoading" class="striped" flex="auto">
+        <md-list-item
+            ng-repeat="guarantor in $ctrl.result.guarantors | orderBy:$ctrl.selectedColumn.name:$ctrl.selectedColumn.sortDesc"
+            layout="row" flex="auto">
+            <div flex="grow" layout="row" layout-align="start center" layout-wrap>
+                <span flex="10">{{::guarantor.guarantor_id}}</span>
+
+                <span flex="15">{{::guarantor.name}}</span>
+
+                <span flex="10">
+                    <span ng-if="guarantor.begindate">{{guarantor.begindate | formatDate: 'date'}}</span>
+                    <span> - </span>
+                    <span ng-if="guarantor.enddate">{{guarantor.enddate | formatDate: 'date'}}</span>
+                </span>
+
+                <span flex="15" layout="row" layout-align="center ">
+                    <fec-icon type="done" color="fe-value-true" size="xs" ng-if="guarantor.occasional"></fec-icon>
+                    <fec-icon type="clear" color="fe-value-false" size="xs" ng-if="!guarantor.occasional"></fec-icon>
+                </span>
+
+                <span flex="20">{{guarantor.complement}}</span>
+
+                <span flex="20" layout="column" layout-wrap>
+                    <span flex="auto">{{::guarantor.address}}</span>
+                    <span flex="auto">{{::guarantor.address2}}</span>
+                    <span flex="auto"><span class="padding-right" ng-if="guarantor.postcode">{{::guarantor.postcode}} </span>{{::guarantor.locality}}</span>
+                    <span flex="auto"><span class="padding-right" ng-if="guarantor.canton">{{::guarantor.canton}} </span>{{::guarantor.country}}</span>
+                </span>
+
+                <span flex="10" layout="row" layout-align="end center" ng-if="guarantor.hasInvoices">
+                    <span ng-click="$ctrl.openInvoices($event, guarantor)">
+                        <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom"
+                                    md-delay="25">{{'invoice.TITLE_LIST' | translate }}</md-tooltip>
+                        <fec-icon type="bill" size="md" color="fe-blue-icon"></fec-icon>
+                    </span>
+                </span>
+            </div>
+        </md-list-item>
+    </md-list>
+
+    <md-card ng-if="$ctrl.result.guarantors.length === 0 && !$ctrl.isLoading" class="warn" flex="none">
+        <md-card-content>
+            {{ 'guarantor.NO_GUARANTOR' | translate }}
+        </md-card-content>
+    </md-card>
+
+    <md-progress-linear md-mode="indeterminate" ng-if="$ctrl.isLoading"></md-progress-linear>
+
+</div>

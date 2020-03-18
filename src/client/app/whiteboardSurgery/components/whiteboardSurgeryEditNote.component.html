@@ -1,0 +1,45 @@
+<div id="whiteboard-surgery-edit-note" layout="column">
+    <div id="whiteboard-surgery-header" ng-if="!$ctrl.hideToolbar">
+        <!-- Toolbar -->
+        <fec-whiteboard-surgery-toolbar></fec-whiteboard-surgery-toolbar>
+    </div>
+    <div class="locked-resource-container" ng-if="$ctrl.isLocked[$ctrl.itemId]" layout="row">
+        <div><i class="material-icons medium locked-icon">lock</i></div>
+        <div class="locked-resource-message">{{ 'core.EDIT_LOCKED' | translate }}</div>
+    </div>
+    <div flex layout="column" id="whiteboard-surgery-edit-note-content">
+        <div>
+            <h3>{{ 'whiteboardSurgery.GENERAL_INFORMATION_EDITION' | translate }}</h3>
+        </div>
+        <div layout="row">
+            <div class="selected-date">{{ $ctrl.selectedDateToShow | formatDate : 'whiteboardSurgeryNoteEdit' }}</div>
+            <sm-date-time-picker-component format="dddd, DD MMMM YYYY" fname="selectedDate" close-on-select="false"
+                change-view-on-select="false" align-text-right="true" mode="date" ng-model="$ctrl.selectedDate" week-start-day="Monday">
+            </sm-date-time-picker-component>
+        </div>
+        <div layout="row">
+            <div flex layout="column" ng-if="!$ctrl.checkForLock">
+                <ng-quill-editor ng-model="$ctrl.surgeryboardNote"
+                    read-only="$ctrl.isLocked && $ctrl.isLocked[$ctrl.itemId]"
+                    placeholder="'core.INSERT_YOUR_TEXT_HERE' | translate">
+                    <ng-quill-toolbar>
+                        <div>
+                            <span class="ql-formats">
+                                <button class="ql-bold" ng-attr-title="{{'Bold'}}"></button>
+                                <button class="ql-underline" ng-attr-title="{{'Underline'}}"></button>
+                                <button class="ql-italic" ng-attr-title="{{'Italic'}}"></button>
+                            </span>
+                        </div>
+                    </ng-quill-toolbar>
+                </ng-quill-editor>
+            </div>
+        </div>
+        <div layout="row">
+            <div flex></div>
+            <md-button fec-mobile-click="$ctrl.cancel()" class="md-primary">{{'core.CANCEL' | translate }}</md-button>
+            <md-button ng-disabled="$ctrl.isLocked && $ctrl.isLocked[$ctrl.itemId]" fec-mobile-click="$ctrl.save()"
+                class="md-primary">
+                {{'core.SAVE' | translate }}</md-button>
+        </div>
+    </div>
+</div>

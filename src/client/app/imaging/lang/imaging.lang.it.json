@@ -1,0 +1,26 @@
+{
+    "imaging": {
+        "DATE": "il",
+        "EXAM_DATE": "Data d'esame",
+        "GUIDE_VISITS_IMAGING": "Immagini a raggi x del paziente",
+        "GUIDE_VISITS_REPORT": "Rapporti senza immagini del paziente",
+        "LINK": "Vai alle immagini",
+        "LINK_TO_ALL": "Visualizza radiologia completo del paziente",
+        "NAVIGATION_TITLE": "Imaging",
+        "NO_IMAGING": "Nessuna immagini per questo paziente",
+        "NB_OF_EXAM": "{IMAGES, plural, =0{0 esame} one{1 esame} other{# esami}}",
+        "NO_MORE_EXAMS": "Non sono disponibili altre informazioni sugli studi di questo paziente",
+        "ORDERNUMBER": "Numero esame",
+        "RECIPIENT_ADDRESS": "Indirizzo del destinatario",
+        "REPORT": "Rapporto",
+        "REPORT_BACK_BTN": "Precedente",
+        "REPORT_NEXT_BTN": "Successivamente",
+        "REPORTS_NOT_LINKED": "Rapporti senza immagini",
+        "SEND_REPORT": "Inviare rapporto",
+        "TITLE_LIST": "Imaging",
+        "WARN_LEAVE_MSG": "Si verrà reindirizzati al anteprima web",
+        "WARN_LEAVE_MSG_QUESTION": "Vuoi continuare",
+        "WARN_LEAVE_MSG_FOOTER": "Se il messaggio \"Non valide codice di accesso\" appare, è che non c'è dossier di radiologia per questo paziente",
+        "WARN_TITLE": "Informazioni"
+    }
+}

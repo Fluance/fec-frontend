@@ -1,0 +1,54 @@
+#whiteboardSurgeryCalendarDashboard {
+    .whiteboard-surgery-dashboard-filter {
+        padding: 0px 10px;
+        height: 32px;
+        margin-bottom: 10px;
+
+        .selected-date-for-picker {
+            margin-top: 8px;
+        }
+
+        sm-date-time-picker-component {
+            width: 30px !important;
+            margin-right: 15px;
+            md-input-container {
+                height: auto;
+                margin: 0px;
+                width: 30px;
+                label,
+                input {
+                  display: none;
+                }
+                button {
+                    margin: 0px;
+                }
+            }
+        }
+        md-select {
+            height: auto;
+            margin: 0px;
+            color: $fe-blue;
+        }
+    }
+    .whiteboard-surgery-dashboard-list-item {
+        border-top: 1px solid $fe-grey;
+        .whiteboard-surgery-dashboard-list-item-container {
+            padding: 5px 10px;
+            font-size: 14px;
+            fec-icon {
+                margin-right: 5px;
+            }
+            .line-height-22 {
+                line-height: 22px;
+            }
+            .patient-name, .appointment-title {
+                color: $fe-blue;
+            }
+        }
+    }
+
+    .whiteboardSurgeryIcon {
+        margin-top: 4px;
+        cursor: pointer;
+    }
+}

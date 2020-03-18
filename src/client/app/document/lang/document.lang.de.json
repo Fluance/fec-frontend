@@ -1,0 +1,21 @@
+{
+    "document": {
+        "ADMISSION_DATE": "Eintrittsdatum",
+        "ALL_COMPANIES": "Alle Kliniken",
+        "BUTTON_GENERATE_DOCUMENT": "Dokument generieren",
+        "CLINIC": "Klinik",
+        "HEADER_CLINIC": "Klinik",
+        "HEADER_DATE": "Daten",
+        "HEADER_FILENAME": "Dateiname",
+        "NB_OF_DOCUMENTS": "{DOCUMENTS, plural, =0{0 Dokumente} one{1 Dokument} other{# Dokumente}}",
+        "NO_DOCUMENTS": "Keine Dokumente für diesen Patienten",
+        "NAVIGATION_TITLE": "Dokumente",
+        "TEMPLATE": "Vorlage",
+        "TEMPLATE_REQUIRED": "Eine Vorlage ist erforderlich",
+        "TITLE_GENERATE_DOCUMENT": "Dokument generieren",
+        "TITLE_LIST": "Dokumente",
+        "TOOLTIP_VIEW_DOCUMENT": "Dokument anzeigen",
+        "VISIT": "Fall",
+        "VISIT_REQUIRED": "Ein Fall ist erforderlich"
+    }
+}

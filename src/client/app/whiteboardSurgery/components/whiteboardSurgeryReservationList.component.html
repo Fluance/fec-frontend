@@ -1,0 +1,15 @@
+<div class="whiteboard-surgery-timeline-item whiteboard-surgery-timeline-item-reservation"
+    ng-style="{height: reservation.duration + 'px', top: reservation.time + 'px'}"
+    ng-repeat="reservation in $ctrl.reservations" layout="column"
+    fec-mobile-click="$ctrl.editReservation(reservation)">
+    <div layout="column" class="whiteboard-surgery-timeline-item-info">
+        <div layout="column" class="whiteboard-surgery-timeline-item-info-title">
+            <div class="whiteboard-surgery-timeline-item-time">
+                {{ reservation.beginDate | formatDate : 'time' }}{{ '-' | translate }}{{ reservation.endDate | formatDate : 'time' }}
+            </div>
+            <div>
+                <div>{{ reservation.description }}</div>
+            </div>
+        </div>
+    </div>
+</div>

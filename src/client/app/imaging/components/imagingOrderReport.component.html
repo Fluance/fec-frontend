@@ -1,0 +1,14 @@
+<!-- report without  history -->
+<div ng-if="!$ctrl.hasHistory">
+    <p class="report">{{$ctrl.report}}</p>
+</div>
+<!-- report with history -->
+<div ng-if="$ctrl.hasHistory">
+    <h5 >{{'imaging.REPORT' | translate}} {{1}}</h5>
+    <p class="report">{{$ctrl.report}}</p>
+    <div ng-repeat="report in $ctrl.history">
+        <md-divider></md-divider>
+        <h5>{{'imaging.REPORT' | translate}} {{$index+2}}</h5>
+        <p class="report">{{$ctrl.report}}</p>
+    </div>
+</div>

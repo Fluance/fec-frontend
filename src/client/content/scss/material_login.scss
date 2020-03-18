@@ -1,0 +1,49 @@
+/**
+ * All CSS related to our service provider page
+ */
+
+html,
+body {
+    background-color: $fe-grey-bg;
+}
+
+.fec-service-discovery-view, .fec-error-view {
+    .fec-service-discovery-panel, .fec-error-panel {
+        md-card {
+            margin: 0;
+            &.error.no-background {
+                background-image: initial;
+            }
+            md-card-actions > * {
+                margin: 0 10px !important;
+                text-transform: none !important;
+            }
+            md-card-actions > :first-child {
+                margin-left: 0 !important;
+            }
+            md-card-actions > :last-child {
+                margin-right: 0 !important;
+            }
+        }
+    }
+    md-chip {
+        padding-left: 0px;
+    }
+}
+
+// ------------------------------------------------------------------------------------- Error view
+
+$dialog-width: 500px;
+
+.fec-error-view {
+    md-card.error,
+    md-card.warn {
+        width: $dialog-width;
+
+        @media #{$small-and-down} {
+            margin: 8px;
+            max-width: $dialog-width;
+            width:100%;
+        }
+    }
+}

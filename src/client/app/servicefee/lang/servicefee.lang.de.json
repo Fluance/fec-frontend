@@ -1,0 +1,25 @@
+{
+    "servicefee": {
+        "ACTING_DEPT_DESCRIPTION": "Behandelnde Abteilung",
+        "CODE": "Leistungscode",
+        "DATE": "Datum der Leistung",
+        "DESC_LANGUAGE": "Sprache",
+        "DEPARTMENT": "Abteilung",
+        "DETAILS": "Leistungs Details",
+        "GUIDE_BENEFITS_RESULT": "Durchgeführte Leistungen für den Patienten",
+        "LEAD_PHYSICIAN": "Leitender Arzt",
+        "NB_OF_BENEFITS": "{BENEFIT, plural, =0{0 Leistungen} one{1 Leistung} other{# Leistungen}}",
+        "NO_BENEFIT": "Keine medizinische Leistung",
+        "NOTE": "Bemerkung",
+        "OPERATING_PHYSICIAN": "Operierender Arzt",
+        "PAID_PHYSICIAN": "Bezahlter Arzt",
+        "PHYSICIAN_ID": "Id",
+        "PHYSICIANS": "Ärzte",
+        "QUANTITY": "Anzahl",
+        "SIDE": "Seite",
+        "TIME": "Zeit",
+        "TITLE": "Medizinische Leistung",
+        "TITLE_LIST": "Leistungen",
+        "TITLE_DETAIL": "Leistungsdetails"
+    }
+}

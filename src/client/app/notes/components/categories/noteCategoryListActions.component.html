@@ -1,0 +1,30 @@
+<span ng-if="$ctrl.editionEnabled()">
+    <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'notes.NEW_NOTE' | translate}}</md-tooltip>
+    <fec-icon type="noteAdd" class="icons" color="fe-blue-icon"
+              ui-sref="newNote({pid: $ctrl.pid, vnb: $ctrl.vnb, categoryId: $ctrl.categoryId })"
+              size="{{$ctrl.iconSize}}"
+              can-resize="true"></fec-icon>
+</span>
+<span ng-if="$ctrl.editionEnabled() && $ctrl.hasNotesToRestore">
+    <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'notes.RESTORE_NOTES' | translate}}</md-tooltip>
+    <fec-icon type="restore" class="icons" ui-sref="restorePatientNote({pid: $ctrl.pid})" color="fe-blue-icon"
+              size="{{$ctrl.iconSize}}" can-resize="true"
+              ng-if="$ctrl.pid"></fec-icon>
+</span>
+<span ng-if="$ctrl.editionEnabled() && $ctrl.totalRecords >= 1">
+    <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'notes.RESTORE_NOTES' | translate}}</md-tooltip>
+    <fec-icon type="restore" class="icons" ui-sref="restoreVisitNote({vnb: $ctrl.vnb})" color="fe-blue-icon"
+              size="{{$ctrl.iconSize}}" can-resize="true"
+              ng-if="$ctrl.vnb"></fec-icon>
+</span>
+<span ng-if="$ctrl.isAllNotes() && $ctrl.totalRecords >= 1">
+    <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'notes.READ_ALL' | translate}}</md-tooltip>
+
+    <fec-icon type="drafts" class="icons" color="fe-blue-icon" size="{{$ctrl.iconSize}}" can-resize="true"
+              fec-mobile-click="$ctrl.markReadAll()"></fec-icon>
+</span>
+<span ng-if="$ctrl.isAllNotes() && $ctrl.totalRecords >= 1">
+    <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'notes.UNREAD_ALL' | translate}}</md-tooltip>
+    <fec-icon type="markunread" color="fe-blue-icon" size="{{$ctrl.iconSize}}" can-resize="true" class="icons"
+              fec-mobile-click="$ctrl.markUnreadAll()"></fec-icon>
+</span>

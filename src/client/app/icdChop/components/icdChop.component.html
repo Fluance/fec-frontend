@@ -1,0 +1,78 @@
+<div id="icdchopContainer" layout="column">
+    <!-- INTERVENTIONS -->
+    <div class="fec-page-title" flex="initial">
+        <h5>{{ 'visit.INTERVENTIONS' | translate : {"DATE": !!$ctrl.interventions ? $ctrl.interventions.DATE : '' } }}</h5>
+    </div>
+    <div layout="column" flex="auto" id="btn-visits-diagnosis">
+        <md-card class="warn" flex="auto" ng-show="!ctrl.interventionsLoading && !$ctrl.interventions">
+            <md-card-content>
+                {{'visit.NO_INTERVENTIONS' | translate }}
+            </md-card-content>
+        </md-card>
+        <fec-medical-interventions flex="auto" result="$ctrl.interventions"
+                                   ng-show="!$ctrl.interventionsLoading"></fec-medical-interventions>
+        <md-progress-linear ng-if="$ctrl.interventionsLoading" md-mode="indeterminate"></md-progress-linear>
+    </div>
+
+    <!-- DIAGNOSES -->
+    <div class="fec-page-title" flex="initial">
+        <h5>{{ 'icdChop.ICD' | translate }}</h5>
+    </div>
+    <!-- IF THERE IS NO DIAGNOSIS -->
+    <div layout="column" flex="auto" class="treatments-container">
+        <md-card flex="auto" class="warn"
+                 ng-show="!$ctrl.diagnosesDataSource.isBuffering && $ctrl.diagnosesDataSource.isEmpty()">
+            <md-card-content>
+                {{'icdChop.NO_ICD' | translate }}
+            </md-card-content>
+        </md-card>
+        <!-- CONTENT OF DIAGNOSES -->
+        <div flex="auto" layout="column" layout-wrap="start " ng-if="!$ctrl.diagnosesDataSource.isEmpty()">
+            <span flex="initial" layout="row" layout-align="end">{{$ctrl.prettifyIndex($ctrl.diagnosesDataSource.topIndex)}}/{{$ctrl.diagnosesDataSource.numItems}}</span>
+            <md-virtual-repeat-container flex="none" md-top-index="$ctrl.diagnosesDataSource.topIndex"
+                                         md-auto-shrink-min="ctrl.AUTO_SHRINK_MIN" md-auto-shrink="true">
+                <md-list>
+                    <md-list-item
+                        md-virtual-repeat="diagnosis in $ctrl.diagnosesDataSource | limitTo:$ctrl.diagnosesDataSource.numItems"
+                        md-on-demand>
+                        <fec-icd result="diagnosis" preferred-language="$ctrl.preferredLanguage"></fec-icd>
+                        <md-divider></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-virtual-repeat-container>
+        </div>
+
+        <md-progress-linear ng-if="$ctrl.diagnosesDataSource.isBuffering" md-mode="indeterminate"></md-progress-linear>
+    </div>
+    <div layout-padding></div>
+    <!-- TREATMENTS -->
+    <div class="fec-page-title" flex="initial">
+        <h5>{{ 'icdChop.CHOP' | translate }}</h5>
+    </div>
+    <!-- IF THERE IS NO TREATMENT -->
+    <div layout="column" flex="auto" class="treatments-container">
+        <md-card flex="auto" class="warn"
+                 ng-show="!$ctrl.treatmentsDataSource.isBuffering && $ctrl.treatmentsDataSource.isEmpty()">
+            <md-card-content>
+                {{'icdChop.NO_CHOP' | translate }}
+            </md-card-content>
+        </md-card>
+        <!-- CONTENT OF TREATMENTS -->
+        <div flex="auto" layout="column" layout-wrap="start " ng-if="!$ctrl.treatmentsDataSource.isEmpty()">
+            <span flex="initial" layout="row" layout-align="end">{{$ctrl.prettifyIndex($ctrl.treatmentsDataSource.topIndex)}}/{{$ctrl.treatmentsDataSource.numItems}}</span>
+            <md-virtual-repeat-container flex="none" md-auto-shrink-min="ctrl.AUTO_SHRINK_MIN" md-auto-shrink="true"
+                                         md-top-index="$ctrl.treatmentsDataSource.topIndex">
+                <md-list>
+                    <md-list-item
+                        md-virtual-repeat="treatment in $ctrl.treatmentsDataSource | limitTo:$ctrl.treatmentsDataSource.numItems"
+                        md-on-demand>
+                        <fec-chop result="treatment" preferred-language="$ctrl.preferredLanguage"></fec-chop>
+                        <md-divider></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-virtual-repeat-container>
+        </div>
+
+        <md-progress-linear ng-if="$ctrl.treatmentsDataSource.isBuffering" md-mode="indeterminate"></md-progress-linear>
+    </div>
+</div>

@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html ng-strict-di>
+
+
+<head>
+    <style>
+        /* This helps the ng-show/ng-hide animations start at the right place. */
+        /* Since Angular has this but needs to load, this gives us the class early. */
+
+        .ng-hide {
+            display: none!important;
+        }
+    </style>
+
+    <title ng-bind="title">eHealth Cockpit</title>
+    <meta charset="utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+    <!-- Apple metadata -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-title" content="eHealth Cockpit">
+    <link rel="icon" href="/content/images/fluance-favicon.png">
+    <link rel="apple-touch-icon" href="/content/images/icon-60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/content/images/icon-76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/content/images/icon-60@2x.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/content/images/icon-76@2x.png">
+    <link rel="apple-touch-icon" sizes="160x160" href="/content/images/icon-60@3x.png">
+    <link rel="apple-touch-startup-image" href="/content/images/startup@2x.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.5.95/css/materialdesignicons.min.css">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" /> -->
+    <!-- Apple metadata -->
+    <!--<meta name="apple-mobile-web-app-capable" content="no"> -->
+    <!--<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">-->
+    <!--<meta name="format-detection" content="telephone=no">-->
+    <!-- Microsoft metadata -->
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- build:css_libs content/lib.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
+    <link rel="stylesheet" href="/bower_components/bower-angular-dashboard/angular-dashboard-fluance.css" />
+    <link rel="stylesheet" href="/bower_components/ngWig/dist/css/ng-wig.css" />
+    <link rel="stylesheet" href="/bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/bower_components/ng-sortable/dist/ng-sortable.css" />
+    <link rel="stylesheet" href="/bower_components/pikaday/css/pikaday.css" />
+    <link rel="stylesheet" href="/bower_components/handsontable/dist/handsontable.css" />
+    <link rel="stylesheet" href="/bower_components/angular-data-table/release/dataTable.css" />
+    <link rel="stylesheet" href="/bower_components/md-pickers/dist/mdPickers.css" />
+    <link rel="stylesheet" href="/bower_components/smDateTimeRangePicker/src/picker.css" />
+    <!-- endbower -->
+    <link rel="stylesheet" href="/bower_components/angular-data-table/release/material.css" />
+    <!-- endbuild -->
+    <!-- build:css content/app.css -->
+    <link href="/src/client/content/css/styles.css" rel="stylesheet" />
+    <!-- endbuild -->
+</head>
+
+<body>
+
+    <div id="picker-container"></div>
+    <fec-layout layout="row"></fec-layout>
+
+    <!-- build:js_libs lib.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-cache/dist/angular-cache.js"></script>
+    <script src="/bower_components/angular-fqueue/angular-fqueue.js"></script>
+    <script src="/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="/bower_components/angular-messages/angular-messages.js"></script>
+    <script src="/bower_components/angular-material/angular-material.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+    <script src="/bower_components/angular-moment/angular-moment.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower_components/angular-scroll/angular-scroll.js"></script>
+    <script src="/bower_components/angular-translate/angular-translate.js"></script>
+    <script src="/bower_components/messageformat/messageformat.js"></script>
+    <script src="/bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
+    <script src="/bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+    <script src="/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/extras.angular.plus/ngplus-overlay.js"></script>
+    <script src="/bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="/bower_components/js-data/dist/js-data.js"></script>
+    <script src="/bower_components/js-data-angular/dist/js-data-angular.js"></script>
+    <script src="/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="/bower_components/toastr/toastr.js"></script>
+    <script src="/bower_components/lodash/lodash.js"></script>
+    <script src="/bower_components/angular-mocks/angular-mocks.js"></script>
+    <script src="/bower_components/Sortable/Sortable.js"></script>
+    <script src="/bower_components/angular-legacy-sortable/angular-legacy-sortable.js"></script>
+    <script src="/bower_components/bower-angular-dashboard/angular-dashboard-fluance.js"></script>
+    <script src="/bower_components/angular-scrollto/angular-scrollto.js"></script>
+    <script src="/bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="/bower_components/highcharts/highcharts.js"></script>
+    <script src="/bower_components/highcharts/highcharts-more.js"></script>
+    <script src="/bower_components/highcharts/modules/exporting.js"></script>
+    <script src="/bower_components/hammerjs/hammer.js"></script>
+    <script src="/bower_components/AngularHammer/angular.hammer.js"></script>
+    <script src="/bower_components/moment-timezone/builds/moment-timezone-with-data-2012-2022.js"></script>
+    <script src="/bower_components/ngWig/dist/ng-wig.js"></script>
+    <script src="/bower_components/angularjs-datetime-picker/angularjs-datetime-picker.js"></script>
+    <script src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="/bower_components/iframe-resizer/js/iframeResizer.contentWindow.js"></script>
+    <script src="/bower_components/angular-bind-html-compile/angular-bind-html-compile.js"></script>
+    <script src="/bower_components/angular-utf8-base64/angular-utf8-base64.js"></script>
+    <script src="/bower_components/angular-img-http-src/index.js"></script>
+    <script src="/bower_components/scrollMonitor/scrollMonitor.js"></script>
+    <script src="/bower_components/ng-sortable/dist/ng-sortable.js"></script>
+    <script src="/bower_components/chart.js/dist/Chart.js"></script>
+    <script src="/bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="/bower_components/angular-ui-sortable/sortable.js"></script>
+    <script src="/bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <script src="/bower_components/numbro/numbro.js"></script>
+    <script src="/bower_components/pikaday/pikaday.js"></script>
+    <script src="/bower_components/handsontable/dist/handsontable.js"></script>
+    <script src="/bower_components/ngHandsontable/dist/ngHandsontable.js"></script>
+    <script src="/bower_components/chartjs-plugin-zoom/chartjs-plugin-zoom.js"></script>
+    <script src="/bower_components/unorm/lib/unorm.js"></script>
+    <script src="/bower_components/oclazyload/dist/ocLazyLoad.js"></script>
+    <script src="/bower_components/angular-touch/angular-touch.js"></script>
+    <script src="/bower_components/angular-data-table/release/dataTable.js"></script>
+    <script src="/bower_components/md-pickers/dist/mdPickers.js"></script>
+    <script src="/bower_components/smDateTimeRangePicker/src/picker.js"></script>
+    <!-- endbower -->
+    <script src="/bower_components/moment/locale/fr.js"></script>
+    <script src="/bower_components/moment/locale/de.js"></script>
+    <script src="/bower_components/moment/locale/it.js"></script>
+    <!-- endbuild -->
+    <script src="config.js"></script>
+    <!--script src="/bower_components/angular-ui-router/release/stateEvents.js"></script-->
+    <!-- build:js app.js-->
+
+    <script src="/src/client/app/angular-legacy-polyfill.js"></script>
+    <script src="/src/client/app/app.module.js"></script>
+    <script src="/src/client/app/app.main.js"></script>
+
+    <!-- inject:js -->
+
+    <script src="/src/client/app/core/polyfill.js"></script>
+
+    <script src="/src/client/app/accessLog/accessLog.module.js"></script>
+
+    <script src="/src/client/app/accessLog/accessLog.route.js"></script>
+
+    <script src="/src/client/app/accessLog/accessLog.controller.js"></script>
+
+    <script src="/src/client/app/accessLog/data/accessLogs.dataservice.js"></script>
+
+    <script src="/src/client/app/accessLog/components/accessLog.component.js"></script>
+
+    <script src="/src/client/app/accessLog/components/accessLogDetails.component.js"></script>
+
+    <script src="/src/client/app/accessLog/components/accessLogDetailsItem.component.js"></script>
+
+    <script src="/src/client/app/accessLog/components/accessLogLink.component.js"></script>
+
+    <script src="/src/client/app/accessLog/components/navButtonAccessLog.component.js"></script>
+
+    <script src="/src/client/app/accessLog/components/fecPatientNavigationButtonAccessLog.component.js"></script>
+
+    <script src="/src/client/app/admin/admin.module.js"></script>
+
+    <script src="/src/client/app/admin/admin.route.js"></script>
+
+    <script src="/src/client/app/admin/admin.controller.js"></script>
+
+    <script src="/src/client/app/admin/logs.controller.js"></script>
+
+    <script src="/src/client/app/admin/data/dataproviders.dataservice.js"></script>
+
+    <script src="/src/client/app/admin/data/domain.dataservice.js"></script>
+
+    <script src="/src/client/app/admin/users/users.controller.js"></script>
+
+    <script src="/src/client/app/admin/users/usersProfile.controller.js"></script>
+
+    <script src="/src/client/app/admin/configuration.controller.js"></script>
+
+    <script src="/src/client/app/admin/users/profile.form.controller.js"></script>
+
+    <script src="/src/client/app/admin/users/components/profile.form.companies.component.js"></script>
+
+    <script src="/src/client/app/admin/users/components/profile.form.unit.component.js"></script>
+
+    <script src="/src/client/app/admin/users/components/profile.form.service.component.js"></script>
+
+    <script src="/src/client/app/admin/users/components/profile.form.staffid.component.js"></script>
+
+    <script src="/src/client/app/appointment/appointment.module.js"></script>
+
+    <script src="/src/client/app/appointment/appointment.route.js"></script>
+
+    <script src="/src/client/app/appointment/appointmentIdSelectionDialog.service.js"></script>
+
+    <script src="/src/client/app/appointment/appointment.controller.js"></script>
+
+    <script src="/src/client/app/appointment/appointmentList.controller.js"></script>
+
+    <script src="/src/client/app/appointment/data/appointments.dataservice.js"></script>
+
+    <script src="/src/client/app/appointment/components/appointment-details.component.js"></script>
+
+    <script src="/src/client/app/appointment/components/fecPatientNavigationButtonAppointment.component.js"></script>
+
+    <script src="/src/client/app/appointment/components/fluanceAppointment.component.js"></script>
+
+    <script src="/src/client/app/appointment/components/navButtonAppointmentList.component.js"></script>
+
+    <script src="/src/client/app/blocks/angular-img-http-href/httpHref.directive.js"></script>
+
+    <script src="/src/client/app/blocks/asynchronous/asynchronous.module.js"></script>
+
+    <script src="/src/client/app/blocks/asynchronous/asyncPipelineBuilder.service.js"></script>
+
+    <script src="/src/client/app/blocks/asynchronous/asyncPipelineFlow.service.js"></script>
+
+    <script src="/src/client/app/blocks/authentication/authentication.module.js"></script>
+
+    <script src="/src/client/app/blocks/authentication/authorization.interceptor.js"></script>
+
+    <script src="/src/client/app/blocks/authentication/authentication.service.js"></script>
+
+    <script src="/src/client/app/blocks/authentication/data/authentication.dataservice.js"></script>
+
+    <script src="/src/client/app/blocks/authentication/data/jwt.dataservice.js"></script>
+
+    <script src="/src/client/app/blocks/contentItem/contentItem.module.js"></script>
+
+    <script src="/src/client/app/blocks/contentItem/contentItem.component.js"></script>
+
+    <script src="/src/client/app/blocks/contentItem/contentItemDetail.component.js"></script>
+
+    <script src="/src/client/app/blocks/contentItem/contentItemInfo.component.js"></script>
+
+    <script src="/src/client/app/blocks/contentItem/contentItemNoTitle.component.js"></script>
+
+    <script src="/src/client/app/blocks/contentItem/contentItemInfoOneLine.component.js"></script>
+
+    <script src="/src/client/app/blocks/tutorial/tutorialGuide.module.js"></script>
+
+    <script src="/src/client/app/blocks/tutorial/tutorialservice.js"></script>
+
+    <script src="/src/client/app/blocks/tutorial/tutorialGuide.directive.js"></script>
+
+    <script src="/src/client/app/blocks/booleanFormatter/booleanFormatter.module.js"></script>
+
+    <script src="/src/client/app/blocks/booleanFormatter/booleanFormatter.js"></script>
+
+    <script src="/src/client/app/blocks/kebab/kebab.module.js"></script>
+
+    <script src="/src/client/app/blocks/kebab/kebab.js"></script>
+
+    <script src="/src/client/app/blocks/fecNumber/fecNumber.module.js"></script>
+
+    <script src="/src/client/app/blocks/fecNumber/fecNumber.js"></script>
+
+    <script src="/src/client/app/blocks/avoidNullText/avoidNullText.module.js"></script>
+
+    <script src="/src/client/app/blocks/avoidNullText/avoidNullText.js"></script>
+
+    <script src="/src/client/app/blocks/currencyFormatter/currencyFormatter.module.js"></script>
+
+    <script src="/src/client/app/blocks/currencyFormatter/currencyFormatter.js"></script>
+
+    <script src="/src/client/app/blocks/dataValidator/dataValidator.module.js"></script>
+
+    <script src="/src/client/app/blocks/dataValidator/dataValidator.js"></script>
+
+    <script src="/src/client/app/blocks/dateFormatter/dateFormatter.module.js"></script>
+
+    <script src="/src/client/app/blocks/dateFormatter/dateFormatter.js"></script>
+
+    <script src="/src/client/app/blocks/dataPaging/dataPaging.module.js"></script>
+
+    <script src="/src/client/app/blocks/dataPaging/dataPager.js"></script>
+
+    <script src="/src/client/app/blocks/dataPaging/components/dataPagingSort.component.js"></script>
+
+    <script src="/src/client/app/blocks/dateParser/dateParser.module.js"></script>
+
+    <script src="/src/client/app/blocks/dateParser/dateParser.js"></script>
+
+    <script src="/src/client/app/blocks/datePicker/datePicker.module.js"></script>
+
+    <script src="/src/client/app/blocks/datePicker/datePicker.js"></script>
+
+    <script src="/src/client/app/blocks/emptyOption/emptyOption.module.js"></script>
+
+    <script src="/src/client/app/blocks/emptyOption/emptyOption.js"></script>
+
+    <script src="/src/client/app/blocks/exception/exception.module.js"></script>
+
+    <script src="/src/client/app/blocks/exception/exception-handler.provider.js"></script>
+
+    <script src="/src/client/app/blocks/expander/expander.module.js"></script>
+
+    <script src="/src/client/app/blocks/expander/expander.component.js"></script>
+
+    <script src="/src/client/app/blocks/expander/expanderAccordion.component.js"></script>
+
+    <script src="/src/client/app/blocks/fecChatBot/fecChatBot.module.js"></script>
+
+    <script src="/src/client/app/blocks/fecChatBot/fecChatBotButton.component.js"></script>
+
+    <script src="/src/client/app/blocks/fecChatBot/fecChatBotContainer.component.js"></script>
+
+    <script src="/src/client/app/blocks/fecChatBot/fecChatBot.service.js"></script>
+
+    <script src="/src/client/app/blocks/fecIcon/fecIcon.module.js"></script>
+
+    <script src="/src/client/app/blocks/fecIcon/fecIcon.directive.js"></script>
+
+    <script src="/src/client/app/blocks/fecIconButton/fecIconButton.module.js"></script>
+
+    <script src="/src/client/app/blocks/fecIconButton/fecIconButton.component.js"></script>
+
+    <script src="/src/client/app/blocks/fecSelectFilter/fecSelectFilter.module.js"></script>
+
+    <script src="/src/client/app/blocks/fecSelectFilter/fecSelectFilter.component.js"></script>
+
+    <script src="/src/client/app/blocks/fecMeteoData/fecMeteoData.module.js"></script>
+
+    <script src="/src/client/app/blocks/fecMeteoData/fecMeteoData.component.js"></script>
+
+    <script src="/src/client/app/blocks/fecMeteoData/fecMeteoDataDialog.service.js"></script>
+
+    <script src="/src/client/app/blocks/fecMeteoData/fecMeteoData.service.js"></script>
+
+    <script src="/src/client/app/blocks/fecMeteoDataList/fecMeteoDataList.module.js"></script>
+
+    <script src="/src/client/app/blocks/fecMeteoDataList/fecMeteoDataList.component.js"></script>
+
+    <script src="/src/client/app/blocks/fecMeteoIcon/fecMeteoIcon.module.js"></script>
+
+    <script src="/src/client/app/blocks/fecMeteoIcon/fecMeteoIcon.component.js"></script>
+
+    <script src="/src/client/app/blocks/fecNavigationContext/fecNavigationContext.module.js"></script>
+
+    <script src="/src/client/app/blocks/fecNavigationContext/fecNavigationContext.service.js"></script>
+
+    <script src="/src/client/app/blocks/fecProductivity/productivity.module.js"></script>
+
+    <script src="/src/client/app/blocks/fecProductivity/data/productivity.dataservice.js"></script>
+
+    <script src="/src/client/app/blocks/fecProductivity/productivity.service.js"></script>
+
+    <script src="/src/client/app/blocks/fecProductivity/components/fecProductivityVcard.component.js"></script>
+
+    <script src="/src/client/app/blocks/fecProductivity/components/fecProductivityWidget.component.js"></script>
+
+    <script src="/src/client/app/blocks/fecProductivity/containers/fecProductivityIcalendar.component.js"></script>
+
+    <script src="/src/client/app/blocks/fecProductivity/containers/fecProductivityPatientVcard.component.js"></script>
+
+    <script src="/src/client/app/blocks/fecLastState/fecLastState.module.js"></script>
+
+    <script src="/src/client/app/blocks/fecLastState/fecLastState.component.js"></script>
+
+    <script src="/src/client/app/blocks/fecStateIconButton/fecStateIconButton.module.js"></script>
+
+    <script src="/src/client/app/blocks/fecStateIconButton/fecStateIconButton.component.js"></script>
+
+    <script src="/src/client/app/blocks/highlightTextFilter/highlightTextFilter.module.js"></script>
+
+    <script src="/src/client/app/blocks/highlightTextFilter/highlightTextFilter.js"></script>
+
+    <script src="/src/client/app/blocks/input/fecInput.module.js"></script>
+
+    <script src="/src/client/app/blocks/input/fecInput.directive.js"></script>
+
+    <script src="/src/client/app/blocks/firstletter/firstletter.module.js"></script>
+
+    <script src="/src/client/app/blocks/firstletter/firstletter.js"></script>
+
+    <script src="/src/client/app/blocks/firstletter/firstletterUpperCase.js"></script>
+
+    <script src="/src/client/app/blocks/fluance_components/introJsSvg.js"></script>
+
+    <script src="/src/client/app/blocks/i18n/i18n.module.js"></script>
+
+    <script src="/src/client/app/blocks/logger/logger.module.js"></script>
+
+    <script src="/src/client/app/blocks/logger/logger.js"></script>
+
+    <script src="/src/client/app/blocks/materialSelect/materialSelect.module.js"></script>
+
+    <script src="/src/client/app/blocks/materialSelect/materialSelect.directive.js"></script>
+
+    <script src="/src/client/app/blocks/mobileClick/mobileClick.module.js"></script>
+
+    <script src="/src/client/app/blocks/mobileClick/mobileClick.directive.js"></script>
+
+    <script src="/src/client/app/blocks/momentFormatter/momentFormatter.module.js"></script>
+
+    <script src="/src/client/app/blocks/momentFormatter/momentFormatter.js"></script>
+
+    <script src="/src/client/app/blocks/multisession/multisession.module.js"></script>
+
+    <script src="/src/client/app/blocks/multisession/multisession.service.js"></script>
+
+    <script src="/src/client/app/blocks/multisession/logoutDialog.service.js"></script>
+
+    <script src="/src/client/app/blocks/multisession/components/logoutButton.component.js"></script>
+
+    <script src="/src/client/app/blocks/multisession/components/logoutDialog.component.js"></script>
+
+    <script src="/src/client/app/blocks/multisession/data/multisession.dataservice.js"></script>
+
+    <script src="/src/client/app/blocks/navBar/navBar.module.js"></script>
+
+    <script src="/src/client/app/blocks/navBar/navBar.component.js"></script>
+
+    <script src="/src/client/app/blocks/navButton/navButton.module.js"></script>
+
+    <script src="/src/client/app/blocks/navButton/navButton.component.js"></script>
+
+    <script src="/src/client/app/blocks/noContentPlaceholder/noContentPlaceholder.module.js"></script>
+
+    <script src="/src/client/app/blocks/noContentPlaceholder/noContentPlaceholder.js"></script>
+
+    <script src="/src/client/app/blocks/nurseSchedulerDateSearch/nurseSchedulerDateSearch.module.js"></script>
+
+    <script src="/src/client/app/blocks/nurseSchedulerDateSearch/nurseSchedulerDateSearch.js"></script>
+
+    <script src="/src/client/app/blocks/nurseSchedulerPatientSearch/nurseSchedulerPatientSearch.module.js"></script>
+
+    <script src="/src/client/app/blocks/nurseSchedulerPatientSearch/nurseSchedulerPatientSearch.js"></script>
+
+    <script src="/src/client/app/blocks/orderByObjectPropertyFilter/orderByObjectPropertyFilter.module.js"></script>
+
+    <script src="/src/client/app/blocks/orderByObjectPropertyFilter/orderByObjectPropertyFilter.js"></script>
+
+    <script src="/src/client/app/blocks/patientView/patientView.module.js"></script>
+
+    <script src="/src/client/app/blocks/patientView/patientView.service.js"></script>
+
+    <script src="/src/client/app/blocks/patientView/patientViewNavigation.directive.js"></script>
+
+    <script src="/src/client/app/blocks/pdfViewer/pdfViewer.module.js"></script>
+
+    <script src="/src/client/app/blocks/pdfViewer/components/pdfViewer.component.js"></script>
+
+    <script src="/src/client/app/blocks/pdfViewer/components/pdfViewerDialog.service.js"></script>
+
+    <script src="/src/client/app/blocks/router/router.module.js"></script>
+
+    <script src="/src/client/app/blocks/router/router-redirect.js"></script>
+
+    <script src="/src/client/app/blocks/router/router.service.js"></script>
+
+    <script src="/src/client/app/blocks/selectionReveal/selectionReveal.module.js"></script>
+
+    <script src="/src/client/app/blocks/selectionReveal/components/selectionReveal.component.js"></script>
+
+    <script src="/src/client/app/blocks/virtualRepeatSyncScope/virtualRepeatSyncScope.module.js"></script>
+
+    <script src="/src/client/app/blocks/virtualRepeatSyncScope/virtualRepeatSyncScope.directive.js"></script>
+
+    <script src="/src/client/app/blocks/httpInterceptors/externalAccessFilter.js"></script>
+
+    <script src="/src/client/app/blocks/httpInterceptors/serialCallInterceptor.js"></script>
+
+    <script src="/src/client/app/blocks/httpInterceptors/timeoutInterceptor.js"></script>
+
+    <script src="/src/client/app/blocks/stringReplace/stringReplace.module.js"></script>
+
+    <script src="/src/client/app/blocks/stringReplace/stringReplace.js"></script>
+
+    <script src="/src/client/app/blocks/tabOpener/tabOpener.module.js"></script>
+
+    <script src="/src/client/app/blocks/tabOpener/tabOpener.service.js"></script>
+
+    <script src="/src/client/app/blocks/uiSref/uiSref.module.js"></script>
+
+    <script src="/src/client/app/blocks/uiSref/uiSref.directive.js"></script>
+
+    <script src="/src/client/app/blocks/waitForRendering/waitForRendering.module.js"></script>
+
+    <script src="/src/client/app/blocks/waitForRendering/waitForRendering.js"></script>
+
+    <script src="/src/client/app/blocks/angular-viewport-watch/angular-viewport-watch.js"></script>
+
+    <script src="/src/client/app/blocks/userAgent/userAgent.module.js"></script>
+
+    <script src="/src/client/app/blocks/userAgent/userAgent.service.js"></script>
+
+    <script src="/src/client/app/blocks/userAgent/userAgent.directive.js"></script>
+
+    <script src="/src/client/app/blocks/userAgent/components/fecIconBrowser.component.js"></script>
+
+    <script src="/src/client/app/blocks/userAgent/components/fecIconDeviceType.component.js"></script>
+
+    <script src="/src/client/app/blocks/userAgent/components/fecIconOs.component.js"></script>
+
+    <script src="/src/client/app/blocks/userAgent/components/fecUserAgentBar.component.js"></script>
+
+    <script src="/src/client/app/blocks/virtualDatatable/virtual-datatable.module.js"></script>
+
+    <script src="/src/client/app/blocks/virtualDatatable/components/virtual-datatable-body.component.js"></script>
+
+    <script src="/src/client/app/blocks/virtualDatatable/components/virtual-datatable.component.js"></script>
+
+    <script src="/src/client/app/blocks/virtualDatatable/components/virtual-datatable-filter.component.js"></script>
+
+    <script src="/src/client/app/blocks/virtualDatatable/components/virtual-datatable-footer.component.js"></script>
+
+    <script src="/src/client/app/blocks/virtualDatatable/components/virtual-datatable-header.component.js"></script>
+
+    <script src="/src/client/app/blocks/virtualDatatable/components/virtual-datatable-row-item.component.js"></script>
+
+    <script src="/src/client/app/core/core.module.js"></script>
+
+    <script src="/src/client/app/core/config.module.js"></script>
+
+    <script src="/src/client/app/core/config.provider.js"></script>
+
+    <script src="/src/client/app/core/config.js"></script>
+
+    <script src="/src/client/app/core/constants.js"></script>
+
+    <script src="/src/client/app/core/event.js"></script>
+
+    <script src="/src/client/app/core/helpers.js"></script>
+
+    <script src="/src/client/app/core/user.js"></script>
+
+    <script src="/src/client/app/core/session.service.js"></script>
+
+    <script src="/src/client/app/core/data/meteo.dataservice.js"></script>
+
+    <script src="/src/client/app/core/data/companies.dataservice.js"></script>
+
+    <script src="/src/client/app/core/data/servicefees.dataservice.js"></script>
+
+    <script src="/src/client/app/core/data/session.dataservice.js"></script>
+
+    <script src="/src/client/app/core/data/interventions.dataservice.js"></script>
+
+    <script src="/src/client/app/core/data/users.dataservice.js"></script>
+
+    <script src="/src/client/app/core/data/rooms.dataservice.js"></script>
+
+    <script src="/src/client/app/core/data/beds.dataservice.js"></script>
+
+    <script src="/src/client/app/core/data/hospServices.dataservice.js"></script>
+
+    <script src="/src/client/app/core/data/units.dataservice.js"></script>
+
+    <script src="/src/client/app/core/data/locks.dataservice.js"></script>
+
+    <script src="/src/client/app/dashboard/dashboard.module.js"></script>
+
+    <script src="/src/client/app/dashboard/dashboard.controller.js"></script>
+
+    <script src="/src/client/app/dashboard/dashboard.route.js"></script>
+
+    <script src="/src/client/app/dashboard/shared/mycockpit.shared.directive.js"></script>
+
+    <script src="/src/client/app/dashboard/shared/mycockpit.singleSearchElement.directive.js"></script>
+
+    <script src="/src/client/app/dashboard/components/myPatient/components/myPatientDoctorsAppActions.component.js"></script>
+
+    <script src="/src/client/app/dashboard/components/roomList/hosp/roomListHosp.component.js"></script>
+
+    <script src="/src/client/app/dashboard/components/roomList/hosp/roomListHosp.extended.component.js"></script>
+
+    <script src="/src/client/app/dashboard/components/roomList/amb/roomListAmb.component.js"></script>
+
+    <script src="/src/client/app/dashboard/components/roomList/amb/roomListAmb.extended.component.js"></script>
+
+    <script src="/src/client/app/dashboard/components/myLastSearch/myLastSearch.controller.js"></script>
+
+    <script src="/src/client/app/dashboard/components/parts/dashboardPatientInfo.component.js"></script>
+
+    <script src="/src/client/app/dashboard/components/parts/dashboardRoomNumber.component.js"></script>
+
+    <script src="/src/client/app/dashboard/components/parts/dashboardLetterName.component.js"></script>
+
+    <script src="/src/client/app/dashboard/components/parts/dashboardPatientListIndex.component.js"></script>
+
+    <script src="/src/client/app/document/document.module.js"></script>
+
+    <script src="/src/client/app/document/document.route.js"></script>
+
+    <script src="/src/client/app/document/document.controller.js"></script>
+
+    <script src="/src/client/app/document/document.service.js"></script>
+
+    <script src="/src/client/app/document/components/navButtonDocument.component.js"></script>
+
+    <script src="/src/client/app/document/components/fecPatientNavigationButtonDocument.component.js"></script>
+
+    <script src="/src/client/app/document/components/patientDocumentList.component.js"></script>
+
+    <script src="/src/client/app/document/components/patientDocumentItem.component.js"></script>
+
+    <script src="/src/client/app/document/data/document.dataservice.js"></script>
+
+    <script src="/src/client/app/error/error.module.js"></script>
+
+    <script src="/src/client/app/error/error.route.js"></script>
+
+    <script src="/src/client/app/error/error.controller.js"></script>
+
+    <script src="/src/client/app/guarantor/guarantor.module.js"></script>
+
+    <script src="/src/client/app/guarantor/guarantor.route.js"></script>
+
+    <script src="/src/client/app/guarantor/guarantors.controller.js"></script>
+
+    <script src="/src/client/app/guarantor/guarantor.controller.js"></script>
+
+    <script src="/src/client/app/guarantor/components/fluanceGuarantor.component.js"></script>
+
+    <script src="/src/client/app/guarantor/components/guarantors.component.js"></script>
+
+    <script src="/src/client/app/guarantor/components/guarantorsList.component.js"></script>
+
+    <script src="/src/client/app/guarantor/components/navButtonGuarantorList.component.js"></script>
+
+    <script src="/src/client/app/guarantor/data/guarantors.dataservice.js"></script>
+
+    <script src="/src/client/app/icdChop/icdChop.module.js"></script>
+
+    <script src="/src/client/app/icdChop/icdChop.route.js"></script>
+
+    <script src="/src/client/app/icdChop/icdChop.controller.js"></script>
+
+    <script src="/src/client/app/icdChop/data/icd.dataservice.js"></script>
+
+    <script src="/src/client/app/icdChop/data/chop.dataservice.js"></script>
+
+    <script src="/src/client/app/icdChop/components/icdChop.component.js"></script>
+
+    <script src="/src/client/app/icdChop/components/fluanceIcd.component.js"></script>
+
+    <script src="/src/client/app/icdChop/components/fluanceChop.component.js"></script>
+
+    <script src="/src/client/app/icdChop/components/navButtonIcdChopList.component.js"></script>
+
+    <script src="/src/client/app/imaging/imaging.module.js"></script>
+
+    <script src="/src/client/app/imaging/imaging.route.js"></script>
+
+    <script src="/src/client/app/imaging/imaging.controller.js"></script>
+
+    <script src="/src/client/app/imaging/data/imaging.dataservice.js"></script>
+
+    <script src="/src/client/app/imaging/data/imagingReportEmailing.service.js"></script>
+
+    <script src="/src/client/app/imaging/components/navButtonImagingList.component.js"></script>
+
+    <script src="/src/client/app/imaging/components/imagingOrder.component.js"></script>
+
+    <script src="/src/client/app/imaging/components/imagingOrderReport.component.js"></script>
+
+    <script src="/src/client/app/imaging/components/fecPatientNavigationButtonImaging.component.js"></script>
+
+    <script src="/src/client/app/invoice/invoice.module.js"></script>
+
+    <script src="/src/client/app/invoice/invoice.route.js"></script>
+
+    <script src="/src/client/app/invoice/invoices.controller.js"></script>
+
+    <script src="/src/client/app/invoice/invoice.controller.js"></script>
+
+    <script src="/src/client/app/invoice/data/invoices.dataservice.js"></script>
+
+    <script src="/src/client/app/invoice/components/fluanceInvoice.component.js"></script>
+
+    <script src="/src/client/app/invoice/components/invoicesDialog.service.js"></script>
+
+    <script src="/src/client/app/invoice/components/invoicesList.component.js"></script>
+
+    <script src="/src/client/app/invoice/components/navButtonInvoiceList.component.js"></script>
+
+    <script src="/src/client/app/lab/lab.module.js"></script>
+
+    <script src="/src/client/app/lab/lab.route.js"></script>
+
+    <script src="/src/client/app/lab/lab.service.js"></script>
+
+    <script src="/src/client/app/lab/data/lab.dataservice.js"></script>
+
+    <script src="/src/client/app/lab/components/lab.component.js"></script>
+
+    <script src="/src/client/app/lab/components/navButtonLab.component.js"></script>
+
+    <script src="/src/client/app/lab/components/fecLabChart.component.js"></script>
+
+    <script src="/src/client/app/lab/components/fecLabChartDialog.service.js"></script>
+
+    <script src="/src/client/app/lab/components/fecLabTable.component.js"></script>
+
+    <script src="/src/client/app/lab/components/fecLabText.component.js"></script>
+
+    <script src="/src/client/app/lab/components/fecPatientNavigationButtonLab.component.js"></script>
+
+    <script src="/src/client/app/layout/layout.module.js"></script>
+
+    <script src="/src/client/app/layout/layout.service.js"></script>
+
+    <script src="/src/client/app/layout/shell.controller.js"></script>
+
+    <script src="/src/client/app/layout/sidebar.controller.js"></script>
+
+    <script src="/src/client/app/layout/layout.route.js"></script>
+
+    <script src="/src/client/app/layout/components/companySelection.dialog.js"></script>
+
+    <script src="/src/client/app/layout/components/layout.component.js"></script>
+
+    <script src="/src/client/app/layout/components/sidenav.menu.component.js"></script>
+
+    <script src="/src/client/app/layout/layoutPatient/layoutPatient.controller.js"></script>
+
+    <script src="/src/client/app/layout/layoutPatient/layoutPatient.service.js"></script>
+
+    <script src="/src/client/app/layout/patientNavigation/components/patientNavigation.component.js"></script>
+
+    <script src="/src/client/app/layout/patientNavigation/components/patientNavigationButton.component.js"></script>
+
+    <script src="/src/client/app/layout/patientNavigation/patientNavigation.controller.js"></script>
+
+    <script src="/src/client/app/layout/patientNavigation/patientNavigation.service.js"></script>
+
+    <script src="/src/client/app/servicefee/servicefee.module.js"></script>
+
+    <script src="/src/client/app/servicefee/servicefee.route.js"></script>
+
+    <script src="/src/client/app/servicefee/servicefee.controller.js"></script>
+
+    <script src="/src/client/app/servicefee/servicefeeList.controller.js"></script>
+
+    <script src="/src/client/app/servicefee/servicefeeDetail/servicefeeDetailDialog.js"></script>
+
+    <script src="/src/client/app/servicefee/components/fluanceServiceFee.component.js"></script>
+
+    <script src="/src/client/app/servicefee/components/navButtonServicefeeList.component.js"></script>
+
+    <script src="/src/client/app/servicefee/components/serviceFeeList.component.js"></script>
+
+    <script src="/src/client/app/servicefee/components/serviceFees.component.js"></script>
+
+    <script src="/src/client/app/notes/notes.module.js"></script>
+
+    <script src="/src/client/app/notes/notes.route.js"></script>
+
+    <script src="/src/client/app/notes/note.controller.js"></script>
+
+    <script src="/src/client/app/notes/note.service.js"></script>
+
+    <script src="/src/client/app/notes/noteCategory.service.js"></script>
+
+    <script src="/src/client/app/notes/picture.service.js"></script>
+
+    <script src="/src/client/app/notes/pictureStateHistory.service.js"></script>
+
+    <script src="/src/client/app/notes/pictureGallery.controller.js"></script>
+
+    <script src="/src/client/app/notes/checklist/checklist.service.js"></script>
+
+    <script src="/src/client/app/notes/components/navButtonNotes.component.js"></script>
+
+    <script src="/src/client/app/notes/components/fecPatientNavigationButtonNotes.component.js"></script>
+
+    <script src="/src/client/app/notes/components/noteCategoryList.component.js"></script>
+
+    <script src="/src/client/app/notes/components/categories/noteCategoryList.component-page.js"></script>
+
+    <script src="/src/client/app/notes/components/categories/noteCategoryList.component.js"></script>
+
+    <script src="/src/client/app/notes/components/categories/noteCategoryListHead.component.js"></script>
+
+    <script src="/src/client/app/notes/components/categories/noteCategoryListSelection.component.js"></script>
+
+    <script src="/src/client/app/notes/components/categories/noteCategoryListCounter.component.js"></script>
+
+    <script src="/src/client/app/notes/components/categories/noteCategoryListActions.component.js"></script>
+
+    <script src="/src/client/app/notes/components/categories/noteCategoryListTabs.component.js"></script>
+
+    <script src="/src/client/app/notes/components/notes/note.component.js"></script>
+
+    <script src="/src/client/app/notes/components/notes/noteHeader.component.js"></script>
+
+    <script src="/src/client/app/notes/components/notes/noteDetails.component.js"></script>
+
+    <script src="/src/client/app/notes/components/notes/noteList.component.js"></script>
+
+    <script src="/src/client/app/notes/components/notes/noteListItem.component.js"></script>
+
+    <script src="/src/client/app/notes/components/notes/noteReadButton.component.js"></script>
+
+    <script src="/src/client/app/notes/components/notes/noteReadCounter.component.js"></script>
+
+    <script src="/src/client/app/notes/components/notes/noteReadFilter.component.js"></script>
+
+    <script src="/src/client/app/notes/components/notes/noteReadStatus.component.js"></script>
+
+    <script src="/src/client/app/notes/components/notes/noteSavingDialog.service.js"></script>
+
+    <script src="/src/client/app/notes/components/notes/noteSavingItem.component.js"></script>
+
+    <script src="/src/client/app/notes/components/notes/notesAndPicturesSummary.component.js"></script>
+
+    <script src="/src/client/app/notes/components/notes/restoreNote.component.js"></script>
+
+    <script src="/src/client/app/notes/components/pictures/noteImage.component.js"></script>
+
+    <script src="/src/client/app/notes/components/pictures/noteImageThumbnail.component.js"></script>
+
+    <script src="/src/client/app/notes/components/pictures/notePictureThumbnail.component.js"></script>
+
+    <script src="/src/client/app/notes/components/pictures/notePictureList.component.js"></script>
+
+    <script src="/src/client/app/notes/components/pictures/notePictureListView.component.js"></script>
+
+    <script src="/src/client/app/notes/components/pictures/notePictureDetails.component.js"></script>
+
+    <script src="/src/client/app/notes/components/pictures/pictureGallery.component.js"></script>
+
+    <script src="/src/client/app/notes/components/pictures/pictureRestoreDialog.service.js"></script>
+
+    <script src="/src/client/app/notes/data/history.dataservice.js"></script>
+
+    <script src="/src/client/app/notes/data/notes.dataservice.js"></script>
+
+    <script src="/src/client/app/notes/data/pictures.dataservice.js"></script>
+
+    <script src="/src/client/app/notes/data/notecategories.dataservice.js"></script>
+
+    <script src="/src/client/app/notes/data/shiftNotes.dataservice.js"></script>
+
+    <script src="/src/client/app/notes/history/history.controller.js"></script>
+
+    <script src="/src/client/app/notes/history/components/noteHistoryItem.component.js"></script>
+
+    <script src="/src/client/app/notes/history/components/noteHistoryItemBody.component.js"></script>
+
+    <script src="/src/client/app/notes/history/components/pictureHistoryItemBody.component.js"></script>
+
+    <script src="/src/client/app/notes/history/components/noteHistoryHeader.component.js"></script>
+
+    <script src="/src/client/app/notes/history/components/pictureHistoryItem.component.js"></script>
+
+    <script src="/src/client/app/notes/noteCategories/noteCategories.controller.js"></script>
+
+    <script src="/src/client/app/notes/noteCategories/noteCategory.controller.js"></script>
+
+    <script src="/src/client/app/notes/pictureDetails/notePictureDetailsDialog.service.js"></script>
+
+    <script src="/src/client/app/notes/pictureDetails/imageOnLoad.directive.js"></script>
+
+    <script src="/src/client/app/notes/pictureFullScreen/notePictureFullScreenDialog.service.js"></script>
+
+    <script src="/src/client/app/notes/restoreNotes/restoreNotes.controller.js"></script>
+
+    <script src="/src/client/app/notes/shiftNotes/shiftNotes.controller.js"></script>
+
+    <script src="/src/client/app/patient/patient.module.js"></script>
+
+    <script src="/src/client/app/patient/patient.route.js"></script>
+
+    <script src="/src/client/app/patient/patient.controller.js"></script>
+
+    <script src="/src/client/app/patient/patient.service.js"></script>
+
+    <script src="/src/client/app/patient/patientIdSelectionDialog.service.js"></script>
+
+    <script src="/src/client/app/patient/data/patients.dataservice.js"></script>
+
+    <script src="/src/client/app/patient/components/fluancePatient.component.js"></script>
+
+    <script src="/src/client/app/patient/components/fluancePatientListItem.component.js"></script>
+
+    <script src="/src/client/app/patient/components/fecPatientAddress.component.js"></script>
+
+    <script src="/src/client/app/patient/components/fecPatientContact.component.js"></script>
+
+    <script src="/src/client/app/patient/components/fecPatientNok.component.js"></script>
+
+    <script src="/src/client/app/patient/components/fecPatientVisitAdmission.component.js"></script>
+
+    <script src="/src/client/app/patient/components/fecPatientVisitLocation.component.js"></script>
+
+    <script src="/src/client/app/patient/components/fecPatientBilling.component.js"></script>
+
+    <script src="/src/client/app/patient/components/fecPatientNavigationButtonPatient.component.js"></script>
+
+    <script src="/src/client/app/policy/policy.module.js"></script>
+
+    <script src="/src/client/app/policy/policy.route.js"></script>
+
+    <script src="/src/client/app/policy/policies.controller.js"></script>
+
+    <script src="/src/client/app/policy/policy.controller.js"></script>
+
+    <script src="/src/client/app/policy/components/fluancePolicy.component.js"></script>
+
+    <script src="/src/client/app/policy/components/policiesList.component.js"></script>
+
+    <script src="/src/client/app/policy/components/policyDetail.component.js"></script>
+
+    <script src="/src/client/app/policy/components/policyDetailDialog.service.js"></script>
+
+    <script src="/src/client/app/policy/components/navButtonPolicyList.component.js"></script>
+
+    <script src="/src/client/app/prescription/components/fecPatientNavigationButtonPrescription.component.js"></script>
+
+    <script src="/src/client/app/search/search.module.js"></script>
+
+    <script src="/src/client/app/search/search.route.js"></script>
+
+    <script src="/src/client/app/search/data/fullSearch.dataservice.js"></script>
+
+    <script src="/src/client/app/search/searchPatients.controller.js"></script>
+
+    <script src="/src/client/app/search/searchQueryService.js"></script>
+
+    <script src="/src/client/app/search/searchStateManager.js"></script>
+
+    <script src="/src/client/app/search/search.criterion.js"></script>
+
+    <script src="/src/client/app/search/search.query.js"></script>
+
+    <script src="/src/client/app/search/components/criterion/search.criterion.component.js"></script>
+
+    <script src="/src/client/app/search/components/query/search.query.component.js"></script>
+
+    <script src="/src/client/app/search/fullSearch.controller.js"></script>
+
+    <script src="/src/client/app/search/fullSearchEntityType.controller.js"></script>
+
+    <script src="/src/client/app/search/fullSearch.service.js"></script>
+
+    <script src="/src/client/app/search/fecPatientNavigationButtonSearch.component.js"></script>
+
+    <script src="/src/client/app/search/components/fullSearch/fullSearchInput.component.js"></script>
+
+    <script src="/src/client/app/search/components/fullSearch/fullSearchResultItemPatient.component.js"></script>
+
+    <script src="/src/client/app/search/components/fullSearch/fullSearchResultItemVisit.component.js"></script>
+
+    <script src="/src/client/app/search/components/sidenav.search.component.js"></script>
+
+    <script src="/src/client/app/search/components/sidenav.search.criteria.component.js"></script>
+
+    <script src="/src/client/app/search/components/sidenav.search.ids.component.js"></script>
+
+    <script src="/src/client/app/search/components/sidenav.search.location.component.js"></script>
+
+    <script src="/src/client/app/settings/settings.module.js"></script>
+
+    <script src="/src/client/app/settings/settings.route.js"></script>
+
+    <script src="/src/client/app/settings/user/user.controller.js"></script>
+
+    <script src="/src/client/app/settings/serviceDiscovery.controller.js"></script>
+
+    <script src="/src/client/app/settings/clinics/settings-clinics.component.js"></script>
+
+    <script src="/src/client/app/settings/profile/settings-profile.component.js"></script>
+
+    <script src="/src/client/app/settings/usersettings/settings-usersettings.component.js"></script>
+
+    <script src="/src/client/app/shiftPatientList/shiftPatientList.module.js"></script>
+
+    <script src="/src/client/app/shiftPatientList/shiftPatientList.service.js"></script>
+
+    <script src="/src/client/app/shiftPatientList/components/ShiftPatientList.component.js"></script>
+
+    <script src="/src/client/app/shiftPatientList/components/ShiftPatientListButton.component.js"></script>
+
+    <script src="/src/client/app/shiftPatientList/components/ShiftPatientListPrintButton.component.js"></script>
+
+    <script src="/src/client/app/shiftPatientList/data/shiftPatients.dataservice.js"></script>
+
+    <script src="/src/client/app/medlab/medlab.module.js"></script>
+
+    <script src="/src/client/app/medlab/medlab.service.js"></script>
+
+    <script src="/src/client/app/medlab/medlab.dataservice.js"></script>
+
+    <script src="/src/client/app/medlab/components/navButtonMedlab.component.js"></script>
+
+    <script src="/src/client/app/medlab/components/selectVisitDialog.service.js"></script>
+
+    <script src="/src/client/app/version.js"></script>
+
+    <script src="/src/client/app/visit/visit.module.js"></script>
+
+    <script src="/src/client/app/visit/visits.controller.js"></script>
+
+    <script src="/src/client/app/visit/visit.controller.js"></script>
+
+    <script src="/src/client/app/visit/visitIdSelectionDialog.service.js"></script>
+
+    <script src="/src/client/app/visit/visit.route.js"></script>
+
+    <script src="/src/client/app/visit/data/visits.dataservice.js"></script>
+
+    <script src="/src/client/app/visit/components/visit.component.js"></script>
+
+    <script src="/src/client/app/visit/components/visit-details.component.js"></script>
+
+    <script src="/src/client/app/visit/components/fecVisitDetails.component.js"></script>
+
+    <script src="/src/client/app/visit/components/fecVisitPhysicianAdmitting.component.js"></script>
+
+    <script src="/src/client/app/visit/components/fecVisitPhysicianAttending.component.js"></script>
+
+    <script src="/src/client/app/visit/components/fecVisitPhysicianConsulting.component.js"></script>
+
+    <script src="/src/client/app/visit/components/fecVisitPhysicianReferring.component.js"></script>
+
+    <script src="/src/client/app/visit/components/fecMedicalInterventions.component.js"></script>
+
+    <script src="/src/client/app/visit/components/navButtonVisit.component.js"></script>
+
+    <script src="/src/client/app/visit/components/navButtonVisitList.component.js"></script>
+
+    <script src="/src/client/app/visit/components/fecPatientNavigationButtonVisit.component.js"></script>
+
+    <script src="/src/client/app/reporting/reporting.module.js"></script>
+
+    <script src="/src/client/app/reporting/reporting.dataservice.js"></script>
+
+    <script src="/src/client/app/reporting/reporting.service.js"></script>
+
+    <script src="/src/client/app/reporting/components/navButtonReporting.component.js"></script>
+
+    <script src="/src/client/app/reporting/components/fecPatientNavigationButtonReporting.component.js"></script>
+
+    <script src="/src/client/app/whiteboard/whiteboard.module.js"></script>
+
+    <script src="/src/client/app/whiteboard/whiteboard.route.js"></script>
+
+    <script src="/src/client/app/whiteboard/whiteboard.service.js"></script>
+
+    <script src="/src/client/app/whiteboard/whiteboardEditDialog.service.js"></script>
+
+    <script src="/src/client/app/whiteboard/components/roomConfiguration/roomConfiguration.service.js"></script>
+
+    <script src="/src/client/app/whiteboard/components/whiteboard.component.js"></script>
+
+    <script src="/src/client/app/whiteboard/components/whiteboardButton.component.js"></script>
+
+    <script src="/src/client/app/whiteboard/components/whiteboardPrintButton.component.js"></script>
+
+    <script src="/src/client/app/whiteboard/components/whiteboardDietTooltip.component.js"></script>
+
+    <script src="/src/client/app/whiteboard/components/whiteboardPhysiciansList.component.js"></script>
+
+    <script src="/src/client/app/whiteboard/components/fecPatientNavigationButtonWhiteboard.component.js"></script>
+
+    <script src="/src/client/app/whiteboard/data/whiteboard.dataservice.js"></script>
+
+    <script src="/src/client/app/serverMock.js"></script>
+
+    <!-- endinject -->
+    <!-- inject:templates:js -->
+    <!-- endinject -->
+
+    <!-- endbuild -->
+
+    <!--script src="/src/client/app/app.main.js"></script-->
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+{
+    "imaging": {
+        "DATE": "am",
+        "EXAM_DATE": "Untersuchungsdatum",
+        "GUIDE_VISITS_IMAGING": "Röntgenbilder des Patienten",
+        "GUIDE_VISITS_REPORT": "Berichte ohne Bilder des Patienten",
+        "LINK": "Bilder ansehen",
+        "LINK_TO_ALL": "Alle Patientenbilder anzeigen",
+        "NAVIGATION_TITLE": "Bildgebung",
+        "NO_IMAGING": "Keine Röntgenbilder für diesen Patienten",
+        "NB_OF_EXAM": "{IMAGES, plural, =0{0 Untersuchungen} one{1 Untersuchung} other{# Untersuchungen}}",
+        "NO_MORE_EXAMS": "Keine weiteren Angaben zu Untersuchungen für diesen Patienten verfügbar",
+        "ORDERNUMBER": "Auftragsnummer",
+        "RECIPIENT_ADDRESS": "Empfängers e-mail-adresse",
+        "REPORT": "Bericht",
+        "REPORT_BACK_BTN": "Zurück",
+        "REPORT_NEXT_BTN": "Weiter",
+        "REPORTS_NOT_LINKED": "Berichte ohne Bilder",
+        "SEND_REPORT": "Bericht senden",
+        "TITLE_LIST": "Bildgebung",
+        "WARN_LEAVE_MSG": "Sie werden zum Webviewer weitergeleitet",
+        "WARN_LEAVE_MSG_QUESTION": "Möchten Sie fortfahren",
+        "WARN_LEAVE_MSG_FOOTER": "Falls die Meldung \"Falscher Zugangscode\" angezeigt wird, existiert keine Bildgebung für diesen Patienten",
+        "WARN_TITLE": "Informationen"
+    }
+}

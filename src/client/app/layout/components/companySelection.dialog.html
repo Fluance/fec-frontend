@@ -1,0 +1,41 @@
+<md-dialog id="selection-dialog">
+    <div>
+        <div layout="row">
+            <div class="header" flex="auto">{{'layout.CHANGE_COMPANY_TITLE' | translate}}</div>
+        </div>
+        <div layout="column" layout-gt-xs="row" layout-align-gt-xs="space-between start" class="information-container">
+            <div flex="auto" layout="column" layout-align="start start">
+                <div flex="auto" class="information-line">{{ vm.selectedCompany.name }}{{'(' | translate}}{{ vm.selectedCompany.code }}{{')' | translate }}</div>
+                <div flex="auto" class="information-line">{{ vm.selectedCompany.address }}</div>
+                <div flex="auto" class="information-line">{{ vm.selectedCompany.postcode }}&nbsp;{{ vm.selectedCompany.locality }}</div>
+                <div flex="auto" class="information-line">{{ vm.selectedCompany.canton }}{{',' | translate}}{{vm.selectedCompany.country }}</div>
+            </div>
+            <div flex="none"></div>
+            <div flex="none" layout="column" layout-align="start stretch" class="information-contact">
+                <div id="CompanyEmail" ng-show="vm.selectedCompany.email" bind-html-compile="vm.selectedCompany.email | validateData:true" flex="auto" class="information-line"></div>
+                <div id="CompanyPhone" ng-show="vm.selectedCompany.phone" bind-html-compile="vm.selectedCompany.phone | validateData:true"flex="auto" class="information-line"></div>
+                <div id="CompanyFax" ng-show="vm.selectedCompany.fax" flex="auto" class="information-line">
+                    <fec-icon type="companyFax" size="xs"></fec-icon>{{ vm.selectedCompany.fax }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="selection-container">
+        <md-content layout="column">
+            <md-list class="md-dense" flex="auto">
+                <md-divider></md-divider>
+                <md-list-item id="company-{{company.id}}" ng-repeat="company in vm.companies | orderBy : 'code' track by company.id" ng-class="{active: vm.selectedCompany.id === company.id}"
+                    fec-mobile-click="vm.selectCompany(company)">
+                    <div layout="column">
+                        <p>{{ ::company.code }} - {{ ::company.name }}</p>
+                    </div>
+                    <md-divider></md-divider>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </div>
+    <md-dialog-actions>
+        <md-button class="md-primary" fec-mobile-click="vm.cancel()">{{'core.CANCEL' | translate}}</md-button>
+        <md-button class="md-primary" fec-mobile-click="vm.ok()">{{'core.OK' | translate}}</md-button>
+    </md-dialog-actions>
+</md-dialog>

@@ -1,0 +1,21 @@
+{
+    "settings": {
+        "ACCOUNT": "Compte utilisateur",
+        "CACHING": "Désactiver temporairement le cache",
+        "CHOOSE_PROVIDER": "Choisissez un service d'authentification",
+        "CLEAR_DASHBOARD_LAYOUT": "Réinitialiser la disposition du dashboard du eHealth Cockpit",
+        "CLEAR_DASHBOARD_LAYOUT_MSG_SUCCESS": "Disposition du dashboard réinitialisée avec succès",
+        "CLEAR_TUTORIALS": "Marquer tous les tutorials comme non lus",
+        "CLEAR_TUTORIALS_MSG": "CLEAR_TUTORIALS",
+        "CLEAR_TUTORIALS_MSG_SUCCESS": "Les tutoriels ont été marqués avec succès comme non lus",
+        "CONTACTS": "Contacts",
+        "LOGIN": "Se connecter",
+        "LOGIN_ERROR": "Nom d'utilisateur ou mot de passe incorrect",
+        "LOGOUT": "Se déconnecter",
+        "ROLES": "Rôles",
+        "SERVICE_DISCOVERY": "Se connecter",
+        "SETTINGS": "Paramètres",
+        "USER": "Utilisateur",
+        "USER_DATA": "Informations utilisateur"
+    }
+}

@@ -1,0 +1,46 @@
+<table class="fec-user-profile-companies striped">
+    <colgroup>
+        <col class="fec-col-company"/>
+        <col class="fec-col-unit"/>
+        <col class="fec-col-service"/>
+        <col class="fec-col-staff"/>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>
+            <md-checkbox ng-click="vm.toggleAllCompanies()" id="cmpny_all">
+                <label for="cmpny_all">{{ 'core.NAME' | translate }}</label>
+            </md-checkbox>
+        </th>
+        <th>
+            <md-checkbox ng-click="vm.toggleAllUnits()" id="units_all">
+                <label for="units_all">{{'core.UNIT' | translate }}</label>
+            </md-checkbox>
+        </th>
+        <th>
+            <md-checkbox ng-click="vm.toggleAllServices()" id="services_all">
+                <label for="services_all">{{'core.HOSP_SERVICE' | translate }}</label>
+            </md-checkbox>
+        </th>
+        <th>{{'core.STAFF_ID' | translate }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="company in vm.model.companies | orderBy: 'code' ">
+        <td>
+            <md-checkbox ng-model="company.hasAccess" id="cmpny_{{ company.code }}">
+                <label for="cmpny_{{ company.code }}">{{ company.name }} ({{ company.code }})</label>
+            </md-checkbox>
+        </td>
+        <td>
+            <profile-unit model="company" mode="edit" ng-if="company.hasAccess"></profile-unit>
+        </td>
+        <td>
+            <profile-service model="company" mode="edit" ng-if="company.hasAccess"></profile-service>
+        </td>
+        <td>
+            <profile-staffid model="company" mode="edit" ng-if="company.hasAccess"></profile-staffid>
+        </td>
+    </tr>
+    </tbody>
+</table>

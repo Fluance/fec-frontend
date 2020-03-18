@@ -1,0 +1,44 @@
+<div id="patient-search">
+    <div class="fec-page-title" layout="row" layout-wrap>
+        <h5>{{ 'search.TITLE_PATIENTS' | translate }}</h5>
+        <span class="number-badge" ng-show="$ctrl.dataPager.hasTotalItemsCount" layout="row" layout-align="center center">{{ 'search.NB_OF_RESULTS' | translate:{RESULT : $ctrl.dataPager.totalItemsCount} }}</span>
+    </div>
+    <div layout="column" class="criterias">
+        <div id="searchpanelcriteria" layout="row" layout-align="center center" layout-align-xs="center start">
+            <label layout-padding>{{ 'search.CRITERIA' | translate }}</label>
+            <fec-search-query query="$ctrl.searchQuery" delegate="$ctrl" navigate-on-click="false" flex layout="row"></fec-search-query>
+        </div>
+        <div flex></div>
+        <div layout="row" layout-align-gt-sm="end end" layout-align="start end">
+            <fec-data-pager-sort ng-if="$ctrl.canSort()" sort-criteria="$ctrl.sortCriteria" selected-sort-criteria="$ctrl.dataPager.sortBy"
+                selected-sort-direction="$ctrl.dataPager.sortDirection" on-changed="$ctrl.refresh()">
+            </fec-data-pager-sort>
+        </div>
+    </div>
+    <!-- NO PATIENT FOUND -->
+    <div layout-padding ng-show="$ctrl.dataPager.isEmpty()" class="fec-no-padding-mobile">
+        <md-card class="warn" flex="auto">
+            <md-card-content>
+                {{'patient.NO_PATIENT' | translate }}
+            </md-card-content>
+        </md-card>
+    </div>
+    <!-- Results list -->
+    <div layout-padding class="fec-no-padding-mobile">
+        <md-card class="list-patients" layout="row" flex="grow">
+            <md-card-content layout="row" flex="grow">
+                <div flex="grow" infinite-scroll="$ctrl.dataPager.getNextPage()" infinite-scroll-disabled="$ctrl.dataPager.isLoading || !$ctrl.dataPager.canGetNextPage()"
+                    infinite-scroll-container="$ctrl.scrollableContainer">
+                    <fluance-patient query="$ctrl.searchQuery" class="patients-list" result="item" ng-repeat="item in $ctrl.dataPager.items"></fluance-patient>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+    <!-- Progress Bar -->
+    <div layout-padding id="bottomContainer">
+        <md-progress-linear id="bottomProgressBar" md-mode="indeterminate" ng-if="$ctrl.dataPager.isLoading"></md-progress-linear>
+        <div ng-show="$ctrl.dataPager.hasTotalItemsCount && !$ctrl.dataPager.canGetNextPage()" class="center-align">
+            <span class="number-badge passive">&nbsp;{{ 'search.NB_OF_RESULTS' | translate:{RESULT : $ctrl.dataPager.totalItemsCount} }}&nbsp;</span>
+        </div>
+    </div>
+</div>

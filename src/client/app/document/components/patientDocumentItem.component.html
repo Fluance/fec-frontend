@@ -1,0 +1,4 @@
+<div flex="20">{{$ctrl.item.company.code}}</div>
+<div flex="20">{{$ctrl.item.creationDate | formatDate : 'date'}}</div>
+<div flex="50">{{$ctrl.item.fileName}}</div>
+<div flex="10" layout="row" layout-align="end center"><fec-icon-button type="report" action="$ctrl.showDocument($ctrl.item)" tooltip="{{'document.TOOLTIP_VIEW_DOCUMENT' | translate}}"></fec-icon-button></div>

@@ -1,0 +1,4 @@
+<li class="itemInfo">
+    <span>{{ $ctrl.label }}{{':' | translate }}</span>
+    <span is-negative="{{ ::$ctrl.isNegative }}" hint-tooltip content="{{ $ctrl.content | noContentPlaceholder }}" info="{{ $ctrl.info }}" tooltip-placement="{{ ::$ctrl.tooltipPlacement }}"></span>
+</li>

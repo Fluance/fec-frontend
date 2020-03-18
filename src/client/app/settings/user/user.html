@@ -1,0 +1,24 @@
+<div id="userpage">
+    <div class="fec-page-title">
+        <h3>{{ 'settings.ACCOUNT' | translate }}</h3>
+    </div>
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom md-no-pagination>
+            <md-tab label="{{'settings.USER_DATA' | translate}}">
+                <md-content>
+                    <fec-settings-profile></fec-settings-profile>
+                </md-content>
+            </md-tab>
+            <md-tab label="{{'search.LOCATION' | translate}}">
+                <md-content>
+                    <fec-settings-clinics></fec-settings-clinics>
+                </md-content>
+            </md-tab>
+            <md-tab label="{{'settings.SETTINGS' | translate}}">
+                <md-content>
+                    <fec-settings-usersettings></fec-settings-usersettings>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>

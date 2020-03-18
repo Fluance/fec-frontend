@@ -1,0 +1,25 @@
+<md-dialog id="selection-dialog">
+    <div>
+        <div layout="row">
+            <div class="header" flex>{{::$ctrl.title}}</div>
+        </div>
+    </div>
+    <div class="selection-container">
+        <md-content layout="column">
+            <md-list class="md-dense" flex="auto">
+                <md-divider></md-divider>
+                <md-list-item id="item-{{item.id}}" ng-repeat="item in $ctrl.items" ng-class="{active: $ctrl.selectedItem === item}"
+                    fec-mobile-click="$ctrl.selectItem(item)">
+                    <div layout="column">
+                        <p>{{ $ctrl.getItemDisplayName(item, true, true) }}</p>
+                    </div>
+                    <md-divider></md-divider>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </div>
+    <md-dialog-actions>
+        <md-button class="md-primary" fec-mobile-click="$ctrl.cancel()">{{'core.CANCEL' | translate}}</md-button>
+        <md-button ng-if="!$ctrl.closeOnSelection" class="md-primary" fec-mobile-click="$ctrl.ok()">{{'core.OK' | translate}}</md-button>
+    </md-dialog-actions>
+</md-dialog>

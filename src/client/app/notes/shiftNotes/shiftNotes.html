@@ -1,0 +1,60 @@
+<div flex="auto">
+    <div class="fec-page-title" flex="auto">
+        <h5>{{ 'notes.NOTES_AND_PICTURES' | translate }}</h5>
+    </div>
+    <div id="notesContainer">
+        <div layout="column" flex="grow">
+            <div layout="row" layout-align=" start">
+                <h5 style="display:inline-block;">{{ 'notes.SHIFT_NOTES' | translate }}</h5>
+                <fec-note-read-counter patient-id="vm.patientId" category-id="vm.categoryId" visit-nb="vm.visitNb" unread="vm.filterUnread"
+                    shift-notes></fec-note-read-counter>
+            </div>
+            <div layout="row" layout-align="end none">
+                <fec-select-filter ng-repeat="filter in vm.filters" filter-id="filter.id" filter-options="filter.options" filter-model="filter.model"
+                    filter-label="{{filter.label | translate}}" filter-apply="vm.applyFilter"></fec-select-filter>
+                <span class="spacer"></span>
+            </div>
+        </div>
+        <!-- Toolbar -->
+        <div class="header-toolbar" layout="row" layout-align="end end">
+            <md-button class="md-primary" ui-sref="newNote({pid: vm.patientId, vnb: vm.visitNb, categoryId: vm.categoryId, shift: true })">
+                <fec-nav-add-note>
+                    <fec-icon type="noteAdd" size="xs"></fec-icon>
+                </fec-nav-add-note>
+            </md-button>
+            <fec-note-read-button patient-id="vm.patientId" category-id="vm.categoryId" visit-nb="vm.visitNb" ng-if="!vm.dataPager.isEmpty()"
+                                  shift-notes own-creator="vm.filterOwn"></fec-note-read-button>
+        </div>
+        <!-- NO NOTES FOUND -->
+        <div layout-padding ng-show="vm.dataPager.isEmpty()">
+            <md-card class="warn">
+                <md-card-content>
+                    {{'notes.NO_NOTE' | translate }}
+                </md-card-content>
+            </md-card>
+        </div>
+        <!-- Results list -->
+        <div layout="row" flex="grow" ng-show="!vm.dataPager.isEmpty()">
+            <div layout="row" flex="grow">
+                <div flex="grow" infinite-scroll="vm.dataPager.getNextPage()" infinite-scroll-disabled="vm.dataPager.isLoading || !vm.dataPager.canGetNextPage()"
+                    infinite-scroll-distance="0" infinite-scroll-container="vm.scrollableContainer">
+                    <expander-accordion>
+                        <md-list class="notes-list">
+                            <md-list-item class="notes-list-item" layout="row" ng-repeat="note in vm.dataPager.items">
+                                <fec-note-list-item note-item-layout="wide" note="note" flex="grow"></fec-note-list-item>
+                                <fec-note-picture-list-view note-id="note.id" flex="noshrink"></fec-note-picture-list-view>
+                            </md-list-item>
+                        </md-list>
+                    </expander-accordion>
+                </div>
+            </div>
+        </div>
+        <!-- Progress Bar -->
+        <div layout="column" flex="auto" layout-padding>
+            <md-progress-linear md-mode="indeterminate" ng-if="vm.dataPager.isLoading"></md-progress-linear>
+            <div ng-show="vm.dataPager.hasTotalItemsCount && !vm.dataPager.canGetNextPage()" class="center-align">
+                <span class="number-badge passive">&nbsp;{{ 'notes.NB_OF_NOTE' | translate:{NOTE : vm.dataPager.totalItemsCount} }}&nbsp;</span>
+            </div>
+        </div>
+    </div>
+</div>

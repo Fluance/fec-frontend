@@ -1,0 +1,6 @@
+<div class="fec-page-title">
+    <span class="number-badge" layout="row" layout-align="center center">
+        <span>{{ $ctrl.totalRecords | number }} {{ 'notes.NOTES_TITLE' | translate }}</span>
+        <span ng-if="$ctrl.isAllNotes() && $ctrl.unreadRecords">&nbsp;({{ $ctrl.unreadRecords | number}})</span>
+    </span>
+</div>

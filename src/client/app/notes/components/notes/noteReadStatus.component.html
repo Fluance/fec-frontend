@@ -1,0 +1,13 @@
+<!-- Note unread flag -->
+<fec-icon type="new" class="unread-badge" ng-show="!vm.isRead" ng-if="vm.readFlag"></fec-icon>
+
+<!-- Note actions -->
+<md-button class="md-primary" fec-mobile-click="vm.toggleRead()" ng-show="vm.isRead" ng-if="!vm.showReadAll && (!vm.readFlag || vm.showRead)">{{ 'notes.MARK_AS_UNREAD' | translate }}</md-button>
+<md-button class="md-primary" fec-mobile-click="vm.toggleRead()" ng-show="!vm.isRead" ng-if="!vm.showReadAll && (!vm.readFlag || vm.showRead)">{{ 'notes.MARK_AS_READ' | translate }}</md-button>
+
+<!-- Category actions -->
+<md-button class="md-primary" ng-show="vm.unreadNotesCounter >= 1" fec-mobile-click="vm.toggleReadAll()" ng-if="vm.showReadAll">{{ 'notes.READ_ALL' | translate }}</md-button>
+<md-button class="md-primary" ng-show="vm.unreadNotesCounter === 0" fec-mobile-click="vm.toggleReadAll()" ng-if="vm.showReadAll">{{ 'notes.UNREAD_ALL' | translate }}</md-button>
+
+<!-- Category views -->
+<span class="number-badge" ng-show="vm.unreadNotesCounter >= 1" ng-click="vm.toggleFilterUnread()">{{vm.unreadNotesCounter}} {{ 'notes.UNREAD' | translate:{UNREAD : vm.dataPager.totalItemsCount} }}</span>

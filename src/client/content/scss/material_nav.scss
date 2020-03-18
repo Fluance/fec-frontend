@@ -1,0 +1,41 @@
+md-nav-bar {
+    .md-nav-bar {
+        padding: 0px 5px;
+        border-bottom: none !important;
+        nav {
+            box-shadow: none;
+            background-color: transparent;
+            ul {
+                .md-nav-item {
+                    background-color: $fe-white;
+                    width: 100%;
+                    border-bottom: 2px solid $fe-white;
+                    margin: 0px;
+                    .md-button {
+                        margin: 0px;
+                        max-width: none !important;
+                        width: 100%;
+                        flex: 1;
+                        span {
+                            color: $fe-blue;
+                            font-family: "Roboto", sans-serif;
+                            font-weight: normal;
+                            letter-spacing: .8px;
+                            text-align: center;
+                            text-transform: uppercase;
+                        }
+                        &.md-unselected, &:focus, &:hover {
+                            color: $fe-white;
+                            background-color: $fe-white;
+                        }
+                    }
+                }
+            }
+        }
+        md-nav-ink-bar {
+            background-color: $fe-blue;
+        }
+    }
+}
+
+

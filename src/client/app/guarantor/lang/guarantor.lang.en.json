@@ -1,0 +1,19 @@
+{
+    "guarantor": {
+        "GUA_BEGINDATE": "Valid from",
+        "GUA_CODE": "Code",
+        "GUA_COMPLEMENT": "Complement",
+        "GUA_DETAILS": "Guarantor Details",
+        "GUA_ENDDATE": "until",
+        "GUA_OCCASIONAL": "Occasional",
+        "GUA_VALIDITY": "Validity",
+        "GUIDE_CONTACT_US": "Contact us",
+        "GUIDE_GUARANTOR_RESULT": "Guarantors of the current patient",
+        "GUIDE_GUARANTORS_INVOICES": "Invoices, which this guarantor has payed",
+        "NB_OF_GUARANTOR": "{GUARANTOR, plural, =0{0 guarantors} one{1 guarantor} other{# guarantors}}",
+        "NO_GUARANTOR": "No Guarantors for this visit",
+        "OWN_GUARANTOR": "Patient as own guarantor",
+        "TITLE": "Guarantor",
+        "TITLE_LIST": "Guarantors"
+    }
+}

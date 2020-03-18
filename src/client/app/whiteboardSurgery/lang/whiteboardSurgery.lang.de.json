@@ -1,0 +1,31 @@
+{
+    "whiteboardSurgery": {
+        "ANESTHESIA": "Anästhesie",
+        "COMMENTS": "Kommentare",
+        "DEVICES": "Geräte",
+        "ERROR_ON_ACTION_RESERVATION": "Error {ACTION, select, CREATE{erstellen} SAVE{sparen} DELETE{löschen} other{}} Reservierung",
+        "GENERAL_INFORMATION_EDITION": "Bearbeitung allgemeiner Informationen",
+        "INPUT_ROOM_LABEL": "Zimmer",
+        "INPUT_TITLE_LABEL": "Titel",
+        "INPUT_BEGIN_DATE_LABEL": "Startdatum und Uhrzeit",
+        "INPUT_END_DATE_LABEL": "Enddatum and zeit",
+        "INPUT_ERROR_MSG_DATE_ORDER": "Das Startdatum sollte vor dem Enddatum liegen",
+        "INPUT_ERROR_MSG_RESERVATION_OVERLAP": "Die neue Reservierung überschneidet sich mit einer bereits vorhandenen Reservierung",
+        "LIVE": "Live",
+        "LOADING_MSG": "Das Whiteboard laden...",
+        "NEXT_OPERATION_AT": "Nächste Operation um",
+        "NO_OPERATION_IN_PROGRESS": "Derzeit wird keine Operation ausgeführt",
+        "NO_UPCOMING_OPERATIONS_TODAY": "Heute steht keine Operation mehr an",
+        "OPERATING_TIMES": "Operating times",
+        "PHYSICIAN_PREFIX": "DR",
+        "POSITION": "Position",
+        "STAFF": "Personal",
+        "SUCCESS_ON_ACTION_RESERVATION": "Reservierung wurde erfolgreich {ACTION, select, CREATE{erstellt} SAVE{gespeichert} DELETE{gelöscht} other{}}",
+        "TITLE": "OP-Säle",
+        "PERSONNEL_OCCUPATION_OPERATOR": "Operator",
+        "PERSONNEL_OCCUPATION_ANESTHETIST": "Anästhesisten",
+        "PERSONNEL_OCCUPATION_ASSISTANT": "Assistent",
+        "PERSONNEL_OCCUPATION_ANESTHESIA_STAFF": "Anästhesiepersonal",
+        "PERSONNEL_OCCUPATION_ROOM_HELPER": "Raumhelfer"
+    }
+}

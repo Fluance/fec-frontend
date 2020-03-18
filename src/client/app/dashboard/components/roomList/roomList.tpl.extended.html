@@ -1,0 +1,79 @@
+<div class="fec-dashboard-room-list extended" ng-controller="roomListController as vm">
+    <md-card ng-class="{'warn': scope.warning, 'error': scope.error}" layout="column" flex="auto">
+
+        <md-card-title layout="row" flex="initial" layout-align="start end">
+            <div hide-gt-xs>
+                <md-button class="md-primary right button-mobile-close-expand" fec-mobile-click="closeExtended()">
+                    <fec-icon type="back" size="md"></fec-icon>
+                </md-button>
+            </div>
+            <md-card-title-text flex="none">{{scope.title | translate}}</md-card-title-text>
+            <!-- Filter -->
+            <md-subhead flex="auto" layout="row" layout-align="start center" layout-wrap>
+                <selection-reveal reveal-id="selection-revea-{{ component.id }}" show-reveal="true" selected-item-changed="scope.selectionReveal.selectedItemChanged"
+                                  selected-item="scope.selectionReveal.selectedItem" items="scope.selectionReveal.items" reveal-title="{{ scope.titleChange | translate}}"
+                                  get-item-display-name="scope.selectionReveal.getItemDisplayName" ng-show="scope.selectionReveal.selectedItem"
+                                  close-on-selection="true" flex="none">
+                </selection-reveal>
+            </md-subhead>
+            <!-- Buttons -->
+            <div flex="noshrink" layout="row" layout-align="end center">
+                <fec-shift-patient-list-button ng-if="scope.patientList" company-id="scope.selectedCompanyId" unit="scope.selectionReveal.selectedItem"
+                    is-disabled="scope.warning || scope.error">
+                </fec-shift-patient-list-button>
+                <fec-whiteboard-button ng-if="scope.whiteboardAvailable" company-id="scope.selectedCompanyId" hosp-service="scope.selectionReveal.selectedItem.code"></fec-whiteboard-button>
+                <md-button hide-xs class="md-fab md-mini md-primary right" fec-mobile-click="closeExtended(); scope.resetRoomSelection();">
+                    <fec-icon type="notExpanded" size="sm"></fec-icon>
+                </md-button>
+                <md-button hide-gt-xs ng-disabled="!scope.hasData || scope.error" class="md-primary right button-mobile-settings" fec-mobile-click="scope.toggleSettings()">
+                    <fec-icon type="tune" size="sm"></fec-icon>
+                </md-button>
+            </div>
+        </md-card-title>
+
+        <md-divider flex="none"></md-divider>
+        <div ng-cloak flex="auto" layout="column">
+            <div layout="row" flex="none" layout-align="end">
+                <md-nav-bar md-no-ink-bar="disableInkBar" md-selected-nav-item="scope.selectedTab" flex-xs="100" flex="70">
+                    <md-nav-item md-nav-click="scope.changeTab('hosp-tab')" name="hosp-tab">
+                        {{ "dashboard.HOSP" | translate }}
+                    </md-nav-item>
+                    <md-nav-item md-nav-click="scope.changeTab('amb-tab')" name="amb-tab">
+                        {{ "dashboard.AMB" | translate }}
+                    </md-nav-item>
+                </md-nav-bar>
+            </div>
+            <div layout="column" flex="auto">
+                <div ng-if="scope.showHospTab" id="hosp-tab" layout="column" flex="auto">
+                    <fec-room-list-hosp-ext show-settings="scope.showSettings" error="scope.error" flex="auto"
+                                            layout="column" count="scope.hospCount" params="scope.params"
+                                            warning="scope.warning"></fec-room-list-hosp-ext>
+                </div>
+                <div ng-if="scope.showAmbTab" id="amb-tab" layout="column" flex="auto">
+                    <fec-room-list-amb-ext show-settings="scope.showSettings" error="scope.error" params="scope.params"
+                                           flex="auto" layout="column" count="scope.ambCount" warning="scope.warning"
+                        default-select="scope.ambDefaultSelect"></fec-room-list-amb-ext>
+                </div>
+            </div>
+        </div>
+
+        <md-card-content class="card-content-info" layout="row" layout-align="start center" ng-if="!scope.spin && (scope.error || scope.warning)">
+            <!-- Warning/Error Content -->
+            <p class="warn-message" ng-show="scope.warning">{{ scope.warning.message | translate }}{{ '.' | translate }}
+            </p>
+            <p class="error-message" ng-show="scope.error">{{ scope.error.message | translate }}{{ '.' | translate }}
+            </p>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center" ng-if="scope.error || scope.warning.tryagain">
+            <!-- Warning/Error Actions -->
+            <md-button class="md-raised md-primary" ng-show="scope.warning.tryagain" ng-click="scope.refresh()">
+                {{'dashboard.RELOAD_DATA | translate'}}
+            </md-button>
+            <md-button class="md-raised md-primary" ng-show="scope.error.tryagain" ng-click="scope.refresh()">
+                {{'dashboard.TRY_AGAIN' | translate}}
+            </md-button>
+            <md-button class="md-raised md-primary" ng-show="scope.error.report" ng-click="scope.logger.showReport(scope.error.report)">{{'dashboard.SEE_REPORT' | translate}}
+            </md-button>
+        </md-card-actions>
+    </md-card>
+</div>

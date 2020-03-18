@@ -1,0 +1,10 @@
+<md-dialog id="profile">
+    <md-dialog-content>
+        <p>{{'admin.DELETE_TEXT' | translate }}</p>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button fec-mobile-click="vm.closeDialog()" class="md-primary">{{'core.CANCEL' | translate }}</md-button>
+        <md-button fec-mobile-click="vm.deleteUser()" class="md-primary">{{'core.YES' | translate }}</md-button>
+    </md-dialog-actions>
+</md-dialog>

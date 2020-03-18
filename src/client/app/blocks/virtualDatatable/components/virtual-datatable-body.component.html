@@ -1,0 +1,7 @@
+<md-virtual-repeat-container flex layout-padding md-top-index="$ctrl.dynamicItems.topIndex">
+    <md-list class="striped">
+        <md-list-item md-virtual-repeat="item in $ctrl.dynamicItems" md-on-demand ng-class="{'odd': $index%2 == 0}">
+            <fec-virtual-datatable-row-item component="{{$ctrl.options.rowComponent}}" layout="row" flex="grow" item="item"></fec-virtual-datatable-row-item>
+        </md-list-item>
+    </md-list>
+</md-virtual-repeat-container>

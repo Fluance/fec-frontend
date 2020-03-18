@@ -1,0 +1,25 @@
+{
+    "policy": {
+        "ACTIVE": "aktiv",
+        "GUA_ACCIDENT_DT": "Unfalldatum",
+        "GUA_ACCIDENT_NB": "Unfall Nr",
+        "GUA_ASSURANCE_NAME": "Versicherungsname",
+        "GUA_CODE": "Code",
+        "GUA_COVERCARD_NB": "Covercard Nr",
+        "GUA_DETAILS": "Policendetail",
+        "GUA_HOSPCLASS": "Klasse",
+        "GUA_INACTIVE": "Status (aktiv/inaktiv)",
+        "GUA_POLYC_NB": "Policen Nr",
+        "GUA_PRIORITY": "Priorität",
+        "GUA_STATUS": "Status",
+        "GUA_SUBPRIORITY": "Sub-Priorität",
+        "GUIDE_POLICIES_AREA": "Versicherungspolice des Patienten",
+        "GUIDE_POLICY_EXPANDED": "Einzelheiten der Versicherungspolice",
+        "INACTIVE": "inaktiv",
+        "NB_OF_POLICY": "{POLICY, plural, =0{0 Policen} one{1 Police} other{# Policen}}",
+        "NO_POLICY": "Keine Police für diesen Fall",
+        "TITLE": "Versicherungspolice",
+        "TITLE_LIST": "Versicherungspolicen",
+        "TITLE_DETAIL": "Versicherungspolice Details"
+    }
+}

@@ -1,0 +1,10 @@
+<h5><small>{{ 'patient.CONTACT' | translate }}</small></h5>
+<div layout="column">
+    <div ng-if="$ctrl.patientContacts">
+        <content-item-detail label="{{ 'patient.'+(contact.equipment | uppercase) | translate }}" content="{{contact.data | validateData}}" ng-repeat="contact in $ctrl.patientContacts">
+        </content-item-detail>
+    </div>
+    <div class="no.Result" ng-if="($ctrl.patientContacts && $ctrl.patientContacts.length <=0 )">
+        {{ 'core.NOT_SPECIFIED' | translate }}
+    </div>
+</div>

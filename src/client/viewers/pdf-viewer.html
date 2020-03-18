@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PDF Viewer</title>
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .some-pdf-container {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <!-- build:css_libs_pdf_viewer -->
+    <link rel="stylesheet" href="/node_modules/pdf.js-dist/viewer.css">
+    <link rel="stylesheet" href="/node_modules/pdf.js-dist/viewer-overwrites.css">
+    <!-- endbuild -->
+</head>
+<body ng-app="pdfviewer">
+    <!-- build:js_libs_pdf_viewer -->
+    <script src="/node_modules/angular/angular.js"></script>
+    <script src="/node_modules/pdf.js-dist/pdf.js"></script>
+    <script src="/node_modules/pdf.js-dist/pdf.worker.js"></script>
+    <script src="/node_modules/angular-pdfjs-viewer/dist/angular-pdfjs-viewer.js"></script>
+    <!-- endbuild -->
+
+    <script>
+        angular.module('pdfviewer', ['pdfjsViewer']);
+        angular.module('pdfviewer')
+            .controller('ViewerController', function($scope) {
+                var parentWindow = window.parent;
+                $scope.pdfData = parentWindow.fec.pdfViewer.pdfData;
+                $scope.pdfFilename = parentWindow.fec.pdfViewer.pdfFilename;
+
+                $scope.initialize = function() {
+                    // set PDF download file name
+                    PDFViewerApplication.setDownloadFilename($scope.pdfFilename);
+                }
+        });
+    </script>
+
+    <div class="some-pdf-container" ng-controller="ViewerController">
+        <pdfjs-viewer on-init="initialize()" data="pdfData"></pdfjs-viewer>
+    </div>
+</body>
+</html>

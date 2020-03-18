@@ -1,0 +1,8 @@
+<md-input-container ng-if="vm.filterOptions">
+    <label>{{vm.filterLabel}}</label>
+    <md-select ng-model="vm.filterModel" class="fec-select-filter" ng-disabled="vm.filterOptions.length < 2" ng-change="vm.filterChanged()">
+        <md-option ng-repeat="option in vm.filterOptions" ng-value="option.id">
+            {{option.name | translate}}
+        </md-option>
+    </md-select>
+</md-input-container>

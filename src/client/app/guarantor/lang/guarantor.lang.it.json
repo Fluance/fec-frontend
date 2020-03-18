@@ -1,0 +1,19 @@
+{
+    "guarantor": {
+        "GUA_BEGINDATE": "Valido dal",
+        "GUA_CODE": "Codice",
+        "GUA_COMPLEMENT": "Info suppl.",
+        "GUA_DETAILS": "Dettagli garante",
+        "GUA_ENDDATE": "al",
+        "GUA_OCCASIONAL": "Occasionale",
+        "GUA_VALIDITY": "Validità",
+        "GUIDE_CONTACT_US": "Contattaci",
+        "GUIDE_GUARANTOR_RESULT": "Garante del paziente corrente",
+        "GUIDE_GUARANTORS_INVOICES": "Fatture che il garante ha pagato",
+        "NB_OF_GUARANTOR": "{GUARANTOR, plural, =0{0 garanti} one{1 garante} other{# garanti}}",
+        "NO_GUARANTOR": "Nessun garante per questa visita",
+        "OWN_GUARANTOR": "Paziente autopagante",
+        "TITLE": "Garante",
+        "TITLE_LIST": "Garanti"
+    }
+}

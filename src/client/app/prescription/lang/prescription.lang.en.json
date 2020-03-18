@@ -1,0 +1,16 @@
+{
+    "prescription": {
+        "ERROR_PRESCRIPTION_SERVER_TITLE": "Cannot access server",
+        "ERROR_PRESCRIPTION_SUPPORT": "Please use our Contact Center for further assistance",
+        "ERROR_PRESCRIPTION_SERVER_NOT_AVAILABLE": "An error occured while connecting to remote Prescription server",
+        "ERROR_PRESCRIPTION_NOT_AVAILABLE": "Prescription is not available",
+        "ERROR_NO_PRESCRIPTION_TITLE": "Cannot create Lab Prescription",
+        "ERROR_NO_PRESCRIPTION_MESSAGE": "There are no open visits at this moment. Not possible to create lab prescription",
+        "BUTTON_CREATE_PRESCRIPTION": "Lab prescription",
+        "BUTTON_GENERATE_DOCUMENT": "Pathology examination request",
+        "SELECT_VISIT_TITLE": "Select Visit",
+        "TITLE": "Prescription",
+        "WARN_TITLE": "Information",
+        "WARN_LEAVE_MSG": "You will be redirected to the Prescription page. Would you like to continue ?"
+    }
+}

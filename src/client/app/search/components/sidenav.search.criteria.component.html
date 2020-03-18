@@ -1,0 +1,37 @@
+<span ng-form name="searchForm">
+    <section>
+        <div layout="row">
+            <md-input-container class="md-block" flex>
+                <label>{{'core.LASTNAME' | translate}}</label>
+                <input fec-input aria-label="Lastname" ng-model="vm.params.name" md-sidenav-focus
+                       tutorial-step="lastname" ng-required="!vm.params.birthdate">
+            </md-input-container>
+            <md-input-container class="md-block" flex>
+                <label>{{'core.FIRSTNAME' | translate}}</label>
+                <input fec-input aria-label="Firstname" ng-model="vm.params.firstname" tutorial-step="firstname">
+            </md-input-container>
+        </div>
+        <md-checkbox class="md-block" aria-label="Incl. maidenname" ng-model="vm.params.maidenname"
+                     tutorial-step="maidenname">
+            {{'search.MAIDENNAME' | translate}}
+        </md-checkbox>
+    </section>
+    <section>
+        <md-input-container>
+            <label>{{'search.BIRTHDATE' | translate}}</label>
+            <md-datepicker aria-label="Birthdate" ng-model="vm.params.birthdate" md-max-date="vm.maxBirthdate"
+                           md-hide-icons="calendar" tutorial-step="birthdate"
+                           ng-required="!vm.params.name"></md-datepicker>
+        </md-input-container>
+    </section>
+    <section>
+        <md-input-container class="md-block">
+            <label>{{ 'search.ADMISSIONSTATUS' | translate }}</label>
+            <md-select ng-model="vm.params.admissionstatus" tutorial-step="admissionstatus">
+                <md-option ng-value="status.key" ng-repeat="status in vm.admissionstatusSelection">
+                    {{ status.displayName | translate | firstLetterUpperCase }}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </section>
+</span>

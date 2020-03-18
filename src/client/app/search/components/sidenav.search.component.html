@@ -1,0 +1,26 @@
+<div layout="column" flex>
+    <md-toolbar class="fec-menu-toolbar md-whiteframe-2dp">
+        <div class="md-toolbar-tools">
+            <h2>{{ 'search.SEARCH' | translate }}</h2>
+            <span flex></span>
+            <fec-tutorial-guide chapter-name="{{vm.tutorialChapterName}}" ng-hide="!vm.selectedSearchMethod"></fec-tutorial-guide>
+        </div>
+    </md-toolbar>
+
+    <md-toolbar class="fec-search-toolbar">
+        <div class="md-toolbar-tools">
+            <md-select id="searchMethodSelect" ng-model="vm.selectedSearchMethod" flex placeholder="{{ 'search.SEARCH_BY' | translate }}">
+                <md-option ng-value="method" ng-repeat="method in vm.searchMethods">
+                    {{ method.title | translate }}
+                </md-option>
+            </md-select>
+            <md-button class="md-icon-button" aria-label="Submit search" fec-mobile-click="vm.submit()" ng-disabled="!vm.isValid()">
+                <md-tooltip>{{ 'search.SEARCH' | translate }}</md-tooltip>
+                <fec-icon type="search"></fec-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-divider></md-divider>
+
+    <md-content flex bind-html-compile="vm.selectedSearchMethod.template" ng-keyup="vm.onKeyUp($event)"></md-content>
+</div>

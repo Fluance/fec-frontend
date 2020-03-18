@@ -1,0 +1,61 @@
+<div class="whiteboard-surgery-timeline-item"
+    ng-style="{height: appointment.duration + 'px', top: appointment.time + 'px'}"
+    ng-class="{active: appointment.isSelected}" ng-repeat="appointment in $ctrl.appointments" layout="column"
+    fec-mobile-click="$ctrl.openAppointmentDetail(appointment)">
+    <div layout="column" class="whiteboard-surgery-timeline-item-info">
+        <div layout="row" class="whiteboard-surgery-timeline-item-info-title" layout-align="space-between center">
+            <div class="whiteboard-surgery-timeline-item-time">
+                {{ appointment.begindt | formatDate : 'time' }}{{ '-' | translate }}{{ appointment.enddt | formatDate : 'time' }}
+            </div>
+            <div hide="" show-gt-md="" layout="row" flex layout-align="space-around center">
+                <div>{{ appointment.anesthesia }}</div>
+                <div>{{ appointment.patientPosition }}</div>
+            </div>
+            <div ng-if="appointment.operationLive" class="live-state active">{{ 'whiteboardSurgery.LIVE' | translate }}
+            </div>
+        </div>
+        <!-- Keep this code in case they would like to see this info on ipad -->
+        <!-- <div hide-gt-md="" layout="row" layout-align="space-around center">
+            <div>{{ appointment.anesthesia }}</div>
+            <div>{{ appointment.patientPosition }}</div>
+        </div> -->
+        <div class="whiteboard-surgery-timeline-item-description">{{ appointment.description }}</div>
+    </div>
+    <div layout-gt-md="row" layout="column" layout-wrap="">
+        <div layout="row" layout-align="start start">
+            <div>
+                <fec-whiteboard-surgery-personnel-occupation-icon size="xs" code-occupation="{{ appointment.operator.codeOccupation }}" default-code-occupation="{{$ctrl.DEFAULT_CODE_OCCUPATION_OPERATOR}}"></fec-whiteboard-surgery-personnel-occupation-icon>
+            </div>
+            <div>
+                {{ appointment.operator?appointment.operator.name:'-' }}
+            </div>
+        </div>
+        <div flex></div>
+        <div layout="row">
+            <div layout="row" layout-align="end start">
+                <div>
+                    <fec-icon type="patient" size="xs"></fec-icon>
+                </div>
+                <div class="whiteboard-surgery-timeline-item-patient-name">
+                    {{ appointment.lastname | uppercase }}
+                    {{ appointment.firstname }}
+                </div>
+                <div>
+                    <fec-icon type="door" size="xs"></fec-icon>
+                </div>
+                <div>
+                    {{ appointment.patientroom }}
+                </div>
+            </div>
+        </div>
+        <div layout="row" layout-wrap="">
+            <div class="whiteboard-surgery-room-content-staff" layout="row" layout-align="space-between center"
+                ng-repeat="doctor in appointment.staffs">
+                <div layout="row" layout-align="start center">
+                    <fec-whiteboard-surgery-personnel-occupation-icon code-occupation="{{ doctor.codeOccupation }}" default-code-occupation="{{$ctrl.DEFAULT_CODE_OCCUPATION_STAFF}}" size="xs"></fec-whiteboard-surgery-personnel-occupation-icon>
+                    <div class="staff-name">{{ doctor.name }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

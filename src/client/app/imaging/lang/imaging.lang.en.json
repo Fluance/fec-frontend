@@ -1,0 +1,26 @@
+{
+    "imaging": {
+        "DATE": "at",
+        "EXAM_DATE": "Exam date",
+        "GUIDE_VISITS_IMAGING": "X-ray images of the patient",
+        "GUIDE_VISITS_REPORT": "Reports without linked images of the patient",
+        "LINK": "View images",
+        "LINK_TO_ALL": "View complete patient imaging",
+        "NAVIGATION_TITLE": "Imaging",
+        "NB_OF_EXAM": "{IMAGES, plural, =0{0 exam} one{1 exam} other{# exams}}",
+        "NO_IMAGING": "No imaging data for this patient",
+        "NO_MORE_EXAMS": "No further information available on the studies for this patient",
+        "ORDERNUMBER": "Order number",
+        "RECIPIENT_ADDRESS": "Recipient address",
+        "REPORT": "Report",
+        "REPORT_BACK_BTN": "Back",
+        "REPORT_NEXT_BTN": "Next",
+        "REPORTS_NOT_LINKED": "Reports not linked to images",
+        "SEND_REPORT": "Send report",
+        "TITLE_LIST": "Imaging",
+        "WARN_LEAVE_MSG": "You will be redirected to the web viewer",
+        "WARN_LEAVE_MSG_QUESTION": "Would you like to continue",
+        "WARN_LEAVE_MSG_FOOTER": "If you encounter the message \"Wrong access code\" there is no imaging for this patient",
+        "WARN_TITLE": "Information"
+    }
+}

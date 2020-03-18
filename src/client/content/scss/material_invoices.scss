@@ -1,0 +1,41 @@
+#invoicesContainer {
+    expander-header {
+        line-height: 1rem;
+
+        .row {
+            margin-bottom: 0px;
+        }
+
+        .invoice-profile {
+            .invoice-id {
+                color: $fe-blue;
+                font-weight: bold;
+            }
+        }
+
+        .item-info {
+            border-bottom: none;
+            margin: 15px 0px;
+            padding-bottom: 0px;
+        }
+
+        @media #{$medium-and-down} {
+            .item-info {
+                padding-top: 0px;
+                padding-bottom: 5px;
+                margin-bottom: 5px;
+                margin-top: 0px;
+            }
+        }
+    }
+    expander-body {
+        & > .row:last-child {
+            margin-bottom: 0px;
+        }
+
+        h5{
+            padding-bottom: 20px !important;
+        }
+    }
+}
+

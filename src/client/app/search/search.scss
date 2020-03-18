@@ -1,0 +1,134 @@
+/* --------------------------------------------------------------- Component: Full (text) Search */
+
+fec-full-search-input {
+    display: block;
+    position: relative;
+    z-index: 9000;
+    input[type="text"] {
+        font-size: 15px;
+        padding: 0 40px 0 4px;
+        width: 85%;
+        margin-left: 15%;
+        z-index: 9000;
+    }
+    .md-button.md-icon-button {
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        right: 0;
+        height: auto;
+        width: 40px;
+        color: $fe-blue;
+        padding: 0;
+        margin-right: 0;
+        z-index: 9010;
+    }
+}
+
+md-toolbar.fec-menu-toolbar {
+    fec-full-search-input {
+        input[type="text"] {
+            background-color: $fe-white;
+            color: $fe-black;
+        }
+    }
+}
+
+.fec-full-search-criteria {
+    padding: 0 0.75rem;
+    margin-left: 0.75rem !important;
+    label {
+        font-weight: bold;
+    }
+    fec-search-query,
+    label {
+        margin: auto 8px auto 0;
+    }
+    .fec-full-search-criteria-toolbar {
+        padding-right: 16px;
+    }
+}
+
+
+/* ------------------------------------------------------------ Component: Search sidenavigation */
+
+fec-sidenav-search {
+    md-content {
+        padding: 16px;
+    }
+    md-input-container {
+        margin-bottom: 0;
+        input {
+            margin: 0;
+        }
+    }
+    md-select .md-select-value,
+    md-select:not([disabled]):focus .md-select-value {
+        border-bottom: none;
+    }
+    md-toolbar.fec-menu-toolbar {
+        .md-toolbar-tools {
+            padding-right: 6px;
+        }
+    }
+    md-toolbar.fec-search-toolbar {
+        background-color: $fe-white;
+        min-height: 50px;
+        .md-toolbar-tools {
+            height: 50px;
+        }
+    }
+    md-toolbar.fec-search-toolbar {
+        color: $fe-blue;
+    }
+    section {
+        padding-bottom: 16px;
+        &>* {
+            display: block;
+        }
+        md-input-container {
+            md-datepicker {
+                .md-icon-button {
+                    margin-right: 10px !important;
+                }
+            }
+            .md-datepicker-input-container {
+                width: 100%;
+            }
+        }
+    }
+}
+
+
+/* ------------------------------------------------------------------- Views: Full (text) Search */
+
+.fec-full-search-results {
+    display: block;
+    padding: 24px 0.75rem 8px 0.75rem;
+    .fec-full-search-section-title {
+        display: flex;
+        box-sizing: border-box;
+        flex-direction: row;
+        -webkit-flex-direction: row;
+        -webkit-box-direction: normal;
+        -webkit-box-orient: horizontal;
+        padding-left: 24px;
+        padding-right: 16px;
+        padding-bottom: 8px;
+    }
+    .list-patients {
+        div.entity-profile{
+            border-bottom: 1px solid $fe-grey;
+            span{
+                cursor: pointer;
+                .entity-id {
+                    color: $fe-blue;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+.highlightedText {
+    background: $fe-blue-bg-markup;
+}

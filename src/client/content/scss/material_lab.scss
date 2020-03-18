@@ -1,0 +1,104 @@
+.lab-tab-icon {
+    margin-right: 16px;
+    cursor: pointer;
+    svg {
+        fill: $fe-blue;
+    }
+    &.active, &.disabled {
+        cursor: default;
+    }
+    &.disabled {
+        svg {
+            fill: rgba(0, 0, 0, 0.26);
+        }
+    }
+}
+
+.lab-chart-dialog {
+    position: relative;
+    width: 100%;
+    svg {
+        margin: auto;
+    }
+    div.tooltip {
+        position: absolute;
+        text-align: left;
+        padding: 5px;
+        width: 150px;
+        font: 12px sans-serif;
+        background: #333333;
+        color: $fe-white;
+        border: 0px;
+        border-radius: 8px;
+        pointer-events: none;
+    }
+}
+
+#patient-lab {
+    #fec-lab-card {
+        md-card-content {
+            height: 400px; //Default value
+            overflow: auto;
+        }
+    }
+    .numeric-measurement {
+        fec-icon[type="insertChart"] {
+            cursor: pointer;
+        }
+        td.labAbnormal {
+            color: red;
+        }
+    }
+    .formatted-text {
+        padding: 10px 10px 0px 10px;
+        .formatted-text-analysis {
+            margin-bottom: 10px;
+            .formatted-text-date {
+                margin-right: 10px;
+            }
+            .formatted-text-date,
+            .formatted-text-value {
+                white-space: pre;
+                float: left;
+            }
+            overflow: auto;
+        }
+    }
+    md-card.css-ie {
+        md-card-content {
+            background-color: $fe-white;
+        }
+    }
+}
+
+hot-table {
+    table tr {
+        .labAbnormal {
+            border: none !important;
+            color: red;
+            text-align: center;
+            vertical-align: middle !important;
+
+        }
+        .labNormal {
+            border: none !important;
+            text-align: center;
+            vertical-align: middle !important;
+            fec-icon[type="insertChart"] {
+                cursor: pointer;
+            }
+        }
+    }
+
+    // IE11 fix (parts of hot-table appear on top of modal to select Unit/Service)
+    .handsontable-container.handsontable .ht_clone_top {
+        z-index: 1;
+    }
+    .handsontable-container.handsontable .ht_clone_top_left_corner {
+        z-index: 1;
+    }
+    .handsontable-container.handsontable .ht_clone_left {
+        z-index: 1;
+    }
+
+}

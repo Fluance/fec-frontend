@@ -1,0 +1,118 @@
+<div layout="row" layout-align="center center" flex="grow">
+    <div layout="row" flex="grow" flex-gt-xs="70" ng-show="vm.hasWarningMessage && !vm.spin" id="usersProfile">
+        <md-card class="warning" flex="grow">
+            <md-card-content>
+                <p>{{ 'admin.USER_NOT_FOUND' | translate }}</p>
+                <md-button class="md-primary right" ui-sref="admin.users.form({username: vm.username, domain: vm.domain, action: 'add'})">
+                    {{'admin.CREATE_PROFILE' | translate }}
+                </md-button>
+                <div class="clearfix"></div>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>
+
+<!--BASIS USER INFO TABLE-->
+<md-card ng-show="vm.userFound && !vm.spin" id="usersProfile">
+    <md-card-content>
+        <div layout="row">
+            <h5>{{ 'admin.PROFILE' | translate }}</h5>
+            <span flex></span>
+            <md-button class="md-primary" fec-mobile-click="vm.openJsonDialog($event)">JSON</md-button>
+            <md-button class="md-warn" fec-mobile-click="vm.openDeleteDialog($event, vm.userFound)">
+                {{'core.DELETE' | translate }}
+            </md-button>
+            <md-button class="md-primary" ui-sref="admin.users.form({username: vm.username, domain: vm.domain, action: 'update'})">
+                {{'core.EDIT' | translate }}
+            </md-button>
+        </div>
+        <table class="striped">
+            <tbody>
+                <tr>
+                    <td>{{ 'admin.USERNAME' | translate }}</td>
+                    <td>{{ vm.userFound.username }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'admin.DOMAIN' | translate }}</td>
+                    <td>{{ vm.userFound.domain }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'core.FIRSTNAME' | translate }}</td>
+                    <td>{{ vm.userFound.firstName | noContentPlaceholder }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'core.LASTNAME' | translate }}</td>
+                    <td>{{ vm.userFound.lastName | noContentPlaceholder }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'settings.CONTACTS' | translate }}</td>
+                    <td>
+                        <md-chips ng-model="vm.userFound.emails" ng-if="vm.hasEmails()" readonly="true">
+                            <md-chip-template>
+                                <a href="mailto:{{ $chip.value }}">{{ $chip.value }}</a>
+                            </md-chip-template>
+                        </md-chips>
+
+                        <span ng-if="!vm.hasEmails()">-<br/></span>
+                        <md-chips ng-model="vm.userFound.telephons" ng-if="vm.hasTelephons()" readonly="true">
+                            <md-chip-template>
+                                <span>{{ $chip.value }}</span>
+                            </md-chip-template>
+                        </md-chips>
+                        <span ng-if="!vm.hasTelephons()">-</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ 'layout.LANGUAGE' | translate }}</td>
+                    <td><md-chips class="lang" ng-show="vm.userFound.profileLanguage"><md-chip>{{ vm.userFound.profileLanguage }}</md-chip></md-chips></td>
+                </tr>
+                <tr>
+                    <td>{{'settings.ROLES' | translate }}</td>
+                    <td ng-show="vm.userFound.roles.length"><md-chips ng-model="vm.rolesSort" readonly="true"></md-chips></td>
+                    <td ng-hide="vm.userFound.roles.length">No roles</td>
+                </tr>
+            </tbody>
+        </table>
+        <h5>{{ 'admin.LOCATION' | translate }}</h5>
+        <table class="fec-user-profile-companies striped">
+            <colgroup>
+                <col class="fec-col-company" />
+                <col class="fec-col-unit" />
+                <col class="fec-col-service" />
+                <col class="fec-col-staff" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>{{'core.NAME' | translate }}</th>
+                    <th>{{'core.UNIT' | translate }}</th>
+                    <th>{{'core.HOSP_SERVICE' | translate }}</th>
+                    <th>{{'core.STAFF_ID' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="company in vm.userFound.companies | orderByObjectProperty:'code'">
+                    <td>{{ ::company.code }} - {{ ::company.name }}</td>
+                    <td>
+                        <profile-unit model="company" mode="read"></profile-unit>
+                    </td>
+                    <td>
+                        <profile-service model="company" mode="read"></profile-service>
+                    </td>
+                    <td>
+                        <profile-staffid model="company" mode="read"></profile-staffid>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div layout="row">
+            <span flex></span>
+            <md-button class="md-warn" fec-mobile-click="vm.openDeleteDialog($event, vm.userFound)">
+                {{'core.DELETE' | translate }}
+            </md-button>
+            <md-button class="md-primary" ui-sref="admin.users.form({username: vm.username, domain: vm.domain, action: 'update'})">
+                {{'core.EDIT' | translate }}
+            </md-button>
+
+        </div>
+    </md-card-content>
+</md-card>

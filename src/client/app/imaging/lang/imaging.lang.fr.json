@@ -1,0 +1,26 @@
+{
+    "imaging": {
+        "DATE": "le",
+        "EXAM_DATE": "Date d'examen",
+        "GUIDE_VISITS_IMAGING": "Imagerie du patient",
+        "GUIDE_VISITS_REPORT": "Rapports sans images du patient",
+        "LINK": "Voir les images",
+        "LINK_TO_ALL": "Voir toutes les images du patient",
+        "NAVIGATION_TITLE": "Imagerie",
+        "NO_IMAGING": "Aucune image pour ce patient",
+        "NB_OF_EXAM": "{IMAGES, plural, =0{0 examen} one{1 examen} other{# examens}}",
+        "NO_MORE_EXAMS": "Aucune information additionnelle disponible pour l'imagerie de ce patient",
+        "ORDERNUMBER": "Numéro d'examen",
+        "RECIPIENT_ADDRESS": "Adresse e-mail du destinataire",
+        "REPORT": "Rapport",
+        "REPORT_BACK_BTN": "Précédent",
+        "REPORT_NEXT_BTN": "Suivant",
+        "REPORTS_NOT_LINKED": "Rapports sans images",
+        "SEND_REPORT": "Envoyer rapport",
+        "TITLE_LIST": "Imagerie",
+        "WARN_LEAVE_MSG": "Vous êtes sur le point d'être redirigé sur une page web externe",
+        "WARN_LEAVE_MSG_QUESTION": "Voulez-vous continuer",
+        "WARN_LEAVE_MSG_FOOTER": "Si le message \"Mauvais code d'accès\" apparaît, aucune image n'est disponible pour ce patient",
+        "WARN_TITLE": "Information"
+    }
+}

@@ -1,0 +1,29 @@
+<div id="historiesContainer" layout="column">
+    <div class="fec-page-title" flex="auto">
+        <h5>{{ 'notes.HISTORY_LIST' | translate }} {{ 'notes.NUMBER' | translate }}{{vm.noteId}}</h5>
+        <span class="number-badge" ng-show="vm.dataPager.hasTotalItemsCount">{{ 'notes.NB_OF_HISTORIES' | translate:{HISTORY : vm.dataPager.totalItemsCount} }}</span>
+    </div>
+
+    <md-card class="warn" ng-show="vm.dataPager.isEmpty()">
+        <md-card-content>
+            {{ 'notes.NO_HISTORY' | translate }}
+        </md-card-content>
+    </md-card>
+
+    <div layout="column" flex="auto" class="fec-no-padding" id="btn-visit-area" infinite-scroll="vm.dataPager.getNextPage()" infinite-scroll-disabled="vm.dataPager.isLoading || !vm.dataPager.canGetNextPage()"
+        infinite-scroll-distance="0" infinite-scroll-container="vm.scrollableContainer">
+        <expander-accordion flex="auto">
+            <span ng-repeat="item in vm.dataPager.items">
+                <fec-note-history-item ng-if="item.resourceType === 'note'" history-item="item"></fec-note-history-item>
+                <fec-picture-history-item ng-if="item.resourceType === 'picture'" note-id="vm.noteId" history-item="item"></fec-picture-history-item>
+            </span>
+        </expander-accordion>
+    </div>
+
+    <div layout="column" flex="auto" layout-align=" center" layout-padding>
+        <md-progress-linear md-mode="indeterminate" ng-if="vm.dataPager.isLoading"></md-progress-linear>
+        <div ng-show="vm.dataPager.hasTotalItemsCount && !vm.dataPager.canGetNextPage()" class="center-align">
+            <span class="number-badge passive">{{ 'notes.NB_OF_HISTORIES' | translate:{HISTORY : vm.dataPager.totalItemsCount} }}</span>
+        </div>
+    </div>
+</div>

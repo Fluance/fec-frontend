@@ -1,0 +1,63 @@
+<div class="my-patient {{scope.className}}" flex="auto" layout="column" ng-controller="myPatientController as vm">
+    <md-card flex="auto" layout="column" ng-class="{'warn': scope.warning, 'error': scope.error}">
+        <md-card-title layout="row" flex="auto" layout-align="start end">
+            <md-card-title-text flex="none" layout-nowrap>
+                {{'dashboard.MY_PATIENTS_TITLE' | translate}}
+            </md-card-title-text>
+            <div flex="noshrink" layout="row" layout-align="end center">
+                <md-button hide-xs ng-disabled="!scope.hasDataDay() || scope.error"
+                           class="md-fab md-mini md-primary right button-expanded" fec-mobile-click="openExtended()">
+                    <fec-icon type="expand" size="sm"></fec-icon>
+                </md-button>
+                <md-button hide-gt-xs ng-disabled="!scope.hasDataDay() || scope.error"
+                           class="md-primary right button-mobile-expand" fec-mobile-click="openExtended()">
+                    <fec-icon type="forward" size="md"></fec-icon>
+                </md-button>
+            </div>
+        </md-card-title>
+        <span ng-if="!scope.isMobile()">
+            <md-divider ng-show="scope.error || scope.warning || scope.spinDay || !scope.patients.length"></md-divider>
+
+            <md-card-content class="card-content-info" layout="row" layout-align="start center"
+                             ng-if="scope.warning || scope.error || !scope.hasDataDay()">
+                <!-- Warning / Error / No-data Content -->
+                <p class="warn-message" ng-show="scope.warning">{{ scope.warning.message | translate }}{{ '.' | translate }}</p>
+                <p class="error-message" ng-show="scope.error">{{ scope.error.message | translate }}{{ '.' | translate }}</p>
+                <p class="fec-no-data-message"
+                   ng-hide="scope.hasDataDay() || scope.spinDay || scope.error || scope.warning">{{'dashboard.NO_PATIENTS' | translate}}</p>
+            </md-card-content>
+
+            <md-card-actions layout="row" layout-align="end center" ng-if="(scope.warning && scope.warning.tryagain) || scope.error">
+                <!-- Warning/Error Actions -->
+                <md-button class="md-raised md-primary" ng-show="scope.warning.tryagain" ng-click="scope.tryagain()">{{'dashboard.RELOAD_DATA | translate'}}</md-button>
+                <md-button class="md-raised md-primary" ng-show="scope.error.tryagain" ng-click="scope.tryagain()">{{'dashboard.TRY_AGAIN' | translate}}</md-button>
+                <md-button class="md-raised md-primary" ng-show="scope.error.report !== null && scope.error.report !== undefined" ng-click="scope.logger.showReport(scope.error.report)">{{'dashboard.SEE_REPORT' | translate}}</md-button>
+            </md-card-actions>
+
+            <md-list ng-hide="scope.error || scope.warning || scope.spinDay || !scope.patients.length">
+                <md-list-item class="border-top"
+                              ng-repeat="patients in scope.patients|limitTo: scope.defaultMaxPatients">
+                    <my-cockpit-single-patient patients="patients" icon="data.icon" boxid="patient"></my-cockpit-single-patient>
+                </md-list-item>
+            </md-list>
+            <md-divider></md-divider>
+            <!-- Action links -->
+            <md-card-actions class="my-patient-show-more" layout="row" layout-align="end center"
+                             ng-if="!scope.spinDay && scope.totalPatients && !scope.error && !scope.warning && scope.totalPatients > scope.defaultMaxPatients">
+                <a ng-click="openExtended()">
+                    {{ 'dashboard.MORE_ENTRIES' | translate: { COUNT : scope.totalPatients - scope.defaultMaxPatients } }}
+                </a>
+            </md-card-actions>
+
+            <!-- Progress -->
+            <div class="fec-busy-indicator" ng-if="scope.spinDay">
+                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
+        </span>
+
+        <!-- Draggable item -->
+        <div class="draggable sortable-handle" ng-class="{'draggable-visible': scope.isStateSorting}">
+            <fec-icon type="draggable" size="lg"></fec-icon>
+        </div>
+    </md-card>
+</div>

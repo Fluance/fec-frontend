@@ -1,0 +1,19 @@
+<md-dialog class="note-image-full-screen">
+
+    <md-dialog-content layout="column" layout-align="start strech">
+        <div flex="none" layout="row" layout-align="end center" layout-padding>
+            <span>
+                <md-tooltip layout="row" layout-align="center center" class="info"
+                            md-delay="50">{{'notes.FULLSCREEN_CLOSE' | translate }}</md-tooltip>
+                <fec-icon type="fullscreenExit" color="fe-blue-icon" fec-mobile-click="vm.closeDialog()"></fec-icon>
+            </span>
+        </div>
+        <div layout="row" layout-align="center center" flex="auto">
+            <div id="notes_picture_full_screen_image_container" ng-show="!vm.loading && !vm.resizing" flex="initial">
+                <img http-src="{{vm.pictureUrl}}" fec-image-on-load="vm.onImageLoaded()">
+            </div>
+
+            <md-progress-circular md-mode="indeterminate" ng-show="vm.loading || vm.resizing"></md-progress-circular>
+        </div>
+    </md-dialog-content>
+</md-dialog>

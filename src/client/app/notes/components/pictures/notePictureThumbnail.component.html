@@ -1,0 +1,7 @@
+<div layout-xs="row" layout-gt-xs="column" layout-align="start start" flex="none" layout-wrap>
+    <fec-note-image-thumbnail flex="auto" picture="vm.picture" show-details="vm.showDetails" on-click-show-details="vm.showPictureDetails($event, pictureId)"></fec-note-image-thumbnail>
+
+    <div layout="initial" layout-wrap style="width: 100px;" class="annotation-container">
+        <label flex="auto">{{vm.picture.annotation}}</label>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+.fec-datatable-container {
+    .item-info-content {
+        margin-right: 10px;
+    }
+
+    fec-virtual-datatable-header {
+        padding: 8px 16px;
+        border-bottom: 2px solid $list-border-color;
+        .title  {
+            text-transform: uppercase;
+            height: 26px; /* adjust layout to icon size when icon is not visible, so it keeps same height */
+        }
+        .title:hover  {
+            cursor: pointer;
+        }
+        .title:focus  {
+            outline: none;
+        }
+        md-select {
+            margin: 0;
+        }
+    }
+
+    fec-virtual-datatable-filter {
+        position: absolute;
+        right: 36px;
+        md-select {
+            display: inline;
+        }
+    }
+
+    md-virtual-repeat-container {
+        height: 440px;
+        border-bottom: solid 1px $list-border-color;
+        .md-virtual-repeat-scroller {
+            height: inherit;
+            md-list {
+                border: none;
+                &.striped {
+                    > md-list-item.odd {
+                        background-color: $table-striped-color;
+                    }
+                }
+                md-list-item {
+                    height: 23px;
+                }
+                md-list-item:before {
+                    height: 23px;
+                }
+            }
+        }
+    }
+
+    fec-virtual-datatable-footer {
+        padding-top: 20px;
+
+        span.count {
+            font-size: .8rem;
+            font-weight: 300;
+        }
+    }
+}

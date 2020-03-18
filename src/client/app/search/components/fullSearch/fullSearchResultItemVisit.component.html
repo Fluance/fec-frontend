@@ -1,0 +1,55 @@
+<div class="entity-profile" layout="row">
+    <span layout="row" layout-align="start center" layout-margin flex="grow" layout-wrap
+          ui-sref="visit({vnb: $ctrl.result.vnb,
+                         field: $ctrl.criteria,
+                         originState: $ctrl.originState})">
+        <span class="entity-id" flex="11" flex-gt-sm="5">{{ ::$ctrl.result.vnb }}</span>
+
+        <span flex="initial">
+            <md-tooltip layout="row" layout-align="center center" class="info"
+                        md-delay="50">{{ 'search.PATIENT' | translate }}</md-tooltip>
+            <fec-icon type="patient" color="fe-blue-icon" size="ms"></fec-icon>
+        </span>
+
+        <div layout="column" flex="25" flex-gt-sm="15">
+            <span layout="row" layout-align="start center" layout-wrap>
+                <span ng-bind-html="$ctrl.getPatientLastName() | highlightText: $ctrl.criteria"> </span>
+            </span>
+
+            <span layout="row" layout-align="start center" layout-wrap>
+                <span ng-bind-html="$ctrl.getPatientFirstName() | highlightText: $ctrl.criteria"> </span>
+                <fec-gender-icon gender="{{::$ctrl.visit.sex}}" color="fe-grey-icon" size="sm"></fec-gender-icon>
+            </span>
+        </div>
+
+        <span layout="row" layout-align="start center" flex="18" layout-wrap layout-margin>
+            <span><md-tooltip layout="row" layout-align="center center" class="info"
+                              md-delay="50">{{ 'search.BIRTHDATE' | translate }}</md-tooltip>
+            <fec-icon type="birthdate" color="fe-grey-icon" size="sm"></fec-icon>
+                </span>
+            <span
+                ng-bind-html="$ctrl.result.visit.birthdate | formatDate : 'date'  | highlightText: $ctrl.criteria"> </span>
+        </span>
+
+        <span layout="row" layout-align="start center" flex="18" layout-wrap layout-margin>
+            <span><md-tooltip layout="row" layout-align="center center" class="info"
+                              md-delay="50">{{ 'core.ADMIT_DATE' | translate }}</md-tooltip>
+            <fec-icon type="calendarClock" color="fe-grey-icon" size="sm"></fec-icon>
+                </span>
+            <span
+                ng-bind-html="$ctrl.result.visit.admitDate | formatDate : 'date' | highlightText: $ctrl.criteria"> </span>
+        </span>
+
+        <span layout="row" layout-align="start center" flex="18" flex-gt-sm="15" layout-wrap layout-margin>
+            <span><md-tooltip layout="row" layout-align="center center" class="info"
+                              md-delay="50">{{ 'core.COMPANY' | translate }}</md-tooltip>
+            <fec-icon type="clinic" color="fe-grey-icon" size="sm"></fec-icon>
+                </span>
+            <span>
+                <md-tooltip layout="row" layout-align="center center" class="info"
+                            md-delay="50">{{ $ctrl.result.visit.companyName }}</md-tooltip>
+                <span>{{ $ctrl.result.visit.companyCode }}</span>
+            </span>
+        </span>
+    </span>
+</div>

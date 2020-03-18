@@ -1,0 +1,37 @@
+<span layout="column" layout-align="row" flex="auto">
+    <span ng-if="!$ctrl.note.isFirstItem" layout="column" flex="auto">
+        <label ng-if="$ctrl.note.shift">{{'notes.CHANGE_SHIFT' | translate}}</label>
+        <label ng-if="!$ctrl.note.shift">{{'notes.CHANGE_NO_SHIFT' | translate}}</label>
+    </span>
+    <span ng-if="$ctrl.note.isFirstItem" layout="column" flex="auto">
+        <label ng-if="$ctrl.note.shift">{{'notes.SHIFT_NOTE' | translate}}</label>
+    </span>
+
+    <span layout="column" ng-if="$ctrl.note.previousValues.title || ($ctrl.note.isFirstItem && $ctrl.note.title)" flex="auto">
+        <label ng-if="!$ctrl.note.isFirstItem">{{'notes.CHANGE_TITLE' | translate}}</label>
+        <label ng-if="$ctrl.note.isFirstItem">{{'notes.TITLE' | translate}}</label>
+        <span layout="row" flex="auto" layout-padding>
+            <span flex="50" ng-if="!$ctrl.note.isFirstItem">{{$ctrl.note.previousValues.title}}</span>
+            <span flex="50">{{$ctrl.note.title}}</span>
+        </span>
+    </span>
+
+    <span layout="column" ng-if="$ctrl.note.previousValues.category || ($ctrl.note.isFirstItem && $ctrl.note.category)" flex="auto">
+        <label ng-if="!$ctrl.note.isFirstItem">{{'notes.CHANGE_CATEGORY' | translate}}</label>
+        <label ng-if="$ctrl.note.isFirstItem">{{'notes.CATEGORY' | translate}}</label>
+        <span layout="row" flex="auto" layout-padding>
+            <span flex="50" ng-if="!$ctrl.note.isFirstItem">{{$ctrl.note.previousValues.category.name}}</span>
+            <span flex="50">{{$ctrl.note.category.name}}</span>
+        </span>
+    </span>
+
+    <span ng-if="$ctrl.note.previousValues.description || ($ctrl.note.isFirstItem && $ctrl.note.description)"
+          layout="column" flex="auto">
+        <label ng-if="!$ctrl.note.isFirstItem" flex="auto">{{'notes.CHANGE_DESCRIPTION' | translate}}</label>
+        <label ng-if="$ctrl.note.isFirstItem" flex="auto">{{'notes.DESCRIPTION' | translate}}</label>
+        <span layout="row" flex="auto">
+            <span class="textOverflow" flex="50" ng-if="!$ctrl.note.isFirstItem">{{$ctrl.note.previousValues.description}}</span>
+            <span class="textOverflow" flex="50">{{$ctrl.note.description}}</span>
+        </span>
+    </span>
+</span>

@@ -1,0 +1,10 @@
+<div class="portlet-header">
+    <span class="portlet-title">{{'dashboard.SEARCH_ENTRIES_TITLE' | translate}}</span>
+</div>
+<div class="portlet-content">
+    <ul>
+        <li ng-repeat="search in data.datas">
+            <my-cockpit-single-search search="search" icon="data.icon"></my-cockpit-single-search>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,16 @@
+<span ng-disabled="!col.canSort" ng-click="col.canSort && $ctrl.sortBy(col.name)" ng-repeat="col in $ctrl.columns"
+      class="title textOverflow fec-table-header" flex="{{col.flex}}" layout="row"
+      layout-align="start center" ng-if="col.show"
+      ng-class="{'sort':col.canSort}">
+        <span id="{{col.text}}">
+            <span>
+                <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom"
+                            md-delay="25">{{col.text | translate}}</md-tooltip>
+                <span>{{col.text | translate}}</span>
+            </span>
+        </span>
+    <fec-icon ng-if="(col.name === $ctrl.selectedColumn.name) && !$ctrl.selectedColumn.sortDesc && col.canSort"
+              type="dropup" color="fe-blue-icon"></fec-icon>
+    <fec-icon ng-if="(col.name === $ctrl.selectedColumn.name) && $ctrl.selectedColumn.sortDesc && col.canSort"
+              type="dropdown" color="fe-blue-icon"></fec-icon>
+</span>

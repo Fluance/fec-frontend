@@ -1,0 +1,27 @@
+<!-- Whiteboard Surgery Overview -->
+<fec-patient-navigation-button
+    ng-if="!$ctrl.roomName"
+    button-label="{{'whiteboardSurgery.TITLE' | translate}}"
+    can-navigate="$ctrl.canNavigate()"
+    context="$ctrl.context"
+    icon-type="back"
+    is-enabled="$ctrl.isEnabled"
+    is-active="$ctrl.isActive"
+    navigate-to="$ctrl.navigateTo()"
+    required-context="$ctrl.requiredContext"
+    required-origin-state="whiteboardSurgery">
+</fec-patient-navigation-button>
+
+<!-- Whiteboard Surgery Room -->
+<fec-patient-navigation-button
+    ng-if="$ctrl.roomName"
+    button-label="{{'whiteboardSurgery.TITLE' | translate}}"
+    can-navigate="$ctrl.canNavigate()"
+    context="$ctrl.context"
+    is-enabled="$ctrl.isEnabled"
+    is-active="$ctrl.isActive"
+    icon-type="back"
+    navigate-to="$ctrl.navigateTo()"
+    required-context="$ctrl.requiredContext"
+    required-origin-state="whiteboardSurgeryRoom">
+</fec-patient-navigation-button>

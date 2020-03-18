@@ -1,0 +1,121 @@
+.fec-patient-list-index {
+    background-color: $fe-blue;
+    color: #FFF;
+    display: inline-block;
+    padding: 2px;
+    text-align: center;
+    z-index: 1;
+}
+
+.fec-dashboard-room-list {
+    /* --------------------------------
+       Fix Room List (scrolling)
+     -------------------------------- */
+    .fec-room-list-DISABLED {
+        position: relative;
+        height: calc(100% - 60px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .fec-patient-list {
+        md-content {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+    }
+
+    /*
+    Set correct overflow for IE
+     */
+    .adjust-scroll {
+        overflow-y: hidden;
+    }
+
+    /*
+    set min size for flex="grow" works
+     */
+    md-subhead {
+        min-width: 80px;
+        padding-bottom: 1px;
+        padding-left: 16px;
+
+        selection-reveal .reveal-link span {
+            font-size: 16px;
+        }
+    }
+
+    /*
+    set min size for flex="initial"
+     */
+    md-card-title-text {
+        min-width: 80px;
+        font-size: 26px;
+        height: 48px;
+        @media only screen and (max-width: $small-screen) {
+            font-size: 22px;
+        }
+    }
+
+    md-chip {
+        .left-semicircle {
+            width: 17px;
+            height: 32px;
+            -moz-border-radius: 100px 0 0 100px;
+            -webkit-border-radius: 100px 0 0 100px;
+            border-radius: 100px 0 0 100px;
+            position: absolute;
+            margin-left: -17px;
+            background: $chip-bg-color;
+        }
+
+        .right-semicircle {
+            width: 17px;
+            height: 32px;
+            -moz-border-radius: 0 100px 100px 0;
+            -webkit-border-radius: 0 100px 100px 0;
+            border-radius: 0 100px 100px 0;
+            position: relative;
+            float: right;
+            background: $chip-bg-color;
+        }
+        padding-right: 0;
+    }
+    md-progress-circular {
+        margin: 16px;
+    }
+}
+
+/**
+represent every option and the selected option for room list in extended view in xs devices
+ */
+.fec-room-list-extended-xs-option,
+fec-room-list-hosp-ext .fec-room-list span,
+fec-room-list-amb-ext .fec-room-list span {
+    color: $fe-blue;
+    .md-text {
+        /**assign flex-row properties**/
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex !important;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+
+        width: 100%;
+
+        .number {
+            width: 40px;
+            text-align: right;
+        }
+    }
+}
+
+.fec-bed {
+    .number {
+        width: 40px;
+        text-align: right !important;
+    }
+}

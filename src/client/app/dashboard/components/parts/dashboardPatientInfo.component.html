@@ -1,0 +1,83 @@
+<!-- Mobile -->
+<div hide-gt-xs layout="column">
+    <!-- Admission date -->
+    <div layout="row" layout-align="space-between center" ng-hide="$ctrl.hideAdmissionDate">
+        <div flex="grow">
+            <small class="warning_text">
+                {{'dashboard.ADMIT_DATE_SHORT' | translate}}{{':' | translate}}{{ $ctrl.patientInfo.visit.admitdt | amDateFormat:'DD.MM.YYYY HH:mm' }}
+            </small>
+        </div>
+        <!-- Index: room, first letter -->
+        <div class="mobile-sort-value" layout-align="end center" ng-if="$ctrl.patientInfo.showIndex">
+            <small>
+                <span ng-show="$ctrl.sortOrder === 'room'">{{ 'dashboard.ROOM' | translate }}&nbsp;</span>{{ $ctrl.patientInfo.displayValue }}
+            </small>
+        </div>
+    </div>
+    <!-- Patient name -->
+    <div layout="row" layout-align="space-between center">
+        <span  class="fec-patient-name mobile-patient-name fec-link" ui-sref="patient({pid: $ctrl.patientInfo.patient.pid})">
+            <strong>{{ $ctrl.patientInfo.patient.lastName }}{{',' | translate}}{{ $ctrl.patientInfo.patient.firstName }}</strong>
+        </span>
+        <!-- Index: admission date -->
+        <span class="mobile-sort-value" layout-align="end center" ng-if="$ctrl.patientInfo.showIndex && $ctrl.hideAdmissionDate">
+            <small>
+                {{ $ctrl.patientInfo.visit.admitdt | amDateFormat:'DD.MM.YYYY' }}
+            </small>
+        </span>
+    </div>
+    <!-- Patient birthday -->
+    <span>{{ $ctrl.patientInfo.patient.birthDate | formatDate :'date' }}&nbsp;
+        <gender-icon gender-string="{{$ctrl.patientInfo.patient.sex}}" class="gender-icon"></gender-icon>
+    </span>
+    <!-- Visit -->
+    <div layout="row" layout-align="space-between center">
+        <div><span class="fec-link" ui-sref="visit({vnb: $ctrl.patientInfo.visit.nb})">{{'dashboard.VISIT_NBR' | translate}}{{':' | translate}}{{ $ctrl.patientInfo.visit.nb }}</span></div>
+        <div>
+            <span>
+                <content-item-no-title content="{{ $ctrl.patientInfo.visit.patientclass }}" tooltip-placement="bottom" info="{{ $ctrl.patientInfo.visit.patientclassdesc }}"
+                                       elementid="{{ elementid }}-class"></content-item-no-title>
+            </span>
+            <span>&nbsp;/&nbsp;</span>
+            <span>
+                <content-item-no-title content="{{ $ctrl.patientInfo.visit.hospservice }}" tooltip-placement="bottom" info="{{ $ctrl.patientInfo.visit.hospservicedesc }}"
+                                       elementid="{{ elementid }}-hospservice"></content-item-no-title>
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- Desktop/Tablet -->
+<div hide-xs layout="column">
+    <!-- Admission date -->
+    <div ng-hide="$ctrl.hideAdmissionDate">
+        <small class="warning_text">
+            {{'dashboard.ADMIT_DATE_SHORT' | translate}}{{':' | translate}}{{ $ctrl.patientInfo.visit.admitdt | amDateFormat:'DD.MM.YYYY HH:mm' }}
+        </small>
+    </div>
+    <!-- Patient name -->
+    <div>
+        <span class="fec-patient-name fec-link" ui-sref="patient({pid: $ctrl.patientInfo.patient.pid})">
+            <strong>{{ $ctrl.patientInfo.patient.lastName }}{{',' | translate}}{{ $ctrl.patientInfo.patient.firstName }}</strong>
+        </span>
+    </div>
+    <!-- Patient birthday -->
+    <div>{{ $ctrl.patientInfo.patient.birthDate | formatDate :'date' }}&nbsp;
+        <gender-icon gender-string="{{$ctrl.patientInfo.patient.sex}}" class="gender-icon"></gender-icon>
+    </div>
+    <!-- Visit -->
+    <div layout="row" layout-align="space-between center">
+        <div><span class="fec-link" ui-sref="visit({vnb: $ctrl.patientInfo.visit.nb})">{{'dashboard.VISIT_NBR' | translate}}{{':' | translate}}{{ $ctrl.patientInfo.visit.nb }}</span></div>
+        <div>
+            <span>
+                <content-item-no-title content="{{ $ctrl.patientInfo.visit.patientclass }}" tooltip-placement="bottom" info="{{ $ctrl.patientInfo.visit.patientclassdesc }}"
+                                       elementid="{{ elementid }}-class"></content-item-no-title>
+            </span>
+            <span>&nbsp;/&nbsp;</span>
+            <span>
+                <content-item-no-title content="{{ $ctrl.patientInfo.visit.hospservice }}" tooltip-placement="bottom" info="{{ $ctrl.patientInfo.visit.hospservicedesc }}"
+                                       elementid="{{ elementid }}-hospservice"></content-item-no-title>
+            </span>
+        </div>
+    </div>
+</div>

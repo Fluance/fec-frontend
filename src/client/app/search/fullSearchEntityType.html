@@ -1,0 +1,53 @@
+<div>
+    <div class="fec-page-title">
+        <h5>
+            <fec-icon type="{{$ctrl.entityType}}" color="fe-blue-icon"></fec-icon>
+            {{ $ctrl.getTitle() | translate }}
+        </h5>
+        <span class="number-badge" ng-show="$ctrl.dataPager.hasTotalItemsCount">{{ 'search.NB_OF_RESULTS' | translate:{RESULT : $ctrl.dataPager.totalItemsCount} }}</span>
+    </div>
+    <div class="fec-full-search-criteria">
+        <div layout="row" layout-xs="column">
+            <div layout="row" flex>
+                <label>{{ 'search.CRITERIA' | translate }}{{ ':' | translate }}</label>
+                <fec-search-query query="$ctrl.searchQuery" delegate="$ctrl" navigate-on-click="false" flex layout="row"></fec-search-query>
+            </div>
+            <div class="fec-full-search-criteria-toolbar">
+                <md-button class="md-fab md-mini md-primary" ui-sref="fullSearch({field: $ctrl.searchText})">
+                    <fec-icon type="notExpanded"></fec-icon>
+                </md-button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NO RESULTS FOUND -->
+    <div class="fec-full-search-results" ng-show="$ctrl.dataPager.isEmpty()">
+        <md-card class="warn">
+            <md-card-content>
+                {{'search.NO_RESULTS' | translate }}{{'.' | translate }}
+            </md-card-content>
+        </md-card>
+    </div>
+
+    <!-- Results list -->
+    <div class="fec-full-search-results">
+        <div infinite-scroll="$ctrl.dataPager.getNextPage()" infinite-scroll-disabled="$ctrl.dataPager.isLoading || !$ctrl.dataPager.canGetNextPage()"
+            infinite-scroll-container="$ctrl.scrollableContainer">
+            <md-card class="list-patients" layout="row" flex="grow">
+                <md-card-content layout="column" flex="grow">
+                    <fec-full-search-result-item-patient criteria="$ctrl.getCriteriaValue()" ng-if="$ctrl.entityType == 'patient'" patient="item"
+                        ng-repeat="item in $ctrl.dataPager.items"></fec-full-search-result-item-patient>
+                    <fec-full-search-result-item-visit criteria="$ctrl.getCriteriaValue()" ng-if="$ctrl.entityType == 'visit'" visit="item" ng-repeat="item in $ctrl.dataPager.items"></fec-full-search-result-item-visit>
+                </md-card-content>
+            </md-card>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div layout-padding id="bottomContainer">
+        <md-progress-linear id="bottomProgressBar" md-mode="indeterminate" ng-if="$ctrl.dataPager.isLoading"></md-progress-linear>
+        <div ng-show="$ctrl.dataPager.hasTotalItemsCount && !$ctrl.dataPager.canGetNextPage()" class="center-align">
+            <span class="number-badge passive">&nbsp;{{ 'search.NB_OF_RESULTS' | translate:{RESULT : $ctrl.dataPager.totalItemsCount} }}&nbsp;</span>
+        </div>
+    </div>
+</div>

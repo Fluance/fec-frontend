@@ -1,0 +1,15 @@
+{
+    "invoice": {
+        "BALANCE": "Balance",
+        "GUA_CODE": "Guarantor Code",
+        "GUA_NAME": "Guarantor Name",
+        "GUIDE_GUARANTORS_INVOICES": "The invoices, which were generated during this visit",
+        "INV_DATE": "Invoice Date",
+        "INV_TOTAL_PAID": "Total (incl. VAT)",
+        "INVOICE_DETAILS": "Invoice Details",
+        "NB_OF_INVOICE": "{INVOICE, plural, =0{0 invoices} one{1 invoice} other{# invoices}}",
+        "NO_INVOICE": "No invoice for this guarantor",
+        "TITLE": "Invoice",
+        "TITLE_LIST": "Invoices"
+    }
+}

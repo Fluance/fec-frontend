@@ -1,0 +1,13 @@
+<!-- existing thumbnail -->
+<div ng-if="vm.picture.pictureId">
+    <fec-note-image image-type="thumbnail"
+                    picture-id="vm.picture.pictureId"
+                    image-url="{{vm.picture.url}}"
+                    show-details="vm.showDetails"
+                    on-click-show-details="vm.showPictureDetails($event, pictureId)">
+    </fec-note-image>
+</div>
+<!-- generated thumbnail of new picture -->
+<div ng-if="!vm.picture.pictureId">
+    <img ngf-thumbnail="vm.picture.file" class="picture-thumbnail">
+</div>

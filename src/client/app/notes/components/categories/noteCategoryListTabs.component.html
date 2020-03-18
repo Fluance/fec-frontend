@@ -1,0 +1,8 @@
+<md-nav-bar flemd-no-ink-bar="disableInkBar" md-selected-nav-item="currentNavItem" ng-init="currentNavItem = $ctrl.currentTab">
+    <md-nav-item md-nav-click="$ctrl.changeTab('all-notes')" name="all-notes">
+        {{ "notes.ALL_NOTES" | translate }}
+    </md-nav-item>
+    <md-nav-item md-nav-click="$ctrl.changeTab('my-notes')" name="my-notes">
+        {{ "notes.MY_NOTES" | translate }}
+    </md-nav-item>
+</md-nav-bar>

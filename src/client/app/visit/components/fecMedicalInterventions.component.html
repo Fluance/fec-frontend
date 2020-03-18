@@ -1,0 +1,5 @@
+<div layout="column" layout-padding class="visit-detail-info" ng-if="$ctrl.result.entries">
+    <div ng-repeat="entry in $ctrl.result.entries">
+        {{ 'visit.INTERVENTIONS_TEXT' | translate : entry }}
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<h5>
+    <small>{{ 'visit.CONSULTING_PHYS' | translate }}</small>
+</h5>
+<div layout="column">
+    <div class="noResult" ng-hide="$ctrl.physician.consultingPhysicianId">
+        <p class="warn">{{ 'visit.NOT_SPECIFIED' | translate }}</p>
+    </div>
+    <div ng-show="$ctrl.physician.consultingPhysicianId">
+        <md-list>
+            <content-item-detail label="{{ 'core.STAFF_ID' | translate }}" content="{{ ::$ctrl.physician.consultingPhysicianStaffid }}"></content-item-detail>
+            <content-item-detail label="{{ 'core.FIRSTNAME' | translate }}" content="{{ ::$ctrl.physician.consultingPhysicianFirstname }}"></content-item-detail>
+            <content-item-detail label="{{ 'core.LASTNAME' | translate }}" content="{{ ::$ctrl.physician.consultingPhysicianLastname }}"></content-item-detail>
+        </md-list>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<md-dialog>
+    <md-dialog-content flex>
+        <div class="md-dialog-content" id="fec-meteo-dialog">
+            <fec-meteo-data-list meteo-date="{{$ctrl.firstDate}}" meteo-duration="5" company-id="{{$ctrl.companyId}}"></fec-meteo-data-list>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions ng-hide="$ctrl.isLoading">
+        <div class="meteo-powered-by">{{ 'core.METEO.POWERED_BY' | translate }}<a href="http://OpenWeatherMap.org/" target="_blank">OpenWeatherMap.org</a></div>
+        <span flex></span>
+        <md-button fec-mobile-click="$ctrl.closeDialog()" class="md-primary">{{'core.CLOSE' | translate }}</md-button>
+    </md-dialog-actions>
+</md-dialog>

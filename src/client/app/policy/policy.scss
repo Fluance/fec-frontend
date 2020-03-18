@@ -1,0 +1,87 @@
+#policiesContainer {
+    .headPolicies {
+        font-weight: bold;
+        border-bottom: solid 1px $list-border-color;
+        padding: 8px;
+        height: 43px;
+
+        span {
+            outline: none;
+            cursor: default;
+            &:not([disabled]) {
+                cursor: pointer;
+            }
+        }
+    }
+
+    md-list {
+        min-height: 156px;
+
+        &.striped {
+            md-list-item:nth-child(odd) {
+                background-color: $table-striped-color !important;
+                div {
+                    background-color: $table-striped-color;
+                }
+            }
+        }
+
+        border: none;
+
+        md-list-item {
+            padding-left: 8px;
+            padding-right: 8px;
+            min-height: 52px;
+
+            border-bottom: solid 1px $list-border-color;
+
+            div {
+                min-height: 52px;
+            }
+        }
+
+        md-list-item:before {
+            min-height: 52px;
+            border-bottom: solid 1px $list-border-color;
+        }
+    }
+}
+
+#policyDetailDialog {
+    overflow-x: visible;
+    overflow-y: visible;
+
+    md-dialog-content {
+        min-width: 700px;
+
+        .closeButton {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            padding: 0px;
+        }
+    }
+}
+
+#policyDetail {
+
+    .policyDetailHeader {
+        height: 52px;
+    }
+
+    .policyDetailPadding {
+        padding: 8px;
+    }
+
+    .policyDetailTableHeader {
+        font-weight: bold;
+    }
+    .policyDetailTableContent {
+        background-color: $table-striped-color;
+        word-wrap: break-word;
+
+        span:not(:last-child){
+            padding-right: 8px;
+        }
+    }
+}

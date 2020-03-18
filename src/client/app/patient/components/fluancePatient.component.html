@@ -1,0 +1,21 @@
+<div class="patient-profile" id="patients-list">
+    <fluance-patient-list-item layout="row" ui-sref="patient($ctrl.stateParams)">
+        <patient-pid>{{ ::$ctrl.patient.pid }}</patient-pid>
+        <patient-lastname>
+            <span ng-bind-html="$ctrl.getPatientName() | highlightText: $ctrl.criteria['name']"> </span>
+        </patient-lastname>
+        <patient-firstname>
+            <span ng-bind-html="$ctrl.getPatientFirstName() | highlightText: $ctrl.criteria['firstname']"> </span>
+        </patient-firstname>
+        <patient-sex>
+            <fec-gender-icon gender="{{::$ctrl.patient.sex}}" color="fe-grey-icon" size="sm"></fec-gender-icon>
+        </patient-sex>
+        <patient-birthdate>
+            <span ng-bind-html="($ctrl.patient.birthDate  | formatDate : 'date') | highlightText: ($ctrl.criteria['birthdate'] | formatDate : 'date')">
+            </span>
+        </patient-birthdate>
+        <patient-address>
+            <span>{{$ctrl.getAddress()}}</span>
+        </patient-address>
+    </fluance-patient-list-item>
+</div>

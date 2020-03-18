@@ -1,0 +1,8 @@
+<div ng-click="$ctrl.sortBy(col.name)" ng-repeat="col in $ctrl.columns" class="title" flex="{{col.flex}}" layout="row" layout-align="start center">
+    <div>{{$ctrl.translate(col.text)}}</div>
+    <fec-icon ng-if="(col.name === $ctrl.selectedColumn.name) && !$ctrl.selectedColumn.sortDesc" type="sortColumnAscending"></fec-icon>
+    <fec-icon ng-if="(col.name === $ctrl.selectedColumn.name) && $ctrl.selectedColumn.sortDesc" type="sortColumnDescending"></fec-icon>
+</div>
+
+
+

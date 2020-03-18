@@ -1,0 +1,204 @@
+#patientContext {
+    >* {
+        margin-bottom: 8px;
+    }
+    .flu-divider {
+        margin-top: 4px;
+        margin-bottom: 4px;
+        height: 1px;
+        border-top: 1px solid #ddd;
+    }
+    .gender-icon {
+        fill: $fe-black;
+    }
+    @media #{$small-and-down} {
+        display: none;
+    }
+    table:hover i {
+        background-color: $fe-grey;
+    }
+    table,
+    .list {
+        cursor: pointer;
+        table-layout: fixed;
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        &:hover {
+            background-color: $fe-grey;
+            color: $fe-accent-grey;
+            i {
+                color: $fe-accent-grey;
+            }
+        }
+    }
+    tr>th,
+    tr>td {
+        padding: 5px 5px;
+    }
+    tr>td.icon,
+    tr>th.icon {
+        width: 30%;
+        text-align: center;
+    }
+    font-size: 0.8rem;
+    #patientDetail,
+    #guarantorDetail,
+    #originDetail,
+    #noteCategoryDetail,
+    #noteDetail,
+    #visitDetail {
+        @extend .z-depth-1;
+        transition: box-shadow .25s;
+        padding: 1rem;
+        background-color: $fe-white;
+        position: relative;
+        .list {
+            cursor: pointer;
+            color: $fe-accent-grey;
+            i {
+                position: relative;
+                padding-bottom: 1px;
+                vertical-align: middle;
+            }
+        }
+    }
+    #visitDetail,
+    #originDetail,
+    #guarantorDetail {
+        span {
+            padding-top: 10px;
+            border-top: 2px solid $fe-grey;
+            display: block;
+        }
+    }
+}
+
+#foot {
+    margin-top: 5px;
+    border-bottom: 2px solid $fe-accent-grey;
+}
+
+.patient-search-unique {
+    padding: 20px 0 40px 0;
+    width: 100%;
+}
+
+fluance-patient-list-item {
+    cursor: pointer;
+}
+
+#patient-search,
+.fec-full-search-results {
+    .gender-icon {
+        fill: $fe-black;
+    }
+    .criterias {
+        margin-bottom: 0px;
+    }
+    expander-header {
+        line-height: 1rem;
+        .patient-header-info>.col>.row>.item-info {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .row {
+            margin-bottom: 0px;
+        }
+        &>.row {
+            padding: 10px 0px;
+        }
+        .patient-profile {
+            .patient-name {
+                color: $fe-black;
+            }
+            .patient-id {
+                color: $fe-blue;
+            }
+            .patient-id {
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+            .patient-info {
+                color: $fe-accent-grey;
+            }
+            .row {
+                margin: 0px 5px;
+            }
+        }
+    }
+    .expander-body {
+        background-color: $fe-white;
+        line-height: 1rem;
+        .patient-detail-info {
+            line-height: 15px;
+            .next-of-kin {
+                margin-bottom: 10px;
+                font-size: 15px;
+                color: $fe-accent-grey;
+                p {
+                    padding: 2px 0px;
+                }
+                .next-of-kin-contacts {
+                    margin-top: 5px;
+                }
+                .item-info-detail-label {
+                    color: $fe-black;
+                }
+            }
+            .row {
+                .item-info-detail {
+                    margin: 0px 0px 5px 0px;
+                    padding: 0px 0px 5px 0px;
+                    border-bottom: 1px solid $fe-grey;
+                    .item-info-detail-label {
+                        color: $fe-accent-grey;
+                    }
+                    .item-info-detail-content {
+                        color: $fe-black;
+                        padding-right: 0px;
+                        line-height: 1rem;
+                        .material-icons {
+                            font-size: 16px;
+                            width: 18px;
+                            line-height: 1rem;
+                            margin-right: -1px;
+                            margin-left: 5px;
+                            margin-top: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .patientTitlePadding {
+        padding: 0px 21px 0px 21px;
+    }
+
+    fec-patient-billing{
+        md-list-item{
+            padding-left: 0px;
+        }
+    }
+
+    //PATIENT LIST IN THE SEARCH
+    md-card.list-patients {
+        padding: 0;
+        margin: 0;
+        md-card-content {
+            padding: 0;
+            .patient-profile {
+                .patient-id {
+                    color: $fe-blue;
+                    font-weight: bold;
+                }
+                .patient-info {
+                    color: $fe-accent-grey;
+                }
+            }
+            #patients-list {
+                border-bottom: 1px solid $fe-grey;
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "patientNavigation": {
+        "GUA_ID": "N° Garante",
+        "GUA_LIST": "Elenco dei garanti",
+        "GUARANTOR": "Garante",
+        "GUIDE_GUARANTOR_DETAIL": "Tornare indietro per i garanti",
+        "GUIDE_GUARANTOR_LIST": "Tornare indietro per i garanti",
+        "GUIDE_HOME": "Tornare al My Cockpit",
+        "GUIDE_NOTE": "Torna ai dettagli della nota",
+        "GUIDE_NOTE_CATEGORY": "Tornare alla categoria di nota",
+        "GUIDE_PATIENT_DETAIL": "Tornare al paziente dettaglio",
+        "GUIDE_PATIENT_LIST": "Tornare all'elenco dei paziente",
+        "GUIDE_VISIT_DETAIL": "Tornare al visita dettaglio",
+        "GUIDE_VISIT_LIST": "Tornare all'elenco dei visite",
+        "HOME": "My Cockpit",
+        "NAVIGATION": "Navigazione",
+        "NO_NOTE": "Nessuna nota con tali criteri",
+        "NO_PATIENT": "Nessun paziente con tali criteri",
+        "NO_VISIT": "Nessuna visita con tali criteri",
+        "NO_APPOINTMENT": "Nessun appuntamenti con tali criteri",
+        "OWN_GUARANTOR": "Paziente autopagante",
+        "PATIENT": "Paziente",
+        "SEARCH_RESULTS": "Risultati della ricerca"
+    }
+}

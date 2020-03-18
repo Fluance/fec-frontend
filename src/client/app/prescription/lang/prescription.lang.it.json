@@ -1,0 +1,16 @@
+{
+    "prescription": {
+        "ERROR_PRESCRIPTION_SERVER_TITLE": "Server non accessibile",
+        "ERROR_PRESCRIPTION_SUPPORT": "Per ulteriori informazioni, utilizzare il nostro Centro di contatto",
+        "ERROR_PRESCRIPTION_SERVER_NOT_AVAILABLE": "Si è verificato un errore durante la connessione al server di recupero remoto",
+        "ERROR_PRESCRIPTION_NOT_AVAILABLE": "Prescrizione non disponibili",
+        "ERROR_NO_PRESCRIPTION_TITLE": "Impossibile creare la prescrizione di laboratorio",
+        "ERROR_NO_PRESCRIPTION_MESSAGE": "Non ci sono commenti in questo momento. Non è possibile creare prescrizione di laboratorio",
+        "BUTTON_CREATE_PRESCRIPTION": "Prescrizione del laboratorio",
+        "BUTTON_GENERATE_DOCUMENT": "Richiesta di esame patologia",
+        "SELECT_VISIT_TITLE": "Seleziona una visita",
+        "TITLE": "Prescrizione",
+        "WARN_TITLE": "Information",
+        "WARN_LEAVE_MSG": "Si verrà reindirizzati alla pagina di prescrizione. Vuoi continuare ?"
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "preprod": {
+        "url": "",
+        "user": "fluance",
+        "path": "/home/fluance/front",
+        "config": "./deployments/configs/fec/config_preprod.js"
+    },
+    "prod": {
+        "url": "",
+        "user": "fluance",
+        "path": "/home/fluance/front",
+        "config": "./deployments/configs/fec/config_prod.js"
+    }
+}

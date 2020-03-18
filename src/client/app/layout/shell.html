@@ -1,0 +1,108 @@
+<section class="fec-shell" flex layout="row">
+    <md-sidenav class="md-sidenav-left" md-component-id="menu" md-is-open="vm.isSidenavMenuOpen" md-whiteframe="4"
+        layout="row">
+        <fec-sidenav-menu flex layout="row"></fec-sidenav-menu>
+    </md-sidenav>
+
+    <md-sidenav class="md-sidenav-left" md-component-id="search" md-is-open="vm.isSidenavSearchOpen" md-whiteframe="4"
+        layout="row">
+        <fec-sidenav-search style="width:400px" flex layout="row" is-open="vm.isSidenavSearchOpen"></fec-sidenav-search>
+    </md-sidenav>
+
+    <div flex layout="column" ng-controller="ShellController as vm">
+
+        <!-- Mobilephone -->
+        <md-content flex layout="column" ui-view ng-class="{'whitebackground': vm.hideNavigation}" ng-if="vm.isMobile()"></md-content>
+
+        <footer id="footerbar" ng-if="vm.isMobile()" ng-class="{'whitebackground': vm.hideNavigation}">
+            <div layout="row" layout-align="center center">
+                <a href="https://www.fluance.ch/" target="_blank">{{ 'layout.POWERED_BY' | translate }}</a>
+            </div>
+        </footer>
+
+        <md-toolbar id="TopBar" class="fec-menu-toolbar md-whiteframe-2dp" fec-patient-view-navigation ng-if="!vm.hideNavigation">
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="Menu" tutorial-step="menu" fec-mobile-click="vm.toggleSidenavMenu()">
+                    <fec-icon type="menu" class="hide-on-small-and-down"></fec-icon>
+                    <fec-icon type="menu" size="sm" class="hide-on-med-and-up"></fec-icon>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Search" tutorial-step="search" fec-mobile-click="vm.toggleSidenavSearch()"
+                    ng-show="vm.isAuthenticated()">
+                    <fec-icon type="search" class="hide-on-small-and-down"></fec-icon>
+                    <fec-icon type="search" size="sm" class="hide-on-med-and-up"></fec-icon>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Dashboard" tutorial-step="dashboard" ng-show="vm.isAuthenticated()"
+                    ng-click="vm.collapseExtendedComponents()" ui-sref="mycockpit">
+                    <fec-icon type="home" class="hide-on-small-and-down"></fec-icon>
+                    <fec-icon type="home" size="sm" class="hide-on-med-and-up"></fec-icon>
+                </md-button>
+                <span flex></span>
+                <fec-full-search-input hide-xs ng-show="vm.isAuthenticated()" tutorial-step="full-search-input"></fec-full-search-input>
+                <!--@DEPRECATED fec-tutorial-guide id="menu-tutorial-guide"></fec-tutorial-guide-->
+                <!-- Company -->
+                <div ng-if="vm.isAuthenticated() && vm.hasAccessToCompanies()" layout="row" layout-align="center center">
+                    <md-button ng-show="!vm.isLoadingSelectedCompany" id="logo_button" aria-label="Companies"
+                        tutorial-step="company-selection" fec-mobile-click="vm.changeSelectedCompany()">
+                        <div ng-if="vm.isCompanyLogoAvailable && !vm.isMobile()" layout="row" layout-align="center center">
+                            <div class="logo_img_container" layout="row" layout-align="center center">
+                                <img class="logo_img" ng-src={{vm.selectedCompanyLogoUrl}}>
+                            </div>
+                            <div layout="column" layout-align="center center">
+                                <div class="material-icons selection-clinic-icon"></div>
+                            </div>
+                        </div>
+                        <div ng-if="!vm.isCompanyLogoAvailable || vm.isMobile()" layout="row"
+                             layout-align="center center">
+                            <span class="hide-on-med-and-up">{{ vm.selectedCompany.code }}</span>
+                            <span class="hide-on-small-and-down">{{ vm.selectedCompany.name }}</span>
+
+                            <div layout="column" layout-align="center center">
+                                <div class="material-icons selection-clinic-icon"></div>
+                            </div>
+                        </div>
+                    </md-button>
+                    <div ng-show="vm.isLoadingSelectedCompany" class="company_logo_container" layout="row" layout-align="center center">
+                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                    </div>
+                </div>
+            </div>
+        </md-toolbar>
+        <!-- <md-toolbar hide-gt-xs class="fec-search-toolbar md-whiteframe-2dp" ng-show="vm.isAuthenticated()">
+            <div class="md-toolbar-tools">
+                <fec-full-search-input flex tutorial-step="full-search-input-xs"></fec-full-search-input>
+            </div>
+        </md-toolbar> -->
+
+        <md-content flex layout="column" ui-view ng-class="{'whitebackground': vm.hideNavigation}" ng-if="!vm.isMobile()"></md-content>
+
+        <fec-chat-bot-container ng-if="!vm.hideNavigation"></fec-chat-bot-container>
+
+        <footer id="footerbar" ng-if="!vm.isMobile()" ng-class="{'whitebackground': vm.hideNavigation}">
+            <div layout="row" layout-align="center center">
+                <a href="https://www.fluance.ch/" target="_blank">{{ 'layout.POWERED_BY' | translate }}</a>
+            </div>
+        </footer>
+
+        <div id="btn-scrolltop">
+            <md-button class="md-fab md-mini" hide-gt-sm>
+                <fec-icon type="scrollButton" size="sm"></fec-icon>
+            </md-button>
+            <md-button class="md-fab" hide-xs hide-sm>
+                <fec-icon type="scrollButton" size="sm"></fec-icon>
+            </md-button>
+        </div>
+
+        <div id="bugReportModal" class="modal">
+            <div class="modal-content">
+                <h4>Bug report
+                    <fec-icon type="bugReport"></fec-icon>
+                </h4>
+                <md-list>
+                    <md-list ng-repeat="(key, value) in vm.logger.current" ng-if="value">
+                        <span class="key">{{ key }}</span> {{ value }}
+                    </md-list>
+                </md-list>
+            </div>
+        </div>
+    </div>
+</section>

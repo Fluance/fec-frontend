@@ -1,0 +1,9 @@
+<div layout="column" class="fec-patient-position-box">
+    <div class="title">
+        {{ $ctrl.title }}
+    </div>
+    <div layout="column" class="content">
+        <div ng-if="$ctrl.content" ng-bind-html="$ctrl.content"></div>
+        <div ng-if="!$ctrl.content">{{ '-' | translate }}</div>
+    </div>
+</div>

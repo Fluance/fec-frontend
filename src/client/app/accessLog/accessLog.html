@@ -1,0 +1,49 @@
+<md-content class="mdContainer">
+    <div id="accessLogsContainer" layout="column" flex="grow">
+        <div flex="initial" layout="row">
+
+            <div class="fec-page-title" flex="none" layout="row" layout-align="start center">
+                <h5 flex="auto" hide-xs>
+                    <fec-icon type="accessLogs" size="sm" color="fe-blue-icon"></fec-icon>
+                    {{ 'accessLog.TITLE_LIST' | translate }}
+                </h5>
+                <span flex="none" class="number-badge" ng-show="vm.dataPager.hasTotalItemsCount">{{ 'accessLog.NB_OF_USERS' | translate:{USERS : vm.dataPager.totalItemsCount} }}</span>
+            </div>
+
+            <div flex="grow" layout="row" layout-align="end center">
+                <fec-data-pager-sort ng-if="vm.canSort()" sort-criteria="vm.sortCriteria"
+                                     selected-sort-criteria="vm.dataPager.sortBy"
+                                     selected-sort-direction="vm.dataPager.sortDirection"
+                                     on-changed="vm.refresh()">
+                </fec-data-pager-sort>
+            </div>
+        </div>
+        <!-- DIV WHEN THERE IS NO LOGS -->
+        <md-card class="warn" flex="auto" ng-if="vm.dataPager.isEmpty()">
+            <md-card-content>
+                {{ 'accessLog.NO_LOGS' | translate }}
+            </md-card-content>
+        </md-card>
+
+        <!-- LOGS AREA -->
+        <div flex="auto" class="fec-no-padding" ng-show="!vm.dataPager.isEmpty()">
+
+            <md-progress-linear ng-if="vm.dataPager.isLoading" md-mode="indeterminate"></md-progress-linear>
+
+            <div infinite-scroll="vm.dataPager.getNextPage()" infinite-scroll-disabled="vm.dataPager.isLoading || !vm.dataPager.canGetNextPage()"
+                infinite-scroll-distance="0" infinite-scroll-container="vm.scrollableContainer" flex="grow">
+                <span ng-repeat="item in vm.dataPager.items | limitTo: vm.dataPager.totalItemsCount">
+                    <expander-accordion>
+                        <fec-access-log item="item" patient="vm.currentPatient" is-expanded-changed="vm.closeOther()"
+                                        is-expanded="item.isExpanded"></fec-access-log>
+                    </expander-accordion>
+                </span>
+            </div>
+        </div>
+        <div ng-show="!vm.dataPager.isEmpty()" flex="initial" layout-padding>
+            <div ng-show="vm.dataPager.hasTotalItemsCount && !vm.dataPager.canGetNextPage()" class="center-align">
+                <span class="number-badge passive">{{ 'accessLog.NB_OF_USERS' | translate:{USERS : vm.dataPager.totalItemsCount} }}</span>
+            </div>
+        </div>
+    </div>
+</md-content>

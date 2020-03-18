@@ -1,0 +1,22 @@
+<div layout="row" class="fecDataPagerSort">
+    <md-input-container flex="auto" ng-if="vm.filterCriteria">
+        <label>{{ 'core.FILTER_BY' | translate }}</label>
+        <md-select ng-model="vm.selectedFilterCriteria" ng-disabled="vm.filterCriteria.length < 2">
+            <md-option ng-repeat="item in vm.filterCriteria" ng-value="item.key">{{item.name | translate}}</md-option>
+        </md-select>
+    </md-input-container>
+    <span class="spacer"></span>
+    <md-input-container flex="auto" ng-if="vm.sortCriteria">
+        <label>{{ 'core.SORT_BY' | translate }}</label>
+        <md-select ng-model="vm.selectedSortCriteria" ng-disabled="vm.sortCriteria.length < 2">
+            <md-option ng-repeat="item in vm.sortCriteria" ng-value="item.key">{{item.name | translate}}</md-option>
+        </md-select>
+    </md-input-container>
+    <md-input-container flex="initial" ng-if="vm.sortCriteria && vm.sortDirections">
+        <md-button class="md-icon-button" fec-mobile-click="vm.toggleSortDirection()" ng-disabled="vm.sortDirections.length < 2"
+            ng-repeat="item in vm.sortDirections" ng-if="vm.selectedSortDirection === item.key">
+            <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom" md-delay="5">{{ item.name | translate }}</md-tooltip>
+            <fec-icon type="{{item.icon}}" color="fe-blue-icon"></fec-icon>
+        </md-button>
+    </md-input-container>
+</div>

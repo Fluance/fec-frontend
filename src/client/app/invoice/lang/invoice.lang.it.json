@@ -1,0 +1,15 @@
+{
+    "invoice": {
+        "BALANCE": "Saldo",
+        "GUA_CODE": "Codice garante",
+        "GUA_NAME": "Nome garante",
+        "GUIDE_GUARANTORS_INVOICES": "Le fatture, che sono state generate durante questa visita",
+        "INV_DATE": "Data fattura",
+        "INV_TOTAL_PAID": "Totale (IVA inclusa)",
+        "INVOICE_DETAILS": "Dettagli fattura",
+        "NB_OF_INVOICE": "{INVOICE, plural, =0{0 fatture} one{1 fattura} other{# fatture}}",
+        "NO_INVOICE": "Nessun fattura per questo garante",
+        "TITLE": "Fattura",
+        "TITLE_LIST": "Fatture"
+    }
+}

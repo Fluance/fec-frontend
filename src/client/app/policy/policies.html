@@ -1,0 +1,31 @@
+<div id="policiesContainer" layout="column">
+    <div flex="initial" class="fec-page-title">
+        <h5>{{ 'policy.TITLE_LIST' | translate }}</h5>
+        <span class="number-badge" ng-show="vm.dataPager.hasTotalItemsCount">{{ 'policy.NB_OF_POLICY' | translate:{POLICY : vm.dataPager.totalItemsCount} }}</span>
+    </div>
+    <div flex="noshrink">
+        <fec-data-pager-sort ng-if="vm.canSort()" sort-criteria="vm.sortCriteria" selected-sort-criteria="vm.dataPager.sortBy" selected-sort-direction="vm.dataPager.sortDirection"
+            on-changed="vm.refresh()">
+        </fec-data-pager-sort>
+    </div>
+
+    <!-- DIV WHEN THERE IS NO POLICY -->
+    <md-card flex="auto" class="warn" ng-show="vm.dataPager.isEmpty()">
+        <md-card-content>
+            {{ 'policy.NO_POLICY' | translate }}
+        </md-card-content>
+    </md-card>
+
+    <div flex="auto" id="btn-policies-area" infinite-scroll="vm.dataPager.getNextPage()" infinite-scroll-disabled="vm.dataPager.isLoading || !vm.dataPager.canGetNextPage()"
+        infinite-scroll-distance="0">
+        <expander-accordion>
+            <fluance-policy result="item" ng-repeat="item in vm.dataPager.items"></fluance-policy>
+        </expander-accordion>
+    </div>
+    <div layout-padding>
+        <md-progress-linear md-mode="indeterminate" ng-if="vm.dataPager.isLoading"></md-progress-linear>
+        <div ng-show="vm.dataPager.hasTotalItemsCount && !vm.dataPager.canGetNextPage()" class="center-align">
+            <span class="number-badge passive">{{' '}}{{ 'policy.NB_OF_POLICY' | translate:{POLICY : vm.dataPager.totalItemsCount} }}{{' '}}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div id="appointmentContainer" layout="column">
+    <div class="fec-page-title" hide-xs layout="column">
+        <h5 flex="grow">
+            <fec-icon type="calendar" color="fe-blue-icon"></fec-icon>
+            {{ 'appointment.TITLE' | translate }}
+        </h5>
+    </div>
+
+    <!-- DIV WHEN THERE IS A TIMEOUT -->
+    <md-card flex="auto" class="error" ng-show="vm.isException">
+        <md-card-content>
+            {{ 'appointment.TIMEOUT_ON_REQUEST' | translate }}
+        </md-card-content>
+    </md-card>
+
+    <!-- DIV WHEN THERE IS NO POLICY -->
+    <md-card flex="auto" class="warn" ng-show="vm.isEmpty">
+        <md-card-content>
+            {{ 'appointment.NO_APPOINTMENT' | translate }}
+        </md-card-content>
+    </md-card>
+
+    <md-card ng-hide="vm.isEmpty || vm.isException">
+        <md-card-content layout="row" flex="auto">
+            <div id="appointment-detail" ui-view></div>
+        </md-card-content>
+    </md-card>
+</div>

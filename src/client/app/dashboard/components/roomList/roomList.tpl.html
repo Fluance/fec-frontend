@@ -1,0 +1,100 @@
+<div class="fec-dashboard-room-list {{scope.className}}" flex="auto" layout="column" ng-controller="roomListController as vm" ng-show="scope.hasUnitOrService">
+    <md-card flex="auto" layout="column" ng-class="{'warn': scope.warning, 'error': scope.error}">
+        <!-- Title -->
+        <md-card-title layout="row" flex="auto" layout-align="start end">
+
+            <md-card-title-text flex="none" layout-nowrap>
+                {{scope.title | translate}}
+            </md-card-title-text>
+            <!-- Filter -->
+            <md-subhead hide-xs flex="grow" layout="row" layout-align="start center" layout-wrap>
+                <selection-reveal reveal-id="selection-revea-{{ component.id }}" show-reveal="true"
+                                  selected-item-changed="scope.selectionReveal.selectedItemChanged"
+                                  selected-item="scope.selectionReveal.selectedItem" items="scope.selectionReveal.items"
+                                  reveal-title="{{ scope.titleChange | translate}}"
+                                  get-item-display-name="scope.selectionReveal.getItemDisplayName"
+                                  ng-show="scope.selectionReveal.selectedItem"
+                                  close-on-selection="true"
+                                  flex="none">
+                </selection-reveal>
+            </md-subhead>
+            <!-- Buttons -->
+            <div flex="noshrink" layout="row" layout-align="end center">
+                <fec-shift-patient-list-button hide-xs ng-if="scope.patientList" company-id="scope.selectedCompanyId" unit="scope.selectionReveal.selectedItem"
+                    is-disabled="!scope.hasData || scope.error">
+                </fec-shift-patient-list-button>
+                <fec-whiteboard-button hide-xs ng-if="scope.whiteboardAvailable" company-id="scope.selectedCompanyId" hosp-service="scope.selectionReveal.selectedItem.code"></fec-whiteboard-button>
+                <!-- Desktop/Tablet -->
+                <md-button hide-xs ng-disabled="!scope.hasData || scope.error"
+                           class="md-fab md-mini md-primary right button-expanded"
+                           fec-mobile-click="openExtended()">
+                    <md-tooltip md-direction="top">{{'core.EXPAND' | translate}}</md-tooltip>
+                    <fec-icon type="expand" size="sm"></fec-icon>
+                </md-button>
+                <!-- Mobile -->
+                <md-button hide-gt-xs class="md-primary right button-mobile-expand" fec-mobile-click="openExtended()">
+                    <fec-icon type="forward" size="md"></fec-icon>
+                </md-button>
+            </div>
+        </md-card-title>
+        <span ng-if="!scope.isMobile()">
+            <md-divider></md-divider>
+
+            <!-- Body -->
+            <div ng-cloak ng-if="!scope.error" ng-show="!scope.isLoading">
+                <!-- Tabs -->
+                <md-nav-bar md-no-ink-bar="disableInkBar" md-selected-nav-item="scope.selectedTab">
+                    <md-nav-item md-nav-click="scope.changeTab('hosp-tab')" name="hosp-tab">
+                        {{ "dashboard.HOSP" | translate }}</md-nav-item>
+                    <md-nav-item md-nav-click="scope.changeTab('amb-tab')" name="amb-tab">
+                        {{ "dashboard.AMB" | translate }}
+                    </md-nav-item>
+                </md-nav-bar>
+                <!-- Content -->
+                <md-content layout="column" flex="grow">
+                    <div ng-if="scope.showHospTab" id="hosp-tab">
+                        <fec-room-list-hosp
+                            open-extended="openExtended()"
+                            params="scope.params">
+                        </fec-room-list-hosp>
+                    </div>
+                    <div ng-if="scope.showAmbTab" id="amb-tab" layout="column" flex="auto">
+                        <fec-room-list-amb
+                            flex="auto"
+                            id="rooms"
+                            layout="column"
+                            is-loading="scope.loadAmb"
+                            open-extended="openExtended()"
+                            params="scope.params"
+                            default-select="scope.ambDefaultSelect">
+                        </fec-room-list-amb>
+                    </div>
+                </md-content>
+            </div>
+
+            <!-- Error handling -->
+            <md-card-content class="card-content-info" layout="row" layout-align="start center" ng-if="scope.warning || scope.error">
+                <!-- Warning/Error Content -->
+                <p class="warn-message" ng-show="scope.warning">{{ scope.warning.message | translate }}{{ '.' | translate }}</p>
+                <p class="error-message" ng-show="scope.error">{{ scope.error.message | translate }}{{ '.' | translate }}</p>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center" ng-if="scope.warning.tryagain || scope.errortryagain || scope.error.report">
+                <!-- Warning/Error Actions -->
+                <md-button class="md-raised md-primary" ng-show="scope.warning.tryagain" ng-click="scope.refresh()">{{'dashboard.RELOAD_DATA | translate'}}</md-button>
+                <md-button class="md-raised md-primary" ng-show="scope.error.tryagain" ng-click="scope.refresh()">{{'dashboard.TRY_AGAIN' | translate}}</md-button>
+                <md-button class="md-raised md-primary" ng-show="scope.error.report" ng-click="scope.logger.showReport(scope.error.report)">{{'dashboard.SEE_REPORT' | translate}}</md-button>
+            </md-card-actions>
+
+            <!-- Progress -->
+            <div flex="auto" layout="column" class="fec-busy-indicator" ng-if="scope.isLoading">
+                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
+
+        </span>
+
+        <!-- Draggable item -->
+        <div flex="auto" layout="column" class="draggable sortable-handle" ng-class="{'draggable-visible': scope.isStateSorting}">
+            <fec-icon type="draggable" size="lg"></fec-icon>
+        </div>
+    </md-card>
+</div>

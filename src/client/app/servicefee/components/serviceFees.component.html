@@ -1,0 +1,44 @@
+<div id="servicefeeContainer" layout="column">
+    <div flex="auto" layout="row">
+        <div flex="auto" layout="row" layout-align="start center" layout-wrap>
+            <h5>{{ 'servicefee.TITLE_LIST' | translate }}</h5>
+            <span class="number-badge" ng-show="$ctrl.totalFees">{{ 'servicefee.NB_OF_BENEFITS' | translate:{BENEFIT : $ctrl.totalFees} }}</span>
+        </div>
+        <div flex="auto" layout="row" layout-align="end center">
+            <div layout="row" layout-align="center end">
+                <fec-data-pager-sort ng-if="$ctrl.totalFees > 0" sort-criteria="$ctrl.groupCriteria" selected-sort-criteria="$ctrl.dataPager.sortBy"
+                                     selected-sort-direction="$ctrl.dataPager.sortDirection" on-changed="$ctrl.refresh()">
+                </fec-data-pager-sort>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIV WHEN THERE IS NO BENEFIT -->
+    <md-card class="warn" ng-if="$ctrl.dataPager.isEmpty()" flex="auto">
+        <md-card-content>
+            {{ 'servicefee.NO_BENEFIT' | translate }}
+        </md-card-content>
+    </md-card>
+
+    <!-- BENEFIT AREA for infinite scroll feature -->
+    <div id="btn-benefits-result" infinite-scroll="$ctrl.dataPager.getNextPage()"
+         infinite-scroll-disabled="$ctrl.dataPager.isLoading || !$ctrl.dataPager.canGetNextPage()"
+         infinite-scroll-distance="0" infinite-scroll-container="$ctrl.scrollableContainer" flex="auto">
+
+        <service-fee-list ng-repeat="feeGroup in $ctrl.dataPager.items"
+                          vnb="$ctrl.vnb"
+                          filter-value = "feeGroup.filter"
+                          filter-by="$ctrl.dataPager.sortBy"
+                          sort-direction="$ctrl.dataPager.sortDirection"></service-fee-list>
+    </div>
+
+    <!--Count for infinite scroll-->
+    <div flex="auto">
+        <md-progress-linear md-mode="indeterminate" ng-if="$ctrl.dataPager.isLoading"></md-progress-linear>
+
+        <div ng-show="$ctrl.dataPager.hasTotalItemsCount && !$ctrl.dataPager.canGetNextPage()" class="center-align">
+            <span class="number-badge passive">{{ 'servicefee.NB_OF_BENEFITS' | translate:{BENEFIT : $ctrl.totalFees} }}</span>
+        </div>
+    </div>
+
+</div>

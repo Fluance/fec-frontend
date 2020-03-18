@@ -1,0 +1,33 @@
+{
+        "error": {
+                "ACCESS_DENIED": "We're sorry, you're not allowed to access this content. Visit our contact center to request access",
+                "ACTION_BACK": "Back",
+                "ACTION_LOGIN": "Login",
+                "ACTION_LOGOUT": "Logout",
+                "ACTION_RELOAD": "Reload",
+                "ERROR": "Oops, an error occurred",
+                "GUIDE_BACK": "Brings you back to the state where the error appeared",
+                "GUIDE_LOGIN": "You are logged out. Please log in to use this application",
+                "GUIDE_LOGOUT": "Unfortunately you have to logout to use the application further",
+                "HTTP_FORBIDDEN": "Your rights do not allow querying this resource",
+                "HTTP_REQUEST_TIME_OUT": "The server did not respond in a timely fashion",
+                "HTTP_SERVER": "An internal server error occurred",
+                "HTTP_WARN": "Your browser does not use a secure connection (HTTPS). Check your URL for the prefix https:// or visit our contact center",
+                "INVALID_EMAIL_ADDRESS": "Email address invalid",
+                "INVALID_DATE": "Is not a valid date",
+                "INVALIDE_NUMBER": "The value is not valid. Please fill in the field with figures and without special characters",
+                "INVALID_REQUEST": "Please fill in at least a criterion (Last Name or Date of Birth)",
+                "INVALID_ROUTING": "Error while navigating to {DESTINATION}. {DATA} {STATUS} {STATUS_TEXT}",
+                "INVALID_STAFFID": "An invalid staff-id prevented saving the user details",
+                "INVALID_VALUE": "The value is not valid. Please fill in the field with at least one letter and without special characters",
+                "INVALID_URL": "Invalid URL",
+                "MAINTENANCE_MSG": "eHealth Cockpit is under maintenance and is not available for the moment",
+                "NO_COMPANY": "Your profile has no company assigned, visit our contact center to get assigned to a company",
+                "NO_PATIENT": "The requested patient can not be found",
+                "NO_PROFILE": "You do not own a set up profile to use the application, visit our contact center to apply for a profile",
+                "SEE_FULL_REPORT": "View a full report",
+                "SESSION_TIMEOUT": "The session has timed-out",
+                "TITLE_MAINTENANCE": "Maintenance",
+                "UNHANDLED_ERROR": "An unhandled Error occurred"
+        }
+}

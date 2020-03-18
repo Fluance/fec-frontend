@@ -1,0 +1,142 @@
+<div flex="grow" layout="column" ng-if="!$ctrl.isMobileSize()">
+    <div layout="row" flex="none" class="headCategories" ng-class="{'hasScroll' : !$ctrl.isLoading && $ctrl.totalRecords > $ctrl.maxItemsBeforeScroll}">
+        <fec-note-categories-list-head flex="80" layout="row" category="$ctrl.categoryId"></fec-note-categories-list-head>
+        <span flex="20" layout="row" layout-align=" end">
+            <md-select ng-model="$ctrl.filterNotes" ng-change="$ctrl.applyFilter($ctrl.filterNotes)" ng-disabled="$ctrl.isLoading"
+                flex-xs="100">
+                <md-option selected value="allnotes">{{ "notes.ALL_NOTES" | translate }}</md-option>
+                <md-option ng-repeat="option in $ctrl.statusOptions" value="{{option.value}}" ng-if="$ctrl.isAllNotes() || (!$ctrl.isAllNotes() && option.value != $ctrl.UNREAD)">
+                    {{option.text | translate}}
+                </md-option>
+            </md-select>
+        </span>
+    </div>
+    <md-progress-linear md-mode="indeterminate" ng-if="$ctrl.isLoading"></md-progress-linear>
+    <md-virtual-repeat-container flex="auto" ng-hide="!$ctrl.isLoading && $ctrl.totalRecords === 0">
+        <md-list>
+            <md-list-item ng-class="{'odd': $index%2 == 0}" md-virtual-repeat="note in $ctrl.dynamicItems" md-on-demand ng-hide="!note.id">
+                <div layout="row" flex="grow" layout-align-xs="start center"
+                     ui-sref="readNote({pid: $ctrl.pid, vnb: $ctrl.vnb, noteId: note.id})"
+                     class="note-list-item"
+                     ng-class="{'new-note': (!note.read && $ctrl.isAllNotes())}">
+                    <span flex="80" layout="row" class="textOverflow">
+                        <span flex="15" layout-align="start center" layout="row" layout-wrap >
+                            <span class="note-text">{{note.referenceDate | formatDate : 'date'}}</span>
+                        </span>
+                        <span flex="20" layout-align="start center" layout="row" layout-wrap class="striped"><span
+                            class="note-text">{{ $ctrl.getCreatorName(note.creator)}}</span></span>
+                        <span ng-if="$ctrl.isAllCategories()" flex="15" layout-align="start center" layout="row" >
+                            <span class="note-text">{{note.category.name}}</span>
+                        </span>
+                        <span flex="auto" layout-align="start center" layout="row" layout-wrap class="striped"><span
+                            class="note-text">{{note.title}}</span></span>
+                        <span flex="15" layout="row" layout-align="start center" layout-xs="column">
+                            <span ng-if="note.textPreview">
+                                <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'notes.NOTES_TITLE'
+                                    | translate}}</md-tooltip>
+                                <fec-icon type="noteSvg" class="icons" size="sm" color="fe-grey-icon" can-resize="true"></fec-icon>
+                            </span>
+
+                            <span ng-if="note.hasPictures">
+                                <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'notes.PICTURES'
+                                    | translate}}</md-tooltip>
+                                <fec-icon type="image" class="icons" color="fe-grey-icon" can-resize="true"></fec-icon>
+                            </span>
+
+                            <span ng-if="note.shift">
+                                <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'notes.SHIFT_NOTE'
+                                    | translate}}</md-tooltip>
+                                <fec-icon type="hourglassEmpty" class="icons" color="fe-grey-icon" can-resize="true"></fec-icon>
+                            </span>
+                        </span>
+                    </span>
+                    <span layout="row" layout-xs="column" layout-align="end center" flex="20">
+                        <fec-note-read-button ng-if="$ctrl.isAllNotes()" note-id="note.id" is-read="note.read"
+                                              color="fe-blue-icon" unread-records="$ctrl.unreadRecords"
+                                              size="sm" can-resize="true"
+                                              ng-click="$event.stopPropagation();"></fec-note-read-button>
+                        <span ng-if="$ctrl.editionEnabled()">
+                            <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'notes.EDIT_NOTE' | translate}}</md-tooltip>
+                            <fec-icon type="edit" class="icons" color="fe-blue-icon" size="sm" can-resize="true"
+                                      ng-click="$event.stopPropagation();"
+                                      ui-sref="editNote({pid: $ctrl.pid, vnb: $ctrl.vnb, noteId: note.id})"></fec-icon>
+                        </span>
+                        <span ng-if="$ctrl.editionEnabled()">
+                            <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'notes.HISTORY_LIST' | translate}}</md-tooltip>
+                            <fec-icon type="history" class="icons" color="fe-blue-icon" size="sm" can-resize="true"
+                                      ng-click="$event.stopPropagation();"
+                                      ui-sref="noteHistoryList({pid: $ctrl.pid, vnb: $ctrl.vnb, categoryId: note.categoryId, noteId: note.id })"></fec-icon>
+                        </span>
+                    </span>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-virtual-repeat-container>
+</div>
+
+<div layout="column" ng-if="$ctrl.isMobileSize()" class="note-category-list-mobile">
+    <div class="note-filter-selection-container">
+        <div class="note-filter-selection" ng-class="{'active': ($ctrl.filterNotes == 'allnotes' || $ctrl.filterNotes == undefined)}" fec-mobile-click="$ctrl.applyFilter('allnotes'); $ctrl.filterNotes = 'allnotes'">
+            {{ "notes.ALL_NOTES" | translate }}
+        </div>
+        <div class="note-filter-selection" ng-class="{'active': ($ctrl.filterNotes == option.value)}" ng-repeat="option in $ctrl.statusOptionsMobile"
+            ng-if="$ctrl.isAllNotes() || (!$ctrl.isAllNotes() && option.value != $ctrl.UNREAD)" fec-mobile-click="$ctrl.applyFilter(option.value); $ctrl.filterNotes = option.value">
+            {{option.text | translate}}
+        </div>
+    </div>
+    <md-virtual-repeat-container class="mobile" flex="auto" ng-hide="!$ctrl.isLoading && $ctrl.totalRecords === 0">
+        <md-list class="virtual-repeat-item" ng-class="{'odd': $index%2 == 0}" md-virtual-repeat="note in $ctrl.dynamicItems"
+            md-on-demand ng-hide="!note.id" layout="row" ng-style="{ 'font-weight' : (!note.read && $ctrl.isAllNotes()) ? 'bold' : 'normal' }" ui-sref="readNote({pid: $ctrl.pid, vnb: $ctrl.vnb, noteId: note.id})">
+            <div layout="column" class="list-item-swipe-content note-list-item"
+                 ng-class="{'active': showAction, 'new-note': (!note.read && $ctrl.isAllNotes())}"
+                 md-swipe-left="showAction = true"
+                 md-swipe-right="showAction = false">
+                <div layout="row">
+                    <div class="item-piece note-category-name" flex="40" ng-if="$ctrl.isAllCategories()">{{note.category.name}}</div>
+                    <div class="item-piece note-title" flex="40" ng-if="note.title">{{(note.title | limitTo : 10) + (note.title.length > 10 ? '...' : '')}}</div>
+                    <div class="item-piece note-title" flex="40" ng-if="!note.title">{{ '-' | translate}}</div>
+                    <div class="item-piece note-category-name" flex="40" ng-if="!$ctrl.isAllCategories()"></div>
+                    <div class="item-piece" layout="row" flex="20" layout-align="end center">
+                        <span ng-if="note.textPreview">
+                            <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'notes.NOTES_TITLE'
+                                | translate}}</md-tooltip>
+                            <fec-icon type="noteSvg" class="icons" size="xs" color="fe-grey-icon" can-resize="true"></fec-icon>
+                        </span>
+
+                        <span ng-if="note.hasPictures">
+                            <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'notes.PICTURES'
+                                | translate}}</md-tooltip>
+                            <fec-icon type="image" class="icons" size="xs" color="fe-grey-icon" can-resize="true"></fec-icon>
+                        </span>
+
+                        <span ng-if="note.shift">
+                            <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'notes.SHIFT_NOTE'
+                                | translate}}</md-tooltip>
+                            <fec-icon type="hourglassEmpty" size="xs" class="icons" color="fe-grey-icon" can-resize="true"></fec-icon>
+                        </span>
+                    </div>
+                </div>
+                <div layout="row">
+                    <div class="item-piece" flex="40">{{note.referenceDate | formatDate : 'date'}}</div>
+                    <div flex>{{$ctrl.getCreatorName(note.creator)}}</div>
+                </div>
+            </div>
+            <div layout="row" layout-align="center center" class="list-item-swipe-action" ng-class="{'active': showAction}">
+                <fec-note-read-button ng-if="$ctrl.isAllNotes()" note-id="note.id" is-read="note.read" color="fe-grey-icon"
+                    unread-records="$ctrl.unreadRecords" size="sm" can-resize="true" ng-click="$event.stopPropagation();"></fec-note-read-button>
+                <span ng-if="$ctrl.editionEnabled()">
+                    <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'notes.EDIT_NOTE'
+                        | translate}}</md-tooltip>
+                    <fec-icon type="edit" class="icons" color="fe-grey-icon" size="sm" can-resize="true" ng-click="$event.stopPropagation();"
+                        ui-sref="editNote({pid: $ctrl.pid, vnb: $ctrl.vnb, noteId: note.id})"></fec-icon>
+                </span>
+                <span ng-if="$ctrl.editionEnabled()">
+                    <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'notes.HISTORY_LIST'
+                        | translate}}</md-tooltip>
+                    <fec-icon type="history" class="icons" color="fe-grey-icon" size="sm" can-resize="true" ng-click="$event.stopPropagation();"
+                        ui-sref="noteHistoryList({pid: $ctrl.pid, vnb: $ctrl.vnb, categoryId: note.categoryId, noteId: note.id })"></fec-icon>
+                </span>
+            </div>
+        </md-list>
+    </md-virtual-repeat-container>
+</div>

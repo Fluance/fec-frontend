@@ -1,0 +1,50 @@
+<md-dialog class="room-configuration">
+    <md-dialog-content>
+        <div flex="none">
+            <h5>{{'Rooms' | translate}} {{$ctrl.serviceDescription}}</h5>
+        </div>
+        <div flex="initial" layout="column" class="table-wrap">
+            <div flex="none" layout="column" class="table-header" ng-class="{'has-scroll': $ctrl.hasScroll()}">
+                <div flex="auto" layout="row" class="table-header-row">
+                    <div flex="15" layout="row" layout-align="center center" class="table-header-cell"><span>{{ 'whiteboard.CONFIG_HEADER_DISPLAY' | translate }}</span>
+                    </div>
+                    <div flex="15" layout="row" layout-align="center center" class="table-header-cell"><span>{{ 'whiteboard.CONFIG_HEADER_ROOM_NUMBER' | translate }}</span>
+                    </div>
+                    <div flex="auto" layout="row" layout-align="center center" class="table-header-cell"><span>{{ 'whiteboard.CONFIG_HEADER_ROOM_TYPE' | translate }}</span>
+                    </div>
+                    <div flex="15" layout="row" layout-align="center center" class="table-header-cell"><span>{{ 'whiteboard.CONFIG_HEADER_MERGE_WITH_PREVIOUS' | translate }}</span>
+                    </div>
+                    <div flex="15" layout="row" layout-align="center center" class="table-header-cell"><span>{{ 'whiteboard.CONFIG_HEADER_MERGE_WITH_NEXT' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <div flex="auto" class="table-body" layout="column">
+                <div ng-repeat="room in $ctrl.roomConfiguration" ng-class="{'invisible': !room.display}" flex="none" layout="row" class="table-body-row">
+                    <div flex="15" class="table-body-cell" layout="row" layout-align="center center">
+                        <md-checkbox ng-model="room.display" ng-disabled="$ctrl.isReadOnlyUser"></md-checkbox>
+                    </div>
+                    <div flex="15" class="table-body-cell" layout="row" layout-align="center center">
+                        <span>{{room.room}}</span></div>
+                    <div flex="auto" class="table-body-cell" layout="row" layout-align="start center">
+                        <md-select ng-model="room.roomType" flex="auto" ng-disabled="$ctrl.isReadOnlyUser">
+                            <md-option ng-repeat="roomType in $ctrl.roomTypes" ng-value="roomType.code">
+                                {{roomType.codeDesc}}
+                            </md-option>
+                        </md-select>
+                    </div>
+                    <div flex="15" class="table-body-cell" layout="row" layout-align="center center">
+                        <md-checkbox ng-model="room.mergeNext" ng-disabled="$ctrl.isReadOnlyUser"></md-checkbox>
+                    </div>
+                    <div flex="15" class="table-body-cell" layout="row" layout-align="center center">
+                        <md-checkbox ng-model="room.mergePrevious" ng-disabled="$ctrl.isReadOnlyUser"></md-checkbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <span flex></span>
+        <md-button fec-mobile-click="$ctrl.closeDialog()" class="md-primary" fec-test-id="button-cancel">{{'core.CANCEL' | translate }}</md-button>
+        <md-button fec-mobile-click="$ctrl.save()" class="md-primary" fec-test-id="button-save" ng-disabled="$ctrl.isReadOnlyUser">{{'core.SAVE' | translate }}</md-button>
+    </md-dialog-actions>
+</md-dialog>

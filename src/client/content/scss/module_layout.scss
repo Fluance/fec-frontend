@@ -1,0 +1,96 @@
+/* ---------------------------------------------------------------- Component: Company selection */
+
+md-dialog#selection-dialog {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    .information-container {
+        padding: 0px 20px 20px 20px;
+        .information-contact {
+            max-width: 215px;
+        }
+
+        .information-line {
+            word-wrap: break-word;
+        }
+    }
+    .selection-container {
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        height: 100%;
+    }
+    md-list {
+        cursor: pointer;
+        md-list-item {
+            background: $fe-white;
+            color: $fe-blue;
+            &.active, &:hover {
+                background: $fe-blue;
+                color: $fe-white;
+            }
+        }
+    }
+    i {
+        width: 24px;
+    }
+
+    @media #{$medium-and-up} {
+        width: 500px;
+        height: 80%;
+        @include border-radius-2(10px);
+    }
+
+    @media #{$medium-and-down} {
+        .information-container {
+            .information-contact {
+                max-width: inherit;
+            }
+        }
+    }
+}
+
+/* --------------------------------------------------------------------- Component: Sidenav menu */
+
+fec-sidenav-menu {
+    md-list-item p {
+        line-height: normal;
+    }
+    .fec-header {
+        background-color: #F2F8FF;
+    }
+    .fec-logo-container {
+        text-align: center;
+        img {
+            width: 150px;
+        }
+        color: $fe-blue;
+    }
+    fec-tutorial-guide {
+        margin: 12px 0;
+    }
+    md-list.fec-button-contact-center {
+        padding: 0;
+        md-list-item {
+            background-color: $fe-blue-bg;
+            color: $fe-white;
+        }
+    }
+}
+
+
+/* -------------------------------------------------------------------------------------- Module */
+
+fec-layout {
+    height: 100%;
+    md-content {
+        background-color: inherit;
+    }
+    md-toolbar.fec-menu-toolbar {
+        background-color: $fe-white-bg;
+        color: $fe-blue;
+    }
+    md-toolbar.fec-search-toolbar {
+        background-color: $fe-white-bg;
+        color: $fe-black;
+    }
+}

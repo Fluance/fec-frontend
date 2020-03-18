@@ -1,0 +1,863 @@
+/* Notes and Pictures */
+
+$note-deleted-marker-color: rgba(255, 0, 0, .9);
+
+fec-note {
+    @media #{$small-and-down} {
+        .note-category-name, .note-detail-title, .note-detail-pictures-title {
+            font-size: 16px;
+        }
+        .note-detail-pictures-title {
+            margin-top: 10px;
+            color: $fe-accent-grey;
+        }
+    }
+}
+
+/* Note Picture Details Dialog */
+
+.note-image-lightbox {
+    overflow: visible;
+    min-height: 100%;
+    min-width: 100%;
+    padding: 10px;
+}
+
+.note-image-lightbox md-dialog-content {
+    overflow: visible;
+}
+
+.note-image-lightbox #notes_picture_details_image_container {
+    transition: width 0.2s ease, height 0.2s ease;
+    display: block;
+    margin: auto;
+    min-height: 70px;
+}
+
+.note-image-lightbox #notes_picture_details_image_container img {
+    width: auto;
+    min-height: 100%;
+}
+
+.note-image-lightbox #notes_picture_details_image_container img.ng-hide-remove,
+.note-image-lightbox #notes_picture_details_image_container img.ng-hide-remove-active {
+    transition: opacity 0.2s ease;
+}
+
+.note-image-lightbox #notes_picture_details_image_container img.ng-hide-remove {
+    opacity: 0;
+}
+
+.note-image-lightbox #notes_picture_details_image_container img.ng-hide-remove-active {
+    opacity: 1;
+}
+
+.note-image-lightbox md-progress-circular {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    left: 50%;
+    margin: auto;
+}
+
+.note-image-lightbox .notes_details_metadata {
+    margin: 20px;
+}
+
+fec-note-image .detail-container:hover .controls > .fec-note-picture-navigation-controls {
+    visibility: visible;
+}
+
+fec-note-image .fec-note-picture-navigation-controls {
+    visibility: hidden;
+    .context {
+        top: 0px;
+        position: absolute;
+        background: rgb(255, 255, 255);
+        padding: 0 10px;
+        &-page-number {
+            text-align: center;
+        }
+    }
+    .control {
+        background-color: rgba(255, 255, 255, 0.8);
+        position: absolute;
+        margin: 0 6px;
+        height: 40px;
+        min-width: 0;
+        line-height: 24px;
+        padding: 8px;
+        width: 40px;
+        &.md-button:hover {
+            background-color: rgba(210, 210, 210, 0.6);
+        }
+        &-nav-next {
+            bottom: 50%;
+            border-radius: 50%;
+            right: 30px;
+        }
+        &-nav-prev {
+            bottom: 50%;
+            border-radius: 50%;
+            left: 30px;
+        }
+        &-download {
+            top: 0;
+            right: 0;
+            padding: 0;
+            margin: 0;
+            width: 24px;
+            height: 24px;
+        }
+    }
+}
+
+.note-pictures-title {
+    border-bottom: 1px solid $fe-grey;
+    margin-bottom: 5px;
+}
+
+.fec-picture-next-button,
+.fec-picture-prev-button {
+    position: absolute;
+    bottom: 50%;
+}
+
+.fec-picture-next-button {
+    right: 30px;
+    background-color: white;
+}
+
+.fec-picture-prev-button {
+    left: 30px;
+    background-color: white;
+}
+
+.fec-picture-details-title,
+.fec-picture-details-description {
+    padding: 10px;
+    background-color: white;
+}
+
+/* Note Picture */
+fec-note-image {
+    .thumbnail-container {
+        position: relative;
+        > .picture-thumbnail {
+            max-height: 100px;
+            max-width: 100px;
+        }
+        /* don't display focus border on thumbnails */
+        > .picture-thumbnail:focus {
+            outline: none;
+            border: 0;
+        }
+        > .picture-annotation-icon .material-icons {
+            background: rgba(255, 255, 255, 0.6);
+            position: absolute;
+            right: 4px;
+            bottom: 4px;
+        }
+    }
+    .picture-annotation-area {
+        margin-left: 10px
+    }
+    .detail-container {
+        position: relative;
+        > .picture {
+            margin: auto;
+        }
+        > .controls {
+            margin-left: 10px;
+        }
+    }
+}
+
+fec-note-picture-thumbnail {
+    .annotation-container {
+        padding: 0 0.75em;
+        width: 100px;
+    }
+}
+
+fec-note-image-thumbnail {
+    height: 100px;
+    width: 100px;
+    .picture-thumbnail {
+        max-height: 100px;
+        max-width: 100px;
+    }
+}
+
+/* Note Picture List */
+
+fec-note-picture-list {
+    div.canResize {
+        padding-bottom: 8px;
+    }
+
+    button.canResize {
+        width: 56px !important;
+    }
+    .md-icon-button {
+        border-radius: 0 !important;
+    }
+
+    button {
+        padding: 0 !important;
+        fec-icon {
+            width: auto !important;
+            height: auto !important;
+        }
+    }
+
+    fec-icon {
+        color: $fe-accent-grey;
+    }
+    .remain-picture-counter {
+        font-size: 1.5em;
+    }
+    .picture-item-container {
+        width: 100%;
+        .picture-thumbnail {
+            max-height: 100px;
+            max-width: 100px;
+        }
+    }
+    .input-container {
+        width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .selected-button {
+        background-color: rgba(158, 158, 158, 0.8);
+        color: rgb(255, 255, 255);
+    }
+    .picture-list-item {
+        border-bottom: 1px solid $fe-accent-grey;
+        margin-bottom: 5px;
+    }
+}
+.pictureRestoreDialog {
+    min-width: 50%;
+    .picture-restore-container {
+        width: 100%;
+        img {
+            padding: 0px !important;
+            margin: 10px;
+        }
+        .selected {
+            img {
+                box-shadow: 0px 1px 15px $fe-blue;
+            }
+        }
+        fec-note-image-thumbnail {
+            .picture-thumbnail {
+                padding: 5px;
+            }
+        }
+    }
+}
+
+fec-note-list-item {
+    width: 100%;
+    fec-note-picture-list {
+        .picture-list-container {
+            margin-left: 14px;
+        }
+    }
+}
+
+/* Note Read Status */
+
+fec-note-read-status fec-icon.unread-badge .material-icons {
+    color: $fe-red;
+}
+
+/* Note saving dialog */
+
+#note-saving-dialog {
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+#note {
+    .action-menu {
+        fec-icon {
+            cursor: pointer;
+        }
+    }
+
+    md-card {
+        padding: 0px;
+
+        md-card-title {
+
+            md-card-title-text {
+                padding: 0px;
+
+                &.note-locked {
+                    color: $fe-accent-grey;
+                }
+
+                span {
+                    font-weight: 400 !important;
+                }
+            }
+
+            .note-date {
+                padding: 0px;
+                color: $fe-accent-grey;
+            }
+        }
+
+        md-card-content {
+            md-input-container {
+                margin-bottom: 0px;
+                input {
+                    margin-bottom: 0px;
+                    color: $fe-black;
+                }
+            }
+            .note-picture {
+                width: 5rem;
+                height: 5rem;
+            }
+        }
+    }
+}
+
+#notesContainer {
+    $notesVirtualRepeatHeight: 245px;
+
+    $notesVirtualRepeatLineHeight: 48px;
+
+    $mobileNotesVirtualRepeatLineHeight: 55px;
+    $mobileNotesVirtualRepeatItemSwipeWidth: 120px;
+
+    $notesVirtualRepeatScrollSize: 11px;
+    $notesVirtualRepeatBackgroundColor: $fe-white-bg;
+    $notesVirtualRepeatColor: $fe-accent-grey;
+
+    .header-toolbar {
+        text-align: right;
+        .md-button {
+            min-width: 18px;
+            min-height: 36px;
+            padding: 0px;
+            margin: 0px;
+        }
+    }
+    md-nav-bar {
+        .md-nav-bar {
+            nav {
+                ul {
+                    .md-nav-item {
+                        background-color: white;
+                        .md-button {
+                            background-color: white;
+                            &.md-unselected, &:focus, &:hover {
+                                background-color: white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    md-card {
+        fec-icon {
+            cursor: pointer;
+        }
+        .info fec-icon {
+            cursor: default;
+        }
+    }
+
+    .note-category-list-page-mobile {
+
+        fec-note-categories-list-selection {
+            md-select {
+                margin-bottom: 0px;
+            }
+        }
+
+        fec-note-categories-list-tabs {
+            button {
+                padding-bottom: 0px !important;
+                @media #{$small-and-down} {
+                    font-size: 12px !important;
+                }
+            }
+        }
+
+        overflow-x: hidden;
+        fec-note-categories-list-actions {
+            margin-top: 10px;
+            span {
+                fec-icon i {
+                    color: $fe-blue;
+                }
+            }
+        }
+        .note-category-list-mobile {
+            min-width: 100px;
+            .note-filter-selection-container {
+                margin: 5px 0px;
+                border-bottom: 1px solid $fe-grey;
+                display: flex;
+                flex-wrap: nowrap;
+                -webkit-overflow-scrolling: touch;
+                overflow-x: auto;
+                max-width: calc(100vw - 36px);
+
+                .note-filter-selection {
+                    flex: 0 0 auto;
+                    margin: 0px 10px;
+                    display: inline;
+                    font-size: 16px;
+                    cursor: pointer;
+                    &.active {
+                        color: $fe-blue;
+                    }
+                }
+            }
+        }
+    }
+
+    .headCategories {
+        font-weight: bold;
+        border-bottom: solid 1px $list-border-color;
+        padding: 8px;
+        fec-note-categories-list-head{
+            span{
+                outline: none;
+                cursor: default;
+                &:not([disabled]){
+                    cursor: pointer;
+                }
+            }
+            .textOverflow {
+                white-space: nowrap;
+                overflow: hidden;
+                padding-right: 2px;
+                span {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+            }
+        }
+        span {
+            md-select {
+                margin: 0;
+            }
+        }
+
+        //only if there is scroll
+        &.hasScroll {
+            margin-right: $notesVirtualRepeatScrollSize;
+
+            //avoid to use on IOS
+            @media(device-width: 768px) and (device-height: 1024px) {
+                margin-right: 0px;
+            }
+            @media(device-height: 768px) and (device-width: 1024px) {
+                margin-right: 0px;
+            }
+        }
+    }
+
+    //ensure scroll bars, only fails on IOS. In IOS no scroll is visible
+    md-virtual-repeat-container {
+        height: $notesVirtualRepeatHeight;
+
+        &.mobile {
+            .virtual-repeat-item {
+                height: $mobileNotesVirtualRepeatLineHeight;
+                border-bottom: solid 1px $list-border-color;
+                .item-piece {
+                    width: 33%;
+                }
+                .note-category-name, .note-title {
+                    font-size: 14px;
+                }
+                .list-item-swipe-content {
+                    width: 100%;
+                    margin-left: 0%;
+                    transition: margin 700ms;
+                    &.active {
+                        overflow-x: hidden;
+                        margin-left: -$mobileNotesVirtualRepeatItemSwipeWidth;
+                        transition: margin 700ms;
+                    }
+                }
+                .list-item-swipe-action {
+                    width: 0%;
+                    z-index: 9999;
+                    background: $fe-blue;
+                    transition: width 700ms;
+                    overflow-x: hidden;
+                    fec-icon i {
+                        color: $fe-white;
+                    }
+                    &.active {
+                        width: $mobileNotesVirtualRepeatItemSwipeWidth;
+                        transition: width 700ms;
+                    }
+                }
+            }
+        }
+
+        .md-virtual-repeat-scroller::-webkit-scrollbar {
+            -webkit-appearance: none;
+        }
+
+        .md-virtual-repeat-scroller::-webkit-scrollbar:vertical {
+            width: $notesVirtualRepeatScrollSize;
+        }
+
+        .md-virtual-repeat-scroller::-webkit-scrollbar:horizontal {
+            height: $notesVirtualRepeatScrollSize;
+        }
+
+        .md-virtual-repeat-scroller::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+            border: 2px solid $notesVirtualRepeatBackgroundColor; /* should match background, can't be transparent */
+            background-color: $notesVirtualRepeatColor;
+        }
+
+        .md-virtual-repeat-scroller::-webkit-scrollbar-track {
+            border-radius: 8px;
+            background-color: $notesVirtualRepeatBackgroundColor;
+        }
+
+        .md-virtual-repeat-scroller {
+
+            height: $notesVirtualRepeatHeight;
+
+            .md-virtual-repeat-offsetter {
+                height: $notesVirtualRepeatHeight;
+            }
+
+            md-list.striped {
+                md-list-item.odd {
+                    background-color: $table-striped-color;
+                }
+            }
+
+            md-list {
+                height: $notesVirtualRepeatHeight;
+                border: none;
+
+                md-list-item {
+                    padding-left: 8px;
+                    padding-right: 8px;
+                    height: $notesVirtualRepeatLineHeight;
+                    border-bottom: solid 1px $list-border-color;
+
+                    .md-button {
+                        padding-left: 0px;
+                        padding-right: 0px;
+                    }
+
+                    div {
+                        height: $notesVirtualRepeatLineHeight;
+                        span {
+                            cursor: pointer;
+                            &[ng-click] {
+                                cursor: default;
+                            }
+                        }
+                    }
+
+                    .textOverflow {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        padding-right: 2px;
+                        span {
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                }
+
+                md-list-item:before {
+                    min-height: $notesVirtualRepeatLineHeight;
+                    border-bottom: solid 1px $list-border-color;
+                }
+            }
+        }
+    }
+    fec-note-category-page-list {
+        .fec-page-title {
+            .number-badge {
+                max-height: 25px;
+            }
+        }
+    }
+
+    .note-list-item {
+        color: $fe-blue;
+        &.new-note {
+            .note-text {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+#historiesContainer {
+    .history-expander-header {
+        div {
+            margin-bottom: 0px;
+            padding: 5px;
+            .history-type {
+                color: $fe-blue;
+            }
+        }
+        line-height: 1rem;
+    }
+    .expander-body {
+        fec-note-history-item-body, fec-picture-history-item-body {
+            label {
+                font-weight: bold;
+            }
+            .textOverflow {
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+}
+
+.notes-list {
+    background-color: $fe-white;
+    &.notes-restore {
+        background-color: transparent;
+    }
+    .notes-list-item {
+        line-height: 18px;
+        color: $fe-accent-grey;
+        .note-reference-date {
+            font-weight: normal;
+        }
+        .note-title {
+            color: $fe-blue;
+            font-weight: 500;
+            white-space: normal;
+        }
+        .note-description {
+            font-weight: normal;
+        }
+        .note-pictures {
+            color: $fe-accent-grey;
+            .note-picture-thumbnail {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+        }
+        .md-button {
+            margin: 0;
+            padding: 10px;
+            line-height: 18px;
+            text-align: left;
+            text-transform: initial;
+        }
+        .note-toolbar > .md-primary {
+            text-transform: uppercase;
+        }
+    }
+    .notes-list-item.small {
+        .md-button {
+            margin-left: 0;
+            margin-right: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    //TODO: REMOVE
+    li.notes-list-item {
+        border-bottom: solid 1px $fe-grey;
+    }
+
+    md-list-item.notes-list-item {
+        border-bottom: solid 1px $fe-grey;
+        padding-left: 0px;
+        min-height: 0px;
+        &:before {
+            min-height: 0px;
+        }
+    }
+}
+
+.notes-deleted-marker {
+    text-transform: uppercase;
+    color: $note-deleted-marker-color;
+    font-weight: 500;
+    display: inline-block;
+    margin: 8px 0;
+    padding: 2px 4px;
+    text-align: center;
+}
+
+.deleted-note-marker {
+    @extend .notes-deleted-marker;
+    border-top: 1px solid $note-deleted-marker-color;
+    border-bottom: 1px solid $note-deleted-marker-color;
+    padding: 0 10px;
+}
+
+.deleted-picture-marker {
+    @extend .notes-deleted-marker;
+    border-top: 1px solid $note-deleted-marker-color;
+    border-bottom: 1px solid $note-deleted-marker-color;
+    width: 100%;
+}
+
+.note-read-item {
+    color: $fe-black;
+}
+
+.editNoteContent {
+    md-checkbox, md-select, input, ng-wig {
+        // margin-left: 10px !important;
+    }
+    md-select {
+        margin-top: 0;
+    }
+}
+
+fec-note-details {
+    .padding-text {
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    fec-note-image {
+        cursor: pointer;
+    }
+}
+
+/* Note Picture full Screen Dialog */
+.note-image-full-screen {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+
+    border-radius: 0;
+}
+
+.note-image-full-screen md-dialog-content {
+    width: 100%;
+    height: 100%;
+
+    fec-icon {
+        cursor: pointer;
+    }
+}
+
+.note-picture-details {
+
+    fec-icon {
+        cursor: pointer;
+    }
+
+    .note-title {
+        font-weight: 400 !important;
+        font-size: 24px;
+        padding-top: 10px;
+    }
+
+    .padding-text {
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+}
+
+#restoreNoteContainer{
+    .title{
+        padding-bottom: 20px;
+    }
+
+    .restoreNoteComponent{
+
+        &.first{
+            border-top: 1px solid $list-border-color;
+        }
+
+        .noteTitle{
+            font-weight: bold;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        border-right: 1px solid $list-border-color;
+        border-left: 1px solid $list-border-color;
+        border-bottom: 1px solid $list-border-color;
+    }
+
+    fec-restore-note {
+        fec-icon {
+            cursor: pointer;
+        }
+    }
+}
+
+fec-icon svg {
+    &.canResize {
+        &.canResize-sm {
+            height: 18px;
+            width: 18px;
+        }
+
+        &.canResize-md {
+            height: 24px;
+            width: 24px;
+        }
+
+        &.canResize-lg {
+            height: 36px;
+            width: 36px;
+        }
+    }
+}
+
+//@media all and (device-width: 768px) and (device-height: 1024px), (device-width: 1024px) and (device-height: 768px), (device-width: 1024px) and (device-height: 1366px), (device-width: 1366px) and (device-height: 1024px) {
+@media all and (max-width: 1367px) { // iPAD pro and down screens
+    .canResize {
+        font-size: 36px;
+    }
+    .canResize.md-18 {
+        font-size: 24px;
+    }
+    .canResize.md-24 {
+        font-size: 36px;
+    }
+    .canResize.md-36 {
+        font-size: 48px;
+    }
+
+    fec-icon svg {
+
+        &.canResize {
+            height: 18px;
+            width: 18px;
+            &.canResize-sm {
+                height: 24px;
+                width: 24px;
+            }
+
+            &.canResize-md {
+                height: 36px;
+                width: 36px;
+            }
+
+            &.canResize-lg {
+                height: 45px;
+                width: 45px;
+            }
+        }
+    }
+}

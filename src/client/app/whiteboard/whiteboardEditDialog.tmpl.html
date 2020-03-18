@@ -1,0 +1,172 @@
+<md-dialog class="whiteboardEditDialog">
+    <div ng-if="$ctrl.waitingForLock" flex layout="column" layout-align="center center" class="whiteboard-in-progress-message-container">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        <div>{{'whiteboard.LOADING_MSG' | translate}}</div>
+    </div>
+    <div ng-form="$ctrl.editForm" ng-if="!$ctrl.waitingForLock">
+        <md-toolbar ng-if="$ctrl.isLocked" class="whiteboard-locked-message-container no-margin-bottom" layout="row" layout-align="center center">
+            <i class="material-icons medium locked-message-icon">lock</i>
+            <div flex="nogrow">{{ 'whiteboard.ITEM_IS_LOCKED' | translate}}</div>
+        </md-toolbar>
+        <md-dialog-content class="no-margin-bottom">
+            <div class="md-dialog-content">
+                <div layout="column">
+                    <div layout="row" layout-margin class="no-margin-bottom">
+                        <!-- room & bed -->
+                        <div flex="initial">
+                            <span
+                                class="room-number">{{ $ctrl.editItem.room + '.' + $ctrl.editItem.patientBedSymbol}}</span>
+                        </div>
+                        <div layout="column" flex="auto" class="whiteboard-patient-information">
+                            <!-- patient name & gender -->
+                            <div layout="row" flex="auto">
+                                <fec-icon type="patient" size="sm" color="fe-blue-icon" flex="initial"></fec-icon>
+                                <div flex="none">
+                                    {{$ctrl.getPatientNamePrefix($ctrl.editItem.sex)}}&nbsp;{{ $ctrl.editItem.lastname |
+                                    uppercase }}
+                                </div>
+                                <fec-icon type="{{$ctrl.editItem.sex}}" size="sm" color="fe-blue-icon"
+                                          flex="initial"></fec-icon>
+                            </div>
+                            <!-- patient birthdate -->
+                            <div layout="row" flex="auto">
+                                <fec-icon type="birthdate" size="sm" color="fe-blue-icon" flex="initial"></fec-icon>
+                                <div flex="initial">{{ $ctrl.editItem.birthDate | formatDate :'date'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="row" layout-xs="column" layout-margin class="no-margin-bottom">
+                        <div layout="column" flex layout-margin class="no-margin-bottom">
+                            <!-- admission date -->
+                            <div class="whiteboard-content-item">
+                                <content-item-detail label="{{'whiteboard.HEADER_ADMISSION' | translate }}" content="{{$ctrl.admitDate}}"></content-item-detail>
+                            </div>
+                            <!-- operation date -->
+                            <div layout="row" class="whiteboard-content-item-border-bottom">
+                                <div class="fec-input-label">{{'whiteboard.HEADER_OPERATION_DATE' | translate }} {{ ':' | translate }}</div>
+                                <div flex></div>
+                                <sm-date-time-picker-component
+                                    fname="operationDate"
+                                    close-on-select="false"
+                                    change-view-on-select="false"
+                                    disable="$ctrl.isReadOnly()"
+                                    align-text-right="true"
+                                    mode="date-time"
+                                    ng-model="$ctrl.editItem.vwOperationDate"
+                                    week-start-day="Monday">
+                                </sm-date-time-picker-component>
+                            </div>
+                            <!-- discharge date -->
+                            <div layout="row" class="whiteboard-content-item-border-bottom">
+                                <div class="fec-input-label">{{'whiteboard.HEADER_DISCHARGE_DATE' | translate }} {{ ':' | translate }}</div>
+                                <div flex></div>
+                                <sm-date-time-picker-component
+                                    fname="dischargeDate"
+                                    close-on-select="false"
+                                    change-view-on-select="false"
+                                    disable="$ctrl.isReadOnly()"
+                                    align-text-right="true"
+                                    mode="date-time"
+                                    ng-model="$ctrl.editItem.vwDischargeDate"
+                                    week-start-day="Monday">
+                                </sm-date-time-picker-component>
+                            </div>
+                            <!-- insurance -->
+                            <div class="whiteboard-content-item">
+                                <content-item-detail flex="none" label="{{'whiteboard.HEADER_INSURANCE_TITLE' | translate }}" content="{{$ctrl.editItem.insurance | uppercase}}"></content-item-detail>
+                            </div>
+                            <!-- isolation -->
+                            <div layout="row" class="whiteboard-content-item-border-bottom">
+                                <div class="fec-input-label">{{'whiteboard.HEADER_ISOLATION_TITLE' | translate}} {{ ':' | translate }}</div>
+                                <md-select flex class="wb-form-isolation" ng-model="$ctrl.editItem.isolationType" ng-disabled="$ctrl.isReadOnly()">
+                                    <md-option ng-value="null">-</md-option>
+                                    <md-option ng-repeat="option in $ctrl.isolationTypes" value="{{option.value}}">
+                                        {{option.value}}{{' = '}}{{option.text | translate}}
+                                    </md-option>
+                                </md-select>
+                            </div>
+                            <!-- diet -->
+                            <div layout="row" class="whiteboard-content-item-border-bottom">
+                                <div class="fec-input-label" flex="none">{{'whiteboard.HEADER_DIET' | translate}} {{ ':'
+                                    | translate }}
+                                </div>
+                                <md-select flex="auto" class="wb-form-diet" ng-model="$ctrl.selectedDiets" multiple
+                                           md-selected-html="$ctrl.selectedDietContent()"
+                                           ng-change="$ctrl.removeDefaultDietOption()" ng-disabled="$ctrl.isReadOnly()">
+                                    <md-option style="display: none;" ng-value="$ctrl.getDefaultDietOption()">
+                                        {{$ctrl.getDefaultDietOption().codeDesc}}
+                                    </md-option>
+                                    <md-option
+                                        ng-repeat="dietCatalog in $ctrl.dietsCatalog | filter: {category: null}"
+                                        ng-value="dietCatalog">{{dietCatalog.codeDesc}}
+                                    </md-option>
+                                    <md-optgroup ng-repeat="dietCategory in $ctrl.dietCategories"
+                                                 label="{{dietCategory.category}}"
+                                                 class="whiteboard-diet-select-category">
+                                        <md-option
+                                            ng-repeat="dietCatalog in $ctrl.dietsCatalog | filter: {category: dietCategory.category}"
+                                            ng-value="dietCatalog">{{dietCatalog.codeDesc}}
+                                        </md-option>
+                                    </md-optgroup>
+                                </md-select>
+                            </div>
+                        </div>
+                        <div layout="column" flex>
+                            <!-- nurse -->
+                            <div layout="column">
+                                <span layout="row" layout-align="start center" class="whiteboard-content-item-nurse">
+                                    <fec-icon type="room" size="sm" color="fe-blue-icon"></fec-icon>
+                                    <md-autocomplete
+                                        flex="grow"
+                                        ng-disabled="$ctrl.isDisabled || $ctrl.isReadOnly()"
+                                        md-no-cache="$ctrl.noCache"
+                                        md-selected-item="$ctrl.selectedNurse"
+                                        md-search-text-change="$ctrl.searchTextChange($ctrl.searchText)"
+                                        md-search-text="$ctrl.searchText"
+                                        md-selected-item-change="$ctrl.selectedItemChange(item)"
+                                        md-items="item in $ctrl.querySearch($ctrl.searchText)"
+                                        md-item-text="item.display"
+                                        md-min-length="0"
+                                        placeholder="{{ 'whiteboard.HEADER_NURSE' | translate }}"
+                                        md-clear-button="!$ctrl.isReadOnly()">
+                                        <md-item-template>
+                                            <span md-highlight-text="$ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                                        </md-item-template>
+                                    </md-autocomplete>
+                                </span>
+                            </div>
+
+                            <div layout="row">
+                                <fec-whiteboard-physicians-list physicians="$ctrl.physicians" is-disabled="$ctrl.isReadOnly()"></fec-whiteboard-physicians-list>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout-margin class="no-margin-bottom">
+                        <div layout="row" layout-xs="column" layout-margin class="no-margin-bottom">
+                            <!-- hospitalization reason -->
+                            <div layout="column" flex>
+                                <div class="fec-input-label-no-margin">{{'whiteboard.HEADER_REASON' | translate}}</div>
+                                <md-input-container layout="column" class="input-container" input-field>
+                                    <textarea rows=4 ng-model="$ctrl.editItem.vwReason" ng-disabled="$ctrl.isReadOnly()"></textarea>
+                                </md-input-container>
+                            </div>
+                            <!-- note -->
+                            <div layout="column" flex>
+                                <div class="fec-input-label-no-margin">{{'whiteboard.HEADER_NOTES' | translate}}</div>
+                                <md-input-container layout="column" class="input-container" input-field>
+                                    <textarea rows=4 ng-model="$ctrl.editItem.comment" ng-disabled="$ctrl.isReadOnly()"></textarea>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions>
+            <span flex></span>
+            <md-button fec-mobile-click="$ctrl.closeDialog()" class="md-primary">{{'core.CANCEL' | translate }}</md-button>
+            <md-button ng-disabled="$ctrl.isReadOnly() || !$ctrl.editForm.$valid" fec-mobile-click="$ctrl.save()" class="md-primary">{{'core.SAVE' | translate }}</md-button>
+        </md-dialog-actions>
+    </div>
+</md-dialog>

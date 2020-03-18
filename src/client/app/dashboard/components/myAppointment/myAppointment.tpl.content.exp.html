@@ -1,0 +1,107 @@
+<div layout="column" flex="auto" layout-padding>
+
+    <div flex="auto" layout="row">
+
+        <div flex="15">
+            <div flex="grow" class="appointment-month" ng-if="appointment.startMonth && appointment.startDay">{{ appointment.monthDate | formatDate : 'month' | translate }}</div>
+            <div class="appointment-date" ng-if="appointment.startDay">{{ ::appointment.begindt | formatDate : 'day' }}</div>
+            <div class="appointment-date-day" ng-if="appointment.startDay">{{ appointment.begindt | formatDate : 'dayOfWeekShort' | translate }} </div>
+        </div>
+
+        <div flex="85" layout-align="start">
+
+            <div ng-if="appointment.startRoom" flex="auto" class="center appointment-room">{{'core.ROOM' | translate}}&nbsp;{{ ::appointment.roomName }}</div>
+
+            <div ng-if="appointment.startPatient" flex="auto" layout="row" class="appointment-patient">
+                <div layout="column" flex="initial">
+                    <fec-icon type="patient"></fec-icon>
+                </div>
+                <span flex="auto">{{ ::appointment.lastname | uppercase }}{{ ' ' }}{{ ::appointment.firstname }}</span>
+            </div>
+
+            <div flex="auto" layout="column" ng-click="scope.goToAppointment(appointment.appoint_id)" class="appointment-data">
+
+                <div layout="row" flex="auto" class="appointment-row" layout-align="start start">
+                    <div flex="auto" class="appointment-title">{{ ::appointment.description }} </div>
+                </div>
+
+                <div layout="row" flex="auto" class="appointment-row" layout-align="start start">
+
+                    <div layout="column" flex="50" layout-align="start start">
+                        <div layout="row" flex="none" ng-if="scope.showCalendarPatient" class="appointment-time">
+                            <div layout="column" flex="initial">
+                                <fec-icon type="calendar"></fec-icon>
+                            </div>
+                            <div layout-padding hide show-gt-xs></div>
+                            <span flex="auto">{{ ::appointment.begindt | formatDate : 'date' }} </span>
+                        </div>
+
+                        <div layout="row" flex="none" class="appointment-time">
+                            <div layout="column" flex="initial">
+                                <fec-icon type="schedule"></fec-icon>
+                            </div>
+                            <div layout-padding hide show-gt-xs></div>
+                            <span flex="auto">{{ ::appointment.begindt | formatDate : 'time' }} - {{ ::appointment.enddt | formatDate : 'time' }}</span>
+                        </div>
+
+                        <div layout="row" flex="none" class="appointment-room">
+                            <div layout="column" flex="initial">
+                                <fec-icon type="location"></fec-icon>
+                            </div>
+                            <div layout-padding hide show-gt-xs></div>
+                            <span flex="auto">{{ ::appointment.firstlocation }}</span>
+                        </div>
+
+                        <div layout="row" flex="none" class="appointment-time">
+                            <div layout="column" flex="initial">
+                                <fec-icon type="details"></fec-icon>
+                            </div>
+                            <div layout-padding hide show-gt-xs></div>
+                            <span flex="auto">{{ 'dashboard.TYPE_' + appointment.type | translate }}</span>
+                        </div>
+
+                    </div>
+
+                    <div layout="column" flex="50" layout-align="start start">
+
+                        <div layout="row" flex="auto" class="appointment-patient" ng-if="scope.showCalendarDate">
+                            <div layout="column" flex="initial">
+                                <fec-icon type="patient"></fec-icon>
+                            </div>
+                            <div layout-padding hide show-gt-xs></div>
+                            <div flex="auto" class="appointment-patient-name">
+                                <span>{{ ::appointment.lastname | uppercase}}</span>{{' '}}
+                                <span>{{ ::appointment.firstname }}</span>
+                            </div>
+                        </div>
+
+                        <div ng-repeat="location in appointment.locationsObj" ng-if="$index > 0" flex="auto" layout="row" class="appointment-room">
+                            <div layout="row" flex="initial">
+                                <fec-icon type="location"></fec-icon>
+                            </div>
+                            <div layout-padding hide show-gt-xs></div>
+                            <span flex="auto">{{ location.name }}</span>
+                        </div>
+
+                        <div layout="row" flex="auto" class="appointment-room">
+                            <div layout="row" flex="initial">
+                                <fec-icon type="room" size="xs"></fec-icon>
+                            </div>
+                            <div layout-padding hide show-gt-xs></div>
+                            <span flex="auto">{{ ::appointment.firstperson }}</span>
+                        </div>
+
+                        <div ng-repeat="person in appointment.personnelObj" ng-if="$index > 0" flex="auto" layout="row" class="appointment-room">
+                            <div layout="row" flex="initial">
+                                <fec-icon type="room" size="xs"></fec-icon>
+                            </div>
+                            <div layout-padding hide show-gt-xs></div>
+                            <span flex="auto">{{ person.name }}</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

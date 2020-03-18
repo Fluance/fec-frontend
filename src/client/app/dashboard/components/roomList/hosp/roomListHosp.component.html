@@ -1,0 +1,59 @@
+<!-- Rooms list -->
+<div ng-if="!$ctrl.error && !$ctrl.warning" ng-show="!$ctrl.isLoading">
+    <div class="fec-busy-indicator" ng-if="$ctrl.spin">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div layout="column" ng-repeat="roomVM in $ctrl.roomVMs| filter:{isVisible:true}">
+        <md-divider ng-if="!$first"></md-divider>
+        <div class="fec-patient-list-item" layout="row">
+            <!-- Room -->
+            <div class="fec-room-info">
+                <fec-dashboard-room-number room="roomVM.room.patientRoom" fec-mobile-click="$ctrl.scrollToSelectedRoom({roomNumber: roomVM.room.patientRoom}); $ctrl.openExtended(); "></fec-dashboard-room-number>
+            </div>
+            <!-- Patients -->
+            <div class="fec-patient-info fec-has-badge" flex>
+                <span class="badge">{{ ::roomVM.room.nbPatients }}{{ roomVM.room.capacity ? '/'+roomVM.room.capacity : '' }}</span>
+                <md-chips ng-model="roomVM.roomList" readonly="true" class="cursor-pointer">
+                    <md-chip-template>
+                        <div layout="row" ng-if="!$chip.isLoadMore" ui-sref="patient({pid: $chip.pid})">
+                            <div flex="initial" class="left-semicircle"></div>
+                            <div>{{ $chip.lastName | uppercase }}&nbsp;{{ $chip.firstName | firstLetter:true }}</div>
+                            <div flex="noshrink" class="right-semicircle"></div>
+                        </div>
+                    </md-chip-template>
+                </md-chips>
+                <md-chips readonly="true" class="cursor-pointer"
+                          ng-if="!roomVM.isLoading() && roomVM.canGetNextPage()">
+                    <md-chip fec-mobile-click="$ctrl.showMorePatients(roomVM)">
+                        <div layout="row">
+                            <div flex="initial" class="left-semicircle"></div>
+                            <div>...</div>
+                            <div flex="noshrink" class="right-semicircle"></div>
+                        </div>
+                    </md-chip>
+                </md-chips>
+                <md-progress-circular md-mode="indeterminate" md-diameter="32" ng-if="roomVM.isLoading()"></md-progress-circular>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fec-no-data-message" flex="auto" layout="row" layout-align="center center"
+     ng-show="!$ctrl.spin && !$ctrl.error && !$ctrl.warning && !$ctrl.isLoading  && !$ctrl.hasEntries()">
+    <p>{{ "dashboard.NO_ENTRIES" | translate }}</p>
+</div>
+
+<!-- Show more entries action links -->
+<div
+    ng-if="!$ctrl.spin && !$ctrl.error && !$ctrl.warning && (!$ctrl.allRoomsVisible() || ($ctrl.allRoomsVisible() && $ctrl.roomVMs.length > $ctrl.defaultRoomLimit))"
+    ng-show="!$ctrl.isLoading">
+    <md-divider></md-divider>
+    <md-card-actions layout="row" layout-align="end center">
+        <a fec-mobile-click="$ctrl.showMoreRooms()" ng-show="!$ctrl.allRoomsVisible()">{{ 'dashboard.MORE_ENTRIES' | translate: { COUNT : $ctrl.nbrRoomMore } }}</a>
+        <a fec-mobile-click="$ctrl.showLessRooms()" ng-show="$ctrl.allRoomsVisible() && $ctrl.roomVMs.length > $ctrl.defaultRoomLimit">{{ 'dashboard.SHOW_LESS' | translate }}</a>
+    </md-card-actions>
+</div>
+
+<div layout="row" flex="auto" ng-if="$ctrl.isLoading" layout-align="center center">
+    <md-progress-circular md-mode="indeterminate" md-diameter="32"></md-progress-circular>
+</div>

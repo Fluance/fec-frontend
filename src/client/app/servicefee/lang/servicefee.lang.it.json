@@ -1,0 +1,25 @@
+{
+    "servicefee": {
+        "ACTING_DEPT_DESCRIPTION": "Dipartimento",
+        "CODE": "Codice di servizio",
+        "DATE": "Data del servizio",
+        "DESC_LANGUAGE": "Lingua",
+        "DEPARTMENT": "Reparto",
+        "DETAILS": "Dettagli del servizio",
+        "GUIDE_BENEFITS_RESULT": "Costo del servizio del paziente",
+        "LEAD_PHYSICIAN": "Chief Medico",
+        "NB_OF_BENEFITS": "{BENEFIT, plural, =0{0 Costo del servizio} one{1 Costo del servizio} other{# Tasse di servizio}}",
+        "NO_BENEFIT": "Nessun costo di servizio",
+        "NOTE": "Osservazione",
+        "OPERATING_PHYSICIAN": "Medico di funzionamento",
+        "PAID_PHYSICIAN": "Medico paid",
+        "PHYSICIAN_ID": "Id",
+        "PHYSICIANS": "Medicos",
+        "QUANTITY": "Quantità",
+        "SIDE": "Lato",
+        "TIME": "Tempo",
+        "TITLE": "Tasse di servizio",
+        "TITLE_LIST": "Tasse di servizio",
+        "TITLE_DETAIL": "Dettagli tasse di servizio"
+    }
+}

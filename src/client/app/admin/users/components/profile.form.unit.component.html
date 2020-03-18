@@ -1,0 +1,18 @@
+<div ng-if="$ctrl.mode === 'read'">
+    <div ng-if="$ctrl.model.units">
+        <span ng-repeat="item in $ctrl.model.units">{{ ::item.code }} - {{ ::item.codeDesc }}<br/></span>
+    </div>
+    <span ng-if="!$ctrl.model.units">-</span>
+</div>
+<div ng-if="$ctrl.mode === 'edit'">
+    <table class="edit">
+        <tr ng-repeat="item in $ctrl.model.units">
+            <td>
+                <md-checkbox id="units_{{ ::$ctrl.model.companyId }}_{{ ::item.code }}" ng-model="item.hasAccess">
+                    <label for="units_{{ $ctrl.model.companyId }}_{{ item.code }}">{{ ::item.code }}<span
+                        ng-if="item.codeDesc"> - {{ ::item.codeDesc }}</span></label>
+                </md-checkbox>
+            </td>
+        </tr>
+    </table>
+</div>

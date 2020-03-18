@@ -1,0 +1,71 @@
+<expander is-expanded="vm.result.isExpanded" is-expanded-changed="vm.displayDetails(vm.result.visit.visitInfo.number)">
+    <expander-header>
+        <div layout-padding>
+            <div class="visit-profile" layout="column" layout-gt-sm="row">
+                <div flex-gt-sm="20" flex="auto">
+                    <p class="visit-id">
+                        {{ ::vm.result.visit.visitInfo.number }}
+                    </p>
+                </div>
+
+                <div layout-padding hide-xs hide-sm></div>
+                <div style="padding-top:5px" hide-gt-sm></div>
+
+                <div flex-gt-sm="40" flex="auto" class="visit-header-info">
+                    <content-item label="{{ 'core.COMPANY' | translate }}" content="{{ vm.result.company.code }}" tooltip-placement="left" info="{{ ::vm.result.company.name }}"></content-item>
+                    <content-item label="{{ 'core.ADMIT_DATE' | translate }}" content="{{ vm.result.visit.visitInfo.admitDate | formatDate : 'dateTime' }}" meteo-date="{{vm.result.visit.visitInfo.admitDate}}" meteo-company-id="{{vm.result.company.companyId}}"></content-item>
+                    <content-item label="{{ 'visit.EXPECTED_DISCHARGE_DATE' | translate }}" content="{{ vm.result.visit.visitInfo.expDischargeDate | formatDate : 'dateTime' }}" meteo-date="{{vm.result.visit.visitInfo.expDischargeDate}}" meteo-company-id="{{vm.result.company.companyId}}"></content-item>
+                    <content-item label="{{ 'core.DISCHARGED_DATE' | translate }}" content="{{ vm.result.visit.visitInfo.dischargeDate | formatDate : 'dateTime' }}"></content-item>
+                </div>
+
+                <div layout-padding hide-xs hide-sm></div>
+                <div style="padding-top:5px" hide-gt-sm></div>
+
+                <div flex-gt-sm="40" flex="auto" class="visit-header-info">
+                    <content-item label="{{ 'visit.FINANCIAL_CLASS' | translate }}" content="{{ vm.result.visit.visitInfo.financialClass }}" tooltip-placement="left" info="{{ ::vm.result.visit.visitInfo.financialClassDesc }}"></content-item>
+                    <content-item label="{{ 'core.UNIT' | translate }}" content="{{ vm.result.visit.visitInfo.patientUnit }}" tooltip-placement="left" info="{{ ::vm.result.visit.visitInfo.patientUnitDesc }}"></content-item>
+                </div>
+            </div>
+        </div>
+    </expander-header>
+    <expander-body>
+        <!-- Progress -->
+        <md-progress-circular md-mode="indeterminate" ng-if="vm.result.isLoadingDetails"></md-progress-circular>
+        <!-- CONTENT: VISIT DETAILS-->
+        <div layout="column" class="visit-detail-info" ng-if="!vm.result.isLoadingDetails" layout-padding>
+            <div flex="initial">
+                <h5>
+                    <small>{{ 'visit.VISIT_DET' | translate }}</small>
+                </h5>
+            </div>
+            <fec-visit-details details="vm.result.details" layout="column" layout-gt-sm="row"></fec-visit-details>
+        </div>
+        <!-- CONTENT: PHYSICIAN -->
+        <div layout="column" layout-gt-sm="row" class="visit-detail-info" ng-if="!vm.result.isLoadingDetails && vm.hasAccess" layout-padding>
+            <fec-visit-physician-attending physician="vm.result.physicians" layout="column" flex-gt-sm="25" flex="auto"></fec-visit-physician-attending>
+            <fec-visit-physician-referring physician="vm.result.physicians" layout="column" flex-gt-sm="25" flex="auto"></fec-visit-physician-referring>
+            <fec-visit-physician-admitting physician="vm.result.physicians" layout="column" flex-gt-sm="25" flex="auto"></fec-visit-physician-admitting>
+            <fec-visit-physician-consulting physician="vm.result.physicians" layout="column" flex-gt-sm="25" flex="auto"></fec-visit-physician-consulting>
+        </div>
+        <!-- CONTENT: INTERVENTIONS-->
+        <div layout="column" layout-padding class="visit-detail-info" ng-if="!vm.result.isLoadingDetails && vm.interventions">
+            <h5>
+                <small>{{ 'visit.INTERVENTIONS' | translate : vm.interventions }}</small>
+            </h5>
+            <div ng-repeat="entry in vm.interventions.entries">{{ 'visit.INTERVENTIONS_TEXT' | translate : entry }}</div>
+        </div>
+        <!-- CONTENT: NOTES & PICTURES-->
+        <div layout="column" layout-padding class=" visit-detail-info" ng-if="!vm.result.isLoadingDetails && vm.result.isExpanded">
+            <fec-notes-and-pictures-summary vnb="vm.result.visit.visitInfo.number"></fec-notes-and-pictures-summary>
+        </div>
+        <!-- TOOLBAR -->
+        <div class="fec-nav-toolbar right-align" ng-if="!vm.result.isLoadingDetails">
+            <fec-nav-button-notes vnb="vm.result.visit.visitInfo.number" is-enabled="vm.result.isExpanded"></fec-nav-button-notes>
+            <fec-nav-button-icd-chop-list vnb="vm.result.visit.visitInfo.number" is-enabled="vm.result.isExpanded"></fec-nav-button-icd-chop-list>
+            <fec-nav-button-guarantor-list vnb="vm.result.visit.visitInfo.number" is-enabled="vm.result.isExpanded"></fec-nav-button-guarantor-list>
+            <fec-nav-button-policy-list vnb="vm.result.visit.visitInfo.number" is-enabled="vm.result.isExpanded"></fec-nav-button-policy-list>
+            <fec-nav-button-reporting pid="vm.result.details.patientId" is-enabled="vm.result.isExpanded" context-name="'visit'" context-id="vm.result.visit.visitInfo.number"></fec-nav-button-reporting>
+            <fec-nav-button-benefit-list vnb="vm.result.visit.visitInfo.number" is-enabled="vm.result.isExpanded"></fec-nav-button-benefit-list>
+        </div>
+    </expander-body>
+</expander>

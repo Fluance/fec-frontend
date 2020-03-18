@@ -1,0 +1,12 @@
+<md-dialog id="profile">
+    <md-card-header>
+        <span class="label">GET</span>&nbsp;<code>{{ vm.config.apiServer }}/user/profile/{{ vm.username }}</code>
+    </md-card-header>
+    <md-dialog-content>
+        <pre class="language-javascript"><code class="language-javascript">{{ vm.userProfileString }}</code></pre>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button fec-mobile-click="vm.closeDialog()" class="md-primary">{{'core.CLOSE' | translate }}</md-button>
+    </md-dialog-actions>
+</md-dialog>

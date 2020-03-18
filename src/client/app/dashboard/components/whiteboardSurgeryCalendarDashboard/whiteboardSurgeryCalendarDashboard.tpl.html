@@ -1,0 +1,12 @@
+<div id="whiteboardSurgeryCalendarDashboard" flex="auto" layout="column" ng-if="scope.isDashboardComponentAvailable">
+    <md-card>
+        <fec-whiteboard-surgery-calendar-dashboard></fec-whiteboard-surgery-calendar-dashboard>
+
+
+        <!-- Draggable item -->
+        <div flex="auto" layout="column" class="draggable sortable-handle"
+            ng-class="{'draggable-visible': scope.isStateSorting}">
+            <fec-icon type="draggable" size="lg"></fec-icon>
+        </div>
+    </md-card>
+</div>

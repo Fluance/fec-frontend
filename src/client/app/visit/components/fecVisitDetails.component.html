@@ -1,0 +1,26 @@
+<div layout="column" flex-gt-sm="grow" flex="auto">
+    <content-item-detail label="{{ 'core.PATIENT_ID' | translate }}" content="{{ ::$ctrl.details.patientId }}"></content-item-detail>
+    <content-item-detail label="{{ 'visit.ADMIT_SRC' | translate }}" content="{{ ::$ctrl.details.admitSource }}" tooltip-placement="left" info="{{ ::$ctrl.details.admitSourceDesc }}"></content-item-detail>
+    <content-item-detail label="{{ 'core.HOSP_SERVICE' | translate }}" content="{{ ::$ctrl.details.hospService }}" tooltip-placement="left" info="{{ ::$ctrl.details.hospServiceDesc }}"></content-item-detail>
+    <content-item-detail label="{{ 'visit.PRIOR_UNIT' | translate }}" content="{{ ::$ctrl.details.priorUnit }}" tooltip-placement="left" info="{{ ::$ctrl.details.priorUnitDesc }}"></content-item-detail>
+</div>
+
+<div layout-padding hide-xs hide-sm></div>
+<div style="padding-top:5px" hide-gt-sm></div>
+
+<div layout="column" flex-gt-sm="grow" flex="auto">
+    <content-item-detail label="{{ 'visit.ADMISSION_TYPE' | translate }}" content="{{ ::$ctrl.details.admissionType }}" tooltip-placement="left" info="{{ ::$ctrl.details.admissionTypeDesc }}"></content-item-detail>
+    <content-item-detail label="{{ 'visit.PATIENT_CLASS' | translate }}" content="{{ ::$ctrl.details.patientClass }}" tooltip-placement="left" info="{{ ::$ctrl.details.patientClassDesc }}"></content-item-detail>
+    <content-item-detail label="{{ 'core.PATIENT_CASE' | translate }}" content="{{ ::$ctrl.details.patientCase }}" tooltip-placement="left" info="{{ ::$ctrl.details.patientCaseDesc }}"></content-item-detail>
+    <content-item-detail label="{{ 'visit.PATIENT_TYPE' | translate }}" content="{{ ::$ctrl.details.patientType }}" tooltip-placement="left" info="{{ ::$ctrl.details.patientTypeDesc}}"></content-item-detail>
+</div>
+
+<div layout-padding hide-xs hide-sm></div>
+<div style="padding-top:5px" hide-gt-sm></div>
+
+<div layout="column" flex-gt-sm="grow" flex="auto">
+    <content-item-detail label="{{ 'core.ROOM' | translate }}" content="{{ ::$ctrl.details.patientRoom }}"></content-item-detail>
+    <content-item-detail label="{{ 'visit.PATIENT_BED' | translate }}" content="{{ ::$ctrl.details.patientBed }}"></content-item-detail>
+    <content-item-detail label="{{ 'visit.PRIOR_ROOM' | translate }}" content="{{ ::$ctrl.details.priorRoom }}"></content-item-detail>
+    <content-item-detail label="{{ 'visit.PRIOR_BED' | translate }}" content="{{ ::$ctrl.details.priorBed }}"></content-item-detail>
+</div>

@@ -1,0 +1,22 @@
+{
+    "layoutPatient": {
+        "GUA_ID": "N° Garant",
+        "GUA_LIST": "Liste des garants",
+        "GUARANTOR": "Garant",
+        "GUIDE_GUARANTOR_DETAIL": "Retour au garant",
+        "GUIDE_GUARANTOR_LIST": "Retour à la liste des garants",
+        "GUIDE_HOME": "Retour à votre Cockpit",
+        "GUIDE_NOTE": "Retour aux détails de la note",
+        "GUIDE_NOTE_CATEGORY": "Retour à la catégorie de la note",
+        "GUIDE_PATIENT_DETAIL": "Retour aux détails du patient",
+        "GUIDE_PATIENT_LIST": "Retour aux resultats de la recherche patient",
+        "GUIDE_VISIT_DETAIL": "Retour aux détails de la visite",
+        "GUIDE_VISIT_LIST": "Retour à la liste des visites",
+        "HOME": "Mon Cockpit",
+        "OWN_GUARANTOR": "Patient payant par lui-même",
+        "PATIENT": "Patient",
+        "SEARCH_RESULTS": "Réslutats de recherche",
+        "VISIT": "Visite",
+        "VISIT_LIST": "Liste des visites"
+    }
+}

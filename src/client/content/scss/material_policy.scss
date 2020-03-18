@@ -1,0 +1,60 @@
+#policiesContainer {
+    expander-header {
+        line-height: 1rem;
+
+        .row {
+            margin-bottom: 0px;
+        }
+
+        .policy-profile {
+            .guarantor-name {
+                color: $fe-blue;
+                font-weight: bold;
+            }
+        }
+
+        .item-info {
+            border-bottom: none;
+            margin: 15px 0px;
+            padding-bottom: 0px;
+        }
+
+        @media #{$medium-and-down} {
+            .item-info {
+                padding-top: 0px;
+                padding-bottom: 5px;
+                margin-bottom: 5px;
+                margin-top: 0px;
+            }
+        }
+    }
+    expander-body {
+        & > .row:last-child {
+            margin-bottom: 0px;
+        }
+    }
+
+    .policy-expander-body {
+        background-color: $fe-white;
+        line-height: 1rem;
+        .policy-detail-info {
+            line-height: 18px;
+            margin: 0px;
+            padding: 0px 15px;
+            .item-info-detail {
+                border-bottom: 1px solid $fe-grey;
+                .item-info-detail-label {
+                    color: $fe-accent-grey;
+                }
+                .item-info-detail-content {
+                    color: $fe-black;
+                    padding-right: 0px;
+                    line-height: 1rem;
+                }
+            }
+        }
+        @media #{$medium-and-down} {
+            padding-top: 20px;
+        }
+    }
+}

@@ -1,0 +1,68 @@
+<md-dialog class="service-fee-detail-dialog" >
+    <md-dialog-content layout="column" layout-padding>
+
+        <div layout="row" layout-wrap>
+            <h5 flex="none" class="head-date">{{ $ctrl.serviceFee.benefitDate | formatDate : 'dateTime'}}</h5>
+            <h5 flex="auto" >{{ $ctrl.serviceFee.actingDeptDescription }}</h5>
+            <div flex="none" layout="row" layout-align="end center">
+                <md-button class="md-fab md-mini md-primary" ng-click="$ctrl.closeDialog()">
+                    <fec-icon type="notExpanded"></fec-icon>
+                </md-button>
+            </div>
+        </div>
+
+        <div layout="row" flex="none" layout-wrap class="desc">
+            <span>{{ $ctrl.serviceFee.description }}</span>
+        </div>
+
+        <div layout="row" flex="none" ng-if="$ctrl.serviceFee.details.note && !$ctrl.isLoadingDetails" class="title">
+            <span translate="servicefee.NOTE"></span>
+        </div>
+        <div layout="row" flex="auto" layout-wrap ng-if="$ctrl.serviceFee.details.note && !$ctrl.isLoadingDetails" class="desc">
+            <span>{{ $ctrl.serviceFee.details.note  }}</span>
+        </div>
+
+        <!-- CONTENT: PHYSICIAN -->
+        <div layout="row" flex="auto" ng-if="!$ctrl.isLoadingDetails && $ctrl.serviceFee.hasPhysician">
+            <table class="servicefee-physicians-table">
+                <thead>
+                    <tr>
+                        <th class="fec-table-header">{{'servicefee.PHYSICIANS' | translate}}</th>
+                        <th class="fec-table-header">{{'core.FIRSTNAME' | translate}}</th>
+                        <th class="fec-table-header">{{'core.LASTNAME' | translate}}</th>
+                        <th class="fec-table-header">{{'servicefee.PHYSICIAN_ID' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr ng-if="$ctrl.serviceFee.details.leadPhysicianId !== 0" class="row">
+                        <td class="physicians-desc">{{'servicefee.LEAD_PHYSICIAN' | translate}}</td>
+                        <td>{{$ctrl.serviceFee.details.leadPhysicianFirstName}}</td>
+                        <td>{{$ctrl.serviceFee.details.leadPhysicianLastName}}</td>
+                        <td>{{$ctrl.serviceFee.details.leadPhysicianId}}</td>
+                    </tr>
+
+                    <tr ng-if="$ctrl.serviceFee.details.operatingPhysicianId !== 0" class="row">
+                        <td class="physicians-desc">{{'servicefee.OPERATING_PHYSICIAN' | translate}}</td>
+                        <td>{{$ctrl.serviceFee.details.operatingPhysicianFirstName}}</td>
+                        <td>{{$ctrl.serviceFee.details.operatingPhysicianLastName}}</td>
+                        <td>{{$ctrl.serviceFee.details.operatingPhysicianId}}</td>
+                    </tr>
+
+                    <tr ng-if="$ctrl.serviceFee.details.paidPhysicianId !== 0" class="row">
+                        <td class="physicians-desc">{{'servicefee.PAID_PHYSICIAN' | translate}}</td>
+                        <td>{{$ctrl.serviceFee.details.paidPhysicianFirstName}}</td>
+                        <td>{{$ctrl.serviceFee.details.paidPhysicianLastName}}</td>
+                        <td>{{$ctrl.serviceFee.details.paidPhysicianId}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <div layout="row" layout-align="center center"  ng-if="$ctrl.isLoadingDetails">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+
+    </md-dialog-content>
+</md-dialog>

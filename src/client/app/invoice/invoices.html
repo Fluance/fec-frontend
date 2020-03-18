@@ -1,0 +1,30 @@
+<div id="invoicesContainer" layout="column">
+    <div class="fec-page-title" flex="initial">
+        <h5>{{ 'invoice.TITLE_LIST' | translate }}</h5>
+        <span class="number-badge" ng-show="vm.dataPager.hasTotalItemsCount">{{ 'invoice.NB_OF_INVOICE' | translate:{INVOICE : vm.dataPager.totalItemsCount} }}</span>
+    </div>
+    <div flex="noshrink">
+        <fec-data-pager-sort ng-if="vm.canSort()" sort-criteria="vm.sortCriteria" selected-sort-criteria="vm.dataPager.sortBy" selected-sort-direction="vm.dataPager.sortDirection"
+            on-changed="vm.refresh()">
+        </fec-data-pager-sort>
+    </div>
+
+    <md-card ng-if="vm.dataPager.isEmpty()" class="warn" flex="auto">
+        <md-card-content>
+            {{'invoice.NO_INVOICE' | translate }}
+        </md-card-content>
+    </md-card>
+
+    <div class="search-result" flex="auto" id="btn-guarantors-invoices" infinite-scroll="vm.dataPager.getNextPage()" infinite-scroll-disabled="vm.dataPager.isLoading || !vm.dataPager.canGetNextPage()"
+        infinite-scroll-distance="0" infinite-scroll-container="vm.scrollableContainer">
+        <expander-accordion>
+            <fluance-invoice result="item" ng-repeat="item in vm.dataPager.items"></fluance-invoice>
+        </expander-accordion>
+    </div>
+    <div layout-padding>
+        <md-progress-linear md-mode="indeterminate" ng-if="vm.dataPager.isLoading"></md-progress-linear>
+        <div ng-show="vm.dataPager.hasTotalItemsCount && !vm.dataPager.canGetNextPage()" class="center-align">
+            <span class="number-badge passive">{{' '}}{{ 'invoice.NB_OF_INVOICE' | translate:{INVOICE : vm.dataPager.totalItemsCount} }}{{' '}}</span>
+        </div>
+    </div>
+</div>

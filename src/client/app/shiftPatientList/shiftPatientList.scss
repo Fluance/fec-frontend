@@ -1,0 +1,38 @@
+md-dialog.shiftPatientListDialog {
+    .active {
+        background: $fe-accent-grey;
+    }
+    md-dialog-content {
+        padding: 0px;
+        #patient-list-dialog {
+            @media only screen and (min-width: 960px) {
+                width: 700px;
+            }
+            .patient-name,
+            .shift-date {
+                font-size: 18px;
+            }
+            .material-icons {
+                font-size: 16px;
+                margin-right: 5px;
+                padding: 0px;
+                width: auto;
+            }
+            fec-icon svg {
+                height: 18px;
+                width: 18px;
+            }
+            md-input-container {
+                margin: 0px;
+                label {
+                    &.active {
+                        background: none;
+                    }
+                }
+            }
+            md-select {
+                margin-bottom: 18px;
+            }
+        }
+    }
+}

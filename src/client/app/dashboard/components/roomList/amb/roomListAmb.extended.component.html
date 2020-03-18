@@ -1,0 +1,157 @@
+<md-card-content flex="auto" layout="row" layout-xs="column">
+
+    <div class="fec-no-data-message" flex="auto" layout="row" layout-align="center start" ng-if="$ctrl.isLoaded && !$ctrl.hasData">
+        <p>{{ "dashboard.NO_ENTRIES" | translate }}</p>
+    </div>
+
+    <div flex="grow" layout="row" layout-align="center start" ng-if="!$ctrl.isLoaded">
+        <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+    </div>
+
+    <div layout="column" layout-align="start stretch" flex="none" flex-gt-xs="30" ng-if="$ctrl.hasData" ng-show="$ctrl.isLoaded">
+
+        <!-- Index groups (xs) -->
+        <div layout="row" hide-gt-xs flex="initial" class="input-sort-direction" ng-show="$ctrl.showSettings">
+            <fec-data-pager-sort flex="auto" flex-gt-xs="50" sort-criteria="$ctrl.sortCriteria" selected-sort-criteria="$ctrl.selectedSortCriteria"
+                                 selected-sort-direction="$ctrl.selectedSortDirection" on-changed="$ctrl.refresh()">
+            </fec-data-pager-sort>
+        </div>
+
+        <md-input-container class="fec-room-list" hide-gt-xs tutorial-step="room-list-xs" flex="initial" ng-show="$ctrl.showSettings">
+            <label>{{ 'dashboard.SELECT_ROOM' | translate }}</label>
+            <md-select class="md-no-underline" ng-model="$ctrl.selectedGroupNumber" ng-change="$ctrl.scrollToSelectedIndex($ctrl.selectedGroupNumber)">
+                <md-option ng-repeat="groupVM in $ctrl.indexGroups" ng-value="groupVM.value" ng-if="groupVM.count > 0"
+                           class="fec-room-list-extended-xs-option">
+                    <span flex="auto" ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_PATIENT_NAME">{{ ::groupVM.displayValue }}</span>
+                    <span flex="auto" ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_ADMISSION_DATE" >{{ ::groupVM.displayValue | formatDate : 'date'}}</span>
+                    <span ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_PATIENT_NAME" layout="row"
+                          layout-align="end center">
+                        <fec-icon type="patients" size="xs"></fec-icon>
+                        <span class="number">{{ ::groupVM.count }}</span>
+                    </span>
+                </md-option>
+
+                <md-option ng-repeat="groupVM in $ctrl.indexGroups" ng-value="groupVM.value" ng-if="groupVM.count > 0" class="fec-room-list-extended-xs-option" ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_ADMISSION_DATE">
+                    <span flex="auto">{{ ::groupVM.displayValue | formatDate : 'date'}}</span>
+                    <span layout="row"
+                          layout-align="end center">
+                        <fec-icon type="calendar" size="xs"></fec-icon>
+                        <span class="number">{{ ::groupVM.count }}</span>
+                    </span>
+                </md-option>
+            </md-select>
+
+        </md-input-container>
+
+        <!-- Index groups (gt-xs)-->
+        <div layout="row" hide-xs flex="none" class="input-sort-direction0">
+            <fec-data-pager-sort flex="auto" flex-gt-xs="50" sort-criteria="$ctrl.sortCriteria"
+                                 selected-sort-criteria="$ctrl.selectedSortCriteria"
+                                 selected-sort-direction="$ctrl.selectedSortDirection" on-changed="$ctrl.refresh()">
+            </fec-data-pager-sort>
+        </div>
+
+        <div class="fec-room-list" flex="grow" layout="row" hide-xs ng-if="!$ctrl.isMobileSize()">
+            <md-list layout="column" flex="auto" tutorial-step="room-list-gt-xs">
+                <md-divider flex="none"></md-divider>
+                <md-list-item ng-repeat="groupVM in $ctrl.indexGroups"
+                              ng-click="$ctrl.scrollToSelectedIndex(groupVM.value)"
+                              flex="none" layout="row">
+                    <div class="md-list-item-text" layout="row" flex="grow" ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_PATIENT_NAME">
+                        <span class="fec-room" flex="grow">{{ ::groupVM.displayValue }}</span>
+                        <span  class="fec-bed" layout="row">
+                            <fec-icon type="patients" size="xs" flex="initial"></fec-icon>
+                            <span class="number" flex="noshrink">{{ ::groupVM.count }}</span>
+                        </span>
+                    </div>
+
+                    <div class="md-list-item-text" layout="row" flex="grow" ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_ADMISSION_DATE">
+                        <span class="fec-room" flex="grow">{{ ::groupVM.displayValue | formatDate : 'date' }}</span>
+                        <span class="fec-bed" layout="row">
+                            <fec-icon type="calendar" size="xs" flex="initial"></fec-icon>
+                            <span class="number" flex="noshrink">{{ ::groupVM.count }}</span>
+                        </span>
+                    </div>
+                    <md-divider flex="none"></md-divider>
+                </md-list-item>
+            </md-list>
+        </div>
+    </div>
+
+    <!-- List of Patients -->
+    <div class="fec-patient-list" layout="column" flex="grow" ng-if="$ctrl.isLoaded && $ctrl.hasData" ng-show="$ctrl.isLoaded">
+
+        <!-- "Group by" of current patient on top of the list, updated while scrolling -->
+        <fec-dashboard-patient-list-index class="fec-patient-list-index">
+            <!-- First letter from name -->
+            <div ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_PATIENT_NAME" class="fec-patient-list-index">{{$ctrl.patientsDynamicItems.getItemAtIndexScrolling($ctrl.topIndex).patient.lastName.substring(0,1)}}</div>
+            <!-- Admission date -->
+            <div class="fec-patient-list-index" ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_ADMISSION_DATE">
+                <span class="appointment-month">{{ $ctrl.patientsDynamicItems.getItemAtIndexScrolling($ctrl.topIndex).visit.admitdt | formatDate : 'month' | translate }}</span>
+                <span class="appointment-date">{{ $ctrl.patientsDynamicItems.getItemAtIndexScrolling($ctrl.topIndex).visit.admitdt | formatDate : 'day' }}</span>
+                <span class="appointment-date-day">{{ $ctrl.patientsDynamicItems.getItemAtIndexScrolling($ctrl.topIndex).visit.admitdt | formatDate : 'dayOfWeekShort' | translate }} </span>
+            </div>
+        </fec-dashboard-patient-list-index>
+
+        <!-- by Patient Name -->
+        <md-virtual-repeat-container ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_PATIENT_NAME" md-top-index="$ctrl.topIndex" flex layout-padding fec-virtual-repeat-sync-scope sync-attr="$ctrl.topIndex">
+            <div class="fec-patient-list-item" md-virtual-repeat="patientVM in $ctrl.patientsDynamicItems" md-on-demand>
+                <div layout="column" layout-gt-xs="row">
+                    <!-- Group by -->
+                    <div hide-xs>
+                        <md-divider ng-if="patientVM.showIndex"></md-divider>
+                        <div class="fec-room-info">
+                            <!-- First letter from name -->
+                            <div ng-if="patientVM.showIndex">
+                                <fec-dashboard-letter-name layout="row" letter="patientVM.displayValue"></fec-dashboard-letter-name>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Patient Info -->
+                    <div layout="column" flex="auto">
+                        <md-divider></md-divider>
+                        <fec-dashboard-patient-info
+                            hide-admission-date="false"
+                            class="fec-patient-info"
+                            flex="auto"
+                            patient-info="patientVM">
+                        </fec-dashboard-patient-info>
+                    </div>
+                </div>
+            </div>
+        </md-virtual-repeat-container>
+
+        <!-- by Admission Data -->
+        <md-virtual-repeat-container ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_ADMISSION_DATE" md-top-index="$ctrl.topIndex" flex layout-padding fec-virtual-repeat-sync-scope sync-attr="$ctrl.topIndex">
+            <div class="fec-patient-list-item fec-patient-list-item-height-by-admission-date" md-virtual-repeat="patientVM in $ctrl.patientsDynamicItems" md-on-demand>
+                <div layout="column" layout-gt-xs="row">
+                    <!-- Group by -->
+                    <div hide-xs>
+                        <md-divider ng-if="patientVM.showIndex"></md-divider>
+                        <div class="fec-room-info">
+                            <!-- Visit date -->
+                            <div ng-if="patientVM.showIndex" layout-align="center" layout="row" layout-gt-xs="column">
+                                <div class="appointment-month">{{ patientVM.visit.admitdt | formatDate : 'month' | translate }}</div>
+                                <div class="appointment-date">{{ patientVM.visit.admitdt | formatDate : 'day' }}</div>
+                                <div class="appointment-date-day">{{ patientVM.visit.admitdt | formatDate : 'dayOfWeekShort' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Patient Info -->
+                    <div layout="column" flex="auto">
+                        <md-divider></md-divider>
+                        <fec-dashboard-patient-info
+                            hide-admission-date="true"
+                            class="fec-patient-info"
+                            flex="auto"
+                            patient-info="patientVM">
+                        </fec-dashboard-patient-info>
+                    </div>
+                </div>
+            </div>
+        </md-virtual-repeat-container>
+
+    </div>
+</md-card-content>

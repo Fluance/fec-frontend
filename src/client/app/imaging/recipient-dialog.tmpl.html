@@ -1,0 +1,39 @@
+<md-dialog id="recipient-dialog" layout="column">
+
+    <md-toolbar class="md-hue-2" flex="none">
+        <div class="md-toolbar-tools" layout="column" flex="none" layout-align="center start">
+            <h3 class="title">
+                {{'imaging.SEND_REPORT' | translate}}
+            </h3>
+            <h3>
+                {{::recipientDialogCtrl.context.patient.lastName}} {{::recipientDialogCtrl.context.patient.firstName}}&nbsp;-&nbsp;
+                {{ recipientDialogCtrl.context.report.studyDate | formatDate : 'dateTime' }}
+            </h3>
+        </div>
+    </md-toolbar>
+    <md-dialog-content layout="column" flex="auto" ng-form="sendReportForm">
+        <md-input-container layout="column" flex="auto" class="md-block">
+            <label>{{'imaging.RECIPIENT_ADDRESS' | translate}}</label>
+            <input ng-disabled="recipientDialogCtrl.isSending" type="text" name="recipient" ng-model="vm.recipient"
+                   required maxlength="100" ng-pattern="/^.+@.+\..+$/">
+            <div ng-messages="sendReportForm.recipient.$error" role="alert">
+                <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                    {{'error.INVALID_EMAIL_ADDRESS' | translate}}
+                </div>
+            </div>
+        </md-input-container>
+    </md-dialog-content>
+    <md-dialog-actions flex="none" layout="column" layout-align="center stretch">
+        <div layout="column" flex="auto" ng-show="recipientDialogCtrl.isSending">
+            <md-progress-linear class="indeterminate"></md-progress-linear>
+        </div>
+        <div flex="none" layout="row" layout-align="end center">
+            <md-button class="md-primary" ng-disabled="recipientDialogCtrl.isSending"
+                       fec-mobile-click="recipientDialogCtrl.cancel()">{{'core.CANCEL' | translate}}
+            </md-button>
+            <md-button class="md-primary" ng-disabled="!sendReportForm.$valid || recipientDialogCtrl.isSending"
+                       fec-mobile-click="recipientDialogCtrl.submit(vm.recipient)">{{'core.SEND' | translate}}
+            </md-button>
+        </div>
+    </md-dialog-actions>
+</md-dialog>

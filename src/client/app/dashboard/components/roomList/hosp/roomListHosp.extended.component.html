@@ -1,0 +1,114 @@
+<md-card-content flex="auto" layout="row" layout-xs="column">
+
+    <div class="fec-no-data-message" flex="auto" layout="row" layout-align="center start" ng-if="$ctrl.isLoaded && !$ctrl.hasData">
+        <p>{{ "dashboard.NO_ENTRIES" | translate }}</p>
+    </div>
+
+    <div flex="grow" layout="row" layout-align="center start" ng-if="!$ctrl.isLoaded">
+        <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+    </div>
+
+    <div layout="column" flex="none" flex-gt-xs="30" ng-if="$ctrl.hasData" ng-show="$ctrl.isLoaded">
+        <!-- Index groups (xs) -->
+        <div layout="row" hide-gt-xs flex="initial" ng-show="$ctrl.showSettings">
+            <fec-data-pager-sort flex="auto" flex-gt-xs="50" sort-criteria="$ctrl.sortCriteria"
+                                 selected-sort-criteria="$ctrl.selectedSortCriteria"
+                                 selected-sort-direction="$ctrl.selectedSortDirection" on-changed="$ctrl.refresh()">
+            </fec-data-pager-sort>
+        </div>
+
+        <md-input-container class="fec-room-list" hide-gt-xs tutorial-step="room-list-xs" flex="grow"
+                            ng-show="$ctrl.showSettings">
+            <label>{{ 'dashboard.SELECT_ROOM' | translate }}</label>
+            <md-select class="md-no-underline" ng-model="$ctrl.selectedGroupNumber"
+                       ng-change="$ctrl.scrollToSelectedIndex($ctrl.selectedGroupNumber)">
+                <md-option ng-repeat="group in $ctrl.indexGroups" ng-value="group.value"
+                           class="fec-room-list-extended-xs-option">
+                    <span ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_ROOM" flex="auto">{{ 'dashboard.ROOM' | translate }} {{ ::group.displayValue }}</span>
+                    <span ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_PATIENT_NAME" flex="auto">{{ ::group.value }}</span>
+                    <span flex="auto" layout="row" layout-align="end center">
+                        <fec-icon ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_ROOM" type="bed" size="xs"
+                                  flex="initial"></fec-icon>
+                        <fec-icon ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_PATIENT_NAME" type="patients"
+                                  size="xs" flex="initial"></fec-icon>
+                        <span flex="none" class="number">{{ ::group.count }}{{($ctrl.selectedSortCriteria === $ctrl.SORT_BY_ROOM && group.capacity)? '/'+group.capacity : ''}}</span>
+                    </span>
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+        <!-- Index groups (gt-xs)-->
+        <div layout="row" hide-xs flex="none">
+            <fec-data-pager-sort flex="auto" flex-gt-xs="50" sort-criteria="$ctrl.sortCriteria"
+                                 selected-sort-criteria="$ctrl.selectedSortCriteria"
+                                 selected-sort-direction="$ctrl.selectedSortDirection" on-changed="$ctrl.refresh()">
+            </fec-data-pager-sort>
+        </div>
+
+        <div class="fec-room-list" flex="grow" layout="column" hide-xs>
+            <md-list flex="auto" layout="column">
+                <md-divider flex="none"></md-divider>
+                <md-list-item ng-repeat="group in $ctrl.indexGroups" ng-click="$ctrl.scrollToSelectedIndex(group.value)"
+                              flex="none" layout="row">
+                    <div class="md-list-item-text" layout="row" flex="grow">
+                        <span ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_ROOM" class="fec-room" flex="grow">{{ 'dashboard.ROOM' | translate }} {{ ::group.displayValue }}</span>
+                        <span ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_PATIENT_NAME" class="fec-room"
+                              flex="grow">{{ ::group.value }}</span>
+                        <span class="fec-bed" layout="row">
+                            <fec-icon ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_ROOM" type="bed" size="xs"
+                                      flex="initial"></fec-icon>
+                            <fec-icon ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_PATIENT_NAME" type="patients"
+                                      size="xs" flex="initial"></fec-icon>
+                            <span class="number" flex="noshrink">{{ ::group.count }}{{($ctrl.selectedSortCriteria === $ctrl.SORT_BY_ROOM && group.capacity)? '/'+group.capacity : ''}} </span>
+                        </span>
+                    </div>
+                    <md-divider flex="none"></md-divider>
+                </md-list-item>
+            </md-list>
+        </div>
+    </div>
+
+    <!-- List of Patients (grouped) -->
+    <!--<div class="fec-patient-list" layout="column" flex="auto" flex-gt-xs="grow" tutorial-step="patient-list" ng-if="$ctrl.isLoaded && $ctrl.hasData" ng-show="$ctrl.isLoaded">-->
+    <div class="fec-patient-list" layout="column" flex="auto" tutorial-step="patient-list"
+         ng-if="$ctrl.isLoaded && $ctrl.hasData" ng-show="$ctrl.isLoaded">
+
+        <!-- "Group by" of current patient on top of the list, updated while scrolling -->
+        <fec-dashboard-patient-list-index flex="initial" class="fec-patient-list-index" ng-if="$ctrl.count > 0">
+            <!-- Room -->
+            <div ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_ROOM" class="fec-patient-list-index-">{{'dashboard.ROOM' | translate}} {{$ctrl.patientsDynamicItems.getItemAtIndexScrolling($ctrl.topIndex).visit.patientroom}}</div>
+            <!-- First letter from name -->
+            <div ng-if="$ctrl.selectedSortCriteria === $ctrl.SORT_BY_PATIENT_NAME" class="fec-patient-list-index">{{$ctrl.patientsDynamicItems.getItemAtIndexScrolling($ctrl.topIndex).patient.lastName.substring(0,1)}}</div>
+        </fec-dashboard-patient-list-index>
+
+        <!-- by Room/Patient Name -->
+        <md-virtual-repeat-container md-top-index="$ctrl.topIndex" flex="auto" layout-padding ng-if="$ctrl.count > 0"
+                                     fec-virtual-repeat-sync-scope sync-attr="$ctrl.topIndex">
+            <div class="fec-patient-list-item" md-virtual-repeat="patientVM in $ctrl.patientsDynamicItems" md-on-demand>
+                <div layout="column" layout-gt-xs="row">
+                    <!-- Group by -->
+                    <div hide-xs>
+                        <md-divider ng-if="patientVM.showIndex"></md-divider>
+                        <div class="fec-room-info">
+                            <!-- Room -->
+                            <fec-dashboard-room-number ng-if="patientVM.showIndex && $ctrl.selectedSortCriteria === $ctrl.SORT_BY_ROOM" room="$ctrl.getRoomDisplayValue(patientVM)">
+                            </fec-dashboard-room-number>
+                            <!-- First letter from name -->
+                            <div ng-if="patientVM.showIndex && $ctrl.selectedSortCriteria === $ctrl.SORT_BY_PATIENT_NAME">
+                                <fec-dashboard-letter-name layout="row" letter="$ctrl.getFirstLetterDisplayValue(patientVM)"></fec-dashboard-letter-name>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Patient Info -->
+                    <div layout="column" flex="auto">
+                        <md-divider></md-divider>
+                        <fec-dashboard-patient-info class="fec-patient-info" flex="auto" patient-info="patientVM" sort-order="$ctrl.selectedSortCriteria">
+                        </fec-dashboard-patient-info>
+                    </div>
+                </div>
+            </div>
+        </md-virtual-repeat-container>
+    </div>
+
+</>

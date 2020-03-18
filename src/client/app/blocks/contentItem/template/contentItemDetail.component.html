@@ -1,0 +1,16 @@
+<div layout="row" class="item-info-detail">
+    <div class="item-info-detail-label">{{ $ctrl.label + ' ' }}{{':' | translate }}</div>
+    <div flex></div>
+    <div ng-transclude="custom" class="item-info-detail-content"></div>
+    <div class="item-info-detail-content">
+        <span ng-if="$ctrl.info" class="item-info-content ">            
+            {{ $ctrl.content | noContentPlaceholder }}
+            <md-tooltip layout="row" layout-align="center center" class="info" md-direction="{{ ::$ctrl.tooltipPlacement }}" md-delay="5">{{ $ctrl.info }}</md-tooltip>
+            <fec-icon type="info"></fec-icon>
+        </span>
+        <span ng-if="!$ctrl.info && !$ctrl.isHtmlContent" class="item-info-content" ng-bind-html="$ctrl.content | noContentPlaceholder">
+        </span>
+        <span ng-if="!$ctrl.info && $ctrl.isHtmlContent" class="item-info-content" bind-html-compile="$ctrl.content | noContentPlaceholder">
+        </span>
+    </div>
+</div>

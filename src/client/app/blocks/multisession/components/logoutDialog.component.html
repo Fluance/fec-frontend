@@ -1,0 +1,19 @@
+
+<div class="md-dialog-content multisession">
+    <md-dialog-content>
+        <!--h2 class="md-title">{{ 'multisession.LOGOUT_DIALOG_TITLE' | translate }}</h2-->
+        <h2 class="md-title">User Sessions</h2>
+        <md-list>
+            <md-list-item ng-class="{'current-session': item.current}" ng-repeat="item in $ctrl.openSessionList">
+                <md-checkbox aria-label="{{item.creationDate}}" ng-model="item.selected" ng-disabled="item.current" ng-if="$ctrl.isDeviceLogoutEnabled"></md-checkbox>
+                <div>{{item.creationDate | formatDate:'dateTime'}}</div>
+                <fec-user-agent-bar user-agent="item.agent"></fec-user-agent-bar>
+                <md-divider></md-divider>
+            </md-list-item>
+        </md-list>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button class="md-primary" ng-click="$ctrl.closeLogoutDialog()">Cancel</md-button>
+        <md-button class="md-primary" ng-click="$ctrl.userLogout()">Logout</md-button>
+    </md-dialog-actions>
+</div>

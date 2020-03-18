@@ -1,0 +1,112 @@
+#imagingContainer,
+#report-dialog {
+    .blue-title {
+        color: $fe-blue;
+        font-weight: bold;
+    }
+    .bold-title {
+        font-weight: bold;
+    }
+    fec-imaging-order {
+        a {
+            display: flex;
+
+            &.ie {
+                display: table-cell;
+                vertical-align: middle;
+            }
+        }
+        expander-header {
+            &>* {
+                min-height: 3rem;
+            }
+            .md-button.md-primary{
+                padding: 0 2rem;
+                margin:0px;
+            }
+        }
+        expander-body {
+            .fec-imaging-set {
+                margin: -16px;
+            }
+            .md-button.md-primary{
+                padding: 0 2rem;
+                margin:0px;
+            }
+        }
+    }
+        .col.valign-wrapper {
+            height: 50px;
+        }
+        .tile,
+        .dark-tile {
+            padding: 7px 0 7px 0;
+            margin-bottom: 5px;
+            h6.blue-title {
+                color: $fe-blue;
+                small {
+                    line-height: 110%;
+                    color: $fe-accent-grey;
+                    white-space: nowrap;
+                }
+            }
+            background-color: $fe-white;
+            @extend .z-depth-1;
+            @extend .markup;
+            @include transition (box-shadow .25s);
+        }
+        .dark-tile {
+            color: $fe-white;
+            background-color: $fe-accent-grey;
+            margin-bottom: 0px;
+            @extend .markup-dark;
+        }
+        .markup,
+        .markup-dark {
+            @include transition(background-color .25s);
+            &>i.material-icons {
+                @include transition(color .25s);
+            }
+        }
+        .markup:hover {
+            cursor: pointer;
+            background-color: $fe-grey;
+            &>i.material-icons {
+                color: $fe-blue;
+            }
+        }
+        .markup-dark {
+            height: 60px;
+        }
+        .markup-dark:hover {
+            cursor: pointer;
+            background-color: $fe-black;
+            &>i.material-icons {
+                color: $fe-blue;
+            }
+        }
+}
+
+p.report {
+    white-space: pre-wrap;
+}
+
+#dialogContent_report-dialog > div > md-input-container > label {
+    background: transparent;
+}
+
+#recipient-dialog {
+    .title {
+        padding-bottom: 5px;
+    }
+
+    md-dialog-content {
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 20px;
+
+        md-input-container {
+            margin-bottom: 0px;
+        }
+    }
+}

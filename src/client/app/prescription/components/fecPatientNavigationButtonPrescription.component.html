@@ -1,0 +1,29 @@
+<fec-patient-navigation-button button-label="{{'prescription.TITLE' | translate}}" is-enabled="$ctrl.isEnabled" is-active="$ctrl.isActive"
+    can-navigate="$ctrl.canNavigate(context)" required-context="$ctrl.requiredContext" context="$ctrl.context">
+    <navigation-component>
+        <md-menu md-offset="0 45">
+            <md-button class="md-primary fecPatientNavigationButton" fec-mobile-click="$mdMenu.open($event)" ng-click="" layout="row" layout-align=" center" ng-disabled="!$ctrl.isEnabled">
+                <span flex="grow" layout="row" layout-align="start center">
+                    <fec-icon type="prescription" size="sm" layout="row" layout-align="start center"></fec-icon>
+                </span>
+                <span flex="initial">
+                    {{'prescription.TITLE' | translate}}
+                </span>
+                <span flex="grow"></span>
+            </md-button>
+            <md-menu-content>
+                <md-menu-item>
+                    <md-button ng-if="!$ctrl.directPrescriptionURL || !$ctrl.isCreatePrescriptionActive" ng-disabled="!$ctrl.isCreatePrescriptionActive" fec-mobile-click="$ctrl.createLabPrescription($event); $mdMenu.close()">
+                        {{ 'prescription.BUTTON_CREATE_PRESCRIPTION' | translate }}
+                    </md-button>
+                    <a class="md-button text-transform-unset" ng-if="$ctrl.directPrescriptionURL && $ctrl.isCreatePrescriptionActive" href="{{$ctrl.directPrescriptionURL}}" target="_blank">{{ 'prescription.BUTTON_CREATE_PRESCRIPTION' | translate }}</a>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button md-truncate class="md-ellipsis" ng-disabled="!$ctrl.isGenerateDocumentEnabled || !$ctrl.isGenerateDocumentActive" fec-mobile-click="$ctrl.generateDocument($event); $mdMenu.close()">
+                        {{ 'prescription.BUTTON_GENERATE_DOCUMENT' | translate }}
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </navigation-component>
+</fec-patient-navigation-button>

@@ -1,0 +1,18 @@
+<div id="servicefeeContainer" layout="column">
+    <div class="fec-page-title" flex="initial">
+        <h5>{{ 'servicefee.TITLE' | translate }}</h5>
+    </div>
+    <!-- DIV WHEN THERE IS NO BENEFIT -->
+    <md-card class="warn" flex="auto" ng-show="vm.isEmpty">
+        <md-card-content>
+            {{ 'servicefee.NO_BENEFIT' | translate }}
+        </md-card-content>
+    </md-card>
+
+    <div flex="auto" id="btn-benefits-result" infinite-scroll="vm.loadMore()" infinite-scroll-disabled="vm.isLoadingMore || vm.singleResultSearch || vm.isComplete || vm.isLoading"
+        infinite-scroll-distance="0">
+        <expander-accordion>
+            <fluance-service-fee result="vm.result"></fluance-service-fee>
+        </expander-accordion>
+    </div>
+</div>

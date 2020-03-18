@@ -1,0 +1,18 @@
+<div>
+    <small class="warning_text">
+        {{'dashboard.ADMIT_DATE_SHORT' | translate}}{{':' | translate}}{{ patients.visit.admitdt | amDateFormat:'DD.MM.YYYY HH:mm' }}
+    </small>
+    <br/>
+    <big class="blue_text" ng-click="goToDetailView(patients.patient.pid)"><strong>{{ patients.patient.lastName | uppercase }}{{' '}}{{ patients.patient.firstName }}
+    </strong></big>
+    <br /> {{ patients.patient.birthDate | formatDate :'date' }}&nbsp;
+    <gender-icon gender-string="{{patients.patient.sex}}" class="gender-icon"></gender-icon>
+    <br /> <span class="patient-element-visit blue_text" ng-click="goToVisit(patients.visit.nb)">{{'dashboard.VISIT_NBR' | translate}}{{':' | translate}}{{ patients.visit.nb }}</span>
+    <br />
+    <content-item-no-title content="{{ patients.visit.patientclass }}" tooltip-placement="bottom" info="{{ patients.visit.patientclassdesc }}"
+        elementid="{{ elementid }}-class"></content-item-no-title>
+        <span> / </span>
+        <content-item-no-title content="{{ patients.visit.hospservice }}" tooltip-placement="bottom" info="{{ patients.visit.hospservicedesc }}"
+            elementid="{{ elementid }}-hospservice"></content-item-no-title>
+            <br />
+</div>

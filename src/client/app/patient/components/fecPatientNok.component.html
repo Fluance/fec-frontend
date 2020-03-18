@@ -1,0 +1,31 @@
+<h5><small>{{ 'patient.NEXTOFKIN' | translate }}</small></h5>
+<div layout="column">
+    <div ng-if="$ctrl.patientNok && $ctrl.patientNok.length > 0">
+        <div ng-repeat="nok in $ctrl.patientNok" class="next-of-kin">
+            <!-- style="padding-bottom:0.75rem" -->
+            <div class="item-info-detail-label">
+                {{ ::nok.lastName }} {{ ::nok.firstName }}
+            </div>
+            <div ng-if="nok.address">
+                {{ ::nok.address }}
+            </div>
+            <div ng-if="nok.postCode+nok.locality">
+                {{ ::nok.postCode }} {{ ::nok.locality }}
+            </div>
+            <div ng-if="nok.canton">
+                {{ ::nok.canton }}
+            </div>
+            <div ng-if="nok.country">
+                {{ ::nok.country }}
+            </div>
+            <div class="next-of-kin-contacts">
+                <!--  style="padding-top:0.35rem" -->
+                <content-item-detail ng-repeat="contact in nok.contacts" label="{{'patient.'+(contact.equipment | uppercase) | translate }}" content="{{contact.data | validateData}}">
+                </content-item-detail>
+            </div>
+        </div>
+    </div>
+    <div class="noResult" ng-if="$ctrl.patientNok && $ctrl.patientNok.length <= 0">
+        {{ 'core.NOT_SPECIFIED' | translate }}
+    </div>
+</div>

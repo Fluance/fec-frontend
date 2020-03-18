@@ -1,0 +1,52 @@
+<div id="whiteboard-surgery" layout="column">
+    <div id="whiteboard-surgery-header" ng-if="!$ctrl.hideToolbar">
+        <!-- Toolbar -->
+        <fec-whiteboard-surgery-toolbar></fec-whiteboard-surgery-toolbar>
+    </div>
+    <div flex layout="column" id="whiteboard-surgery-content">
+        <div layout="row" id="whiteboard-surgery-content-header">
+
+            <!-- Empty navigation -->
+            <div id="whiteboard-surgery-content-navigation" layout="column"
+                ng-if="$ctrl.hideNavigation && !$ctrl.hideRooms"></div>
+
+            <!-- Navigation -->
+            <div id="whiteboard-surgery-content-navigation" layout="column" ng-if="!$ctrl.hideNavigation">
+                <div class="whiteboard-surgery-navigation-item">
+                    <fec-icon type="home" color="fe-blue-icon" fec-mobile-click="$ctrl.goToDashboard()"></fec-icon>
+                </div>
+                <div class="whiteboard-surgery-navigation-item">
+                    <sm-date-time-picker-component fname="selectedDateForDatePicker" close-on-select="false"
+                        change-view-on-select="false" align-text-right="true" mode="date"
+                        ng-model="$ctrl.selectedDateForDatePicker"
+                        week-start-day="Monday">
+                    </sm-date-time-picker-component>
+                </div>
+                <div class="whiteboard-surgery-navigation-item">
+                    <fec-icon type="add" color="fe-blue-icon" fec-mobile-click="$ctrl.addNewReservation()"></fec-icon>
+                </div>
+                <div class="whiteboard-surgery-navigation-item">
+                    <fec-icon type="edit" color="fe-blue-icon" fec-mobile-click="$ctrl.openEditNoteView()"></fec-icon>
+                </div>
+            </div>
+
+            <!-- Room list -->
+            <fec-whiteboard-surgery-room-list flex layout="row" selected-date="$ctrl.selectedDate" rooms="$ctrl.rooms"
+                ng-if="!$ctrl.hideRooms">
+            </fec-whiteboard-surgery-room-list>
+        </div>
+
+        <!-- Time line -->
+        <fec-whiteboard-surgery-timeline flex layout="row" selected-date="$ctrl.selectedDate" company-id="$ctrl.companyId"
+            rooms="$ctrl.rooms"
+            rooms-reservations="$ctrl.roomsReservations"
+            on-room-reservations-changed="$ctrl.onRoomReservationsChanged($event)"
+            ng-if="!$ctrl.hideTimeline">
+        </fec-whiteboard-surgery-timeline>
+    </div>
+    <!-- Footer info -->
+    <div id="whiteboard-surgery-footer" ng-class="{'has-content': !$ctrl.hideInfos && $ctrl.surgeryboardNote && $ctrl.surgeryboardNote.note && $ctrl.surgeryboardNote.note.length }">
+        <div id="whiteboard-surgery-info-container" ng-if="!$ctrl.hideInfos && $ctrl.surgeryboardNote && $ctrl.surgeryboardNote.note && $ctrl.surgeryboardNote.note.length" bind-html-compile="$ctrl.surgeryboardNote.note">
+        </div>
+    </div>
+</div>

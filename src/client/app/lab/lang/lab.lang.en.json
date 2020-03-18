@@ -1,0 +1,13 @@
+{
+    "lab": {
+        "CHANGE_CATEGORY_TITLE": "Change category",
+        "GUIDE_VISITS_LAB": "Lab results of the current patient",
+        "MEASUREMENT": "Measurement",
+        "NAVIGATION_TITLE": "Lab results",
+        "REFERENCE": "Reference",
+        "TITLE": "Lab results",
+        "TITLE_BUTTON": "Lab results",
+        "TITLE_SHORT": "Lab",
+        "NO_RESULTS": "There are no results at this time. You can create a prescription with the button on the top right of the screen."
+    }
+}

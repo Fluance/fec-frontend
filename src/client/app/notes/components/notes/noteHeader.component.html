@@ -1,0 +1,8 @@
+<div>
+    <div class="note-reference-date">{{vm.note.referenceDate | formatDate : 'dateTime'}}</div>
+    <div class="note-title">{{vm.note.title}}
+        <fec-note-read-status ng-if="vm.showReadStatus" note-id="vm.note.id" is-read="vm.note.read" category-id="vm.note.categoryId" read-flag="true" is-shift="vm.note.shift" creator="vm.note.creator.username"></fec-note-read-status>
+    </div>
+</div>
+</div>
+<div class="note-description">{{vm.note.textPreview}}</div>

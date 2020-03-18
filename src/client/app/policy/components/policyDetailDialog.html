@@ -1,0 +1,14 @@
+<md-dialog id="policyDetailDialog">
+    <md-dialog-content layout="column" layout-padding>
+
+        <span class="closeButton">
+            <md-button class="md-fab md-mini md-primary right" ng-click="$ctrl.closeDialog()">
+                <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom"
+                            md-delay="25">{{'core.CLOSE' | translate }}</md-tooltip>
+                <fec-icon type="notExpanded" size="sm"></fec-icon>
+            </md-button>
+        </span>
+
+        <fec-policy-detail policy="$ctrl.policy" flex="auto" layout="column"></fec-policy-detail>
+    </md-dialog-content>
+</md-dialog>

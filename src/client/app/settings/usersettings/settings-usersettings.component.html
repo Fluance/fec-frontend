@@ -1,0 +1,21 @@
+<md-card layout="column" flex="auto">
+    <md-card-content layout-padding>
+        <h5>{{ 'settings.SETTINGS' | translate }}</h5>
+        <div layout="row" ng-if="$ctrl.isActiveTutorial()">
+            <fec-icon-button type="tutorialClear" size="sm" action="$ctrl.resetTutorials()"></fec-icon-button>
+
+            <div layout-padding></div>
+            <div flex="auto" layout="row" layout-align="start center">
+                {{ 'settings.CLEAR_TUTORIALS' | translate }}
+            </div>
+        </div>
+        <div layout="row">
+            <fec-icon-button type="reset" size="sm" action="$ctrl.resetDashboardLayout()"></fec-icon-button>
+
+            <div layout-padding></div>
+            <div flex="auto" layout="row" layout-align="start center">
+                {{ 'settings.CLEAR_DASHBOARD_LAYOUT' | translate }}
+            </div>
+        </div>
+    </md-card-content>
+</md-card>

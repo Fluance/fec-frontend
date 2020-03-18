@@ -1,0 +1,96 @@
+#visitsContainer {
+  width: 100% !important;
+  .expander-body {
+    line-height: 1rem;
+    .spinner {
+      padding: 20px 0 20px 0;
+    }
+    @media #{$medium-and-down} {
+      padding-top: 20px;
+    }
+  }
+  expander-header {
+    .row {
+      margin-bottom: 0px;
+    }
+    & > .row {
+      padding: 10px 0px;
+    }
+    line-height: 1rem;
+    .visit-profile {
+      .visit-name {
+        color: $fe-black;
+      }
+      .visit-id {
+        color: $fe-blue;
+      }
+      .visit-name {
+        margin-top: 0px;
+        margin-bottom: 10px;
+      }
+      .visit-id {
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      .visit-info {
+        color: $fe-accent-grey;
+        margin: 3px 0px;
+      }
+    }
+  }
+  #btn-order-sort {
+    float: right;
+  }
+  .visit-id {
+    color: $fe-blue;
+    font-weight: 700;
+    padding-left: 28px;
+  }
+  .fec-nav-item-selected {
+    border-bottom: 2px solid $fe-blue;
+    padding-bottom: 16px;
+  }
+  .fec-nav-bar {
+    border-bottom: 1px solid $fe-grey;
+    display: block;
+  }
+  .nav-bar-mobile {
+    display: flex;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    .nav-bar-mobile-item {
+      display: inline-block;
+      fec-nav-button, fec-nav-button-visit-details, fec-nav-button-icd-chop-list, fec-nav-button-benefit-list, fec-nav-button-guarantor-list {
+        line-height: 10px;
+        padding-bottom: 5px;
+        button {
+            line-height: 10px;
+            margin: 0px 8px;
+        }
+        .fec-nav-item-selected {
+          border-bottom: 2px solid $fe-blue;
+          padding-bottom: 2px;
+        }
+      }
+    }
+  }
+  .visit-detail-info {
+    .physicians-mobile {
+      font-size: 15px;
+      .physicians-title {
+        text-transform: uppercase;
+        border-bottom: 1px solid $fe-accent-grey;
+      }
+      .physician {
+        padding-top: 10px;
+          .physician-title {
+            text-transform: uppercase;
+          }
+          .physician-name {
+            padding-left: 15px;
+          }
+      }
+    }
+  }
+}

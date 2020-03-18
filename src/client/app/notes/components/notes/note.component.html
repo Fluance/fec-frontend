@@ -1,0 +1,195 @@
+<!-- NO NOTE FOUND -->
+<div layout="column">
+    <md-card class="error" ng-show="!$ctrl.isEmpty && $ctrl.isCrashed">
+        <md-card-content>
+            {{'notes.ERROR_LOAD_NOTE' | translate }}
+        </md-card-content>
+    </md-card>
+
+    <md-card class="warn" ng-show="$ctrl.isEmpty && !$ctrl.isCrashed">
+        <md-card-content>
+            {{'notes.NO_NOTE' | translate }}
+        </md-card-content>
+    </md-card>
+
+    <!-- NOTE AREA -->
+    <div ng-show="!$ctrl.isEmpty && !$ctrl.isCrashed">
+        <div layout="row">
+            <div flex>
+                <fec-icon ng-if="$ctrl.isMode('view') && $ctrl.isMobileSize()" color="fe-blue-icon" type="back" size="md"
+                          ui-sref="noteCategories({pid: $ctrl.note.patient.pid})" class="fec-clickable-item"></fec-icon>
+            </div>
+            <div layout="row" layout-align="end start" ng-if="$ctrl.isMode('view')" class="action-menu">
+                <!--<fec-note-read-status flex="none" note-id="$ctrl.note.id" is-read="$ctrl.note.read" read-flag="true"></fec-note-read-status>-->
+
+                <fec-note-read-button note-id="$ctrl.note.id" color="fe-blue-icon" size="md"
+                                      is-read="$ctrl.note.read"></fec-note-read-button>
+
+                <span ng-if="$ctrl.editionEnabled()">
+                    <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{'notes.EDIT_NOTE' | translate}}</md-tooltip>
+                    <fec-icon type="edit" color="fe-blue-icon" size="md"
+                              ui-sref="editNote({pid: $ctrl.note.patient.pid, vnb: $ctrl.note.visitNb, noteId: $ctrl.note.id})"
+                              flex="none"></fec-icon>
+                </span>
+
+                <fec-nav-history ng-if="$ctrl.editionEnabled()">
+                    <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{'notes.HISTORY_LIST' | translate}}</md-tooltip>
+                    <fec-icon type="history" color="fe-blue-icon" size="md"
+                              ui-sref="noteHistoryList({pid: $ctrl.note.patient.pid, vnb: $ctrl.note.visitNb, categoryId: $ctrl.note.categoryId, noteId: $ctrl.note.id })"
+                              flex="none"></fec-icon>
+                </fec-nav-history>
+
+                <span ng-if="$ctrl.editionEnabled()">
+                    <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{'notes.DELETE_NOTE' | translate}}</md-tooltip>
+                    <fec-icon type="delete" color="fe-blue-icon" size="md" fec-mobile-click="$ctrl.deleteNote($event)"
+                              flex="none"></fec-icon>
+                </span>
+            </div>
+        </div>
+
+        <md-card flex="auto">
+            <!-- VIEW MODE -->
+            <div layout="column" layout-align="start" ng-if="$ctrl.isMode('view') && $ctrl.isMobileSize()" layout-padding>
+                <div layout="row">
+                    <div flex layout-align="start center" class="note-category-name">{{ $ctrl.note.category.name }}</div>
+                    <div layout-align="end center">{{ $ctrl.note.referenceDate | formatDate : 'dateTime' }}</div>
+                </div>
+                <div layout="row">
+                    <div flex layout-align="start center">{{$ctrl.note.creator.firstName}}&nbsp;{{$ctrl.note.creator.lastName}}</div>
+                    <div layout-align="end start">
+                        <span ng-if="$ctrl.note.shift">
+                            <md-tooltip layout="row" layout-align="center start" class="info" md-delay="50">{{ 'notes.SHIFT_NOTE'
+                                | translate}}</md-tooltip>
+                            <fec-icon type="hourglassEmpty" class="icons" size="xs" color="fe-grey-icon" can-resize="true"></fec-icon>
+                        </span>
+                    </div>
+                </div>
+                <div layout="row">
+                    <fec-note-details flex="auto" note-id="$ctrl.noteId" note="$ctrl.note" note-pictures="$ctrl.notePictures"
+                        picture-display-mode="list"></fec-note-details>
+                </div>
+            </div>
+            <md-card-title layout="column" layout-align="start" ng-if="$ctrl.isMode('view') && !$ctrl.isMobileSize()">
+                <md-card-title-text layout="row" flex="auto" class="md-subhead">
+                    <div layout="row" flex="grow" layout-align="start center">{{$ctrl.note.creator.firstName}} {{$ctrl.note.creator.lastName}}</div>
+
+                    <div layout="row" flex="none" layout-align="center center">{{ $ctrl.note.category.name }}</div>
+
+                    <div layout="row" flex="grow" layout-align="end center" class="note-date">{{ $ctrl.note.referenceDate | formatDate : 'dateTime' }}</div>
+                </md-card-title-text>
+
+                <md-card-title-text layout="row" flex="auto">
+                    <div layout="row" flex="auto">
+                        <span>{{ $ctrl.note.title }}</span>
+                    </div>
+                    <div layout="row" flex="none">
+                        <fec-icon type="hourglassEmpty" color="fe-grey-icon" size="md" class="md-primary" ng-if="$ctrl.note.shift"></fec-icon>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+
+            <md-card-content ng-if="$ctrl.isMode('view') && !$ctrl.isMobileSize()">
+                <md-content layout="column" layout-align="stretch">
+                    <fec-note-details flex="auto" note-id="$ctrl.noteId" note="$ctrl.note" note-pictures="$ctrl.notePictures"
+                        picture-display-mode="list"></fec-note-details>
+                </md-content>
+            </md-card-content>
+            <!-- END VIEW MODE -->
+
+            <!-- EDIT/NEW MODE -->
+            <div ng-if="!$ctrl.isMode('view')">
+                <div>
+                    <md-card-title layout="column">
+                        <md-card-title-text flex="auto" layout="row" ng-if="!$ctrl.isLocked">
+                            <div ng-if="$ctrl.isMode('new')">
+                                <span>{{ 'notes.NEW_NOTE' | translate }}</span>
+                            </div>
+                            <div ng-if="$ctrl.isMode('edit')">
+                                <span>{{ 'notes.EDIT_NOTE' | translate }}</span>
+                            </div>
+                        </md-card-title-text>
+                        <md-card-title-text flex="auto" class="note-locked" layout="column" layout-align="center center"
+                            ng-if="$ctrl.isLocked">
+                            <i class="material-icons medium">lock</i>
+                            <md-subhead flex="auto" layout="column" layout-align="center center">
+                                <span>{{$ctrl.note.id}}</span>
+                                <span>{{ 'notes.NOTE_IS_LOCKED' | translate:"{ACTION:'EDIT'}"}}</span>
+                            </md-subhead>
+                        </md-card-title-text>
+
+                        <md-divider />
+                    </md-card-title>
+
+                    <md-card-content class="editNoteContent">
+                        <div ng-form="$ctrl.noteForm">
+                            <div layout="row" layout-align="end center">
+                                <fec-shift-note>
+                                    <md-checkbox ng-change="$ctrl.onChange()" name="shiftNote" ng-model="$ctrl.note.shift"
+                                        ng-model-options='{trackBy: "$value"}' tutorial-step="shiftnote" aria-label="shift list"
+                                        ng-disabled="$ctrl.isLocked">
+                                        <label layout="row">{{'notes.SHIFT_NOTE' | translate}}</label>
+                                    </md-checkbox>
+                                </fec-shift-note>
+                            </div>
+                            <div layout="column" layout-gt-xs="row">
+                                <fec-nav-title flex="100" flex-gt-xs="50">
+                                    <md-input-container layout="row" class="input-container" input-field>
+                                        <label>{{'notes.TITLE' | translate}}</label>
+                                        <input ng-change="$ctrl.onChange()" ng-model="$ctrl.note.title" type="text" class="validate"
+                                            ng-disabled="$ctrl.isLocked">
+                                    </md-input-container>
+                                </fec-nav-title>
+
+                                <div layout-padding hide-gt-xs></div>
+
+                                <md-input-container flex="100" flex-gt-xs="50" class="input-container" input-field>
+                                    <fec-nav-category flex="grow">
+                                        <label>{{'notes.CATEGORY' | translate}}</label>
+                                        <md-select required ng-change="$ctrl.onChange()" name="noteCategory" ng-model="$ctrl.note.categoryId"
+                                            ng-model-options='{trackBy: "$value"}' ng-disabled="$ctrl.isLocked">
+                                            <md-option ng-value="category.id" ng-repeat="category in $ctrl.categories">
+                                                {{category.name}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="$ctrl.noteForm.noteCategory.$error">
+                                            <div ng-message="required">{{'notes.CATEGORY_REQUIRED' | translate }}</div>
+                                        </div>
+                                    </fec-nav-category>
+                                </md-input-container>
+                            </div>
+
+                            <fec-nav-description>
+                                <md-input-container layout="column" flex="auto" class="input-container" input-field>
+                                    <label>{{'notes.DESCRIPTION' | translate}}</label>
+                                    <textarea rows=5 ng-change="$ctrl.onChange()" ng-model="$ctrl.note.description" buttons="{{$ctrl.editorButtons}}"
+                                        ng-disabled="$ctrl.isLocked"></textarea>
+                                </md-input-container>
+                            </fec-nav-description>
+                        </div>
+
+                        <div flex="none">{{ 'notes.PICTURES' | translate }}</div>
+                        <fec-note-picture-list name="pictures" picture-list="$ctrl.notePictures" display-mode="list"
+                            note-id="$ctrl.noteId" is-disabled="$ctrl.isLocked" picture-edit="true" picture-edit-on-change="$ctrl.onChange()"
+                            show-annotation="true">
+                        </fec-note-picture-list>
+
+                        <div layout="row" layout-align="end" layout-wrap>
+                            <md-button class="md-primary" fec-mobile-click="$ctrl.cancel()">
+                                <fec-nav-cancel>
+                                    <span>{{'core.CANCEL' | translate }}</span>
+                                </fec-nav-cancel>
+                            </md-button>
+                            <md-button class="md-primary" ng-if="!$ctrl.isLocked" fec-mobile-click="$ctrl.saveNote()"
+                                ng-disabled="!$ctrl.noteForm.$valid || ($ctrl.noteForm.$valid && !$ctrl.noteForm.$dirty)">
+                                <fec-nav-save>
+                                    <span>{{'core.SAVE' | translate }}</span>
+                                </fec-nav-save>
+                            </md-button>
+                        </div>
+                    </md-card-content>
+                </div>
+            </div>
+            <!-- END EDIT/NEW MODE -->
+        </md-card>
+    </div>
+</div>

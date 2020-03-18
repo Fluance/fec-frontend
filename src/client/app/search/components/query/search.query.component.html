@@ -1,0 +1,10 @@
+<div flex ng-class="{'fec-search-query-navigatable': vm.navigateOnClick}" ng-click="vm.launchRequest()"
+     layout="row" layout-margin layout-align="start center" layout-wrap>
+    <fec-search-criterion
+        ng-repeat="criterion in vm.criteria() | filter: { isDisplayable: true } track by criterion.key"
+        criterion="criterion"
+        user-interaction="vm.userInteraction" delegate="vm" mode="{{vm.mode}}"
+        is-icon-visible="vm.canShowIcon(criterion)" is-name-visible="vm.canShowName(criterion)"
+
+    ></fec-search-criterion>
+</div>

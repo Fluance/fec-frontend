@@ -1,0 +1,13 @@
+<md-dialog class="fec-pdf-viewer-dialog">
+    <md-dialog-content flex layout="column" layout-align="center center">
+        <md-progress-circular md-mode="indeterminate" ng-if="$ctrl.isLoading"></md-progress-circular>
+        <div class="viewer-container" ng-if="!$ctrl.isLoading">
+            <fec-pdf-viewer pdf-filename="$ctrl.pdfFilename" pdf-data="$ctrl.pdfData"></fec-pdf-viewer>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <div layout="row" layout-align="start">
+            <md-button class="md-primary" fec-mobile-click="$ctrl.close()">{{'core.CANCEL' | translate}}</md-button>
+        </div>
+    </md-dialog-actions>
+</md-dialog>

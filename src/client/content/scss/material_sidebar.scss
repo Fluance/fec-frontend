@@ -1,0 +1,123 @@
+#sidebar-search,
+#sidebar-menu {
+    li {
+        a {
+            cursor: pointer;
+            i {
+                // margin-top: 12px;
+                @media #{$medium-and-up} {
+                    margin-top: 8px;
+                }
+            }
+        }
+    }
+}
+
+#sidebar-search {
+    form#search-criteria,
+    form#search-location,
+    form#search-id {
+        .calendar-icon {
+            color: $fe-accent-grey;
+            cursor: pointer;
+            line-height: 25px;
+            margin-right: 15px;
+            i.material-icons {
+                color: $fe-accent-grey;
+                line-height: 20px;
+                &:hover {
+                    color: $fe-blue;
+                }
+            }
+        }
+        padding: 0 15px;
+        .row:nth-child(1) {
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+        .admitdate-field {
+            .input-field {
+                margin-top: 13px;
+            }
+            .calendar-icon {
+                line-height: 40px;
+            }
+        }
+        .input-field {
+            line-height: 18px;
+            input {
+                color: $fe-black;
+                padding-left: 0px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid $fe-black;
+                z-index: 900;
+                font-size: 1rem;
+                &.select-dropdown {
+                    padding-bottom: 0px;
+                    margin-bottom: 0px;
+                }
+                &#search_name {
+                    margin-bottom: 0px;
+                }
+            }
+            label {
+                margin-left: 10px;
+            }
+            input:focus {
+                border-bottom: 1px solid $fe-blue;
+                box-shadow: 0 1px 0 0 $fe-blue;
+            }
+            input:focus + label {
+                color: $fe-blue;
+            }
+            label.active {
+                font-size: 0.9rem;
+            }
+            label.active {
+                margin-top: -20px;
+            }
+            .caret {
+                margin-top: -18px;
+            }
+            a {
+                height: auto;
+                line-height: 40px;
+            }
+        }
+        .birthdate-field {
+            margin-bottom: 5px;
+        }
+        .progress {
+            margin-top: 26px;
+            margin-bottom: 23px;
+            width: 90%;
+        }
+    }
+}
+
+#sidebar-menu {
+    overflow: hidden;
+    .select-wrapper {
+        input.select-dropdown {
+            border-bottom: initial;
+            width: 225px;
+            color: black;
+            padding: 5px 0 0 52px;
+        }
+        span.caret {
+            display: none;
+        }
+    }
+}
+
+.drag-target {
+    z-index: 997;
+}
+
+.picker__footer {
+    display: block;
+    button {
+        display: block;
+        width: 100%;
+    }
+}

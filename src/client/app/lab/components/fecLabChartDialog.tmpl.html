@@ -1,0 +1,14 @@
+<md-dialog id="lab-chart-dialog" class="lab-chart-dialog">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{$ctrl.datas.analysisname}}<span ng-if="$ctrl.datas.unit"> ({{$ctrl.datas.unit}})</span></h2>
+            <span flex></span>
+            <md-button class="md-icon-button" fec-mobile-click="$ctrl.closeDialog()">
+                <fec-icon type="clear"></fec-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <fec-lab-chart datas="$ctrl.datas" dates="$ctrl.dates"></fec-lab-chart>
+    </md-dialog-content>
+</md-dialog>

@@ -1,0 +1,32 @@
+<fec-patient-navigation-button
+is-enabled="$ctrl.isEnabled"
+is-active="$ctrl.isActive"
+can-navigate="$ctrl.canNavigate(context)"
+navigate-to="$ctrl.navigateTo(context)"
+required-context="$ctrl.requiredContext"
+context="$ctrl.context">
+    <navigation-component>
+        <div ng-if="!$ctrl.isLoading" class="fecPatientNavigationButton">
+            <table>
+                <tr>
+                    <td class="icon">
+                        <fec-icon type="patient" color="fe-blue-icon" size="ms"></fec-icon>
+                    </td>
+                    <td>
+                        {{$ctrl.patient.lastName | uppercase}}
+                        <span ng-show="$ctrl.patient.maidenName">{{ '(' | translate }}{{ '-' | translate }}{{ ::$ctrl.patient.maidenName }}{{ ')' | translate }}</span>
+                        <br/>
+                        {{$ctrl.patient.firstName}}
+                        <fec-gender-icon gender="{{::$ctrl.patient.sex}}" size="xs"></fec-gender-icon>
+                    </td>
+                </tr>
+                <tr ng-if="$ctrl.patient.birthDate">
+                    <td class="icon">
+                        <fec-icon type="birthdate" color="fe-grey-icon" size="ms"></fec-icon>
+                    </td>
+                    <td>{{$ctrl.patient.birthDate | formatDate : 'date'}}</td>
+                </tr>
+            </table>
+        </div>
+    </navigation-component>
+</fec-patient-navigation-button>

@@ -1,0 +1,14 @@
+<div class="item-info" layout="row">
+    <span class="item-info-label">{{ $ctrl.label + ' ' }}{{':' | translate }}</span>
+    <span flex></span>
+    <span ng-class="{'new-line': $ctrl.contentOnSecondLine}">
+        <fec-icon class="item-info-icon" type="{{::$ctrl.iconType}}" size="xs" ng-if="$ctrl.iconType"></fec-icon>
+        <span ng-if="$ctrl.meteoDate && $ctrl.meteoCompanyId" class="item-info-content"><fec-meteo-data date="{{$ctrl.meteoDate}}" company-id="{{$ctrl.meteoCompanyId}}"></fec-meteo-data></span>
+        <span ng-if="$ctrl.info" class="item-info-content">
+            {{ $ctrl.content | noContentPlaceholder }}
+            <md-tooltip layout="row" layout-align="center center" class="info" md-direction="{{ ::$ctrl.tooltipPlacement }}" md-delay="50">{{ $ctrl.info }}</md-tooltip>
+            <fec-icon type="info"></fec-icon>
+        </span>
+        <span ng-if="!$ctrl.info" class="item-info-content">{{ $ctrl.content | noContentPlaceholder }}</span>
+    </span>
+</div>

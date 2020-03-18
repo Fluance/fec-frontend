@@ -1,0 +1,107 @@
+<div class="myPatientDoctorsApp">
+    <md-card ng-class="{'warn': scope.warning, 'error': scope.error}">
+        <md-card-title layout="row">
+            <md-card-title-text flex="initial">
+                {{'dashboard.MY_PATIENTS_TITLE' | translate}}
+            </md-card-title-text>
+            <!--div flex="noshrink">
+                <md-button ng-disabled="scope.isntExpandable()" class="md-fab md-mini md-primary right" fec-mobile-click="openExtended()">
+                    <fec-icon type="expand" size="sm"></fec-icon>
+                </md-button>
+            </div-->
+        </md-card-title>
+        <span ng-if="!scope.isMobile()">
+            <md-nav-bar ng-if="scope.hasData" md-no-ink-bar="disableInkBar" md-selected-nav-item="scope.tabOrderBy">
+                <md-nav-item md-nav-click="scope.changeTab('orderby-room')" name="orderby-room">Room</md-nav-item>
+                <md-nav-item md-nav-click="scope.changeTab('orderby-name')" name="orderby-name">Name</md-nav-item>
+                <md-nav-item md-nav-click="scope.changeTab('orderby-unit')" name="orderby-unit">Unit</md-nav-item>
+                <md-nav-item md-nav-click="scope.changeTab('orderby-date')" name="orderby-date">Admission Date</md-nav-item>
+            </md-nav-bar>
+            <md-list ng-hide="scope.error || scope.warning || scope.spin || !scope.datas.length">
+                <md-list-item class="border-top" ng-repeat="patients in scope.datas | filter:{isVisible:true}">
+                    <!--div>
+                        <small class="warning_text">
+                            {{'dashboard.ADMIT_DATE_SHORT' | translate}}{{':' | translate}}{{ patients.visit.admitdt | amDateFormat:'DD.MM.YYYY HH:mm' }}
+                        </small>
+                        <br/>
+                        <big class="blue_text" ui-sref="patient({pid: patients.patient.pid})"><strong>{{ patients.patient.lastName }}{{' '}}{{ patients.patient.firstName }}
+                            </strong></big>&nbsp<fec-icon ng-if="patients.patient.sex" type="{{patients.patient.sex}}" size="xs"></fec-icon>
+                        <br /> {{ patients.patient.birthDate | formatDate :'date' }}&nbsp;({{scope.calculatePatientAge(patients.patient.birthDate)}})
+                        <br /> <span class="patient-element-visit blue_text" ui-sref="visit({vnb: patients.visit.nb})">{{'dashboard.VISIT_NBR' | translate}}{{' ' | translate}}{{patients.visit.nb}}</span>
+                        <br />
+                        <content-item-no-title content="{{ patients.visit.patientclass }}" tooltip-placement="bottom" info="{{ patients.visit.patientclassdesc }}"
+                                               elementid="{{ elementid }}-class"></content-item-no-title>
+                        <content-item-no-title content="{{ patients.visit.hospservice }}" tooltip-placement="bottom" info="{{ patients.visit.hospservicedesc }}"
+                                               elementid="{{ elementid }}-hospservice"></content-item-no-title>
+                        <br/>
+                    </div-->
+                    <div flex="100" layout="row" layout-align="space-between top">
+
+                        <div laout="column" flex="grow">
+                            <div layout="row">
+                                <!-- Room -->
+                                <div flex="none" class="room-number">
+                                    <fec-dashboard-room-number room="patients.visit.patientroom"></fec-dashboard-room-number>
+                                </div>
+
+                                <!-- Patient info -->
+                                <div flex="grow" layout="column">
+                                    <div><small>{{'dashboard.ADMIT_DATE_SHORT' | translate}}{{':' | translate}}{{ patients.visit.admitdt | amDateFormat:'DD.MM.YYYY HH:mm' }}</small></div>
+                                    <div>
+                                        <big class="blue_text" ui-sref="patient({pid: patients.patient.pid})"><strong>{{ ::patients.patient.lastName }}{{' '}}{{ ::patients.patient.firstName }}
+                                </strong></big>&nbsp<fec-gender-icon gender="{{::patients.patient.sex}}" size="xs"></fec-gender-icon>
+                                    </div>
+                                    <div>{{ patients.patient.birthDate | formatDate :'date' }}&nbsp;({{ scope.calculatePatientAge(patients.patient.birthDate) }})</div>
+                                    <span class="patient-element-visit blue_text" ui-sref="visit({vnb: patients.visit.nb})">{{'dashboard.VISIT_NBR' | translate}}{{':' | translate}}{{ ::patients.visit.nb }}</span>
+                                </div>
+                            </div>
+                            <!--
+                            <div flex="grow" class="visit-bottom-info">
+                                <content-item-no-title content="{{ patients.visit.patientclass }}" tooltip-placement="bottom" info="{{ patients.visit.patientclassdesc }}"
+                                                       elementid="{{ elementid }}-class"></content-item-no-title> /
+                                <content-item-no-title content="{{ patients.visit.hospservice }}" tooltip-placement="bottom" info="{{ patients.visit.hospservicedesc }}"
+                                                       elementid="{{ elementid }}-hospservice"></content-item-no-title>
+                            </div>
+                            -->
+                        </div>
+
+                        <!-- actions -->
+                        <fec-my-patient-doctors-app-actions pid="patients.patient.pid"></fec-my-patient-doctors-app-actions>
+                    </div>
+                </md-list-item>
+            </md-list>
+            <md-divider></md-divider>
+            <!-- Action links -->
+            <md-card-actions class="my-patient-show-more" layout="row" layout-align="end center" ng-if="!scope.spin && scope.totalPatients && !scope.error && !scope.warning && scope.totalPatients > scope.defaultEntriesLimit">
+                <a fec-mobile-click="scope.showMoreEntries()" ng-show="!scope.allEntriesVisible()">{{ 'dashboard.MORE_ENTRIES' | translate: { COUNT : scope.nbrEntriesMore } }}</a>
+                <a fec-mobile-click="scope.showLessEntries()" ng-show="scope.allEntriesVisible() && scope.datas.length > scope.defaultEntriesLimit">{{ 'dashboard.SHOW_LESS' | translate }}</a>
+            </md-card-actions>
+
+            <md-divider ng-show="scope.error || scope.warning || scope.spin || !scope.datas.length"></md-divider>
+
+            <!-- Warning / Error / No-data Content -->
+            <md-card-content class="card-content-info" layout="row" layout-align="start center" ng-if="scope.warning || scope.error || !scope.hasData">
+                <p class="warn-message" ng-show="scope.warning">{{ scope.warning.message | translate }}{{ '.' | translate }}</p>
+                <p class="error-message" ng-show="scope.error">{{ scope.error.message | translate }}{{ '.' | translate }}</p>
+                <p class="fec-no-data-message" ng-hide="scope.hasData || scope.spin || scope.error || scope.warning">{{'dashboard.NO_PATIENTS' | translate}}</p>
+            </md-card-content>
+
+            <!-- Warning/Error Actions -->
+            <md-card-actions layout="row" layout-align="end center" ng-if="(scope.warning && scope.warning.tryagain) || scope.error">
+                <md-button class="md-raised md-primary" ng-show="scope.warning.tryagain" ng-click="scope.tryagain()">{{'dashboard.RELOAD_DATA | translate'}}</md-button>
+                <md-button class="md-raised md-primary" ng-show="scope.error.tryagain" ng-click="scope.tryagain()">{{'dashboard.TRY_AGAIN' | translate}}</md-button>
+                <md-button class="md-raised md-primary" ng-show="scope.error.report !== null && scope.error.report !== undefined" ng-click="scope.logger.showReport(scope.error.report)">{{'dashboard.SEE_REPORT' | translate}}</md-button>
+            </md-card-actions>
+
+            <!-- Progress -->
+            <div class="fec-busy-indicator" ng-if="scope.spin">
+                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
+        </span>
+
+        <!-- Draggable item -->
+        <div class="draggable sortable-handle" ng-class="{'draggable-visible': scope.isStateSorting}">
+            <fec-icon type="draggable" size="lg"></fec-icon>
+        </div>
+    </md-card>
+</div>

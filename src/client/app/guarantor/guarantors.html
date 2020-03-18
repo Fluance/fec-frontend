@@ -1,0 +1,39 @@
+<div id="guarantorContainer" layout="column">
+	<div class="fec-page-title" flex="initial">
+		<h5>{{ 'guarantor.TITLE_LIST' | translate }}</h5>
+		<span class="number-badge" ng-show="vm.dataPager.hasTotalItemsCount">{{ 'guarantor.NB_OF_GUARANTOR' | translate:{GUARANTOR : vm.dataPager.totalItemsCount} }}</span>
+	</div>
+
+	<div flex="noshrink">
+		<fec-data-pager-sort sort-criteria="vm.sortCriteria" selected-sort-criteria="vm.dataPager.sortBy" selected-sort-direction="vm.dataPager.sortDirection"
+		 on-changed="vm.refresh()">
+		</fec-data-pager-sort>
+	</div>
+
+	<md-card ng-if="vm.dataPager.isEmpty()" class="warn" flex="auto">
+        <md-card-content>
+		    {{ 'guarantor.NO_GUARANTOR' | translate }}
+        </md-card-content>
+	</md-card>
+
+	<div class="search-result" flex="auto" id="btn-guarantors-result" infinite-scroll="vm.dataPager.getNextPage()" infinite-scroll-disabled="vm.dataPager.isLoading || !vm.dataPager.canGetNextPage()"
+	 infinite-scroll-distance="0" infinite-scroll-container="vm.scrollableContainer">
+		<expander-accordion>
+			<fluance-guarantor result="item" ng-repeat="item in vm.dataPager.items"></fluance-guarantor>
+			<div layout="row" class="own-guarantor" ui-sref="invoiceListByGuarantor({ vnb: vm.vnb, guarantorid: '-' })">
+				<div id="guarantor-0" layout="row" flex="grow">
+					<p class="guarantor-name">
+						{{ 'guarantor.OWN_GUARANTOR' | translate }}
+					</p>
+				</div>
+			</div>
+		</expander-accordion>
+	</div>
+
+	<div layout-padding>
+		<md-progress-linear md-mode="indeterminate" ng-if="vm.dataPager.isLoading"></md-progress-linear>
+		<div ng-show="vm.dataPager.hasTotalItemsCount && !vm.dataPager.canGetNextPage()" class="center-align">
+			<span class="number-badge passive">{{' '}}{{ 'guarantor.NB_OF_GUARANTOR' | translate:{GUARANTOR : vm.dataPager.totalItemsCount} }}{{' '}}</span>
+		</div>
+	</div>
+</div>

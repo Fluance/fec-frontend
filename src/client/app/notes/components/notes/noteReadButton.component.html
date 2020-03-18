@@ -1,0 +1,34 @@
+<!-- Read a singel note -->
+<!--<md-button class="md-primary" fec-mobile-click="vm.toggleRead()" ng-if="vm.noteId">{{ vm.getMarkAsReadLabel() | translate }}</md-button>-->
+<span ng-if="vm.noteId && !vm.isRead">
+    <md-tooltip layout="row" layout-align="center center" class="info"
+                md-delay="50">{{ vm.getMarkAsReadLabel() | translate }}</md-tooltip>
+    <fec-icon type="markunread" class="md-primary" fec-mobile-click="vm.toggleRead()"
+              color={{vm.color}} size={{vm.size}} can-resize={{vm.canResize}}></fec-icon>
+</span>
+
+<!-- Unread a single note -->
+<span ng-if="vm.noteId && vm.isRead">
+    <md-tooltip layout="row" layout-align="center center" class="info"
+                md-delay="50">{{ vm.getMarkAsReadLabel() | translate }}</md-tooltip>
+    <fec-icon type="drafts" class="md-primary" fec-mobile-click="vm.toggleRead()"
+          color={{vm.color}} size={{vm.size}} can-resize={{vm.canResize}}></fec-icon>
+</span>
+
+<!-- Read all notes in a category -->
+<md-button class="md-primary" fec-mobile-click="vm.toggleReadAll()" ng-if="!vm.noteId && !vm.showOption">{{
+    vm.getMarkAllAsReadLabel() | translate }}
+</md-button>
+
+<md-menu ng-if="!vm.noteId && vm.showOption" class="right" md-position-mode="target-right target">
+    <md-button class="md-icon-button" ng-click="vm.openMenu($mdMenu, $event)">
+        <fec-icon type="option"></fec-icon>
+    </md-button>
+    <md-menu-content width="4">
+        <md-menu-item>
+            <md-button class="note-read-item" fec-mobile-click="vm.toggleReadAll()">
+                {{ vm.getMarkAllAsReadLabel() | translate }}
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>

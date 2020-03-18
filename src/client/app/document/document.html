@@ -1,0 +1,23 @@
+<div id="patientDocumentContainer" layout="column" style="width:100%">
+    <div class="fec-page-title" hide-xs>
+        <h5>
+            <fec-icon type="document" color="fe-blue-icon"></fec-icon>
+            {{ 'document.TITLE_LIST' | translate }}
+        </h5>
+    </div>
+    <!-- DOCUMENTS AREA -->
+    <md-card ng-if="$ctrl.totalItemsCount > 0">
+        <md-card-content layout="column" flex="auto">
+            <div layout="column">
+                <fec-patient-document-list pid="$ctrl.pid" reset-results="$ctrl.resetResults" item="$ctrl.item" ng-if="$ctrl.totalItemsCount > 0"></fec-patient-document-list>
+            </div>
+        </md-card-content>
+    </md-card>
+    <!-- DIV WHEN THERE IS NO DOCUMENTS -->
+    <md-card class="warn" flex="auto" ng-show="$ctrl.totalItemsCount == 0">
+        <md-card-content>
+            {{ 'document.NO_DOCUMENTS' | translate }}
+        </md-card-content>
+    </md-card>
+    <md-progress-linear md-mode="indeterminate" ng-if="$ctrl.isLoading"></md-progress-linear>
+</div>

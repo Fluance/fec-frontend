@@ -1,0 +1,32 @@
+<div layout="column" flex="100" class="fec-operation-note-box" ng-class="{'edit-mode' : $ctrl.isEditModeActive}">
+    <div class="title" layout="row">
+        <div flex>{{ $ctrl.title }}</div>
+        <div ng-if="!$ctrl.isEditModeActive" fec-mobile-click="$ctrl.activateEditMode()">
+            <fec-icon type="edit" class="clickable" color="fe-blue-icon" size="xs"></fec-icon>
+        </div>
+    </div>
+    <div class="locked-resource-container" ng-if="$ctrl.operationNoteLocked" layout="row">
+        <div><i class="material-icons medium locked-icon">lock</i></div>
+        <div class="locked-resource-message">{{ 'core.EDIT_LOCKED' | translate }}</div>
+    </div>
+    <div ng-if="$ctrl.operationNoteIsLoading" layout="column" class="content">
+        <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+    </div>
+    <div ng-if="!$ctrl.operationNoteIsLoading" layout="column" class="content">
+        <md-input-container ng-if="$ctrl.isEditModeActive" layout="column" input-field style="margin-top: 0">
+            <textarea ng-model="$ctrl.operationNote" md-no-resize="true"></textarea>
+        </md-input-container>
+        <div class="fec-operation-note-box-content" ng-if="$ctrl.operationNote && !$ctrl.isEditModeActive" ng-bind-html="$ctrl.operationNote"></div>
+        <div ng-if="!$ctrl.operationNote && !$ctrl.isEditModeActive">{{ '-' | translate }}</div>
+    </div>
+    <div layout="row" ng-if="$ctrl.isEditModeActive">
+        <span flex></span>
+        <md-button fec-mobile-click="$ctrl.deactivateEditMode()" class="md-primary">
+            {{'core.CANCEL' | translate }}
+        </md-button>
+        <md-button fec-mobile-click="$ctrl.saveOperationNote()" ng-disabled="$ctrl.operationNoteLocked"
+            class="md-primary">
+            {{'core.SAVE' | translate }}
+        </md-button>
+    </div>
+</div>

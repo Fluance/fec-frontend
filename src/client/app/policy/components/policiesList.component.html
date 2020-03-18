@@ -1,0 +1,55 @@
+<div id="policiesContainer" layout="column">
+
+    <div flex="none" layout="row">
+        <div flex="auto" layout="row" layout-align="start center" layout-wrap>
+            <h5>{{ 'policy.TITLE_LIST' | translate }}</h5>
+        </div>
+    </div>
+
+    <div flex="none" layout="row" class="headPolicies" layout-wrap>
+        <span ng-disabled="!col.canSort" ng-click="col.canSort && $ctrl.sortBy(col.name)"
+              ng-repeat="col in $ctrl.columns"
+              class="title fec-table-header" flex="{{col.flex}}" layout="row"
+              layout-align="{{col.align}}"
+              ng-class="{'sort':col.canSort}">
+            {{col.text | translate}}
+            <fec-icon ng-if="(col.name === $ctrl.selectedColumn.name) && !$ctrl.selectedColumn.sortDesc && col.canSort"
+                      type="dropup" color="fe-blue-icon"></fec-icon>
+            <fec-icon ng-if="(col.name === $ctrl.selectedColumn.name) && $ctrl.selectedColumn.sortDesc && col.canSort"
+                      type="dropdown" color="fe-blue-icon"></fec-icon>
+        </span>
+    </div>
+
+    <md-list ng-show="$ctrl.result.policies.length > 0 && !$ctrl.isLoading" class="striped" flex="auto">
+        <md-list-item
+            ng-repeat="policy in $ctrl.result.policies | orderBy:$ctrl.selectedColumn.name:$ctrl.selectedColumn.sortDesc"
+            layout="row" flex="auto">
+            <div flex="grow" layout="row" layout-align="start center" layout-wrap>
+                <span flex="30">{{ 'policy.GUA_PRIORITY' | translate }} {{ ::policy.priority}} - {{policy.name | translate}}</span>
+                <span flex="10">{{::policy.code}}</span>
+                <span flex="15" layout="row" layout-align="center center">{{::policy.subPriority}}</span>
+                <span flex="10" layout="row" layout-align="center center">{{policy.hospClass | translate }}</span>
+                <span flex="10">{{ (policy.details.inactive ? 'policy.INACTIVE' : 'policy.ACTIVE') | translate }}</span>
+                <span flex="10">{{ policy.details.accidentDate | formatDate : 'date'}}</span>
+                <span flex="15" layout="row" layout-align="end " ng-if="policy.hasDetails">
+                    <md-button class="md-fab md-mini md-primary" md-no-ink="true"
+                               ng-click="$ctrl.showDetail($event, policy)">
+                        <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom"
+                                    md-delay="25">{{'policy.TITLE_DETAIL' | translate }}</md-tooltip>
+                        <fec-icon type="expand" size="sm"></fec-icon>
+                    </md-button>
+                </span>
+
+            </div>
+        </md-list-item>
+    </md-list>
+
+    <md-card ng-if="$ctrl.result.policies.length === 0 && !$ctrl.isLoading" class="warn" flex="none">
+        <md-card-content>
+            {{ 'policy.NO_POLICY' | translate }}
+        </md-card-content>
+    </md-card>
+
+    <md-progress-linear md-mode="indeterminate" ng-if="$ctrl.isLoading"></md-progress-linear>
+
+</div>

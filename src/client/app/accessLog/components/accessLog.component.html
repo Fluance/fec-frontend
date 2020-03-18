@@ -1,0 +1,25 @@
+<div class="access-logger-item">
+    <expander is-expanded="vm.isExpanded" is-expanded-changed="vm.isExpandedChanged()">
+        <expander-header layout="row" style="padding:20px; line-height: 20px;">
+            <div flex="30" layout="row" layout-align="start center">
+                <div class="item-info-content">
+                    <md-tooltip layout="row" layout-align="center center" class="info" md-direction="right" md-delay="5">{{ vm.userName(vm.item) }}</md-tooltip>
+                    <fec-icon type="user"></fec-icon>
+                </div>
+                <div flex="none" ng-if="vm.lastName(vm.item).length > 0 || vm.firstName(vm.item).length > 0" bind-html-compile="'accessLog.LOG_MESSAGE_LIST' | translate : {
+                LAST_NAME: vm.lastName(vm.item),
+                FIRST_NAME: vm.firstName(vm.item)
+                }"></div>
+                <div flex="none" ng-if="!vm.lastName(vm.item).length > 0 && !vm.firstName(vm.item).length > 0">{{ vm.userName(vm.item) }}</div>
+                <div flex="none" ng-if="vm.hasActualUsername(vm.item)">&nbsp;({{ vm.mainUserName(vm.item) }})</div>
+            </div>
+            <div flex="20"></div>
+            <div flex="50">{{vm.formatTimestamp(vm.item.logDate)}}</div>
+        </expander-header>
+        <expander-body>
+            <fec-access-log-details ng-if="vm.isExpanded" pid="vm.patient.pid" item="vm.item"
+                                    is-expanded="vm.isExpanded">
+            </fec-access-log-details>
+        </expander-body>
+    </expander>
+</div>

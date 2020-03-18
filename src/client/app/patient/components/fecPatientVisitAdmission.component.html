@@ -1,0 +1,6 @@
+<content-item label="{{ 'core.VISIT_NB' | translate }}" content="{{ ::$ctrl.visit.nb }}"></content-item>
+<content-item label="{{ 'patient.FINANCIAL_CLASS' | translate }}" content="{{ ::$ctrl.visit.financialclass }}" tooltip-placement="left" info="{{ ::$ctrl.visit.financialclassdesc }}"></content-item>
+<content-item label="{{ 'core.ADMIT_DATE' | translate }}" content="{{ $ctrl.visit.admitdt | formatDate : 'dateTime' }}" meteo-date="{{$ctrl.visit.admitdt}}" meteo-company-id="{{$ctrl.visit.companyId}}"></content-item>
+<content-item label="{{ 'core.DISCHARGED_DATE' | translate }}" content="{{ $ctrl.visit.dischargedt | formatDate : 'dateTime' }}"></content-item>
+<content-item label="{{ 'patient.PATIENT_CLS' | translate }}" content="{{ ::$ctrl.visit.patientclass }}" tooltip-placement="left" info="{{ $ctrl.visit.patientclassdesc }}"></content-item>
+<content-item label="{{ 'patient.ADMISSION_TYPE' | translate }}" content="{{ ::$ctrl.visit.admissiontype }}" tooltip-placement="left" info="{{ ::$ctrl.visit.admissiontypedesc }}"></content-item>

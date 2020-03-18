@@ -1,0 +1,104 @@
+.my-patient {
+    .patient-element-visit {
+        transition: color 0.5s ease;
+        &:hover {
+            color: $fe-blue;
+        }
+    }
+
+    md-list-item {
+        padding: 10px 20px;
+    }
+
+    &.extended {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        md-card {
+            overflow-y: hidden;
+            height: calc(100% - 50px);
+            margin: 0 auto;
+            max-width: 1000px;
+            background-color: $fe-white;
+            md-list {
+                md-list-item {
+                    padding: 10px 20px 10px 30px;
+                }
+                .empty_item p {
+                    margin: 0px;
+                }
+            }
+
+            .fec-busy-indicator {
+                display: block;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-left: -25px;
+                margin-top: -25px;
+                z-index: 1000;
+            }
+
+            md-card-content {
+                height: calc(100% - 95px);
+            }
+
+            .my-patient-scroll-wrap {
+                height: calc(100% - 75px);
+                overflow-y: hidden;
+                display: block;
+
+                .my-patient-scroll {
+                    overflow-y: auto;
+                    height: auto;
+                    min-height: 50px;
+                }
+            }
+
+            .my-patient-header {
+                height: 75px;
+
+                &.has-scroll {
+                    margin-right: 19px;
+                }
+            }
+        }
+    }
+
+    /*
+    Set correct overflow for IE
+     */
+    .adjust-scroll {
+        overflow-y: hidden;
+    }
+}
+
+.myPatientDoctorsApp {
+    md-list-item {
+        padding: 10px 20px;
+        .room-number {
+            margin-right: 20px
+        }
+        .patient-element-visit {
+            font-weight: 400;
+            transition: color 0.5s ease;
+            &:hover {
+                color: $fe-blue;
+            }
+        }
+        .visit-bottom-info {
+            margin-top:6px;
+        }
+        .actions-container {
+            width: 120px;
+            .actions-item {
+                margin: 4px;
+                padding: 2px 4px 0px;
+                .fe-disabled-icon {
+                    fill: #eee;
+                }
+            }
+        }
+    }
+}

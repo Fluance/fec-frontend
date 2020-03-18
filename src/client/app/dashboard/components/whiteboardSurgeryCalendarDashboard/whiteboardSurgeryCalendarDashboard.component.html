@@ -1,0 +1,94 @@
+<md-card-title layout="row">
+    <md-card-title-text flex>
+        {{"whiteboardSurgery.TITLE" | translate}}
+    </md-card-title-text>
+    <fec-icon class="whiteboardSurgeryIcon" type="whiteboardSurgery" size="md"
+        fec-mobile-click="$ctrl.openWhiteboardSurgery()"></fec-icon>
+</md-card-title>
+<md-divider />
+<div ng-cloak>
+    <md-content>
+        <div layout="row" class="whiteboard-surgery-dashboard-filter">
+            <div layout="row" flex="50">
+                <div layout="row" class="selected-date-for-picker">
+                    <div class="clickable link" fec-mobile-click="$ctrl.previousDay()"><</div>
+                    <div>
+                        &nbsp;{{ $ctrl.selectedDateForDatePicker | formatDate : 'whiteboardSurgery' | translate }}&nbsp;
+                    </div>
+                    <div class="clickable link" fec-mobile-click="$ctrl.nextDay()">></div>
+                </div>
+                <div flex></div>
+                <sm-date-time-picker-component ng-if="!$ctrl.isLoading" fname="selectedDateForDatePicker"
+                    close-on-select="false" change-view-on-select="false" mode="date"
+                    ng-model="$ctrl.selectedDateForDatePicker" week-start-day="Monday">
+                </sm-date-time-picker-component>
+            </div>
+            <md-select ng-model="$ctrl.selectedLocation" flex="50">
+                <md-option ng-repeat="(locationName, location) in $ctrl.locations" ng-value="locationName">
+                    {{locationName | uppercase}}</md-option>
+            </md-select>
+        </div>
+        <!-- Loading Data -->
+        <div class="fec-busy-indicator" ng-if="$ctrl.isLoading">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+        <!-- No Data -->
+        <div class="fec-no-data-message" flex="auto" layout="row" layout-align="center center"
+            ng-if="!$ctrl.isLoading && $ctrl.locations && $ctrl.selectedLocation && !$ctrl.locations[$ctrl.selectedLocation].length">
+            <p>{{ "dashboard.NO_ENTRIES" | translate }}</p>
+        </div>
+        <!-- Data -->
+        <div layout="column"
+            ng-if="!$ctrl.isLoading && $ctrl.locations && $ctrl.selectedLocation && $ctrl.locations[$ctrl.selectedLocation].length && $ctrl.locations[$ctrl.selectedLocation].length > 0"
+            ng-repeat="appointment in $ctrl.locations[$ctrl.selectedLocation]"
+            class="whiteboard-surgery-dashboard-list-item">
+            <div class="whiteboard-surgery-dashboard-list-item-container">
+                <div layout="row">
+                    <div layout="row">
+                        <fec-icon type="schedule" size="xs"></fec-icon>
+                        <div>
+                            {{ appointment.begindt | formatDate: 'time'}}{{ '-' | translate }}{{ appointment.enddt | formatDate: 'time'}}
+                        </div>
+                    </div>
+                    <div flex></div>
+                    <div layout="row">
+                        <fec-whiteboard-surgery-personnel-occupation-icon size="xs" code-occupation="{{ appointment.operator.codeOccupation }}" default-code-occupation="{{$ctrl.DEFAULT_CODE_OCCUPATION_OPERATOR}}"></fec-whiteboard-surgery-personnel-occupation-icon>
+                        <div class="line-height-22" ng-if="appointment.operator.name">
+                            {{ 'whiteboardSurgery.PHYSICIAN_PREFIX' | translate }}&nbsp;{{ appointment.operator.name | uppercase }}
+                        </div>
+                        <div class="line-height-22" ng-if="!appointment.operator.name">-</div>
+                    </div>
+                </div>
+                <div layout="row">
+                    <div layout="row">
+                        <span class="appointment-title clickable" layout="row">
+                            <fec-icon type="calendar" size="xs"></fec-icon>
+                            <div fec-mobile-click="$ctrl.openWhiteboardSurgeryAppointment(appointment)">
+                                {{ appointment.description }}</div>
+                        </span>
+                    </div>
+                </div>
+                <div layout="row">
+                    <div flex="45" layout="row">
+                        <span layout="row" class="patient-name clickable"
+                            fec-mobile-click="$ctrl.goToPatient(appointment.pid)">
+                            <fec-icon type="patient" size="xs"></fec-icon>
+                            <div>
+                                {{ appointment.lastname | uppercase }}&nbsp;{{ appointment.firstname }}
+                            </div>
+                        </span>
+                    </div>
+                    <div flex layout="row">
+                        <fec-icon type="door" size="xs"></fec-icon>
+                        <div class="line-height-22">{{ appointment.patientroom }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-content>
+</div>
+
+<!-- Draggable item -->
+<div class="draggable sortable-handle" ng-class="{'draggable-visible': $ctrl.isStateSorting}">
+    <fec-icon type="draggable" size="lg"></fec-icon>
+</div>

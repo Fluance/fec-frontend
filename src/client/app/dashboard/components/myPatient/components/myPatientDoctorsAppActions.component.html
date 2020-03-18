@@ -1,0 +1,6 @@
+<div class="actions-container" flex="none" layout="row" layout-align="end center" layout-wrap>
+    <div class="actions-item disabled"><fec-icon type="vitalParameters" size="md" color="fe-disabled-icon"></fec-icon></div>
+    <fec-state-icon-button  type='lab' size="md" color="fe-blue-icon" state='labList' state-params='{pid: $ctrl.pid}' tooltip="{{'lab.TITLE' | translate}}"></fec-state-icon-button >
+    <div class="actions-item disabled"><fec-icon type="prescription" size="md" color="fe-disabled-icon"></fec-icon></div>
+    <fec-state-icon-button type='imaging' size="md" color="fe-blue-icon" state='imagingList' state-params='{pid: $ctrl.pid}' tooltip="{{'imaging.TITLE_LIST' | translate}}"></fec-state-icon-button>
+</div>

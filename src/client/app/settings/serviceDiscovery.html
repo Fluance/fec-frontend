@@ -1,0 +1,18 @@
+<div class="fec-service-discovery-view" layout="row" flex="grow" layout-align="center center">
+    <div class="fec-service-discovery-panel">
+        <h3 class="center-align">{{ vm.title }}</h3>
+        <md-card>
+            <md-card-content layout="row" layout-align="center center">
+                <p>{{ 'settings.CHOOSE_PROVIDER' | translate }}{{ ':' | translate }}</p>
+            </md-card-content>
+            <md-divider></md-divider>
+            <md-card-content layout="row" layout-align="center center" tutorial="service-providers">
+                <md-chips ng-model="vm.providers" readonly="true" class="img">
+                    <md-chip-template ng-click="vm.callProvider($chip.url)">
+                        <img ng-src="{{ $chip.imgUrl }}" alt="{{ $chip.displayName }}"><span>{{$chip.displayName}}</span>
+                    </md-chip-template>
+                </md-chips>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>

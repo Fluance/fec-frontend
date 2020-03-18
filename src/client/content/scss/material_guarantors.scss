@@ -1,0 +1,66 @@
+#guarantorContainer {
+    .guarantor-expander-header {
+        .row {
+            margin-bottom: 0px;
+            padding: 5px;
+        }
+        line-height: 1rem;
+        .guarantor-name {
+            color: $fe-blue;
+            margin-bottom: 10px;
+        }
+    }
+    .guarantor-expander-body {
+        background-color: $fe-white;
+        line-height: 1rem;
+        .guarantor-detail-info {
+            line-height: 18px;
+            .row {
+                padding: 0px 20px;
+                margin: 0px -4px;
+                .item-info-detail {
+                    margin: 0px 0px 5px 0px;
+                    padding: 0px 0px 5px 0px;
+                    border-bottom: 1px solid $fe-grey;
+                    .item-info-detail-label {
+                        color: $fe-accent-grey;
+                    }
+                    .item-info-detail-content {
+                        color: $fe-black;
+                        padding-right: 0px;
+                        line-height: 1rem;
+                    }
+                }
+            }
+            h5{
+                padding-bottom: 20px !important;
+            }
+        }
+        @media #{$medium-and-down} { 
+            padding-top: 20px;
+        }
+    }
+    .own-guarantor {
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        margin-left:24px;
+        margin-right:24px;
+        cursor: pointer;
+        background-color: $fe-accent-grey;
+        color: $fe-white;
+        line-height: 1rem;
+        height: 3.3rem;
+        @extend .markup;
+        @include transition (box-shadow .25s);
+        .guarantor-name {
+            margin-left: 15px;
+        }
+    }
+    .markup {
+        @include transition(background-color .25s);
+    }
+    .markup:hover {
+        cursor: pointer;
+        background-color: $fe-black;
+    }
+}
+

@@ -1,0 +1,40 @@
+<div layout="column" layout-gt-sm="row" layout-padding class="fec-no-padding-mobile" ng-if="ctrl.patientExists && !ctrl.isLoading">
+
+    <!-- Navigation context -->
+    <div id="patientNavigation" flex-gt-sm="20" class="fec-no-padding-mobile">
+        <!-- Patient Information -->
+        <fec-patient-navigation-button-patient></fec-patient-navigation-button-patient>
+
+        <!-- Navigation context (mobile) -->
+        <fec-patient-navigation-button hide-gt-sm>
+            <navigation-component>
+                <md-button class="md-primary fecPatientNavigationButton" layout="row" layout-align="end center" fec-mobile-click="ctrl.toggleNavigation()">
+                    <span flex="grow"></span>
+                    <span flex="initial">
+                        <span ng-if="!ctrl.currentNavigationTitle">{{ 'patientNavigation.NAVIGATION' | translate }}</span>
+                        <span ng-if="ctrl.currentNavigationTitle">{{ctrl.currentNavigationTitle | translate}}</span>
+                    </span>
+                    <span flex="grow" layout="row" layout-align="end center">
+                        <fec-icon ng-if="!ctrl.navigationOpened" type="dropdown" size="sm" layout="row" layout-align="start center"></fec-icon>
+                        <fec-icon ng-if="ctrl.navigationOpened" type="dropup" size="sm" layout="row" layout-align="start center"></fec-icon>
+                    </span>
+                </md-button>
+            </navigation-component>
+        </fec-patient-navigation-button>
+
+        <!-- Patient Navigation -->
+        <fec-patient-navigation ng-class="{'active': ctrl.navigationOpened}"></fec-patient-navigation>
+    </div>
+
+    <!-- Content -->
+    <div ui-view flex-gt-sm="80" class="fec-no-padding-mobile"></div>
+</div>
+
+<!-- Patient not found (from deep links: invalid pid, vnb, or aid) -->
+<md-card class="warn" ng-if="!ctrl.patientExists && !ctrl.isLoading">
+    <md-card-content>
+        {{ctrl.errorMsg | translate}}
+    </md-card-content>
+</md-card>
+
+<md-progress-linear md-mode="indeterminate" ng-if="ctrl.isLoading"></md-progress-linear>

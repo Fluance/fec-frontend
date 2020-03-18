@@ -1,0 +1,23 @@
+<md-dialog>
+    <md-dialog-content flex>
+        <div class="md-dialog-content">
+            <div ng-style="$ctrl.canvasContainerStyle">
+                <canvas id="canvas"></canvas>
+            </div>
+            <div layout="row">
+                <div flex></div>
+                <md-button class="md-icon-button md-primary" fec-mobile-click="$ctrl.rotateLeft()">
+                    <fec-icon type="rotateLeft"></fec-icon>
+                </md-button>
+                <md-button class="md-icon-button md-primary" fec-mobile-click="$ctrl.rotateRight()">
+                    <fec-icon type="rotateRight"></fec-icon>
+                </md-button>
+                <div flex></div>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions ng-hide="$ctrl.isLoading">
+        <md-button class="md-primary" fec-mobile-click="$ctrl.close()">{{'core.CANCEL' | translate}}</md-button>
+        <md-button class="md-primary" fec-mobile-click="$ctrl.save()">{{'core.OK' | translate }}</md-button>
+    </md-dialog-actions>
+</md-dialog>

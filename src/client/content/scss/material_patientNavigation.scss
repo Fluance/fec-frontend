@@ -1,0 +1,161 @@
+#patientNavigation {
+    @keyframes openNavigation {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes closeNavigation {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    fec-patient-navigation-button-patient div {
+        min-height: 95px;
+    }
+
+    fec-patient-navigation {
+        @media all and (max-width: 959px) {
+            animation: closeNavigation;
+            animation-duration: 1s;
+
+            opacity: 0;
+            display: none;
+            &.active {
+                animation: openNavigation;
+                animation-duration: 1s;
+
+                opacity: 1;
+                display: block;
+            }
+        }
+    }
+    >* {
+        margin-bottom: 8px;
+    }
+    table {
+        cursor: pointer;
+        table-layout: fixed;
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        line-height: 15px;
+        &:hover {
+            background-color: $fe-grey;
+        }
+    }
+    tr>td {
+        padding: 10px 5px;
+        &.icon {
+            width: 30%;
+            text-align: left;
+            padding-left: 6px;
+        }
+    }
+
+    // Default 8px, but we add 5px in the top due to the progressBar class
+    padding-top: 3px;
+
+    fec-patient-navigation-button {
+        > div {
+            min-height: 37px;
+        }
+
+        .progressBar {
+            height: 5px;
+            display: block;
+        }
+        .fecPatientNavigationButton {
+            @extend .z-depth-1;
+            transition: box-shadow .25s;
+            background-color: $fe-white;
+            position: relative;
+            width: 100%;
+            margin: 0 0 5px 0;
+
+            // AVOID THE 'JUMP EFFECT' IN THE PATIENT INFO
+            table tr td.icon {
+                vertical-align: top;
+            }
+
+            .context-data {
+                color: $fe-black;
+            }
+            .button-visit, .button-appointment {
+                line-height: 20px;
+                padding: 6px 0px;
+            }
+            #button-reporting {
+                fec-icon {
+                    margin-top: 3px;
+                    width: 63px;
+                    height: 36px;
+                }
+            }
+            fec-icon svg {
+                margin-top: -5px;
+                margin-left: 2px;
+                fill: $button-color;
+            }
+            &:disabled {
+                fec-icon svg {
+                    fill: $button-label-disabled;
+                }
+            }
+        }
+    }
+
+    fec-patient-navigation-button-reporting{
+        .fecPatientNavigationButton {
+            height: 36px;
+        }
+    }
+}
+
+.md-open-menu-container {
+    @media all and (min-width: 960px) {
+        width: calc(20% - 19px);
+        md-menu-item {
+            md-button {
+                background: red;
+                word-wrap: normal;
+            }
+        }
+    }
+    @media all and (max-width: 959px) {
+        margin-left: 8px;
+        margin-top: 5px;
+        width: calc(100% - 32px);
+    }
+}
+
+.visitIdSelectionDialog, .appointmentIdSelectionDialog {
+    @media all and (min-width: 960px) {
+        width: 50%;
+    }
+    @media all and (max-width: 959px) {
+        width: 100%;
+    }
+    .fec-clickable-item {
+        padding: 10px;
+        &.selectedElement {
+            border: 1px solid $fe-blue;
+        }
+        &.selectedElement, &:hover {
+            .item-info-detail {
+                border-bottom: 1px solid $fe-accent-grey;
+            }
+        }
+    }
+}
+
+.visitId, .appointment-id {
+    color: $fe-blue;
+}

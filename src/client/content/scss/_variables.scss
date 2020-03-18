@@ -1,0 +1,229 @@
+/*** FLUANCE COLORS ***/
+
+$fe-green: #4CAF50;
+$fe-red: #E3696E;
+$fe-yellow: #F0EDB6;
+$fe-blue: #3399FF;
+$fe-black: #1F252B;
+$fe-white: #FFFFFF;
+$fe-grey: #EEEEEE;
+$fe-accent-grey: #5C6064;
+$fe-medical-green: #b2f3c9;
+$fe-whiteboard-surgery-red: #FFD4D8;
+$fe-whiteboard-surgery-live: #D30202;
+
+/* Backgrounds and matching foregrounds, do not mix*/
+
+$fe-blue-bg: $fe-blue; //Background
+$fe-yellow-bg: $fe-yellow; //Background
+$fe-black-bg: $fe-black; //Background
+$fe-white-bg: $fe-white; //Background
+$fe-grey-bg: $fe-grey; //Background
+$fe-red-bg: $fe-red; //Background
+
+/* Error / Warn border mixins */
+
+@mixin error-border() {
+    border-left: 10px solid $fe-red;
+}
+
+@mixin warn-border() {
+    border-left: 10px solid $fe-yellow;
+}
+
+/* Chatbot Settings */
+
+$fe-chat-bot-height: 70%;
+$fe-chat-bot-width: 450px;
+
+/* $fe-blue foregrounds */
+
+$fe-blue-bg-text: $fe-white;
+$fe-blue-bg-markup: #B6E7FF;
+$fe-blue-bg-markup-light: #E5f6ff;
+
+/* $fe-yellow foregrounds */
+
+$fe-yellow-bg-text: $fe-black;
+$fe-yellow-bg-markup: $fe-black;
+
+/* $fe-black foregrounds */
+
+$fe-black-bg-text: $fe-grey;
+$fe-black-bg-markup: $fe-accent-grey;
+
+/* $fe-white foregrounds */
+
+$fe-white-bg-text: $fe-black;
+$fe-white-bg-markup: $fe-accent-grey;
+
+/* $fe-grey foregrounds */
+
+$fe-grey-bg-text: $fe-blue;
+$fe-grey-bg-markup: $fe-accent-grey;
+
+/*** Colors ***/
+
+/* Keep these colors names, materialize uses them everywhere*/
+$primary-color: $fe-black;
+$primary-color-light: lighten($primary-color, 15%) !default;
+$primary-color-dark: darken($primary-color, 15%) !default;
+$secondary-color: $fe-accent-grey;
+$success-color: $fe-blue;
+$warn-color: $fe-yellow;
+$error-color: $fe-red;
+$link-color: $fe-blue;
+
+/*** Layout ***/
+$layout-gutter-width: 8px !default;
+
+/*** Badges ***/
+$badge-bg-color: $fe-accent-grey;
+
+/*** Buttons ***/
+$button-bg-color-disabled: #DFDFDF !default;
+$button-color: $fe-blue;
+$button-color-disabled: #9F9F9F !default;
+$button-label-disabled: #b3b3b3 !default;
+$button-color-flat: #343434 !default;
+$button-color-raised: #fff !default;
+$button-floating-size: 37px !default;
+$button-height: 36px !default;
+$button-font-size-shared: 1.3rem !default;
+$button-large-icon-font-size: 1.6rem !default;
+$button-line-height: 36px !default;
+
+/*** Cards ***/
+$card-padding: 20px !default;
+$card-bg-color: #fbfbfb;
+$card-link-color: $fe-blue-bg !default;
+$card-link-color-light: lighten($card-link-color, 20%) !default;
+
+/*** Dropdown ***/
+$dropdown-bg-color: #fff !default;
+$dropdown-hover-bg-color: #eee !default;
+$dropdown-color: $secondary-color !default;
+
+/*** Fonts ***/
+$roboto-font-path: "../fonts/roboto/" !default;
+$meteo-icon-font-path: "../fonts/meteocons/" !default;
+//$icons-font-path: "../font/material-design-icons/" !default;
+//$roboto-font-path: "fonts/" !default;
+//$meteo-icon-font-path: "fonts/" !default;
+//$icons-font-path: "../font/material-design-icons/" !default;
+
+/*** Forms ***/
+
+// Text Inputs + Textarea
+$input-border-color: $fe-black !default;
+$input-invalid-border-color: rgb(172,32,38);
+$input-bg-color: $fe-black !default;
+$input-error-color: $error-color !default;
+$input-success-color: $success-color !default;
+$input-focus-color: $primary-color !default;
+$label-font-size: .8rem !default;
+$input-disabled-color: rgba(0, 0, 0, .26) !default;
+$input-disabled-solid-color: #BDBDBD !default;
+
+// Radio Buttons
+$radio-fill-color: $secondary-color !default;
+$radio-empty-color: #5a5a5a !default;
+
+// Switches
+$switch-bg-color: $secondary-color !default;
+$switch-checked-lever-bg: desaturate(lighten($secondary-color, 25%), 25%) !default;
+$switch-unchecked-bg: #F1F1F1 !default;
+$switch-unchecked-lever-bg: #818181 !default;
+
+// Date Picker
+$datepicker-weekday-bg: darken($secondary_color, 7%) !default;
+$datepicker-date-bg: $secondary_color !default;
+$datepicker-year: rgba(255, 255, 255, .4) !default;
+$datepicker-focus: rgba(0, 0, 0, .05) !default;
+$datepicker-selected: $secondary-color !default;
+$datepicker-selected-outfocus: desaturate(lighten($secondary-color, 35%), 15%) !default;
+
+/*** Global ***/
+// Media Query Ranges
+$small-screen-up: 601px !default; // Do not use this in media queries, will result in sass error (missing bracket)
+$medium-screen-up: 1025px !default; // Do not use this in media queries, will result in sass error (missing bracket)
+$large-screen-up: 1201px !default; // Do not use this in media queries, will result in sass error (missing bracket)
+$small-screen: 600px !default; // Do not use this in media queries, will result in sass error (missing bracket)
+$medium-screen: 1024px !default; // Do not use this in media queries, will result in sass error (missing bracket)
+$large-screen: 1200px !default; // Do not use this in media queries, will result in sass error (missing bracket)
+$medium-and-up: "only screen and (min-width : #{$small-screen-up})" !default;
+$large-and-up: "only screen and (min-width : #{$medium-screen-up})" !default;
+$small-and-down: "only screen and (max-width : #{$small-screen})" !default;
+$medium-and-down: "only screen and (max-width : #{$medium-screen})" !default;
+$medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width : #{$medium-screen})" !default;
+$large-and-down: "only screen and (max-width : #{$large-screen})" !default;
+
+// Grid Variables
+$num-cols: 12 !default;
+$gutter-width: 1.5rem !default;
+$element-top-margin: $gutter-width/3 !default;
+$element-bottom-margin: ($gutter-width*2)/3 !default;
+
+/*** Navbar ***/
+$navbar-height: 50px !default;
+$navbar-height-mobile: 42px !default;
+$navbar-font-color: $fe-white !default;
+$navbar-brand-font-size: 2.1rem !default;
+
+/*** SideNav ***/
+$sidenav-bg-color: $fe-white !default;
+$sidenav-padding-right: 15px !default;
+$sidenav-item-height: 64px !default;
+
+/*** Photo Slider ***/
+$slider-bg-color: color('grey', 'base') !default;
+$slider-bg-color-light: color('grey', 'lighten-2') !default;
+$slider-indicator-color: color('green', 'base') !default;
+
+/*** Spinners | Loaders ***/
+$spinner-default-color: $secondary-color !default;
+
+/*** Tabs ***/
+$tabs-underline-color: $primary-color !default;
+$tabs-text-color: $primary-color !default;
+$tabs-bg-color: #fff !default;
+
+/*** Tables ***/
+$table-border-color: #d0d0d0 !default;
+$table-striped-color: #f2f2f2 !default;
+
+/*** Typography ***/
+$off-black: rgba(0, 0, 0, 0.87) !default;
+// Header Styles
+$h1-fontsize: 4.2rem !default;
+$h2-fontsize: 3.56rem !default;
+$h3-fontsize: 2.92rem !default;
+$h4-fontsize: 2.28rem !default;
+$h5-fontsize: 1.64rem !default;
+$h6-fontsize: 1rem !default;
+// Footer
+$footer-bg-color: $primary-color !default;
+// Flowtext
+$range: $large-screen - $small-screen !default;
+$intervals: 20 !default;
+$interval-size: $range / $intervals !default;
+
+/*** Lists ***/
+$list-border-color: #e0e0e0 !default;
+$list-bg-color: #fff !default;
+
+/* Progress Bar */
+$progress-bar-color: $secondary-color !default;
+
+/*** Chips ***/
+$chip-bg-color: #e0e0e0 !default;
+
+/*** Typography ***/
+/*** Collections ***/
+$collection-border-color: #e0e0e0 !default;
+$collection-bg-color: #fff !default;
+$collection-active-bg-color: $secondary-color !default;
+$collection-active-color: lighten($secondary-color, 55%) !default;
+$collection-hover-bg-color: #ddd !default;
+$collection-link-color: $secondary-color !default;
+

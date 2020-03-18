@@ -1,0 +1,117 @@
+<div id="visitsContainer" layout="column">
+    <!-- DIV WHEN THERE IS A TIMEOUT -->
+    <md-card flex="auto" class="error" ng-show="vm.isException">
+        <md-card-content>
+            {{ 'visit.TIMEOUT_ON_REQUEST' | translate }}
+        </md-card-content>
+    </md-card>
+    <md-card flex="auto" class="warn" ng-show="vm.isEmpty">
+        <md-card-content>
+            {{ 'visit.NO_VISIT' | translate }}
+        </md-card-content>
+    </md-card>
+
+    <!-- VISIT AREA -->
+    <div flex="grow" layout="column" ng-hide="vm.isEmpty || vm.isCrashed">
+        <div>
+            <div class="fec-page-title">
+                <h5>
+                    <fec-icon type="visit" color="fe-blue-icon"></fec-icon>
+                    {{ 'visit.TITLE' | translate }}</h5>
+            </div>
+        </div>
+        <div flex="auto" class="fec-no-padding">
+            <md-card>
+                <md-card-content>
+                    <h5 class="color-blue">
+                        <small>{{vm.vnb}}</small>
+                    </h5>
+                    <div layout="row" layout-xs="column" class="visit-detail-info" layout-wrap layout-padding>
+                        <div layout="column" flex="100" flex-gt-sm="50">
+                            <div layout="column">
+                                <content-item-detail label="{{ 'core.COMPANY' | translate }}" content="{{ ::vm.result.details.company.code }}" tooltip-placement="left"></content-item-detail>
+                                <content-item-detail label="{{ 'visit.ADMISSION_DATE' | translate }}" content="{{ ::vm.result.visit.visitInfo.admitDate }}"
+                                    tooltip-placement="left"></content-item-detail>
+                                <content-item-detail label="{{ 'visit.EXPECTED_DISCHARGE_DATE' | translate }}" content="{{ ::vm.result.visit.visitInfo.expDischargeDate }}"
+                                    tooltip-placement="left"></content-item-detail>
+                                <content-item-detail label="{{ 'visit.DISCHARGE_DATE' | translate }}" content="{{ ::vm.result.visit.visitInfo.dischargeDate }}"
+                                    tooltip-placement="left"></content-item-detail>
+                            </div>
+
+                            <div layout-padding></div>
+
+                            <div layout="column">
+                                <content-item-detail label="{{ 'visit.ADMIT_SRC' | translate }}" content="{{ ::vm.result.details.admitSource }}" tooltip-placement="left"
+                                    info="{{ ::vm.result.details.admitSourceDesc }}"></content-item-detail>
+                                <content-item-detail label="{{ 'visit.ADMISSION_TYPE' | translate }}" content="{{ ::vm.result.details.admissionType }}" tooltip-placement="left"
+                                    info="{{ ::vm.result.details.admissionTypeDesc }}"></content-item-detail>
+                                <content-item-detail label="{{ 'visit.PATIENT_CLASS' | translate }}" content="{{ ::vm.result.details.patientClass }}" tooltip-placement="left"
+                                    info="{{ ::vm.result.details.patientClassDesc }}"></content-item-detail>
+                                <content-item-detail label="{{ 'core.PATIENT_CASE' | translate }}" content="{{ ::vm.result.details.patientCase }}" tooltip-placement="left"
+                                    info="{{ ::vm.result.details.patientCaseDesc }}"></content-item-detail>
+                                <content-item-detail label="{{ 'visit.PATIENT_TYPE' | translate }}" content="{{ ::vm.result.details.patientType }}" tooltip-placement="left"
+                                    info="{{ ::vm.result.details.patientTypeDesc}}"></content-item-detail>
+                            </div>
+                        </div>
+                        <div layout="column" flex="100" flex-gt-sm="50">
+                            <div layout="column">
+                                <content-item-detail label="{{ 'visit.FINANCIAL_CLASS' | translate }}" content="{{ ::vm.result.details.financialClass }}"
+                                    tooltip-placement="left" info="{{ ::vm.result.details.financialClassDesc }}"></content-item-detail>
+                                <content-item-detail label="{{ 'visit.HOSP_SERVICE' | translate }}" content="{{ ::vm.result.details.hospService }}" tooltip-placement="left"
+                                    info="{{ ::vm.result.details.hospServiceDesc }}"></content-item-detail>
+                                <content-item-detail label="{{ 'visit.PATIENT_UNIT' | translate }}" content="{{ ::vm.result.details.patientUnit }}" tooltip-placement="left"
+                                    info="{{ ::vm.result.details.patientUnitDesc }}"></content-item-detail>
+                                <content-item-detail label="{{ 'visit.PRIOR_UNIT' | translate }}" content="{{ ::vm.result.details.priorUnit }}" tooltip-placement="left"
+                                    info="{{ ::vm.result.details.priorUnitDesc }}"></content-item-detail>
+                            </div>
+
+                            <div layout-padding></div>
+
+                            <div layout="column">
+                                <content-item-detail label="{{ 'core.ROOM' | translate }}" content="{{ ::vm.result.details.patientRoom }}"></content-item-detail>
+                                <content-item-detail label="{{ 'visit.PATIENT_BED' | translate }}" content="{{ ::vm.result.details.patientBed }}"></content-item-detail>
+                                <content-item-detail label="{{ 'visit.PRIOR_ROOM' | translate }}" content="{{ ::vm.result.details.priorRoom }}"></content-item-detail>
+                                <content-item-detail label="{{ 'visit.PRIOR_BED' | translate }}" content="{{ ::vm.result.details.priorBed }}"></content-item-detail>
+                            </div>
+                        </div>
+                        <table>
+                            <thead>
+                                <th>{{ 'visit.PHYSICIANS' | translate }}</th>
+                                <th>{{ 'core.FIRSTNAME' | translate }}</th>
+                                <th>{{ 'core.LASTNAME' | translate }}</th>
+                                <th>{{ 'core.STAFF_ID' | translate }}</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ 'visit.ATTENDING_PHYS' | translate }}</td>
+                                    <td>{{ vm.result.physicians.attendingPhysicianFirstname || '-' }}</td>
+                                    <td>{{ vm.result.physicians.attendingPhysicianLastname || '-' }}</td>
+                                    <td>{{ vm.result.physicians.attendingPhysicianStaffid || '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'visit.REFERRING_PHYS' | translate }}</td>
+                                    <td>{{ vm.result.physicians.referringPhysicianFirstname }}</td>
+                                    <td>{{ vm.result.physicians.referringPhysicianLastname || '-' }}</td>
+                                    <td>{{ vm.result.physicians.referringPhysicianStaffid || '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'visit.ADMITTING_PHYS' | translate }}</td>
+                                    <td>{{ vm.result.physicians.consultingPhysicianFirstname || '-' }}</td>
+                                    <td>{{ vm.result.physicians.consultingPhysicianLastname || '-' }}</td>
+                                    <td>{{ vm.result.physicians.consultingPhysicianStaffid || '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'visit.CONSULTING_PHYS' | translate }}</td>
+                                    <td>{{ vm.result.physicians.admittingPhysicianFirstname || '-' }}</td>
+                                    <td>{{ vm.result.physicians.admittingPhysicianLastname || '-' }}</td>
+                                    <td>{{ vm.result.physicians.admittingPhysicianStaffid || '-' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </md-card-content>
+                <md-progress-linear md-mode="indeterminate" ng-if="vm.isLoading"></md-progress-linear>
+            </md-card>
+        </div>
+    </div>
+</div>

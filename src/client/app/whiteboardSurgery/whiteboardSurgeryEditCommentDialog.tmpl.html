@@ -1,0 +1,39 @@
+<md-dialog id="whiteboardSurgeryEditCommentDialog">
+    <div ng-if="!$ctrl.waitingForLock">
+        <div class="locked-resource-container" ng-if="$ctrl.operationNoteLocked" layout="row">
+            <div><i class="material-icons medium locked-icon">lock</i></div>
+            <div class="locked-resource-message">{{ 'core.EDIT_LOCKED' | translate }}</div>
+        </div>
+
+        <md-dialog-content class="no-margin-bottom padding-10" layout="column">
+            <h5>{{ $ctrl.appointment.description }}</h5>
+            <div layout="row">
+                <div layout="row" layout-align="start center">
+                    <div>
+                        <fec-icon type="patient" size="xs"></fec-icon>&nbsp;
+                    </div>
+                    <div>
+                        {{ $ctrl.appointment.lastname | uppercase }}&nbsp;{{ $ctrl.appointment.firstname }}
+                    </div>
+                    <div>
+                        &nbsp;{{ '(' | translate }}{{ $ctrl.appointment.birthdate | formatDate : 'date' }}{{ ')' | translate }}
+                    </div>
+                </div>
+            </div>
+            <div layout="column">
+                <div class="fec-input-label-no-margin">{{'whiteboardSurgery.COMMENTS' | translate}}</div>
+                <md-input-container layout="column" class="input-container" input-field>
+                    <textarea rows=7 ng-model="$ctrl.operationNote" ng-disabled="$ctrl.operationNoteLocked"
+                        ng-style="{ width: $ctrl.textareaWidth }"></textarea>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions>
+            <span flex></span>
+            <md-button fec-mobile-click="$ctrl.closeDialog()" class="md-primary">{{'core.CANCEL' | translate }}
+            </md-button>
+            <md-button fec-mobile-click="$ctrl.save()" ng-disabled="$ctrl.operationNoteLocked" class="md-primary">{{'core.SAVE' | translate }}</md-button>
+        </md-dialog-actions>
+    </div>
+</md-dialog>

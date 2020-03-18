@@ -1,0 +1,195 @@
+<div layout="column" layout-gt-sm="row" layout-padding class="fec-no-padding-mobile" ng-if="!vm.context.isLoading">
+    <!-- Navigation context (mobile) -->
+    <div id="mobileExpand" md-whiteframe="3" layout="row" hide-gt-sm>
+        <span>
+            <fec-icon type="patient" color="fe-blue-icon" size="ms"></fec-icon>{{ 'layoutPatient.PATIENT' | translate}}
+        </span>
+        <span ng-if="vm.context.visibilityProperty.visit">
+            {{ '/' | translate}}
+            <fec-icon type="visit" color="fe-blue-icon" size="ms"></fec-icon> {{ 'layoutPatient.VISIT' | translate}}
+        </span>
+        <span ng-if="vm.context.visibilityProperty.guarantor">
+            {{ '/' | translate}}
+            <fec-icon type="guarantor" color="fe-blue-icon" size="xs"></fec-icon> {{ 'layoutPatient.GUARANTOR' | translate}}
+        </span>
+        <span flex></span>
+        <span>
+            <fec-icon id="unfoldFoldContext" type="dropdown" color="fe-blue-icon" size="sm"></fec-icon>
+        </span>
+    </div>
+
+    <!-- Navigation context -->
+    <div id="patientContext" flex-gt-sm="20">
+        <div layout="column" id="patientDetail" ng-if="vm.context.patient">
+            <div id="patientListBox" ng-if="vm.canNavigateBack()" class="list" ng-click="vm.context.navigateTo(vm.getBackContext().state.name, vm.getBackContext().stateParams)">
+                <fec-icon type="back" color="fe-blue-icon" size="md"></fec-icon>{{ vm.getBackContext().title | translate }}
+            </div>
+            <div class="flu-divider" ng-if="vm.canNavigateBack()"></div>
+            <div id="patientDetailBox">
+                <table ui-sref="patient({ 'pid': vm.context.patient.patientInfo.pid })">
+                    <tr>
+                        <th class="icon">
+                            <fec-icon type="patient" color="fe-blue-icon" size="ms"></fec-icon>
+                        </th>
+                        <th>
+                            {{vm.context.patient.patientInfo.lastName}}
+                            <br/> {{vm.context.patient.patientInfo.firstName}}
+                            <span ng-if="vm.context.patient.patientInfo.maidenName">{{vm.context.patient.patientInfo.maidenName}}</span>
+                            <fec-icon type="{{vm.context.patient.patientInfo.sex}}" size="xs"></fec-icon>
+                            <!-- <span>{{vm.context.patient.patientInfo.deathdt | formatDate}}</span> -->
+                        </th>
+                    </tr>
+                    <tr ng-if="vm.context.patient.patientInfo.pid">
+                        <td class="icon">
+                            <fec-icon type="patientId" color="fe-grey-icon" size="ms"></fec-icon>
+                        </td>
+                        <td>
+                            {{ 'core.PATIENT_ID' | translate}}
+                            <br/> {{vm.context.patient.patientInfo.pid}}
+                        </td>
+                    </tr>
+                    <tr ng-if="vm.context.patient.address.addressLine && vm.context.patient.address.locality">
+                        <td class="icon">
+                            <fec-icon type="address" color="fe-grey-icon" size="ms"></fec-icon>
+                        </td>
+                        <td>
+                            {{vm.context.patient.address.addressLine}}
+                            <br/>{{vm.context.patient.address.locality}}
+                        </td>
+                    </tr>
+                    <tr ng-if="vm.context.patient.patientInfo.birthDate">
+                        <td class="icon">
+                            <fec-icon type="birthdate" color="fe-grey-icon" size="ms"></fec-icon>
+                        </td>
+                        <td>{{vm.context.patient.patientInfo.birthDate | formatDate : 'date'}}</td>
+                    </tr>
+                    <tr ng-show="vm.context.patient.patientInfo.death">
+                        <td class="icon">
+                            <fec-icon type="death" color="fe-grey-icon" size="sm"></fec-icon>
+                        </td>
+                        <td>{{vm.context.patient.patientInfo.deathdt | formatDate : 'date'}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div layout="column" id="visitDetail" ng-if="vm.context.visit">
+            <div id="visitListBox" ng-if="vm.canNavigateToVisitList" class="list" ui-sref="visitList({'pid':vm.context.patient.patientInfo.pid})">
+                <fec-icon type="back" color="fe-blue-icon" size="md"></fec-icon>{{ 'layoutPatient.VISIT_LIST' | translate }}
+            </div>
+            <div class="flu-divider" ng-if="vm.canNavigateToVisitList"></div>
+            <div id="visitDetailBox">
+                <table ui-sref="visit({'vnb':vm.context.visit.number})">
+                    <tr>
+                        <th class="icon">
+                            <fec-icon type="visit" color="fe-blue-icon" size="ms"></fec-icon>
+                        </th>
+                        <th ng-if="vm.context.visit.number">
+                            {{ 'core.VISIT_NB' | translate }}
+                            <br/>{{vm.context.visit.number}}
+                        </th>
+                        <th ng-if="!vm.context.visit.number">-</th>
+                    </tr>
+                    <tr ng-if="vm.context.visit.patientclass">
+                        <td class="icon">
+                            <fec-icon type="patientClass" color="fe-grey-icon" size="xs"></fec-icon>
+                        </td>
+                        <td>{{vm.context.visit.patientclass}}</td>
+                    </tr>
+                    <tr ng-if="vm.context.visit.company">
+                        <td class="icon">
+                            <fec-icon type="address" color="fe-grey-icon" size="ms"></fec-icon>
+                        </td>
+                        <td>
+                            {{vm.context.visit.company.name}}{{ '(' | translate }}{{vm.context.visit.company.code}}{{ ')' | translate }}
+                        </td>
+                    </tr>
+                    <tr ng-if="vm.context.visit.patientunitdesc">
+                        <td class="icon">
+                            <fec-icon type="patientUnitDesc" color="fe-grey-icon" size="sm"></fec-icon>
+                        </td>
+                        <td>{{vm.context.visit.patientunitdesc}}</td>
+                    </tr>
+                    <tr ng-if="vm.context.visit.admitDate">
+                        <td class="icon">
+                            <fec-icon type="visitDate" color="fe-grey-icon" size="sm"></fec-icon>
+                        </td>
+                        <td>{{vm.context.visit.admitDate | formatDate : 'date'}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div layout="column" id="guarantorDetail" ng-if="vm.context.guarantor">
+            <div id="guarantorListBox" ng-if="vm.canNavigateToGuarantorList" class="list" ui-sref="guarantorList({ 'vnb': vm.context.visit.number })">
+                <fec-icon type="back" color="fe-blue-icon" size="md"></fec-icon>{{'layoutPatient.GUA_LIST' | translate}}
+            </div>
+            <div class="flu-divider" ng-if="vm.canNavigateToGuarantorList && vm.context.guarantor.code"></div>
+            <div id="guarantorDetailBox" ng-if="vm.context.guarantor.code">
+                <table ng-if="!vm.context.guarantor.ownVisible" ui-sref="guarantorList({ 'vnb': vm.context.visit.number })">
+                    <tr>
+                        <th class="icon">
+                            <fec-icon type="guarantor" color="fe-blue-icon" size="sm"></fec-icon>
+                        </th>
+                        <th>{{vm.context.guarantor.name}}</th>
+                        <th ng-if="!vm.context.guarantor.name">-</th>
+                    </tr>
+                    <tr ng-if="vm.context.guarantor.code">
+                        <td class="icon">
+                            <fec-icon type="guarantorId" color="fe-grey-icon" size="ms"></fec-icon>
+                        </td>
+                        <td>{{ 'layoutPatient.GUA_ID' | translate }}
+                            <br/>{{vm.context.guarantor.code}}</td>
+                    </tr>
+                    <tr ng-if="vm.context.guarantor.complement">
+                        <td class="icon">
+                            <fec-icon type="guarantorComplement" color="fe-grey-icon" size="ms"></fec-icon>
+                        </td>
+                        <td>{{vm.context.guarantor.complement}}</td>
+                    </tr>
+                    <tr ng-if="vm.context.guarantor.locality">
+                        <td class="icon">
+                            <fec-icon type="address" color="fe-grey-icon" size="ms"></fec-icon>
+                        </td>
+                        <td>{{vm.context.guarantor.locality}}</td>
+                    </tr>
+                </table>
+                <span ng-if="vm.context.guarantor.ownVisible">{{ 'layoutPatient.OWN_GUARANTOR' | translate }}</span>
+            </div>
+        </div>
+        <div layout="column" id="noteCategoryDetail" ng-if="vm.context.noteCategory">
+            <div id="noteCategoryBox" ng-if="vm.context.noteCategory">
+                <table ui-sref="patientNoteCategory({ 'pid': vm.context.note.patientId, 'categoryId': vm.context.noteCategory.id })" ng-if="vm.context.note.patientId">
+                    <tr>
+                        <th class="icon">
+                            <fec-icon type="noteCategory" color="fe-blue-icon" size="sm"></fec-icon>
+                        </th>
+                        <th>{{vm.context.noteCategory.name}}</th>
+                    </tr>
+                </table>
+                <table ui-sref="visitNoteCategory({ 'vnb': vm.context.note.visitNb, 'categoryId': vm.context.noteCategory.id })" ng-if="vm.context.note.visitNb">
+                    <tr>
+                        <th class="icon">
+                            <fec-icon type="noteCategory" color="fe-blue-icon" size="sm"></fec-icon>
+                        </th>
+                        <th>{{vm.context.noteCategory.name}}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div layout="column" id="noteDetail" ng-if="vm.context.note">
+            <div id="noteBox" ng-if="vm.context.note">
+                <table ui-sref="readNote({ 'noteId': vm.context.note.id })" ng-if="vm.context.note.id">
+                    <tr>
+                        <th class="icon">
+                            <fec-icon type="note" color="fe-blue-icon" size="sm"></fec-icon>
+                        </th>
+                        <th>{{vm.context.note.id}}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="foot" hide-gt-sm></div>
+    </div>
+
+    <!-- Content -->
+    <div ui-view flex-gt-sm="80" class="fec-no-padding-mobile"></div>
+</div>

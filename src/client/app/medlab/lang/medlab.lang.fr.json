@@ -1,0 +1,14 @@
+{
+    "medlab": {
+        "ERROR_PRESCRIPTION_SERVER_TITLE": "Serveur non accessible",
+        "ERROR_PRESCRIPTION_SUPPORT": "Veuillez utiliser notre centre de contact pour obtenir de l'aide supplémentaire",
+        "ERROR_PRESCRIPTION_SERVER_NOT_AVAILABLE": "Une erreur s'est produite lors de la connexion au serveur à distance des prescriptions",
+        "ERROR_PRESCRIPTION_NOT_AVAILABLE": "Prescription indisponible",
+        "ERROR_NO_PRESCRIPTION_TITLE": "Impossible de créer une préscription",
+        "ERROR_NO_PRESCRIPTION_MESSAGE": "Aucune visite. Impossible de créer une préscription",
+        "TITLE_NAV_BUTTON": "Prescription lab",
+        "SELECT_VISIT_TITLE": "Sélectionner une visite",
+        "WARN_TITLE": "Information",
+        "WARN_LEAVE_MSG": "Vous êtes sur le point d'être redirigé sur la page d'ordonance. Voulez-vous continuer ?"
+    }
+}

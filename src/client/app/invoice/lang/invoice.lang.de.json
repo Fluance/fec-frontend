@@ -1,0 +1,15 @@
+{
+    "invoice": {
+        "BALANCE": "Balance",
+        "GUA_CODE": "Garanten Code",
+        "GUA_NAME": "Garanten Name",
+        "GUIDE_GUARANTORS_INVOICES": "Die Rechnungen, welche während dieses Falles entstanden sind",
+        "INV_DATE": "Rechnungsdatum",
+        "INV_TOTAL_PAID": "Summe (inkl. MwSt)",
+        "INVOICE_DETAILS": "Rechnungsdetails",
+        "NB_OF_INVOICE": "{INVOICE, plural, =0{0 Rechnungen} one{1 Rechnung} other{# Rechnungen}}",
+        "NO_INVOICE": "Keine Rechnung für diesen Garanten",
+        "TITLE": "Rechnung",
+        "TITLE_LIST": "Rechnungen"
+    }
+}

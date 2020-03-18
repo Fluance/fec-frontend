@@ -1,0 +1,101 @@
+<!-- CORRUPTED PROFILE -->
+<md-card class="alert-warn" ng-show="vm.profileCorrupted">
+    <md-card-content layout="column" layout-align="center center" layout-margin>
+        <span> {{ 'admin.CORRUPTED_PROFILE_INFO' | translate }}</span>
+        <md-button class="md-primary" ng-click="vm.deleteUser()">
+            <span>{{ 'admin.DELETE_CORRUPTED_PROFILE' | translate }}</span>
+        </md-button>
+    </md-card-content>
+</md-card>
+
+<!-- PROFILE UNDIFINED -->
+<md-card class="alert-warn" ng-show="vm.userProfileUndefined">
+    <md-card-content layout="column" layout-align="center center" layout-margin>
+        <span>{{ 'admin.NO_PROFILE' | translate }}{{ '.' | translate }}</span>
+        <md-button class="md-primary md-raised" ui-sref="admin.users.add({username: vm.username})">
+            <span>{{'admin.CREATE_PROFILE' | translate }}</span>
+        </md-button>
+    </md-card-content>
+</md-card>
+
+<!-- USER SEARCH -->
+<md-card id="searchUserCard">
+    <md-card-title>
+        <md-card-title-text>
+            <h5>{{ 'admin.USER_MGMT' | translate }}</h5>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content layout="row">
+        <md-input-container flex>
+            <label>{{ 'admin.USERNAME' | translate }}</label>
+            <input fec-input type="text" ng-model="vm.username" ng-keyup="vm.onKeyUp($event)" />
+        </md-input-container>
+        <md-input-container flex>
+            <label>{{ 'admin.DOMAIN' | translate }}</label>
+            <md-select ng-model="vm.domain">
+                <md-option ng-repeat="domain in vm.domains" ng-value="domain">{{
+                    domain
+                }}</md-option>
+            </md-select>
+        </md-input-container>
+    </md-card-content>
+    <md-card-content layout="row">
+        <span flex></span>
+        <md-button class="md-primary" fec-mobile-click="vm.search()">{{
+            'core.SEARCH' | translate
+        }}</md-button>
+    </md-card-content>
+    <md-progress-linear md-mode="indeterminate" ng-if="vm.isLoading"></md-progress-linear>
+</md-card>
+
+<!-- Multiple users found -->
+<md-card ng-if="vm.foundUsers && vm.foundUsers.length === 0">
+    <md-card-title>
+        <md-card-title-text>
+            <h5>
+                {{ 'admin.USER_NOT_FOUND' | translate }}
+            </h5>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-actions layout="row">
+        <span flex></span>
+        <md-button ng-show="!vm.isUsernameMatching(vm.searchedUsername, vm.foundUsers)" class="md-primary"
+            fec-mobile-click="vm.goToCreateProfile(vm.searchedUsername, vm.domain)">
+            <span>{{ 'admin.CREATE_PROFILE' | translate }}</span>
+        </md-button>
+    </md-card-actions>
+</md-card>
+<md-card ng-if="vm.foundUsers && vm.foundUsers.length > 1">
+    <md-card-title>
+        <md-card-title-text>
+            <h5>
+                {{ 'admin.SEARCH_MULTIPLE_USERS_FOUND' | translate }}
+            </h5>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content layout="column">
+        <table class="edit">
+            <tr>
+                <th>{{ 'admin.USERNAME' | translate }}</th>
+                <th>{{ 'core.LASTNAME' | translate }}</th>
+                <th>{{ 'core.FIRSTNAME' | translate }}</th>
+            </tr>
+            <tr class="userSelectionRow" ng-repeat="user in vm.foundUsers"
+                fec-mobile-click="vm.goToUser(user.username)">
+                <td>{{ user.username }}</td>
+                <td>{{ user.lastName | noContentPlaceholder }}</td>
+                <td>{{ user.firstName | noContentPlaceholder }}</td>
+            </tr>
+        </table>
+    </md-card-content>
+    <md-card-actions layout="row">
+        <span flex></span>
+        <md-button ng-show="!vm.isUsernameMatching(vm.searchedUsername, vm.foundUsers)" class="md-primary"
+            fec-mobile-click="vm.goToCreateProfile(vm.searchedUsername, vm.domain)">
+            <span>{{ 'admin.CREATE_PROFILE' | translate }}</span>
+        </md-button>
+    </md-card-actions>
+</md-card>
+
+<!-- USER CONTENT -->
+<div ui-view class="uiview" ng-if="!vm.foundUsers"></div>

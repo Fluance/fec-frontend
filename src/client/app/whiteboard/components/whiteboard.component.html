@@ -1,0 +1,90 @@
+<div id="fec-whiteboard" flex="grow" layout="column">
+    <md-card flex="grow" ng-if="$ctrl.isAvailable">
+        <div flex layout="column">
+            <md-card-content id="whiteboard-md-card-content-container" flex layout="column">
+                <div class="whiteboard-title" layout="column">
+                    <div flex="grow" layout="row" layout-align="center center">
+                        <div flex="flex" flex-gt-sm="none" flex-gt-md="flex" layout="row" layout-align="start center">
+                            <md-input-container class="md-block">
+                                <md-select ng-model="$ctrl.hospService" ng-change="$ctrl.changeService()">
+                                    <md-option ng-value="hospService" ng-repeat="hospService in $ctrl.hospServices">
+                                        {{hospService.code}} - {{hospService.codeDescription}} {{'(' + hospService.nbPatients + ')'}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div flex="flex" flex-gt-sm="flex" flex-gt-md="none" layout="row" layout="row" layout-align="center center" show-gt-sm hide>
+                            <h5>{{$ctrl.getWhiteboardDate()}}</h5>
+                        </div>
+                        <div flex="none" flex-gt-md="flex" layout="row" layout-align="end center">
+                            <!-- Configuration Menu -->
+                            <md-menu fec-test-id="select-configuration-menu" md-menu-add-class="roomConfigurationMenu">
+                                <!-- TODO: fec-mobile-click messes up the event element origin... -->
+                                <span ng-click="$ctrl.openConfigurationMenu($mdMenu, $event)"
+                                    fec-test-id="select-configuration-menu">
+                                    <fec-icon size="md" type="more" color="fe-blue-icon"></fec-icon>
+                                </span>
+                                <md-menu-content>
+                                    <!-- Room Configuration -->
+                                    <md-menu-item fec-test-id="iselect-room-configuration">
+                                        <md-button ng-disabled="!$ctrl.isRoomConfigurationAvailable"
+                                            ng-click="$ctrl.editRoomConfiguration()">
+                                            {{'whiteboard.ROOM_CONFIGURATION' | translate}}</md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </div>
+                    </div>
+
+                    <div flex="grow" layout="row" layout-align="center center" hide-gt-sm>
+                        <h5>{{$ctrl.getWhiteboardDate()}}</h5>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column" layout-align="space-between center"
+                    id="tomorrow-whiteboard-filter-container">
+                    <div layout="row">
+                        <md-nav-bar ng-if="$ctrl.isTomorrowWhiteboardEnabled" md-no-ink-bar="false"
+                            md-selected-nav-item="$ctrl.filterDate">
+                            <md-nav-item md-nav-click="$ctrl.filterByDate('today')" name="today">
+                                {{'whiteboard.WHITEBOARD_TODAY' | translate}}
+                            </md-nav-item>
+                            <md-nav-item md-nav-click="$ctrl.filterByDate('tomorrow')" name="tomorrow">
+                                {{'whiteboard.WHITEBOARD_TOMORROW' | translate}}
+                            </md-nav-item>
+                        </md-nav-bar>
+                        <fec-whiteboard-print-button ng-if="$ctrl.isTomorrowWhiteboardEnabled" hide-gt-xs
+                            company-id="$ctrl.params.companyId" service="$ctrl.params.hospService"
+                            date="$ctrl.params.date" occupancy="$ctrl.params.occupancy"></fec-whiteboard-print-button>
+                    </div>
+                    <div class="fec-whiteboard-filter-group" layout="row" layout-align="end center">
+                        <md-button md-no-ink class="mutual-exclude"
+                            ng-class="{'mutual-exclude-enabled': $ctrl.filterCriteria == 'all'}"
+                            ng-click="$ctrl.filterBy('all')">{{'core.ALL' | translate}}</md-button>
+                        <md-button md-no-ink class="mutual-exclude"
+                            ng-class="{'mutual-exclude-enabled': $ctrl.filterCriteria == 'patients'}"
+                            ng-click="$ctrl.filterBy('patients')">{{'whiteboard.FILTER_PATIENTS' | translate}}
+                        </md-button>
+                        <md-button md-no-ink class="mutual-exclude"
+                            ng-class="{'mutual-exclude-enabled': $ctrl.filterCriteria == 'availabilities'}"
+                            ng-click="$ctrl.filterBy('availabilities')">
+                            {{'whiteboard.FILTER_AVAILABILITIES' | translate}}</md-button>
+                        <!-- TODO: merge the 2 whiteboard-print-button's -->
+                        <fec-whiteboard-print-button hide-xs company-id="$ctrl.params.companyId"
+                            service="$ctrl.params.hospService" date="$ctrl.params.date"
+                            occupancy="$ctrl.params.occupancy"></fec-whiteboard-print-button>
+                        <fec-whiteboard-print-button ng-if="!$ctrl.isTomorrowWhiteboardEnabled" hide-gt-xs
+                            company-id="$ctrl.params.companyId" service="$ctrl.params.hospService"
+                            date="$ctrl.params.date" occupancy="$ctrl.params.occupancy"></fec-whiteboard-print-button>
+                    </div>
+                </div>
+                <dtable flex options="$ctrl.options" rows="$ctrl.items" class="material striped"></dtable>
+            </md-card-content>
+        </div>
+    </md-card>
+    <md-card ng-if="!$ctrl.isAvailable && !$ctrl.isWhiteboardLoading">
+        <md-card-header>{{'whiteboard.WHITEBOARD_NOT_AVAILABLE' | translate}}</md-card-header>
+    </md-card>
+    <md-card ng-if="$ctrl.isWhiteboardLoading">
+        <md-card-header>{{'whiteboard.LOADING_MSG' | translate}}</md-card-header>
+    </md-card>
+</div>

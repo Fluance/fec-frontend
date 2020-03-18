@@ -1,0 +1,40 @@
+#userpage {
+    // width: 100%;
+    padding: 0 $gutter-width;
+    md-chip {
+        margin-right: 5px;
+        &:last-child {
+            margin-right: 0px;
+        }
+    }
+    .lang {
+        text-transform: uppercase;
+    }
+    .icon-btn {
+        cursor: pointer;
+    }
+
+    md-list-item {
+        padding: 0px;
+
+    }
+}
+
+.fec-service-discovery-panel {
+    md-chip {
+        cursor: pointer;
+        &.disabled {
+            cursor: not-allowed;
+            text-decoration: line-through
+        }
+        md-chip-template {
+            outline: none;
+        }
+    }
+}
+
+#loginSwitch {
+    position: absolute;
+    bottom: 10px;
+    right: 80px;
+}

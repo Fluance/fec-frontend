@@ -1,0 +1,206 @@
+<div flex layout="row" ng-if="!$ctrl.detail">
+    <div flex layout="column" id="whiteboard-surgery-room">
+        <div id="whiteboard-surgery-room-title" fec-mobile-click="$ctrl.goToRoomView()">{{$ctrl.roomTitle}}</div>
+        <div id="whiteboard-surgery-room-content" class="whiteboard-surgery-no-operation" flex
+            ng-if="!$ctrl.runningAppointment" layout="column" layout-align="center center">
+            <div>{{ 'whiteboardSurgery.NO_OPERATION_IN_PROGRESS' | translate }}</div>
+            <div ng-if="!$ctrl.nextAppointment">{{ 'whiteboardSurgery.NO_UPCOMING_OPERATIONS_TODAY' | translate }}
+            </div>
+            <div ng-if="$ctrl.nextAppointment">{{ 'whiteboardSurgery.NEXT_OPERATION_AT' | translate }}
+                {{ $ctrl.nextAppointment.begindt | formatDate : 'time' }}</div>
+        </div>
+        <div id="whiteboard-surgery-room-content" flex layout="column" ng-if="$ctrl.runningAppointment">
+            <div layout="column" class="whiteboard-surgery-room-content-info">
+                <div layout="row" class="whiteboard-surgery-room-content-time" layout-align="space-between center">
+                    <div>
+                        {{ $ctrl.runningAppointment.begindt | formatDate : 'time' }}{{ '-' | translate }}{{ $ctrl.runningAppointment.enddt | formatDate : 'time' }}
+                    </div>
+                    <div hide="" show-gt-md="" layout="row" flex layout-align="space-around center">
+                        <div>{{ $ctrl.runningAppointment.anesthesia }}</div>
+                        <div>{{ $ctrl.runningAppointment.patientPosition }}</div>
+                    </div>
+                </div>
+                <!-- Keep this code in case they would like to see this info on ipad -->
+                <!-- <div hide-gt-md="" layout="row" layout-align="space-around center">
+                    <div>{{ $ctrl.runningAppointment.anesthesia }}</div>
+                    <div>{{ $ctrl.runningAppointment.patientPosition }}</div>
+                </div> -->
+                <div flex class="whiteboard-surgery-appointment-title">{{ $ctrl.runningAppointment.description }}</div>
+            </div>
+            <div layout="row" class="whiteboard-surgery-room-content-doctor-name-container">
+                <div class="whiteboard-surgery-room-content-doctor-name-icon">
+                    <fec-whiteboard-surgery-personnel-occupation-icon code-occupation="{{ $ctrl.runningAppointment.operator.codeOccupation }}" default-code-occupation="{{ $ctrl.DEFAULT_CODE_OCCUPATION_OPERATOR }}" size="xs"></fec-whiteboard-surgery-personnel-occupation-icon>
+                </div>
+                <div class="whiteboard-surgery-room-content-doctor-name">
+                    {{ $ctrl.runningAppointment.operator.name?$ctrl.runningAppointment.operator.name:'-' }}
+                </div>
+            </div>
+            <div layout="row" layout-wrap="" hide-gt-md class="whiteboard-surgery-room-content-patient-name-container">
+                <div layout="row">
+                    <div class="whiteboard-surgery-room-content-patient-name-icon">
+                        <fec-icon type="patient" size="xs"></fec-icon>
+                    </div>
+                    <div class="whiteboard-surgery-room-content-patient-name">
+                        {{ $ctrl.runningAppointment.lastname | uppercase }} {{ $ctrl.runningAppointment.firstname }}
+                    </div>
+                </div>
+            </div>
+            <div layout="row" hide-xs hide-sm hide-md>
+                <div layout="row" layout-align="start center" flex>
+                    <div class="whiteboard-surgery-room-content-patient-name-icon">
+                        <fec-icon type="patient" size="xs"></fec-icon>
+                    </div>
+                    <div class="whiteboard-surgery-room-content-patient-name">
+                        {{ $ctrl.runningAppointment.lastname | uppercase  }} {{ $ctrl.runningAppointment.firstname }}
+                    </div>
+                </div>
+                <div layout="row" layout-align="center center">
+                    <div class="whiteboard-surgery-room-content-room-number-icon">
+                        <fec-icon type="door" size="xs"></fec-icon>
+                    </div>
+                    <div class="whiteboard-surgery-room-content-room-number">{{ $ctrl.runningAppointment.patientroom }}
+                    </div>
+                </div>
+            </div>
+            <div layout="row" layout-wrap="">
+                <div class="whiteboard-surgery-room-content-staff" layout="row"
+                    ng-repeat="doctor in $ctrl.runningAppointment.staffs">
+                    <div class="whiteboard-surgery-room-content-staff-icon">
+                        <fec-whiteboard-surgery-personnel-occupation-icon code-occupation="{{ doctor.codeOccupation }}" default-code-occupation="{{ $ctrl.DEFAULT_CODE_OCCUPATION_STAFF }}" size="xs"></fec-whiteboard-surgery-personnel-occupation-icon>
+                    </div>
+                    <div class="whiteboard-surgery-room-content-staff-name">{{ doctor.name?doctor.name:'-' }}</div>
+                </div>
+            </div>
+        </div>
+        <div id="whiteboard-surgery-room-live" ng-class="{active: $ctrl.runningAppointment.operationLive}" layout="row">
+            <div class="live-state">{{ 'whiteboardSurgery.LIVE' | translate }}</div>
+            <div class="live-state-message" flex
+                ng-if="$ctrl.runningAppointment.operationLive && $ctrl.liveOperationStatus">
+                {{ $ctrl.liveOperationStatus.eventDate | formatDate : 'time' }}&nbsp;{{ $ctrl.liveOperationStatus.processStatusDescription }}
+            </div>
+            <div class="live-state-message" flex ng-if="!$ctrl.runningAppointment.operationLive">---</div>
+        </div>
+    </div>
+</div>
+
+<!-- Detail view -->
+<div id="whiteboard-surgery-detail-info-no-operation" flex
+    ng-if="$ctrl.detail && $ctrl.selectedDateIsToday && !$ctrl.runningAppointment" layout="column"
+    layout-align="center center">
+    <div>{{ 'whiteboardSurgery.NO_OPERATION_IN_PROGRESS' | translate }}</div>
+    <div ng-if="!$ctrl.nextAppointment">{{ 'whiteboardSurgery.NO_UPCOMING_OPERATIONS_TODAY' | translate }}</div>
+    <div ng-if="$ctrl.nextAppointment">{{ 'whiteboardSurgery.NEXT_OPERATION_AT' | translate }}
+        {{ $ctrl.nextAppointment.begindt | formatDate : 'time' }}</div>
+</div>
+<div id="whiteboard-surgery-detail-info" ng-if="$ctrl.detail && $ctrl.runningAppointment">
+    <!-- header -->
+    <div class="header">
+        <div layout="row" layout-align="space-between" class="whiteboard-surgery-detail-info-appointment-time">
+            <div>{{ $ctrl.runningAppointment.begindt | formatDate : 'time' }}{{ '-' | translate }}{{ $ctrl.runningAppointment.enddt | formatDate : 'time' }}</div>
+            <div layout="row">
+                    <div>
+                        <fec-whiteboard-surgery-personnel-occupation-icon code-occupation="{{ $ctrl.runningAppointment.operator.codeOccupation }}" default-code-occupation="{{ $ctrl.DEFAULT_CODE_OCCUPATION_OPERATOR }}" size="xs"></fec-whiteboard-surgery-personnel-occupation-icon>
+                        {{ $ctrl.runningAppointment.operator.name?$ctrl.runningAppointment.operator.name:'-' }}
+                    </div>
+            </div>
+        </div>
+        <div class="whiteboard-surgery-detail-info-title">
+            <span fec-mobile-click="$ctrl.goToAppointment($ctrl.runningAppointment.appoint_id)">{{ $ctrl.runningAppointment.description }}</span>
+        </div>
+        <div layout="row" class="whiteboard-surgery-detail-info" layout-align="space-between center" layout-wrap>
+            <div layout="row">
+                <div layout="row" class="clickable link" fec-mobile-click="$ctrl.goToPatient($ctrl.runningAppointment.pid)">
+                    <div>
+                        <fec-icon type="patient" size="xs"></fec-icon>
+                    </div>
+                    <div>
+                        {{ $ctrl.runningAppointment.lastname | uppercase }}&nbsp;{{ $ctrl.runningAppointment.firstname }}&nbsp;({{ $ctrl.runningAppointment.birthdate | formatDate : 'date' }})
+                    </div>
+                </div>
+            </div>
+            <div layout="row">
+                <div>
+                    <fec-icon type="door" size="xs"></fec-icon> {{ $ctrl.runningAppointment.patientroom }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="side">
+        <!-- staff -->
+        <div layout="column" class="staff whiteboard-surgery-detail-info-component">
+            <div class="whiteboard-surgery-detail-info-component-title">STAFF</div>
+            <div layout="column" class="whiteboard-surgery-detail-info-component-content">
+                <div layout="row" class="whiteboard-surgery-detail-info-component-content-item"
+                    ng-repeat="doctor in $ctrl.runningAppointment.staffs">
+                    <div layout="row" flex="40">
+                        <div>
+                            <fec-whiteboard-surgery-personnel-occupation-icon code-occupation="{{ doctor.codeOccupation }}" default-code-occupation="{{ $ctrl.DEFAULT_CODE_OCCUPATION_STAFF }}" size="xs"></fec-whiteboard-surgery-personnel-occupation-icon>
+                        </div>
+                        <div>{{ doctor.name }}</div>
+                    </div>
+                    <div flex>{{ doctor.role }}</div>
+                    <div>
+                        {{ doctor.beginDate | formatDate : 'time' }}{{ '-' | translate }}{{ doctor.endDate | formatDate : 'time' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- devices -->
+        <div layout="column" class="devices whiteboard-surgery-detail-info-component"
+            ng-if="$ctrl.runningAppointment.devicesObj && $ctrl.runningAppointment.devicesObj.length">
+            <div class="whiteboard-surgery-detail-info-component-title">DEVICE(S)</div>
+            <div layout="column" class="whiteboard-surgery-detail-info-component-content">
+                <div class="whiteboard-surgery-detail-info-component-content-item">
+                    <div layout="row" ng-repeat="device in $ctrl.runningAppointment.devicesObj">
+                        <div>
+                            <fec-icon type="device" size="xs"></fec-icon>
+                        </div>
+                        <div flex>
+                            {{ device.name }}
+                        </div>
+                        <div>
+                            {{ device.beginDate | formatDate : 'time' }}{{ '-' | translate }}{{ device.endDate | formatDate : 'time' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- operating times -->
+        <div layout="column" class="operating-times whiteboard-surgery-detail-info-component"
+            ng-if="$ctrl.operationStatusList && $ctrl.operationStatusList.length">
+            <div class="whiteboard-surgery-detail-info-component-title">OPERATING TIMES</div>
+            <div class="operation-status-container" ng-class="{'live': operationStatus.live}" layout="row"
+                ng-repeat="operationStatus in $ctrl.operationStatusList | orderBy : 'stepNumber'">
+                <div class="operation-status">{{ 'whiteboardSurgery.LIVE' | translate }}</div>
+                <div class="operation-status-text" flex layout="row">
+                    <div class="operation-status-time" ng-if="operationStatus.eventDate">
+                        {{ operationStatus.eventDate | formatDate : 'time' }}</div>
+                    <div class="operation-status-time" ng-if="!operationStatus.eventDate">
+                        {{ '-' | translate }}{{ '-' | translate }}{{ ':' | translate }}{{ '-' | translate }}{{ '-' | translate }}
+                    </div>
+                    <div flex>{{ operationStatus.processStatusDescription }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <fec-anesthesia-box class="anesthesia" title="{{ 'whiteboardSurgery.ANESTHESIA' | translate | uppercase }}" content="$ctrl.runningAppointment.anesthesia"></fec-anesthesia-box>
+    <fec-patient-position-box class="position" title="{{ 'whiteboardSurgery.POSITION' | translate | uppercase }}" content="$ctrl.runningAppointment.patientPosition"></fec-patient-position-box>
+    <!-- comments -->
+    <div layout="column" id="whiteboard-surgery-comments-container" class="comments">
+        <div class="whiteboard-surgery-comments-title" layout="row">
+            <div flex>{{ ::'whiteboardSurgery.COMMENTS' | translate | uppercase }}</div>
+            <div fec-mobile-click="$ctrl.editComments()">
+                <fec-icon type="edit" class="clickable" color="fe-blue-icon" size="xs"></fec-icon>
+            </div>
+        </div>
+        <div layout="column" ng-if="ctrl.isLoadingComment"
+            class="whiteboard-surgery-comments-content">
+            <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+        </div>
+        <div layout="column" ng-if="!ctrl.isLoadingComment"
+            class="whiteboard-surgery-comments-content whiteboard-surgery-operation-note">
+            <div ng-if="$ctrl.operationNote" ng-bind-html="$ctrl.operationNote"></div>
+            <div ng-if="!$ctrl.operationNote">{{ '-' | translate }}</div>
+        </div>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+{
+    "appointment": {
+        "SELECT_APPOINTMENT_TITLE": "Scegliere appuntamenti",
+        "ERROR_LOAD_APPOINTMENT_DETAIL": "Beim Laden der Termindaten ist ein Fehler aufgetreten",
+        "NO_APPOINTMENT": "Kein Termin mit diesen Kriterien",
+        "NB_OF_APPOINTMENTS": "{APPOINTMENT, plural, =0{0 consultazione} one{1 consultazione} other{# consultazioni}}",
+        "TITLE": "Appuntamenti",
+        "TITLE_LIST": "Appuntamenti",
+        "TITLE_DETAILS": "Dettagli della consultazione",
+        "BEGIN_DATETIME": "Inizio",
+        "END_DATETIME": "Fine",
+        "TIME": "Tempo",
+        "TYPE": "Tipo",
+        "GUIDE_APPOINTMENT_AREA": "Clicca per vedere i dettagli della consultazione",
+        "LOCATION_TITLE": "Località",
+        "DEVICES_TITLE": "Geräte",
+        "PERSONNEL_TITLE": "Dipendente",
+        "LOCATION_TYPE": "Art",
+        "DEVICE_NAME": "Bezeichnung",
+        "DEVICE_TYPE": "Categoria",
+        "PERSONNEL_ROLE": "Funzione",
+        "DATE": "Data",
+        "NAVIGATION_TITLE": "Appuntamenti",
+        "RESPONSIBLE_PERSON": "Persona responsabile",
+        "EXPORT_TOOLTIP": "Esporta nel calendario personale"
+    }
+}

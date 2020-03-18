@@ -1,0 +1,16 @@
+<div class="fec-picture-gallery">
+    <div class="note-head">
+        <div class="note-title">{{ 'notes.PICTURE_GALLERY' | translate }}</div>
+    </div>
+    <div class="note-body">
+        <fec-note-picture has-annotation="picture.annotation"
+                          picture-type="thumbnail"
+                          ng-repeat="picture in vm.galleryList"
+                          flex-order="{{picture.order}}"
+                          picture-list="vm.galleryList"
+                          picture-id="picture.pictureId"
+                          image-url="{{picture.url}}"
+                          show-annotation-icon="true">
+        </fec-note-picture>
+    </div>
+</div>

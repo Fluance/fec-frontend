@@ -1,0 +1,4 @@
+<md-button class="md-fab md-mini md-primary right" ng-class="{'disabled': $ctrl.isDisabled}" ng-disabled="$ctrl.isDisabled" ng-if="$ctrl.isActive && $ctrl.isPatientListAvailable" fec-mobile-click="$ctrl.onClick()">
+    <md-tooltip md-direction="top">{{"shiftPatientList.PATIENTS_LIST" | translate}}</md-tooltip>
+    <fec-icon type="bed" size="sm"></fec-icon>
+</md-button>

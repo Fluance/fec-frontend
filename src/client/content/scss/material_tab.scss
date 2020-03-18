@@ -1,0 +1,22 @@
+md-tabs{
+    md-tabs-wrapper{
+        md-pagination-wrapper{
+            background-color: $fe-white;
+            width: 100%;
+            md-tab-item{
+                max-width: none !important;
+                flex: 1;
+
+                color: $fe-blue !important;
+                font-family: "Roboto", sans-serif;
+                font-weight: normal;
+                letter-spacing: .8px;
+                text-align: center;
+                text-transform: uppercase;
+            }
+            md-ink-bar{
+                background-color: $fe-blue;
+            }
+        }
+    }
+}

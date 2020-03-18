@@ -1,0 +1,21 @@
+{
+    "settings": {
+        "ACCOUNT": "User Account",
+        "CACHING": "Temporarily disable Caching",
+        "CHOOSE_PROVIDER": "Choose your Service Provider",
+        "CLEAR_DASHBOARD_LAYOUT": "Reset the Layout of the eHealth Cockpit Dashboard",
+        "CLEAR_DASHBOARD_LAYOUT_MSG_SUCCESS": "The eHealth Cockpit Layout has been successfully reset",
+        "CLEAR_TUTORIALS": "Mark all Tutorials as unread",
+        "CLEAR_TUTORIALS_MSG": "Logout and back in to highlight the Unread Tutorials again.",
+        "CLEAR_TUTORIALS_MSG_SUCCESS": "The tutorials have been successfully marked as unread",
+        "CONTACTS": "Contacts",
+        "LOGIN": "Login",
+        "LOGIN_ERROR": "Invalid Username or Password",
+        "LOGOUT": "Logout",
+        "ROLES": "Roles",
+        "SERVICE_DISCOVERY": "Service discovery",
+        "SETTINGS": "Settings",
+        "USER": "User",
+        "USER_DATA": "Profile"
+    }
+}

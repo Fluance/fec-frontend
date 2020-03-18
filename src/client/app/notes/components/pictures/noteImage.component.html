@@ -1,0 +1,32 @@
+<!--
+
+picture types:
+
+> thumbnail: 100x100
+> picture details: max-width, max-height
+
+picture info:
+> has annotation -> display icon
+
+picture actions:
+> clickable -> open picture details
+> not clickable
+
+use cases:
+- list of pictures (limited with count, unlimited with annotation indicator)
+- picture details
+- gallery
+
+-->
+<!-- image type: detail -->
+<div ng-if="vm.imageType === 'detail'" class="detail-container">
+  <img class="picture" http-src="{{vm.imageUrl}}" fec-image-on-load="vm.onImageLoaded()">
+  <span class="controls" ng-transclude></span>
+</div>
+<!-- image type: thumbnail -->
+<span ng-if="vm.imageType === 'thumbnail'" class="thumbnail-container">
+    <img ng-show="!vm.isLoading && !vm.isResizing" class="picture-thumbnail" http-src="{{vm.imageUrl}}" ng-disabled="!vm.showDetails" ng-click="vm.showDetails?vm.onClick($event):null">
+    <fec-icon class="picture-annotation-icon"
+            ng-if="vm.showAnnotationIcon"
+            type="notePictureAnnotation"></fec-icon>
+</span>

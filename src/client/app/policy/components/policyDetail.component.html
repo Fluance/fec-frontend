@@ -1,0 +1,26 @@
+<div id="policyDetail" flex="auto" layout="column">
+
+    <div layout="row" class="policyDetailHeader">
+        <h5 translate="policy.TITLE_DETAIL"></h5>
+    </div>
+
+    <div layout="row" class="policyDetailPadding" layout-wrap>
+        <div flex="30">{{ ::$ctrl.policy.name }}</div>
+        <div flex="auto"><span translate="policy.GUA_ACCIDENT_DT"></span> {{ $ctrl.policy.details.accidentDate |
+            formatDate : 'date'}}
+        </div>
+    </div>
+
+    <div layout="row" class="policyDetailTableHeader policyDetailPadding" layout-wrap>
+        <span flex="30" class="fec-table-header" translate="policy.GUA_POLYC_NB"></span>
+        <span flex="40" class="fec-table-header" translate="policy.GUA_COVERCARD_NB"></span>
+        <span flex="30" class="fec-table-header" translate="policy.GUA_ACCIDENT_NB"></span>
+    </div>
+
+    <div layout="row" class="policyDetailTableContent policyDetailPadding" layout-wrap>
+        <span flex="30">{{ ::$ctrl.policy.details.policyNb }}</span>
+        <span flex="40">{{ ::$ctrl.policy.details.coverCardNb }}</span>
+        <span flex="30">{{ ::$ctrl.policy.details.accidentNb }}</span>
+    </div>
+
+</div>

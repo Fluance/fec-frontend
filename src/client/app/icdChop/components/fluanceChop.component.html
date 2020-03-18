@@ -1,0 +1,17 @@
+<div class="icd-chop-header">
+    <div class="icd-chop-header-content">
+        <span class="icd-chop-code">
+            {{ ::$ctrl.result.data }}
+        </span>
+        <span class="icd-chop-text">
+            {{ ::$ctrl.result.description }}
+        </span>
+    </div>
+    <div ng-show="($ctrl.preferedLanguage && ($ctrl.result.descLanguage !== $ctrl.preferedLanguage))" class="icd-chop-header-warning">
+        <p class="warn">
+            <md-tooltip layout="row" layout-align="center center" class="info" md-direction="left" md-delay="50">{{ 'icdChop.LANGUAGE_UNAVAILABLE' | translate }}
+            </md-tooltip>
+            <fec-icon type="language" size="sm"></fec-icon>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,109 @@
+<div class="myAppointment extended" id="my-appointment" ng-controller="myAppointmentController as vm">
+    <md-card ng-class="{'warn': (!scope.hasData && !scope.spin && !scope.error), 'error': scope.error}">
+        <md-card-title flex="auto">
+            <!-- <div hide-gt-xs> -->
+                <md-button hide-gt-xs ng-disabled="!scope.hasData || scope.error" class="md-primary right button-mobile-close-expand" fec-mobile-click="closeExtended()">
+                    <fec-icon type="back" size="md"></fec-icon>
+                </md-button>
+            <!-- </div> -->
+            <md-card-title-text flex="grow"> {{ scope.title | translate }}</md-card-title-text>
+            <div hide-xs flex="noshrink">
+                <md-button class="md-fab md-mini md-primary right" fec-mobile-click="closeExtended()">
+                    <md-tooltip md-direction="top">{{'core.NOT_EXPAND' | translate}}</md-tooltip>
+                    <fec-icon type="notExpanded" size="sm" />
+                </md-button>
+            </div>
+            <md-button hide-gt-xs ng-disabled="!scope.hasData || scope.error" class="md-primary right button-mobile-settings" fec-mobile-click="scope.toggleSettings()">
+                <fec-icon type="tune" size="sm"></fec-icon>
+            </md-button>
+        </md-card-title>
+        <md-divider/>
+        <md-card-content ng-hide="scope.warning || scope.error || (!scope.hasData && scope.unitId === 'ALL' && scope.hospserviceId === 'ALL')">
+            <div hide-gt-xs ng-show="scope.showSettings" layout="row" layout-margin ng-if="scope.params.by==='location'">
+                <md-input-container flex="50" layout="column">
+                    <label>{{ 'dashboard.MY_AGENDA_CHANGE_UNIT' | translate }}</label>
+                    <md-select ng-model="scope.unitId" ng-change="scope.initialize()">
+                        <md-option value="ALL" selected="selected">
+                            {{ 'dashboard.MY_AGENDA_ALL' | translate }}
+                        </md-option>
+                        <md-option ng-repeat="unit in scope.units" value="{{unit.code}}">
+                            {{ ::unit.code }}{{ '-' | translate }}{{ ::unit.codeDesc }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex="50" layout="column">
+                    <label>{{ 'dashboard.MY_AGENDA_CHANGE_SERVICE' | translate }}</label>
+                    <md-select ng-model="scope.hospserviceId" ng-change="scope.initialize()">
+                        <md-option value="ALL" selected="selected">
+                            {{ 'dashboard.MY_AGENDA_ALL' | translate }}
+                        </md-option>
+                        <md-option ng-repeat="hospService in scope.hospservices" value="{{hospService.code}}">
+                            {{ ::hospService.code }}{{ '-' | translate }}{{ ::hospService.codeDesc }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div hide-xs layout="row" layout-margin ng-if="scope.params.by==='location'">
+                <md-input-container flex="50" layout="column">
+                    <label>{{ 'dashboard.MY_AGENDA_CHANGE_UNIT' | translate }}</label>
+                    <md-select ng-model="scope.unitId" ng-change="scope.initialize()">
+                        <md-option value="ALL" selected="selected">
+                            {{ 'dashboard.MY_AGENDA_ALL' | translate }}
+                        </md-option>
+                        <md-option ng-repeat="unit in scope.units" value="{{unit.code}}">
+                            {{ ::unit.code }}{{ '-' | translate }}{{ ::unit.codeDesc }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex="50" layout="column">
+                    <label>{{ 'dashboard.MY_AGENDA_CHANGE_SERVICE' | translate }}</label>
+                    <md-select ng-model="scope.hospserviceId" ng-change="scope.initialize()">
+                        <md-option value="ALL" selected="selected">
+                            {{ 'dashboard.MY_AGENDA_ALL' | translate }}
+                        </md-option>
+                        <md-option ng-repeat="hospService in scope.hospservices" value="{{hospService.code}}">
+                            {{ ::hospService.code }}{{ '-' | translate }}{{ ::hospService.codeDesc }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+
+            <div ng-cloak>
+                <md-content>
+                    <md-nav-bar ng-if="scope.hasData && !scope.error && !scope.warning" md-no-ink-bar="disableInkBar" md-selected-nav-item="currentNavItem"
+                        ng-init="currentNavItem=scope.navBarInit">
+                        <md-nav-item md-nav-click="scope.changeTab('calendar-date')" name="calendar-date">
+                            {{ "dashboard.MY_AGENDA_DATE" | translate }}</md-nav-item>
+                        <md-nav-item md-nav-click="scope.changeTab('calendar-patient')" name="calendar-patient">
+                            {{ "dashboard.MY_AGENDA_PATIENT" | translate }}
+                        </md-nav-item>
+                    </md-nav-bar>
+                    <!-- CALENDAR DATE -->
+                    <div layout="column" flex="auto" infinite-scroll="scope.loadData()" infinite-scroll-disabled="scope.error || scope.warning || scope.spin || !scope.hasMoreData"
+                        infinite-scroll-distance="0" infinite-scroll-container="scope.scrollableContainer">
+                        <div id="calendar-date" ng-if="scope.showCalendarDate && !hasErrorMsg() && !isCustomSpinActive() && !scope.error && !scope.warning">
+                            <div ng-class="{'appointment-gap': appointment.endDay}" layout="column" class="appointment-entry" ng-repeat="appointment in scope.appointmentsDate">
+                                <div ng-include="scope.templateUrlExp"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CALENDAR PATIENT -->
+                    <div layout="column" flex="auto" infinite-scroll="scope.loadData()" infinite-scroll-disabled="scope.error || scope.warning || scope.spin || !scope.hasMoreData"
+                        infinite-scroll-distance="0" infinite-scroll-container="scope.scrollableContainer">
+                        <div id="calendar-patient" ng-if="scope.showCalendarPatient && !hasErrorMsg() && !isCustomSpinActive() && !scope.error && !scope.warning">
+                            <div ng-class="{'appointment-gap': appointment.endDay}" layout="column" class="appointment-entry" ng-repeat="appointment in scope.appointmentsPatient">
+                                <div ng-include="scope.templateUrlExp"></div>
+                            </div>
+                        </div>
+                    </div>
+                </md-content>
+            </div>
+
+            <div ng-if="!scope.hasData && !scope.spin && !scope.error" class="warn-message">
+                {{'dashboard.MY_AGENDA_NO_APPOINTMENTS' | translate}}
+            </div>
+
+        </md-card-content>
+    </md-card>
+    <md-progress-linear md-mode="indeterminate" ng-if="scope.spin"></md-progress-linear>
+</div>

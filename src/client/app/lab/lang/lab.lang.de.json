@@ -1,0 +1,13 @@
+{
+    "lab": {
+        "CHANGE_CATEGORY_TITLE": "Kategorie wechseln",
+        "GUIDE_VISITS_LAB": "Laborresultate des Patienten",
+        "MEASUREMENT": "Messung",
+        "NAVIGATION_TITLE": "Labor",
+        "REFERENCE": "Referenz",
+        "TITLE": "Laborresultate",
+        "TITLE_BUTTON": "Labor",
+        "TITLE_SHORT": "Labor",
+        "NO_RESULTS": "Es gibt aktuell keine Laborwerte. Sie können mit dem Button oben rechts eine Verordnung erstellen."
+    }
+}

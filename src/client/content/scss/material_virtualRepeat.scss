@@ -1,0 +1,8 @@
+.fec-table-header {
+    font-weight: normal;
+    text-transform: uppercase;
+
+    &.sort {
+        color: $fe-blue;
+    }
+}

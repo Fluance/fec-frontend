@@ -1,0 +1,25 @@
+{
+    "patientNavigation": {
+        "GUA_ID": "Guarantor ID",
+        "GUA_LIST": "Guarantors' list",
+        "GUARANTOR": "Guarantor",
+        "GUIDE_GUARANTOR_DETAIL": "Go back to guarantor",
+        "GUIDE_GUARANTOR_LIST": "Go back to guarantors' list",
+        "GUIDE_HOME": "Go back to My Cockpit",
+        "GUIDE_NOTE": "Go back to the note's details",
+        "GUIDE_NOTE_CATEGORY": "Go back to the note category",
+        "GUIDE_PATIENT_DETAIL": "Go back to the patient's details",
+        "GUIDE_PATIENT_LIST": "Go back to patients' list",
+        "GUIDE_VISIT_DETAIL": "Go back to the visit's details",
+        "GUIDE_VISIT_LIST": "Go back to visits' list",
+        "HOME": "My Cockpit",
+        "NAVIGATION": "Navigation",
+        "NO_NOTE": "No note with such criteria",
+        "NO_PATIENT": "No patient with such criteria",
+        "NO_VISIT": "No visit with such criteria",
+        "NO_APPOINTMENT": "No appointment with such criteria",
+        "OWN_GUARANTOR": "Patient as own guarantor",
+        "PATIENT": "Patient",
+        "SEARCH_RESULTS": "Search results"
+    }
+}

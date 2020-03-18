@@ -1,0 +1,36 @@
+<div flex="grow" layout="row" layout-align="start center" layout-margin layout-wrap>
+    <span class="patient-id" flex="11" flex-gt-sm="5">
+        <span ng-transclude="pid"></span>
+    </span>
+
+    <span flex="initial">
+        <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'search.PATIENT' | translate }}</md-tooltip>
+        <fec-icon type="patient" color="fe-blue-icon" size="ms"></fec-icon>
+    </span>
+
+    <div layout="column" flex="25" flex-gt-sm="15">
+        <span layout="row" layout-align="start center" layout-wrap>
+            <span class="uppercase" ng-transclude="lastname"></span>
+        </span>
+        <span layout="row" layout-align="start center" layout-wrap>
+            <span ng-transclude="firstname"></span>
+            <span ng-transclude="sex"></span>
+        </span>
+    </div>
+
+    <span layout="row" layout-align="start center" flex="16" layout-wrap layout-margin>
+        <span>
+            <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'search.BIRTHDATE' | translate }}</md-tooltip>
+            <fec-icon type="birthdate" color="fe-grey-icon" size="sm"></fec-icon>
+        </span>
+        <span ng-transclude="birthdate"></span>
+    </span>
+
+    <span layout="row" layout-align="start center" flex="auto" layout-wrap layout-margin>
+        <span>
+            <md-tooltip layout="row" layout-align="center center" class="info" md-delay="50">{{ 'search.PATIENT_ADDRESS' | translate }}</md-tooltip>
+            <fec-icon type="PatientAddress" color="fe-grey-icon" size="sm"></fec-icon>
+        </span>
+        <span ng-transclude="address"></span>
+    </span>
+</div>

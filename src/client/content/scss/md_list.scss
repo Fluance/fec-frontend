@@ -1,0 +1,42 @@
+md-list {
+    md-list-item > fec-icon:first-child:not(.md-avatar-icon),
+    md-list-item .md-list-item-inner > fec-icon:first-child:not(.md-avatar-icon) {
+        box-sizing: content-box;
+        margin: 14px 32px 14px 0;
+        height: 24px;
+        width: 24px;
+    }
+
+    .md-list-item-select {
+        md-select {
+            margin: 10px 0;
+        }
+
+        md-select .md-select-value,
+        md-select:not([disabled]):focus .md-select-value {
+            border-bottom: none;
+        }
+    }
+    padding: 0px;
+
+    .md-subheader {
+        .md-subheader-inner {
+            background-color: $list-bg-color;
+            padding: 10px 20px;
+            color: $fe-black;
+        }
+    }
+
+    md-list-item {
+        &.cursor-pointer {
+            cursor: pointer;
+        }
+    }
+
+    &.border-top, .border-top {
+        border-top: solid 1px $list-border-color;
+    }
+    &.border-bottom, .border-bottom {
+        border-bottom: solid 1px $list-border-color;
+    }
+}

@@ -1,0 +1,73 @@
+@charset "UTF-8";
+@import "variables";
+@import "fluance_variables";
+@import "fluance_font_faces";
+@import "material_roboto";
+@import "material_typography";
+@import "md_button";
+@import "material_modal";
+@import "material_mixins";
+@import "material_login";
+@import "material_alert";
+@import "material_sidebar";
+@import "material_nav";
+@import "material_admin";
+@import "material_settings";
+@import "material_toast";
+@import "material_cockpit";
+@import "material_patient";
+@import "material_policy";
+@import "material_shell";
+@import "material_form";
+@import "material_imaging";
+@import "material_guarantors";
+@import "material_visit";
+@import "material_icdChop";
+@import "material_invoices";
+@import "material_guidelines";
+@import "material_lab";
+@import "material_expander";
+@import "material_appointment";
+@import "material_accessLogs";
+@import "material_servicefee";
+@import "material_search";
+@import "material_dataPaging";
+@import "material_global";
+@import "material_tab";
+@import "material_tooltip";
+@import "material_checkbox";
+@import "material_chips";
+@import "material_patientNavigation";
+@import "material_color";
+@import "material_handsontable";
+@import "material_virtualRepeat";
+@import "../../app/blocks/fluance_components/introJsSvg";
+@import "../../app/blocks/virtualDatatable/components/virtual-datatable.component";
+@import "../../app/blocks/pdfViewer/components/pdfViewer";
+
+/* ----------------------------------------------------------- Material Design - General styling */
+
+@import "md_dialog";
+@import "md_list";
+
+/* ------------------------------------------------------------------------------- Module styles */
+
+@import "module_blocks";
+@import "module_layout";
+@import "../../app/notes/notes";
+@import "../../app/search/search";
+@import "../../app/servicefee/servicefee";
+@import "../../app/guarantor/guarantor";
+@import "../../app/policy/policy";
+@import "../../app/invoice/invoice";
+@import "../../app/shiftPatientList/shiftPatientList";
+@import "../../app/document/document";
+@import "../../app/whiteboard/whiteboard";
+@import "../../app/whiteboard/icons";
+@import "../../app/whiteboardSurgery/whiteboardSurgery";
+
+/* --------------------------------- Patch styles (to be removed once Materialize CSS is removed */
+
+@import "../../app/dashboard/components/roomList/roomList";
+@import "../../app/dashboard/components/myPatient/myPatient";
+@import "../../app/dashboard/components/whiteboardSurgeryCalendarDashboard/whiteboardSurgeryCalendarDashboard";

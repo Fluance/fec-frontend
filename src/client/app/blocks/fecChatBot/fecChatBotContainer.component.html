@@ -1,0 +1,9 @@
+<div id="fec-chat-bot" ng-if="$ctrl.isBotActivated">
+    <div id="fec-chat-bot-container" class="fec-chat-bot-container" ng-class="{'active': $ctrl.isOpened, 'no-animation': !$ctrl.animation}">
+            <div layout="row" ng-if="$ctrl.isOpened">
+                <span flex></span>
+                <md-button class="md-icon-button md-primary" fec-mobile-click="$ctrl.close()"><fec-icon type="clear"></fec-icon></md-button>
+            </div>
+            <iframe ng-src="{{$ctrl.trustedChatBotUrl}}" frameborder="0" ng-if="$ctrl.isOpened"></iframe>
+    </div>
+</div>

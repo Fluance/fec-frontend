@@ -1,0 +1,10 @@
+<div>
+    <md-select ng-model="$ctrl.selectedFilterId"
+               ng-change="$ctrl.applyFilter($ctrl.selectedFilterId)">
+        <md-option selected value="all">{{ "core.ALL" | translate }}</md-option>
+        <md-option ng-repeat="item in $ctrl.filterList"
+                   value="{{item[$ctrl.filterOptions.idName]}}">
+            <div>{{item[$ctrl.filterOptions.textName]}}</div>
+        </md-option>
+    </md-select>
+</div>

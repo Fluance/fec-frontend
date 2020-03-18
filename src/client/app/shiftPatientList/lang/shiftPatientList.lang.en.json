@@ -1,0 +1,25 @@
+{
+    "shiftPatientList": {
+        "ADMISSION_DATE": "Admission date",
+        "ADMISSION_STATUS_ALL": "All Patients",
+        "ADMISSION_STATUS_PREADMITTED": "Pre-admitted Patients",
+        "ADMISSION_STATUS_PRESENT": "Present Patients",
+        "ADMISSION_STATUS": "Filter",
+        "ALL_NOTES": "All notes",
+        "DIAGNOSIS": "Diagnosis",
+        "EXPECTED_DISCHARGE_DATE": "Expected discharge date",
+        "FILLED_ONLY": "Notes completed",
+        "FILLED_STATUS": "Notes' status",
+        "FINANCIAL_CLASS": "Patient class",
+        "FOOD": "Food",
+        "MOBILITY": "Mobility",
+        "NO_PATIENTS": "No Patients",
+        "NOT_FILLED_ONLY": "Incompleted notes",
+        "OPERATION": "Operation",
+        "PATIENT_OF_LIST": " of {PATIENT, plural, =0{0 Patients} one{1 Patient} other{# Patients}}",
+        "PATIENTS_LIST": "Patients' List",
+        "POST_OPERATION_DAYS": "p.o. Days",
+        "REA": "REA (Y/N)",
+        "SHIFT_LEADER": "Shift leader"
+    }
+}

@@ -1,0 +1,22 @@
+<div layout-padding>
+    <div id="appointment-detail">
+        <!-- NO APPOINTMENT FOUND -->
+        <md-card class="error" ng-show="!vm.isEmpty && vm.isCrashed">
+            <md-card-content>
+                {{'appointment.ERROR_LOAD_APPOINTMENT_DETAIL' | translate }}
+            </md-card-content>
+        </md-card>
+        <md-card class="warn" ng-show="vm.isEmpty && !vm.isCrashed">
+            <md-card-content>
+                {{'appointment.NO_APPOINTMENT' | translate }}
+            </md-card-content>
+        </md-card>
+        <!-- APPOINTMENT AREA -->
+        <div layout="column" ng-hide="vm.isEmpty || vm.isCrashed">
+            <div flex="auto">
+                <h5>{{ 'appointment.TITLE' | translate }} </h5>
+            </div>
+            <fluance-appointment aid="vm.aid" result="vm.result" tutorial-step="appointment"></fluance-appointment>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<md-card css-ie id="fec-lab-card">
+    <md-card-content id="labDataTable" style="padding: 0px">
+        <hot-table class="stripedHorizontal" columns="$ctrl.hotTable.columnsHorizontal" datarows="$ctrl.hotTable.data" hide-xs hide-sm
+            hide-md fixed-rows-top="1" fixed-columns-left="4" flex="grow" read-only settings="$ctrl.hotTable.settings">
+        </hot-table>
+        <hot-table class="stripedVertical" datarows="$ctrl.hotTable.dataReverse" fixed-rows-top="4" fixed-columns-left="1" flex="grow"
+            hide-gt-md read-only settings="$ctrl.hotTable.settings">
+        </hot-table>
+    </md-card-content>
+</md-card>

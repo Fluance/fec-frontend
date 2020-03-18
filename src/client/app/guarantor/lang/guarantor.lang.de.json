@@ -1,0 +1,19 @@
+{
+    "guarantor": {
+        "GUA_BEGINDATE": "Gültig von",
+        "GUA_CODE": "Code",
+        "GUA_COMPLEMENT": "Zusatzinfo",
+        "GUA_DETAILS": "Garantendetail",
+        "GUA_ENDDATE": "bis",
+        "GUA_OCCASIONAL": "Gelegentlich",
+        "GUA_VALIDITY": "Gültigkeit",
+        "GUIDE_CONTACT_US": "Kontaktieren Sie uns",
+        "GUIDE_GUARANTOR_RESULT": "Garanten des Patienten",
+        "GUIDE_GUARANTORS_INVOICES": "Rechnungen, welche dieser Garant beglichen hat",
+        "NB_OF_GUARANTOR": "{GUARANTOR, plural, =0{0 Garanten} one{1 Garant} other{# Garanten}}",
+        "NO_GUARANTOR": "Keine Garanten für diesen Fall",
+        "OWN_GUARANTOR": "Selbstzahler",
+        "TITLE": "Garant",
+        "TITLE_LIST": "Garanten"
+    }
+}

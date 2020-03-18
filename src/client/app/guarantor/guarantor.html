@@ -1,0 +1,22 @@
+<div id="guarantorContainer" layout="column">
+    <div class="fec-page-title" flex="initial">
+        <h5>{{ 'guarantor.TITLE' | translate }}</h5>
+    </div>
+    <md-card ng-show="vm.isEmpty" class="warn" flex="auto">
+        <md-card-content>
+            {{ 'guarantor.NO_GUARANTOR' | translate }}
+        </md-card-content>
+    </md-card>
+    <div class="search-result" flex="auto" id="btn-guarantors-result" infinite-scroll="vm.loadMore()" infinite-scroll-disabled="vm.isLoadingMore || vm.singleResultSearch || vm.isComplete" infinite-scroll-distance="0">
+        <md-list class="collapsible popout" data-collapsible="accordion" >
+            <fluance-guarantor result="vm.result"></fluance-guarantor>
+            <md-list-item layout="row" class="own-guarantor" ui-sref="invoiceListByGuarantor({ pid: vm.pid, vnb: vm.vnb, guarantorid: '-' })">
+                <div id="guarantor-0" layout="row" flex="grow">
+                    <p class="guarantor-name">
+                        {{ 'guarantor.OWN_GUARANTOR' | translate }}
+                    </p>
+                </div>
+            </md-list-item>
+        </md-list>
+    </div>
+</div>

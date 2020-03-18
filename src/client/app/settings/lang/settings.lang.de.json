@@ -1,0 +1,21 @@
+{
+    "settings": {
+        "ACCOUNT": "Benutzerkonto",
+        "CACHING": "Caching vorübergehend deaktivieren",
+        "CHOOSE_PROVIDER": "Wählen Sie Ihren Authentifizierungsdienst",
+        "CLEAR_DASHBOARD_LAYOUT": "Layout des eHealth Cockpit Dashboards zurücksetzen",
+        "CLEAR_DASHBOARD_LAYOUT_MSG_SUCCESS": "Das Layout des eHealth Cockpit wurde erfolgreich zurückgesetzt",
+        "CLEAR_TUTORIALS": "Alle Tutorials als ungelesen markieren",
+        "CLEAR_TUTORIALS_MSG": "Melden Sie sich ab und wieder an um die ungelesenen Tutorials hervorzuheben.",
+        "CLEAR_TUTORIALS_MSG_SUCCESS": "Die Tutorials sind erfolgreich als ungelesen markiert worden",
+        "CONTACTS": "Kontakte",
+        "LOGIN": "Anmelden",
+        "LOGIN_ERROR": "Benutzername oder Kennwort fehlerhaft",
+        "LOGOUT": "Abmelden",
+        "ROLES": "Rollen",
+        "SERVICE_DISCOVERY": "Anmelden",
+        "SETTINGS": "Einstellungen",
+        "USER": "Benutzer",
+        "USER_DATA": "Benutzerinformation"
+    }
+}

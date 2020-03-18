@@ -1,0 +1,12 @@
+<div class="fec-page-title" hide-xs>
+    <h5>
+        <fec-icon type="noteNavigation" size="sm" color="fe-blue-icon"></fec-icon>
+        {{ 'notes.NOTES_AND_PICTURES' | translate }}
+    </h5>
+</div>
+<div id="note">
+    <fec-note category-id="vm.categoryId" patient-id="vm.patientId" visit-nb="vm.visitNb" note-id="vm.noteId"
+              category-id="vm.categoryId" is-shift-note="vm.isShiftNote"
+              mode="{{vm.mode}}" on-close="vm.onClose">
+    </fec-note>
+</div>

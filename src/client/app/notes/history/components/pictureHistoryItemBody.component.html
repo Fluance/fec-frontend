@@ -1,0 +1,31 @@
+<div layout="column" ng-if="$ctrl.historyItem.details && !$ctrl.historyItem.isLoadingDetails">
+
+    <fec-note-image-thumbnail flex="auto" picture="$ctrl.historyItem.details"
+                              show-details="false"></fec-note-image-thumbnail>
+    <span ng-if="!$ctrl.historyItem.details.deleted">
+        <span layout="column"
+              ng-if="$ctrl.historyItem.details.previousValues.annotation || ($ctrl.historyItem.details.isFirstItem && $ctrl.historyItem.details.annotation)">
+            <label ng-if="!$ctrl.historyItem.details.isFirstItem">{{'notes.CHANGE_ANNOTATION' | translate}}</label>
+            <label ng-if="$ctrl.historyItem.details.isFirstItem">{{'notes.ANNOTATION' | translate}}</label>
+            <span layout="row" flex="grow" layout-padding>
+                <span class="textOverflow" flex="50" ng-if="!$ctrl.historyItem.details.isFirstItem">{{$ctrl.historyItem.details.previousValues.annotation}}</span>
+                <span class="textOverflow" flex="50">{{$ctrl.historyItem.details.annotation}}</span>
+            </span>
+        </span>
+
+        <span layout="column" ng-if="$ctrl.historyItem.details.order">
+            <label ng-if="!$ctrl.historyItem.details.isFirstItem">{{'notes.CHANGE_ORDER' | translate}}</label>
+            <label ng-if="$ctrl.historyItem.details.isFirstItem">{{'notes.ORDER' | translate}}</label>
+            <span layout="row" flex="grow" layout-padding>
+                <span flex="50">{{$ctrl.historyItem.details.previousValues.order}}</span>
+                <span flex="50">{{$ctrl.historyItem.details.order}}</span>
+            </span>
+        </span>
+
+        <span ng-if="!$ctrl.historyItem.details.order">
+            <label>{{'notes.PICTURE_NEW' | translate}}</label>
+        </span>
+    </span>
+</div>
+
+<span class="deleted-note-marker" ng-if="$ctrl.historyItem.details.deleted">{{'notes.DELETE_MARKER' | translate}}</span>

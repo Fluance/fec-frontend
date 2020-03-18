@@ -1,0 +1,52 @@
+<md-dialog class="fec-document-select-template-dialog">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{ 'document.TITLE_GENERATE_DOCUMENT' | translate }}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" fec-mobile-click="$ctrl.closeDialog()">
+                <fec-icon type="clear"></fec-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div ng-form="$ctrl.documentForm" layout="column">
+
+            <span class="clinic-name"><span translate="document.CLINIC"></span>: {{$ctrl.company.name}}</span>
+
+            <md-input-container class="input-container" input-field>
+                <div flex="grow">
+                    <label>{{'document.TEMPLATE' | translate}}</label>
+                    <md-select required name="template" ng-model="$ctrl.templateId">
+                        <md-option ng-value="template.templateId" ng-repeat="template in $ctrl.templates">
+                            {{template.templateName}}
+                        </md-option>
+                    </md-select>
+                    <div ng-messages="$ctrl.documentForm.template.$error">
+                        <div ng-message="required">{{'document.TEMPLATE_REQUIRED' | translate}}</div>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="input-container" input-field>
+                <div flex="grow">
+                    <label>{{'document.VISIT' | translate}}</label>
+                    <md-select required name="visit" ng-model="$ctrl.visitNb">
+                        <md-option class="fec-multiline" ng-value="visit.visit.visitInfo.number" ng-repeat="visit in $ctrl.visits">
+                            <div class="color-blue">{{ ::visit.visit.visitInfo.number }}</div>
+                            <content-item-detail label="{{'document.ADMISSION_DATE' | translate}}" content="{{ ::visit.visit.visitInfo.admitDate | formatDate : 'date' }} "></content-item-detail>
+                            <content-item-detail label="{{'document.CLINIC' | translate}}" content="{{ ::visit.company.code }}"></content-item-detail>
+                        </md-option>
+                    </md-select>
+                    <div ng-messages="$ctrl.documentForm.visit.$error">
+                        <div ng-message="required">{{'document.VISIT_REQUIRED' | translate}}</div>
+                    </div>
+                </div>
+            </md-input-container>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+    <div layout="row" layout-align="start">
+        <md-button class="md-primary" fec-mobile-click="$ctrl.closeDialog()">{{'core.CANCEL' | translate}}</md-button>
+        <md-button ng-disabled="!$ctrl.documentForm.$valid || ($ctrl.documentForm.$valid && !$ctrl.documentForm.$dirty)" class="md-primary" fec-mobile-click="$ctrl.showDocument()">{{'core.OK' | translate}}</md-button>
+    </div>
+</md-dialog-actions>
+</md-dialog>

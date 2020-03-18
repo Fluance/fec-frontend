@@ -1,0 +1,12 @@
+<expander is-expanded="$ctrl.historyItem.isExpanded" is-expanded-changed="$ctrl.displayDetails()">
+    <expander-header class="history-expander-header">
+        <fec-note-history-header history-item="$ctrl.historyItem"></fec-note-history-header>
+    </expander-header>
+    <expander-body>
+        <md-progress-circular md-mode="indeterminate" ng-if="$ctrl.historyItem.isLoadingDetails"></md-progress-circular>
+        <fec-note-history-item-body note="$ctrl.historyItem.details" hide-pictures="true"
+                                    ng-if="!$ctrl.historyItem.isLoadingDetails && !$ctrl.historyItem.details.deleted"
+        ></fec-note-history-item-body>
+        <span class="deleted-note-marker" ng-if="$ctrl.historyItem.details.deleted">{{'notes.DELETE_MARKER' | translate}}</span>
+    </expander-body>
+</expander>

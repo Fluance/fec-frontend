@@ -1,0 +1,19 @@
+<div layout="row" class="fec-meteo-container">
+    <fec-meteo-icon
+        ng-if="!$ctrl.data"
+        meteo-icon="n/a"
+        meteo-icon-size="22px"
+    ></fec-meteo-icon>
+    <div ng-if="$ctrl.data" ng-click="$ctrl.showMeteoDialog($event); $event.stopPropagation();" layout="row">
+        <fec-meteo-icon
+            meteo-icon-color="#3399FF"
+            meteo-icon="{{ $ctrl.data.description }}"
+        ></fec-meteo-icon>
+        <div>{{ $ctrl.data.temperature }}</div>
+        <fec-meteo-icon
+            ng-if="$ctrl.data.temperature"
+            meteo-icon-color="#3399FF"
+            meteo-icon="celsius"
+        ></fec-meteo-icon>
+    </div>
+</div>

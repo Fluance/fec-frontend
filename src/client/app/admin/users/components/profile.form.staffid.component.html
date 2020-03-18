@@ -1,0 +1,4 @@
+<md-input-container ng-repeat="provider in $ctrl.model.staffInfos">
+    <label>{{provider.providerName}}</label>
+    <input fec-input type="text" ng-model="provider.staffId" ng-disabled="$ctrl.mode === 'read'"></input>
+</md-input-container>

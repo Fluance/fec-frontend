@@ -1,0 +1,18 @@
+<div ng-if="$ctrl.isActive" fec-mobile-click="$ctrl.onNavigateTo()">
+    <span class="progressBar">
+        <md-progress-linear md-mode="indeterminate" ng-show="$ctrl.isBusy"></md-progress-linear>
+    </span>
+    <div ng-transclude="navigationComponent">
+        <md-button class="md-primary fecPatientNavigationButton"
+                   ng-disabled="!$ctrl.canNavigateResult || $ctrl.isBusy" layout="row" layout-align=" center">
+            <span flex="grow" layout="row" layout-align="start center">
+                <fec-icon ng-if="$ctrl.iconType" type="{{$ctrl.iconType}}" size="sm" layout="row"
+                          layout-align="start center"></fec-icon>
+            </span>
+            <span flex="initial">
+                {{ $ctrl.buttonLabel }}
+            </span>
+            <span flex="grow"></span>
+        </md-button>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+#invoicesDialog {
+    @media (min-width: 950px) {
+        min-width: 950px;
+        min-height: 400px;
+    }
+
+    md-dialog-content {
+        > div {
+            padding: 0;
+            position: relative;
+
+            .closeButton {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                padding: 0px;
+            }
+        }
+    }
+}
+
+#invoicesContent {
+    .titleInvoices {
+        height: 58px;
+    }
+
+    .headInvoices {
+        font-weight: bold;
+        border-bottom: solid 1px $list-border-color;
+        padding: 8px;
+        min-height: 43px;
+
+        span {
+            outline: none;
+            cursor: pointer;
+            &.ellipsis {
+                white-space: nowrap;
+                overflow: hidden;
+                padding-right: 2px;
+                span {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+    }
+
+    md-list {
+        min-height: 200px;
+
+        &.striped {
+            md-list-item:nth-child(odd) {
+                background-color: $table-striped-color !important;
+                div {
+                    background-color: $table-striped-color;
+                }
+            }
+        }
+
+        //md-list in a md-dialog add an estrange behavior, this prevent hover effect add this class is mandatory
+        //but avoid the colours modification it's need to override it
+        .active {
+            background: inherit;
+            color: inherit;
+        }
+
+        md-list-item {
+            padding-left: 8px;
+            padding-right: 8px;
+
+            border-bottom: solid 1px $list-border-color;
+            cursor: default;
+        }
+
+        md-list-item:before {
+            border-bottom: solid 1px $list-border-color;
+        }
+    }
+}
+

@@ -1,0 +1,34 @@
+<expander is-expanded="vm.item.isExpanded" is-expanded-changed="vm.displayDetails()">
+    <expander-header>
+        <div layout="row" layout-align="start center">
+            <h6 flex>
+                <span class="bold-title">{{::vm.item.imagingOrder.date | formatMoment : 'YYYY.MM.DD'}}</span>
+                <span>{{::vm.item.imagingOrder.orderObservation}}</span>
+            </h6>
+            <md-button class="md-primary" ng-disabled="!(vm.item.imagingOrder.report)" ng-click="vm.showReport(); $event.stopPropagation();">
+                <fec-icon layout="row" layout-align="center center" type="{{vm.item.imagingOrder.report.history.length > 0 ? 'reportCollection' : 'report'}}"
+                    size="sm"></fec-icon>
+            </md-button>
+            <md-button css-ie class="md-primary" ng-disabled="(vm.item.imagingOrder.images.length === 0)" ng-href="{{vm.showImageSetURL()}}"
+                target="_blank">
+                <fec-icon layout="row" layout-align="center center" type="go" size="sm"></fec-icon>
+            </md-button>
+        </div>
+    </expander-header>
+    <expander-body ng-if="vm.item.imagingOrder.images.length > 0">
+        <div>
+            <h5>
+                <small>Series</small>
+            </h5>
+        </div>
+        <div class="fec-imaging-set" layout="row" layout-wrap layout-padding>
+            <div flex="50" flex-sm="33" flex-gt-sm="25" ng-repeat="image in vm.item.imagingOrder.images">
+                {{ ::image.serieObs }}
+                <br>
+                <small class="warning_text">{{ ::image.dsDescription }}</small>
+                <br>
+                <small class="warning_text">{{ ::image.serieObsDate | formatDate : 'dateTime' }}</small>
+            </div>
+        </div>
+    </expander-body>
+</expander>

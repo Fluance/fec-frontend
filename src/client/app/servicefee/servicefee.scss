@@ -1,0 +1,81 @@
+.service-fee-detail-dialog{
+    width: 550px;
+
+    md-dialog-content {
+        width: 100%;
+
+        .head-date{
+            padding-right: 15px;
+        }
+
+        .title{
+            padding-bottom: 0px;
+            padding-top: 0px;
+            color: $button-label-disabled;
+        }
+
+        .desc {
+            font-weight: 400;
+        }
+
+        .servicefee-physicians-table {
+            thead tr{
+                color: $button-label-disabled;
+                border-bottom: 2px solid $button-label-disabled;
+
+                th{
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                }
+            }
+
+            tbody tr{
+                line-height: 18px;
+                border-bottom: 1px solid $list-border-color;
+
+                .physicians-desc {
+                    color: $button-label-disabled;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}
+service-fee-list{
+    .md-virtual-repeat-parent{
+        .header{
+            padding-right: 16px;
+            color: $button-label-disabled;
+            border-bottom: 2px solid $button-label-disabled;
+        }
+
+        .table-headers-cell{
+            font-weight: normal;
+        }
+
+        md-virtual-repeat-container {
+            .row{
+                min-height: 52px;
+                border-bottom: 1px solid $list-border-color;
+            }
+        }
+    }
+}
+
+
+fec-servicefees{
+
+    .title{
+        padding-top: 30px;
+        padding-bottom: 10px;
+        font-weight: 700;
+
+        .flex-initial{
+            padding-right: 20px;
+        }
+    }
+
+    table.table-details td {
+        height: 52px;
+    }
+}

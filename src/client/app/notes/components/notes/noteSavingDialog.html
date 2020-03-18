@@ -1,0 +1,32 @@
+<div id="note-saving-dialog" layout="column" layout-sm="column" layout-align="center center">
+    <div ng-if="vm.model.isSaving" flex layout="column" layout-align="center center">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        <div>{{'notes.CHECKLIST_IS_SAVING_MSG' | translate}}</div>
+    </div>
+    <div ng-if="!vm.model.isSaving && vm.model.showCheckList">
+        <div layout layout-align="center center">
+            <h5>{{'notes.CHECKLIST_TITLE_ON_ERROR' | translate}}</h5>
+        </div>
+        <div ng-repeat="item in vm.model.checklist" flex layout="column">
+            <div layout>
+                <!-- ok, fail icon -->
+                <div flex="20">
+                    <div layout="column" layout-align="start center">
+                        <fec-icon ng-if="item.checked" type="done" size="sm" class="md-primary"></fec-icon>
+                        <fec-icon ng-if="!item.checked" type="clear" size="sm" class="md-warn"></fec-icon>
+                    </div>
+                </div>
+                <!-- item information -->
+                <div flex="80">
+                    <div layout layout-align="start start">
+                        <fec-note-saving-item flex="100" item="item"></fec-note-saving-item>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div layout="row" layout-align="start">
+            <md-button class="md-primary" fec-mobile-click="vm.close()">{{'core.CANCEL' | translate}}</md-button>
+            <md-button class="md-primary" fec-mobile-click="vm.tryAgain()">{{'notes.CHECKLIST_TRY_AGAIN_BUTTON' | translate}}</md-button>
+        </div>
+    </div>
+</div>

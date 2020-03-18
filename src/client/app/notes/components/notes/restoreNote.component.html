@@ -1,0 +1,34 @@
+<div flex="auto" layout="column" layout-gt-sm="row" layout-padding layout-wrap>
+
+    <div flex="auto" flex-gt-sm="30" layout="row" layout-align="start center">
+        <span class="noteTitle">{{$ctrl.note.title}}</span>
+    </div>
+
+    <div flex="auto" flex-gt-sm="30" layout="column" layout-align="start stretch" layout-padding>
+        <content-item-detail label="{{'notes.CREATION_DATE' | translate}}"
+                             content="{{$ctrl.note.referenceDate | formatDate: 'date'}}"
+                             flex="grow"></content-item-detail>
+        <content-item-detail label="{{'notes.DELETION_DATE' | translate}}"
+                             content="{{$ctrl.note.editedDate | formatDate: 'date'}}" flex="grow"></content-item-detail>
+    </div>
+
+    <div flex="auto" flex-gt-sm="30" layout="column" layout-align="start stretch" layout-padding>
+        <content-item-detail label="{{'notes.NOTE_CATEGORY' | translate}}" content="{{$ctrl.note.category.name}}"
+                             flex="grow"></content-item-detail>
+        <content-item-detail label="{{'notes.TABLE_HEAD_EDITOR' | translate}}"
+                             content="{{$ctrl.note.editor.lastName + ' ' + $ctrl.note.editor.firstName}}"
+                             flex="grow"></content-item-detail>
+    </div>
+
+    <div flex="auto" flex-gt-sm="10" layout="row" layout-align-gt-sm="end center" layout-align="start center">
+        <span>
+            <md-tooltip layout="row" layout-align="center center" class="info" md-direction="bottom"
+                        md-delay="25">{{'notes.RESTORE' | translate}}
+            </md-tooltip>
+            <fec-icon type="restore" size="36" color="fe-blue-icon"
+                      ng-click="$ctrl.restoreNote({noteId: $ctrl.note.id, event: $event})">
+            </fec-icon>
+        </span>
+    </div>
+
+</div>

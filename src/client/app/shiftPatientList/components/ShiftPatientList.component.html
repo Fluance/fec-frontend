@@ -1,0 +1,132 @@
+<md-dialog-content>
+    <div id="patient-list-dialog" class="md-dialog-content">
+        <div layout="row" layout-align=" center">
+            <div class="shift-date">{{vm.shiftLeader.listDate | formatDate : 'date'}}</div>
+        </div>
+        <div layout="column">
+            <md-input-container class="input-container" flex="auto">
+                <label>{{'shiftPatientList.SHIFT_LEADER' | translate }}</label>
+                <input ng-blur="vm.changeShiftLeader()" ng-model="vm.shiftLeader.shiftLeader" type="text">
+            </md-input-container>
+        </div>
+        <div layout="column" layout-gt-sm="row" layout-align=" center">
+            <div>
+                <fec-select-filter flex="auto" filter-id="admission-state" filter-model="vm.admissionState" filter-options="vm.admissionOptions" filter-label="{{'shiftPatientList.ADMISSION_STATUS' | translate }}" filter-apply="vm.filterAdmissiondate"></fec-select-filter>
+            </div>
+            <div>
+                <fec-select-filter flex="auto" filter-id="empty-state" filter-model="vm.emptyState" filter-options="vm.emptyOptions" filter-label="{{'shiftPatientList.FILLED_STATUS' | translate }}" filter-apply="vm.filterEmptyfields"></fec-select-filter>
+            </div>
+        </div>
+        <div layout="row" ng-if="!vm.isLoading && vm.patients.length > 0" layout-align=" center">
+            <div>{{vm.currentPosition + 1}}{{ 'shiftPatientList.PATIENT_OF_LIST' | translate :{PATIENT : vm.patients.length} }}</div>
+        </div>
+        <md-divider></md-divider>
+        <div ng-if="!vm.isLoading && vm.patients.length">
+            <div layout="column">
+                <div flex="auto">
+                    <div layout="column" layout-gt-sm="row" layout-margin>
+                        <div flex="auto" flex-gt-sm="10">
+                            <fec-dashboard-room-number room="vm.currentPatient.patientRoom" bed="vm.currentPatient.patientBed"></fec-dashboard-room-number>
+                        </div>
+                        <div flex="auto" flex-gt-sm="90">
+                            <div class="patient-name">
+                                {{vm.currentPatient.firstName}} {{vm.currentPatient.lastName}}
+                                <fec-gender-icon gender="{{::vm.currentPatient.sex}}"></fec-gender-icon>
+                            </div>
+                            <div class="patient-birthdate">
+                                <fec-icon type="birthdate"></fec-icon>{{vm.currentPatient.birthDate | formatDate : 'date'}}
+                            </div>
+                            <div class="patient-physician">
+                                <fec-icon type="person"></fec-icon>
+                                {{vm.currentPatient.physicianPrefix}} {{vm.currentPatient.physicianFirstName}} {{vm.currentPatient.physicianLastName}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <md-divider></md-divider>
+            <div layout="column">
+                <div flex="auto">
+                    <div layout="column" layout-gt-sm="row" layout-margin>
+                        <div flex="auto" flex-gt-sm="50" ng-repeat="diagnosis in vm.currentPatient.diagnosis | orderBy : 'rank'">
+                            <content-item flex label="{{$index+1}}. {{'shiftPatientList.DIAGNOSIS' | translate }}" content="{{diagnosis.data}} {{diagnosis.description}}"></content-item>
+                        </div>
+                    </div>
+                </div>
+                <div flex="auto">
+                    <div layout="column" layout-gt-sm="row" layout-margin>
+                        <div flex="auto" flex-gt-sm="50" ng-repeat="operation in vm.currentPatient.operations | orderBy : 'rank'">
+                            <content-item flex label="{{$index+1}}. {{'shiftPatientList.OPERATION' | translate }}" content="{{operation.data}} {{operation.description}}"></content-item>
+                        </div>
+                    </div>
+                </div>
+                <div flex="auto">
+                    <div layout="column" layout-gt-sm="row" layout-margin>
+                        <div flex-gt-sm="33" flex="auto">
+                            <content-item flex content-on-second-line="true" label="{{'shiftPatientList.ADMISSION_DATE' | translate }}" content="{{vm.currentPatient.admissionDate | formatDate : 'dateTime'}}"></content-item>
+                        </div>
+                        <div flex-gt-sm="33" flex="auto">
+                            <content-item flex content-on-second-line="true" label="{{'shiftPatientList.POST_OPERATION_DAYS' | translate }}" content="{{vm.currentPatient.postOperationDays}}"></content-item>
+                        </div>
+                        <div flex-gt-sm="33" flex="auto">
+                            <content-item flex content-on-second-line="true" label="{{'shiftPatientList.EXPECTED_DISCHARGE_DATE' | translate }}" content="{{vm.currentPatient.dischargeDate | formatDate : 'dateTime'}}"></content-item>
+                        </div>
+                    </div>
+                </div>
+                <div flex="auto">
+                    <div layout="column" layout-gt-sm="row" layout-margin>
+                        <div flex-gt-sm="50" flex="auto">
+                            <content-item flex label="{{'shiftPatientList.REA' | translate }}" content="{{vm.currentPatient.rea}}"></content-item>
+                        </div>
+                        <div flex-gt-sm="50" flex="auto">
+                            <content-item flex label="{{'shiftPatientList.FINANCIAL_CLASS' | translate }}" content="{{vm.currentPatient.financialClass}}"></content-item>
+                        </div>
+                    </div>
+                </div>
+                <div flex="auto">
+                    <div layout="column" layout-gt-sm="row" layout-margin>
+                        <div flex-gt-sm="50" flex="auto">
+                            <div layout="column">
+                                <md-input-container class="input-container" flex="auto" input-field>
+                                    <label>{{'shiftPatientList.FOOD' | translate }}</label>
+                                    <md-select ng-model="vm.currentPatient.food" ng-change="vm.changeSelection()" ng-model-options='{trackBy: "$value"}'>
+                                        <md-option ng-value="option.id" ng-repeat="option in vm.foodOptions">{{option.name}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div flex-gt-sm="50" flex="auto">
+                            <div layout="column">
+                                <md-input-container class="input-container" flex="auto" input-field>
+                                    <label>{{'shiftPatientList.MOBILITY' | translate }}</label>
+                                    <md-select ng-model="vm.currentPatient.mobility" ng-change="vm.changeSelection()" ng-model-options='{trackBy: "$value"}'>
+                                        <md-option ng-value="option.id" ng-repeat="option in vm.mobilityOptions">{{option.name}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <md-progress-linear md-mode="indeterminate" ng-if="vm.isLoading"></md-progress-linear>
+        <div ng-if="!vm.isLoading && !vm.patients.length">
+            <md-card class="warn">
+                <md-card-content>
+                    {{'shiftPatientList.NO_PATIENTS' | translate }}
+                </md-card-content>
+            </md-card>
+        </div>
+    </div>
+</md-dialog-content>
+<md-dialog-actions ng-if="!vm.isLoading">
+    <div layout="row" layout-align="center end">
+        <fec-shift-patient-list-print-button company-id="vm.companyId" unit="vm.unit"></fec-shift-patient-list-print-button>
+        <md-button class="md-fab md-primary md-mini" ng-if="vm.patients.length > 1" fec-mobile-click="vm.loadPrev()">
+            <fec-icon type="previous" size="sm"></fec-icon>
+        </md-button>
+        <md-button class="md-fab md-primary md-mini" ng-if="vm.patients.length > 1" fec-mobile-click="vm.loadNext()">
+            <fec-icon type="next" size="sm"></fec-icon>
+        </md-button>
+    </div>
+</md-dialog-actions>

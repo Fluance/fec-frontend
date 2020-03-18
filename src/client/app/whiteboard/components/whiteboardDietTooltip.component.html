@@ -1,0 +1,19 @@
+<span ng-if="!$ctrl.isEmpty()" class="not-empty">
+    <md-button class="md-icon-button md-no-focus" md-ink-ripple="false">
+
+        <md-tooltip class="fec-whiteboard-diet-multiline" md-direction="left" md-visible="$ctrl.showingDiet">
+            <div>
+                <div ng-if="$ctrl.isEmpty()">-</div>
+                <div ng-repeat="diet in $ctrl.dietValues"><span>{{diet.category}} </span>{{diet.codeDesc}}</div>
+            </div>
+        </md-tooltip>
+
+        <fec-icon class="whiteboard-diet-button" type="info_filled" size="xs" color="fe-blue-icon"
+                  ng-if="$ctrl.showingDiet"></fec-icon>
+        <fec-icon class="whiteboard-diet-button" type="info" size="xs" color="fe-blue-icon"
+                  ng-if="!$ctrl.showingDiet"></fec-icon>
+    </md-button>
+</span>
+<span ng-if="$ctrl.isEmpty()" class="empty">
+    <span>-</span>
+</span>

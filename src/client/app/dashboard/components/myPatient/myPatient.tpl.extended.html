@@ -1,0 +1,127 @@
+<div class="my-patient extended" ng-controller="myPatientController as vm">
+    <md-card ng-class="{'warn': scope.warning, 'error': scope.error}" layout="column">
+        <md-card-title flex="none" layout="row">
+            <div hide-gt-xs>
+                <md-button ng-disabled="!scope.hasData() || scope.error"
+                           class="md-primary right button-mobile-close-expand" fec-mobile-click="closeExtended()">
+                    <fec-icon type="back" size="md"></fec-icon>
+                </md-button>
+            </div>
+            <md-card-title-text flex="grow"> {{'dashboard.MY_PATIENTS_LARGE_TITLE' | translate}}</md-card-title-text>
+            <div hide-xs flex="noshrink">
+                <md-button class="md-fab md-mini md-primary right" fec-mobile-click="closeExtended()">
+                    <md-tooltip md-direction="top">{{'core.NOT_EXPAND' | translate}}</md-tooltip>
+                    <fec-icon type="notExpanded" size="sm"></fec-icon>
+                </md-button>
+            </div>
+        </md-card-title>
+
+        <md-divider flex="none"></md-divider>
+
+        <md-card-content flex="initial" layout="column" ng-hide="scope.error || scope.warning">
+
+            <!-- header -->
+            <div flex="initial" layout="row" class="my-patient-header" ng-class="{'has-scroll':scope.hasScroll()}">
+                <div flex="50" layout="column">
+                    <md-list flex="auto">
+                        <md-subheader class="border-top border-bottom">
+                            <h5>{{'dashboard.TODAY' | translate}}
+                                <small ng-hide="scope.totalPatients === undefined">({{ scope.totalPatients }})</small>
+                            </h5>
+                        </md-subheader>
+                    </md-list>
+                </div>
+
+                <div layout-padding></div>
+
+                <div flex="50">
+                    <md-list flex="auto">
+                        <md-subheader class="border-top border-bottom">
+                            <h5>{{'dashboard.THIS_WEEK' | translate}}
+                                <small ng-hide="scope.totalPatientsWeek === undefined">({{ scope.totalPatientsWeek }})
+                                </small>
+                            </h5>
+                        </md-subheader>
+                    </md-list>
+                </div>
+            </div>
+
+            <!--Body with scroll-->
+            <div flex="initial" layout="row" layout-align="start start" class="my-patient-scroll-wrap">
+
+                <div flex="100"
+                     layout="row"
+                     layout-align="start start"
+                     class="my-patient-scroll">
+
+                    <div id="myPatientsToday" flex="50">
+                        <md-list
+                            infinite-scroll="scope.loadDataDay()"
+                            infinite-scroll-distance="0"
+                            infinite-scroll-container="'.my-patient-scroll'"
+                            infinite-scroll-disabled="scope.spinDay || !scope.hasMoreDataDay()"
+                            flex="auto">
+                            <md-list-item class="border-bottom" ng-repeat="patients in scope.patients">
+                                <my-cockpit-single-patient patients="patients" icon="data.icon" boxid="patient"
+                                                           is-last="$last"></my-cockpit-single-patient>
+                            </md-list-item>
+                            <div class="empty_item" ng-hide="scope.hasDataDay()">
+                                <p>{{'dashboard.NO_PATIENTS' | translate}}</p>
+                            </div>
+                            <md-divider ng-hide="scope.hasDataDay()"></md-divider>
+                        </md-list>
+                    </div>
+
+                    <div layout-padding></div>
+
+                    <div flex="50" id="myPatientsThisWeek">
+                        <md-list
+                            infinite-scroll="scope.loadDataWeek()"
+                            infinite-scroll-distance="0"
+                            infinite-scroll-container="'.my-patient-scroll'"
+                            infinite-scroll-disabled="scope.spinWeek || !scope.hasMoreDataWeek()"
+                            flex="auto">
+                            <md-list-item class="border-bottom" ng-repeat="patients in scope.patientsWeek">
+                                <my-cockpit-single-patient patients="patients" icon="data.icon" boxid="patient"
+                                                           is-last="$last"></my-cockpit-single-patient>
+                            </md-list-item>
+                            <div class="empty_item" ng-hide="scope.hasDataWeek()">
+                                <p>{{'dashboard.NO_PATIENTS' | translate}}</p>
+                            </div>
+                            <md-divider ng-hide="scope.hasDataWeek()"></md-divider>
+                        </md-list>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Progress -->
+            <div class="fec-busy-indicator" ng-if="scope.spinDay || scope.spinWeek">
+                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
+
+        </md-card-content>
+        <md-card-content class="card-content-info" flex="none" layout="row" layout-align="start center"
+                         ng-if="!scope.spinDay && !scope.spinWeek && (scope.error || scope.warning)">
+            <!-- Warning/Error Content -->
+            <p class="warn-message" ng-show="scope.warning">{{ scope.warning.message | translate }}{{ '.' |
+                translate}}</p>
+            <p class="error-message" ng-show="scope.error">{{ scope.error.message | translate }}{{ '.' | translate}}</p>
+        </md-card-content>
+        <md-card-actions flex="none" layout="row" layout-align="end center"
+                         ng-if="scope.error || scope.warning.tryagain">
+            <!-- Warning/Error Actions -->
+            <md-button class="md-raised md-primary" ng-show="scope.warning.tryagain" ng-click="scope.tryagain()">
+                {{'dashboard.RELOAD_DATA | translate'}}
+            </md-button>
+            <md-button class="md-raised md-primary" ng-show="scope.error.tryagain" ng-click="scope.tryagain()">
+                {{'dashboard.TRY_AGAIN' | translate}}
+            </md-button>
+            <md-button class="md-raised md-primary" ng-show="scope.error.report"
+                       ng-click="scope.logger.showReport(scope.error.report)">{{'dashboard.SEE_REPORT' | translate}}
+            </md-button>
+        </md-card-actions>
+
+
+    </md-card>
+</div>

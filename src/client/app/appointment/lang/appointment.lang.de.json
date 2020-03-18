@@ -1,0 +1,27 @@
+{
+    "appointment": {
+        "SELECT_APPOINTMENT_TITLE": "Termin auswählen",
+        "ERROR_LOAD_APPOINTMENT_DETAIL": "Beim Laden der Termindaten ist ein Fehler aufgetreten",
+        "NO_APPOINTMENT": "Kein Termin mit diesen Kriterien",
+        "NB_OF_APPOINTMENTS": "{APPOINTMENT, plural, =0{0 Termine} one{1 Termin} other{# Termine}}",
+        "TITLE": "Termin",
+        "TITLE_LIST": "Termine",
+        "TITLE_DETAILS": "Termindetails",
+        "BEGIN_DATETIME": "Start",
+        "END_DATETIME": "Ende",
+        "TIME": "Zeit",
+        "TYPE": "Typ",
+        "GUIDE_APPOINTMENT_AREA": "Klicken Sie hier um Details eines Termins zu sehen",
+        "LOCATION_TITLE": "Ort",
+        "DEVICES_TITLE": "Geräte",
+        "PERSONNEL_TITLE": "Personal",
+        "LOCATION_TYPE": "Art",
+        "DEVICE_NAME": "Bezeichnung",
+        "DEVICE_TYPE": "Art",
+        "PERSONNEL_ROLE": "Funktion",
+        "DATE": "Datum",
+        "NAVIGATION_TITLE": "Termine",
+        "RESPONSIBLE_PERSON": "Verantwortliche Person",
+        "EXPORT_TOOLTIP": "Exportieren Sie in den persönlichen Kalender"
+    }
+}

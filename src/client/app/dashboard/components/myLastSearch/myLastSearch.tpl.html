@@ -1,0 +1,66 @@
+<div class="myLastSearch" ng-controller="lastSearchController as vm" ng-if="!scope.isMobile()">
+    <md-card>
+        <md-card-title layout="row">
+            <md-card-title-text flex="initial">{{"dashboard.SEARCH_ENTRIES_TITLE" | translate}}</md-card-title-text>
+            <div flex="noshrink">
+                <md-button class="md-fab md-mini md-primary right" aria-label="Clear Last Searches"
+                           ng-if="vm.isViewLastSearches() && vm.hasLastSearchItems()">
+                    <md-tooltip md-direction="top">{{'core.DELETE_LIST' | translate}}</md-tooltip>
+                    <fec-icon type="delete" size="sm" ng-click="vm.clearLastSearches()"></fec-icon>
+                </md-button>
+            </div>
+        </md-card-title>
+        <md-divider/>
+        <div ng-cloak>
+            <md-content>
+                <md-nav-bar md-no-ink-bar="disableInkBar" md-selected-nav-item="vm.view">
+                    <md-nav-item md-nav-click="vm.selectViewLastSearches()" name="view-last-searches"
+                                 ng-disabled="vm.disableLastSearchesTab()">
+                        {{ "search.LAST_SEARCHES" | translate }}
+                    </md-nav-item>
+                    <md-nav-item md-nav-click="vm.selectViewFavoriteSearches()" name="view-favorite-searches"
+                                 ng-disabled="vm.disableFavoriteSearchesTab()">
+                        {{ "search.FAVORITES" | translate }}
+                    </md-nav-item>
+                </md-nav-bar>
+                <!-- LAST SEARCH VIEW -->
+                <div layout="row" ng-if="vm.isViewLastSearches()">
+                    <md-list flex ng-if="vm.hasLastSearchItems()">
+                        <md-list-item layout="row" class="border-top cursor-pointer" ng-repeat="aSearch in vm.lastSearches">
+                            <fec-search-query query="aSearch" mode="dashboard" user-interaction="false" delegate="vm" flex layout="row"></fec-search-query>
+                            <a>
+                                <fec-icon type="favorite" size="ms" color="fe-blue-icon" ng-click="vm.markAsFavorite($index)"></fec-icon>
+                            </a>
+                            <a>
+                                <fec-icon type="delete" size="ms" color="fe-blue-icon" ng-click="vm.removeSearch($index)"></fec-icon>
+                            </a>
+                        </md-list-item>
+                    </md-list>
+
+                    <div class="fec-no-data-message" flex layout="row" layout-align="center center" ng-if="!vm.hasLastSearchItems()">
+                        <p>{{'dashboard.NO_ENTRIES' | translate}}</p>
+                    </div>
+                </div>
+                <!-- FAVORITES VIEW -->
+                <div layout="row" ng-if="vm.isViewFavoriteSearches()">
+                    <md-list flex ng-if="vm.hasFavoriteSearchItems()">
+                        <md-list-item class="border-top cursor-pointer" layout="row" ng-repeat="aSearch in vm.favoriteSearches">
+                            <fec-search-query query="aSearch" mode="dashboard" user-interaction="false" delegate="vm" flex layout="row"></fec-search-query>
+                            <a class="delete" ng-click="vm.removeFavorite($index)">
+                                <fec-icon type="delete" size="md-24" color="fe-blue-icon"></fec-icon>
+                            </a>
+                        </md-list-item>
+                    </md-list>
+                    <div class="fec-no-data-message" flex layout="row" layout-align="center center" ng-if="!vm.hasFavoriteSearchItems()">
+                        <p>{{'dashboard.NO_ENTRIES' | translate}}</p>
+                    </div>
+                </div>
+            </md-content>
+        </div>
+
+        <!-- Draggable item -->
+        <div class="draggable sortable-handle" ng-class="{'draggable-visible': scope.isStateSorting}">
+            <fec-icon type="draggable" size="lg"></fec-icon>
+        </div>
+    </md-card>
+</div>

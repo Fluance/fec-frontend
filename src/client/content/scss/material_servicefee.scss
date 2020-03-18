@@ -1,0 +1,55 @@
+#servicefeeContainer {
+
+    expander-header {
+        .row {
+            margin-bottom: 0px;
+            padding: 5px;
+        }
+        line-height: 1rem;
+        .servicefee-id {
+            color: $fe-blue;
+            margin-bottom: 10px;
+        }
+        .benefit-id {
+            font-weight: bold;
+        }
+    }
+    #btn-order-sort {
+        float: right;
+    }
+
+    .servicefee-expander-body {
+        background-color: $fe-white;
+        line-height: 1rem;
+        .servicefee-detail-info {
+            line-height: 18px;
+            .row {
+                padding: 0px 20px;
+                margin: 0px -4px;
+                .item-info-detail {
+                    margin: 0px 0px 5px 0px;
+                    padding: 0px 0px 5px 0px;
+                    border-bottom: 1px solid $fe-grey;
+                    .item-info-detail-label {
+                        color: $fe-accent-grey;
+                    }
+                    .item-info-detail-content {
+                        color: $fe-black;
+                        padding-right: 0px;
+                        line-height: 1rem;
+                    }
+                }
+            }
+        }
+        @media #{$medium-and-down} { 
+            padding-top: 20px;
+        }
+    }
+    .markup {
+        @include transition(background-color .25s);
+    }
+    .markup:hover {
+        cursor: pointer;
+        background-color: $fe-black;
+    }
+}

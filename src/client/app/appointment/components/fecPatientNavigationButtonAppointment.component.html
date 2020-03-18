@@ -1,0 +1,48 @@
+<div ng-if="$ctrl.context.appointmentId">
+    <fec-patient-navigation-button
+        is-enabled="$ctrl.isEnabled"
+        is-active="$ctrl.isActive"
+        can-navigate="$ctrl.canNavigate(context)"
+        navigate-to="$ctrl.navigateTo(context)"
+        required-context="$ctrl.requiredContext"
+        context="$ctrl.context"
+        ask-always="$ctrl.askAlways"
+        prevent-navigation="$ctrl.preventNavigation()">
+        <navigation-component>
+            <md-button class="fecPatientNavigationButton md-primary" layout="row" layout-align="start center">
+                <div class="button-appointment" flex="auto" layout="row" layout-align="start center">
+                    <div flex="grow" layout="row" layout-align="start center">
+                        <fec-icon type="calendar" size="sm"></fec-icon>
+                    </div>
+                    <div flex="initial" layout="column" layout-align="center center">
+                        <div>{{'appointment.TITLE' | translate}}</div>
+                        <div class="context-data">{{$ctrl.context.appointmentId}}</div>
+                    </div>
+                    <div flex="grow" layout="row" layout-align="end center">
+                        <fec-icon type="forward" size="ms"
+                                  ng-if="$ctrl.isOnAppointmentDetails() && $ctrl.hasMultipleAppointments"></fec-icon>
+                        <fec-icon type="forward" color="fe-disabled-icon" size="ms"
+                                  ng-if="$ctrl.isOnAppointmentDetails() && !$ctrl.hasMultipleAppointments"></fec-icon>
+                    </div>
+                </div>
+            </md-button>
+        </navigation-component>
+    </fec-patient-navigation-button>
+</div>
+
+<div ng-if="!$ctrl.context.appointmentId">
+    <fec-patient-navigation-button
+        button-label="{{'appointment.TITLE_LIST' | translate}}"
+        is-enabled="$ctrl.isEnabled"
+        is-active="$ctrl.isActive"
+        can-navigate="$ctrl.canNavigate(context)"
+        navigate-to="$ctrl.navigateTo(context)"
+        required-context="$ctrl.requiredContext"
+        context="$ctrl.context"
+        icon-type="calendar"
+        ask-always="$ctrl.askAlways">
+    </fec-patient-navigation-button>
+</div>
+
+
+
