@@ -66,7 +66,7 @@
     "jquery": "~2.1.4",
     "jquery-ui": "~1.12.x",
     "jquery-ui-touch-punch": "*",
-    "js-data": "~2.10.1",
+    "js-data": "~3.0.11",
     "js-data-angular": "~3.2.1",
     "js-data-schema": "^1.2.5",
     "lodash": "^4.17.4",
