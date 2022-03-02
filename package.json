@@ -190,7 +190,7 @@
     "js-data-angular-mocks": "~3.1.0",
     "jsdoc": "^3.3.0-alpha13",
     "jshint-stylish": "^1.0.0",
-    "karma": "^0.13.22",
+    "karma": "^6.3.16",
     "karma-chai": "^0.1.0",
     "karma-chai-sinon": "^0.1.5",
     "karma-chrome-launcher": "^0.1.4",
